@@ -1,11 +1,7 @@
-// Top-level build file for SwiftBrowser project.
+// Top-level build file common to all modules.
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
-    alias(libs.plugins.kotlin.compose) apply false
-    alias(libs.plugins.hilt) apply false
-    alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.google.services) apply false
-    alias(libs.plugins.firebase.crashlytics) apply false
-    alias(libs.plugins.firebase.perf) apply false
+    id("com.android.application") version "9.1.1" apply false
+    id("org.jetbrains.kotlin.android") version "2.2.10" apply false
+    id("com.google.devtools.ksp") version "2.3.9" apply false
+    id("org.jetbrains.kotlin.plugin.compose") version "2.2.10" apply false
 }

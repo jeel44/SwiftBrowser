@@ -1,48 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- SwiftBrowser Brand Colors -->
-    <color name="swift_blue">#1565C0</color>
-    <color name="swift_blue_dark">#0D47A1</color>   <!-- ADD THIS LINE -->
-    <color name="swift_light_blue">#0288D1</color>
-    <color name="swift_cyan">#00BCD4</color>
-    <color name="swift_dark">#0D1B2A</color>
-    <color name="swift_gray">#F5F7FA</color>
-
-    <!-- Semantic Colors -->
-    <color name="primary">#1565C0</color>
-    <color name="primary_variant">#003C8F</color>
-    <color name="secondary">#0288D1</color>
-    <color name="secondary_variant">#005B9F</color>
-    <color name="accent">#00BCD4</color>
-    <color name="background">#FAFAFA</color>
-    <color name="surface">#FFFFFF</color>
-    <color name="error">#D32F2F</color>
-    <color name="on_primary">#FFFFFF</color>
-    <color name="on_secondary">#FFFFFF</color>
-    <color name="on_background">#1A1A2E</color>
-    <color name="on_surface">#1A1A2E</color>
-    <color name="on_error">#FFFFFF</color>
-
-    <!-- Dark Theme Colors -->
-    <color name="dark_background">#0D1B2A</color>
-    <color name="dark_surface">#1A2E40</color>
-    <color name="dark_on_background">#E8EAF6</color>
-    <color name="dark_on_surface">#E8EAF6</color>
-
-    <!-- URL Bar Colors -->
-    <color name="url_bar_background">#F0F4FF</color>
-    <color name="url_bar_background_dark">#1E2D40</color>
-
-    <!-- Tab Colors -->
-    <color name="tab_selected">#1565C0</color>
-    <color name="tab_unselected">#9E9E9E</color>
-
-    <!-- FCM Notification -->
-    <color name="purple_primary">#6C47D9</color>
-
-    <!-- Lock icon colors -->
-    <color name="lock_secure_color">#0F9D58</color>
-    <color name="lock_warning_color">#F44336</color>
-    <color name="icon_refresh_color">#5F6368</color>
-    <color name="icon_stop_color">#5F6368</color>
+    <color name="slaty_black">#070A0F</color>
+    <color name="white">#FFFFFF</color>
+    <!-- Splash / cold-start window background for light (day) mode. The night
+         variant lives in values-night/colors.xml. The base theme references this
+         so the system splash drawn before onCreate always pairs with a visible
+         logo (dark logo on this light bg). -->
+    <color name="splash_bg">#FFFFFF</color>
+    <color name="app_icon_dark_bg">#1C1C1E</color>
+    <color name="app_icon_light_bg">#FFFFFF</color>
+    <color name="app_icon_blue_bg">#0A84FF</color>
+    <color name="app_icon_gold_bg">#FFB800</color>
+    <!-- Launcher icon plate colors (adaptive-icon background layers). Sampled
+         from the source artworks so the mask crop blends with the ring. -->
+    <color name="app_icon_aura_light_bg">#EEF0F3</color>
+    <color name="app_icon_aura_dark_bg">#0D1117</color>
 </resources>

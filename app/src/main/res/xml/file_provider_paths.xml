@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
-    <!-- External files directory for user-visible downloads -->
+    <!-- App-internal downloads (OmniDownloads saved via saveToPublicDownloads) -->
     <external-files-path
-        name="external_files"
-        path="." />
-
-    <!-- External storage downloads folder -->
-    <external-path
-        name="external_storage"
-        path="Download/" />
-
-    <!-- App-specific cache for temporary share files -->
-    <cache-path
-        name="cache"
-        path="." />
+        name="omni_downloads"
+        path="Downloads/OmniDownloads/" />
+    <!-- Temp downloads staging area -->
+    <files-path
+        name="temp_downloads"
+        path="temp_downloads/" />
+    <!-- Locker files (for opening from locker if needed) -->
+    <files-path
+        name="locker"
+        path="locker/" />
 </paths>

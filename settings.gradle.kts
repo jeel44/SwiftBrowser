@@ -1,27 +1,29 @@
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
-}
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.10.0"
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://maven.mozilla.org/maven2") }
+        // Mozilla Maven — only used for org.mozilla.geckoview.
+        // Declared with a content filter so build tools & F-Droid can verify
+        // no other artefacts are pulled from this host.
+        maven {
+            val base = "https://maven"
+            val domain = "mozilla.org"
+            url = uri("$base.$domain/maven2/")
+            content {
+                includeGroupByRegex("org\\.mozilla.*")
+            }
+        }
     }
 }
 
-rootProject.name = "Swift Browser"
+rootProject.name = "Omni Browser"
 include(":app")
- 

@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.SwiftBrowser" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/swift_blue</item>
-        <item name="colorPrimaryDark">@color/swift_blue_dark</item>
-        <item name="colorAccent">@color/swift_cyan</item>
+    <style name="Theme.OmniBrowser" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!-- Solid splash colour, NOT ?attr/colorSurface: in light mode colorSurface
+             is a pale tint that rendered the white logo invisible (white-on-white
+             cold-start screen). splash_bg is night-qualified so the window always
+             contrasts with the logo tint for the current UI mode. -->
+        <item name="android:windowBackground">@color/splash_bg</item>
     </style>
 
-    <style name="Theme.SwiftBrowser.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/swift_blue</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="postSplashScreenTheme">@style/Theme.SwiftBrowser</item>
+    <style name="Theme.OmniBrowser.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowBackground">@color/slaty_black</item>
     </style>
 
+    <style name="Theme.OmniBrowser.Light" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="Theme.OmniBrowser.Amoled" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
 </resources>
