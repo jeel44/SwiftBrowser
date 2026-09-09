@@ -1734,19 +1734,8 @@
 
     <string name="sync_title">Swift Sync</string>
     <string name="sync_subtitle">Облачная и P2P синхронизация устройств</string>
-    <string name="sync_fxa_title">Синхронизация Firefox аккаунта</string>
-    <string name="sync_fxa_subtitle">Mozilla Cloud Sync</string>
-    <string name="sync_fxa_connected">ПОДКЛЮЧЕНО</string>
-    <string name="sync_fxa_not_connected">НЕ ПОДКЛЮЧЕНО</string>
-    <string name="sync_fxa_synced_recently">Синхронизировано с облаком недавно</string>
-    <string name="sync_fxa_ready">Готово к синхронизации с Firefox</string>
     <string name="sync_now">Синхронизировать</string>
     <string name="sync_remote_tabs">Вкладки с других устройств</string>
-    <string name="sync_sign_out">Выйти</string>
-    <string name="sync_sign_in_fxa">Войти через аккаунт Firefox</string>
-    <string name="sync_fxa_desc">Войдите в аккаунт Firefox для автоматической синхронизации закладок, вкладок с ПК/Mac, истории и паролей через Mozilla Cloud.</string>
-    <string name="sync_fxa_complete_toast">Облачная синхронизация Firefox завершена!</string>
-    <string name="sync_fxa_signed_out_toast">Выход из аккаунта Firefox выполнен</string>
     <string name="sync_mesh_title">Swift Sync Mesh (Офлайн / LAN)</string>
     <string name="sync_mesh_subtitle">Без облака · 100% E2EE P2P (Скоро)</string>
     <string name="sync_mesh_upcoming_badge">Скоро — Этап тестирования</string>
@@ -1780,8 +1769,6 @@
     <string name="sync_pref_tabs_desc">Просмотр и переключение вкладок между устройствами</string>
     <string name="sync_pref_history">История просмотров</string>
     <string name="sync_pref_history_desc">Хранение 90 дней с очисткой трекеров</string>
-    <string name="sync_pref_passwords">Пароли и учетные данные</string>
-    <string name="sync_pref_passwords_desc">Сквозное шифрование с нулевым разглашением</string>
     <string name="sync_pref_settings">Настройки и правила блокировки</string>
     <string name="sync_pref_settings_desc">Фильтры, темы и поисковая система</string>
     <string name="sync_section_guarantees">Гарантии конфиденциальности и шифрования</string>
@@ -1815,5 +1802,4 @@
     <string name="sync_tabs_sheet_title">Синхронизированные вкладки</string>
     <string name="sync_tabs_empty_title">Нет синхронизированных вкладок</string>
     <string name="sync_tabs_empty_desc">Вкладки с других устройств появятся здесь после синхронизации</string>
-    <string name="sync_connected_fxa_toast">Подключено к аккаунту Firefox!</string>
 </resources>

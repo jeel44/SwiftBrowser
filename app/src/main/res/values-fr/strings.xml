@@ -1735,19 +1735,8 @@
 
     <string name="sync_title">Swift Sync</string>
     <string name="sync_subtitle">Synchronisation Cloud &amp; P2P multi-appareils</string>
-    <string name="sync_fxa_title">Compte Firefox Sync</string>
-    <string name="sync_fxa_subtitle">Mozilla Cloud Sync</string>
-    <string name="sync_fxa_connected">CONNECTÉ</string>
-    <string name="sync_fxa_not_connected">NON CONNECTÉ</string>
-    <string name="sync_fxa_synced_recently">Récemment synchronisé avec le Cloud</string>
-    <string name="sync_fxa_ready">Prêt à synchroniser avec Firefox</string>
     <string name="sync_now">Synchroniser</string>
     <string name="sync_remote_tabs">Onglets distants</string>
-    <string name="sync_sign_out">Se déconnecter</string>
-    <string name="sync_sign_in_fxa">Se connecter avec un compte Firefox</string>
-    <string name="sync_fxa_desc">"Connectez-vous à votre compte Firefox pour synchroniser automatiquement vos marque-pages, onglets ouverts, historique et mots de passe via Mozilla Cloud."</string>
-    <string name="sync_fxa_complete_toast">Synchronisation Firefox Cloud terminée !</string>
-    <string name="sync_fxa_signed_out_toast">Déconnecté du compte Firefox</string>
     <string name="sync_mesh_title">Swift Sync Mesh (Hors-ligne / LAN)</string>
     <string name="sync_mesh_subtitle">Zéro-Cloud · 100% E2EE P2P (Bientôt)</string>
     <string name="sync_mesh_upcoming_badge">Fonctionnalité à venir — Phase de test</string>
@@ -1781,8 +1770,6 @@
     <string name="sync_pref_tabs_desc">Afficher et basculer entre les onglets actifs</string>
     <string name="sync_pref_history">Historique de navigation</string>
     <string name="sync_pref_history_desc">Rétention facultative de 90 jours avec suppression des traceurs</string>
-    <string name="sync_pref_passwords">Mots de passe et identifiants</string>
-    <string name="sync_pref_passwords_desc">Coffre-fort zéro connaissance chiffré de bout en bout</string>
     <string name="sync_pref_settings">Paramètres et règles de blocage</string>
     <string name="sync_pref_settings_desc">Filtres personnalisés, thème et moteur de recherche</string>
     <string name="sync_section_guarantees">Garanties de confidentialité et de chiffrement</string>
@@ -1816,5 +1803,4 @@
     <string name="sync_tabs_sheet_title">Onglets synchronisés</string>
     <string name="sync_tabs_empty_title">Aucun onglet synchronisé disponible</string>
     <string name="sync_tabs_empty_desc">Les onglets des autres appareils apparaîtront ici après la synchronisation</string>
-    <string name="sync_connected_fxa_toast">Connecté au compte Firefox !</string>
 </resources>

@@ -1805,19 +1805,8 @@
 
     <string name="sync_title">Swift Sync</string>
     <string name="sync_subtitle">Cloud &amp; P2P Multi-Device Sync</string>
-    <string name="sync_fxa_title">Firefox Account Sync</string>
-    <string name="sync_fxa_subtitle">Mozilla Cloud Sync</string>
-    <string name="sync_fxa_connected">CONNECTED</string>
-    <string name="sync_fxa_not_connected">NOT CONNECTED</string>
-    <string name="sync_fxa_synced_recently">Cloud synced recently</string>
-    <string name="sync_fxa_ready">Ready to sync with Firefox</string>
     <string name="sync_now">Sync Now</string>
     <string name="sync_remote_tabs">Remote Tabs</string>
-    <string name="sync_sign_out">Sign Out</string>
-    <string name="sync_sign_in_fxa">Sign in with Firefox Account</string>
-    <string name="sync_fxa_desc">Sign in with your Firefox Account to automatically sync bookmarks, open tabs from your PC/Mac, browsing history, and passwords seamlessly via Mozilla Cloud.</string>
-    <string name="sync_fxa_complete_toast">Firefox Cloud Sync complete!</string>
-    <string name="sync_fxa_signed_out_toast">Signed out of Firefox Account</string>
     <string name="sync_mesh_title">Swift Sync Mesh (Offline / LAN)</string>
     <string name="sync_mesh_subtitle">Zero-Cloud · 100% E2EE P2P (Upcoming)</string>
     <string name="sync_mesh_upcoming_badge">Upcoming Feature — Testing Phase</string>
@@ -1851,8 +1840,6 @@
     <string name="sync_pref_tabs_desc">View &amp; switch active tabs across devices</string>
     <string name="sync_pref_history">Browsing History</string>
     <string name="sync_pref_history_desc">Opt-in 90-day retention with tracker stripping</string>
-    <string name="sync_pref_passwords">Passwords &amp; Credentials</string>
-    <string name="sync_pref_passwords_desc">End-to-end encrypted zero-knowledge locker</string>
     <string name="sync_pref_settings">Settings &amp; Adblock Rules</string>
     <string name="sync_pref_settings_desc">Custom filters, theme, and search engine</string>
     <string name="sync_section_guarantees">Privacy &amp; Encryption Guarantees</string>
@@ -1886,5 +1873,4 @@
     <string name="sync_tabs_sheet_title">Synced Tabs</string>
     <string name="sync_tabs_empty_title">No synced tabs available</string>
     <string name="sync_tabs_empty_desc">Tabs from other devices will appear here after sync</string>
-    <string name="sync_connected_fxa_toast">Connected to Firefox Account!</string>
 </resources>

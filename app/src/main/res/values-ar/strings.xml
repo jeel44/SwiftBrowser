@@ -1734,19 +1734,8 @@
 
     <string name="sync_title">Swift Sync</string>
     <string name="sync_subtitle">مزامنة سحابية ومباشرة متعددة الأجهزة</string>
-    <string name="sync_fxa_title">مزامنة حساب Firefox</string>
-    <string name="sync_fxa_subtitle">Mozilla Cloud Sync</string>
-    <string name="sync_fxa_connected">متصل</string>
-    <string name="sync_fxa_not_connected">غير متصل</string>
-    <string name="sync_fxa_synced_recently">تمت المزامنة السحابية مؤخراً</string>
-    <string name="sync_fxa_ready">جاهز للمزامنة مع Firefox</string>
     <string name="sync_now">مزامنة الآن</string>
     <string name="sync_remote_tabs">علامات التبويب البعيدة</string>
-    <string name="sync_sign_out">تسجيل الخروج</string>
-    <string name="sync_sign_in_fxa">تسجيل الدخول بحساب Firefox</string>
-    <string name="sync_fxa_desc">سجّل الدخول بحساب Firefox لمزامنة الإشارات المرجعية، وعلامات التبويب المفتوحة من الحاسوب، والسجل وكلمات المرور تلقائياً عبر Mozilla Cloud.</string>
-    <string name="sync_fxa_complete_toast">اكتملت مزامنة Firefox السحابية!</string>
-    <string name="sync_fxa_signed_out_toast">تم تسجيل الخروج من حساب Firefox</string>
     <string name="sync_mesh_title">Swift Sync Mesh (بدون إنترنت / LAN)</string>
     <string name="sync_mesh_subtitle">بدون سحابة · تشفير 100% E2EE (قريباً)</string>
     <string name="sync_mesh_upcoming_badge">ميزة قادمة — مرحلة الاختبار</string>
@@ -1780,8 +1769,6 @@
     <string name="sync_pref_tabs_desc">عرض والتبديل بين علامات التبويب عبر الأجهزة</string>
     <string name="sync_pref_history">سجل التصفح</string>
     <string name="sync_pref_history_desc">احتفاظ اختياري لمدة 90 يوماً مع إزالة المتتبعات</string>
-    <string name="sync_pref_passwords">كلمات المرور وبيانات الاعتماد</string>
-    <string name="sync_pref_passwords_desc">خزينة معرفة صفرية مشفرة من طرف إلى طرف</string>
     <string name="sync_pref_settings">الإعدادات وقواعد منع الإعلانات</string>
     <string name="sync_pref_settings_desc">فلاتر مخصصة والسمة ومحرك البحث</string>
     <string name="sync_section_guarantees">ضمانات الخصوصية والتشفير</string>
@@ -1815,5 +1802,4 @@
     <string name="sync_tabs_sheet_title">علامات التبويب المتزامنة</string>
     <string name="sync_tabs_empty_title">لا توجد علامات تبويب متزامنة</string>
     <string name="sync_tabs_empty_desc">ستظهر علامات التبويب من الأجهزة الأخرى هنا بعد المزامنة</string>
-    <string name="sync_connected_fxa_toast">تم الاتصال بحساب Firefox!</string>
 </resources>

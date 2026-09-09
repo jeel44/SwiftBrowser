@@ -387,13 +387,13 @@ class LanWebSocketServer(
             // Ingest incoming open tabs from desktop peer
             val tabsArray = json.optJSONArray("openTabs")
             if (tabsArray != null) {
-                val tabList = mutableListOf<com.swiftbrowser.fast.secure.sync.mozilla.TabInfo>()
+                val tabList = mutableListOf<com.swiftbrowser.fast.secure.sync.core.TabInfo>()
                 for (j in 0 until tabsArray.length()) {
                     val tObj = tabsArray.getJSONObject(j)
                     val url = tObj.optString("url", "")
                     if (url.isNotBlank() && url != "about:blank") {
                         tabList.add(
-                            com.swiftbrowser.fast.secure.sync.mozilla.TabInfo(
+                            com.swiftbrowser.fast.secure.sync.core.TabInfo(
                                 title = tObj.optString("title", url),
                                 url = url,
                                 iconUrl = if (tObj.has("favicon") && !tObj.isNull("favicon")) tObj.getString("favicon") else null,

@@ -209,7 +209,6 @@ class SwiftBrowserApplication : Application(), coil.ImageLoaderFactory {
                 val baseDir = filesDir
                 val collection = com.swiftbrowser.fast.secure.bookmarks.storage.loadBookmarks(this@SwiftBrowserApplication)
                 val coord = SyncCoordinatorHolder.getOrCreate(baseDir, collection)
-                com.swiftbrowser.fast.secure.sync.core.SyncBridge.getInstance().tabBridge = com.swiftbrowser.fast.secure.sync.mozilla.MozillaSyncManager.getInstance().tabBridge
             } catch (e: Exception) {
                 android.util.Log.e("SwiftBrowserApplication", "Failed to initialize global SyncCoordinator", e)
             }

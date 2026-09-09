@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 /**
- * Listener interface for sync adapters (e.g. Mozilla Sync Adapter, Swift Mesh Extension Adapter)
+ * Listener interface for sync adapters (e.g. Swift Mesh Extension Adapter)
  * to receive local mutations and dispatch remote changes.
  */
 interface SyncDataObserver {
@@ -29,7 +29,8 @@ interface SyncDataObserver {
 
 /**
  * Central SyncBridge that anchors all local browser mutations and dispatches them
- * to active synchronization backends (Mozilla Firefox Sync and/or Swift Mesh LAN Extension).
+ * to active synchronization backends (currently just the Swift Sync Mesh LAN
+ * Extension — Firefox Account Sync was removed in Phase 3b).
  */
 class SyncBridge private constructor(
     val deviceId: String = "swift_" + java.util.UUID.randomUUID().toString().take(8)
@@ -68,11 +69,11 @@ class SyncBridge private constructor(
         }
     }
 
-    var tabBridge: com.swiftbrowser.fast.secure.sync.mozilla.MozillaTabBridge? = null
+    val tabBridge: TabSyncBridge = TabSyncBridge()
     var localTabs: List<TabState> = emptyList()
 
-    fun updateRemoteDeviceTabs(deviceId: String, deviceName: String, tabs: List<com.swiftbrowser.fast.secure.sync.mozilla.TabInfo>) {
-        tabBridge?.updateDirectRemoteTabs(deviceId, deviceName, tabs)
+    fun updateRemoteDeviceTabs(deviceId: String, deviceName: String, tabs: List<TabInfo>) {
+        tabBridge.updateDirectRemoteTabs(deviceId, deviceName, tabs)
     }
 
     /**

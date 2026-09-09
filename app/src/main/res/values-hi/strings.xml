@@ -1735,19 +1735,8 @@
 
     <string name="sync_title">Swift Sync</string>
     <string name="sync_subtitle">क्लाउड और P2P मल्टी-डिवाइस सिंक</string>
-    <string name="sync_fxa_title">Firefox खाता सिंक</string>
-    <string name="sync_fxa_subtitle">Mozilla Cloud Sync</string>
-    <string name="sync_fxa_connected">कनेक्टेड</string>
-    <string name="sync_fxa_not_connected">कनेक्टेड नहीं</string>
-    <string name="sync_fxa_synced_recently">हाल ही में क्लाउड सिंक किया गया</string>
-    <string name="sync_fxa_ready">Firefox के साथ सिंक करने के लिए तैयार</string>
     <string name="sync_now">अभी सिंक करें</string>
     <string name="sync_remote_tabs">रिमोट टैब</string>
-    <string name="sync_sign_out">साइन आउट</string>
-    <string name="sync_sign_in_fxa">Firefox खाते से साइन इन करें</string>
-    <string name="sync_fxa_desc">Mozilla Cloud के माध्यम से अपने PC/Mac से बुकमार्क, खुले टैब, ब्राउज़िंग इतिहास और पासवर्ड को स्वचालित रूप से सिंक करने के लिए अपने Firefox खाते से साइन इन करें।</string>
-    <string name="sync_fxa_complete_toast">Firefox क्लाउड सिंक पूरा हुआ!</string>
-    <string name="sync_fxa_signed_out_toast">Firefox खाते से साइन आउट किया गया</string>
     <string name="sync_mesh_title">Swift Sync Mesh (ऑफ़लाइन / LAN)</string>
     <string name="sync_mesh_subtitle">शून्य-क्लाउड · 100% E2EE P2P (जल्द आ रहा है)</string>
     <string name="sync_mesh_upcoming_badge">आगामी सुविधा — परीक्षण चरण</string>
@@ -1781,8 +1770,6 @@
     <string name="sync_pref_tabs_desc">डिवाइसों पर सक्रिय टैब देखें और बदलें</string>
     <string name="sync_pref_history">ब्राउज़िंग इतिहास</string>
     <string name="sync_pref_history_desc">ट्रैकर हटाने के साथ 90-दिन का वैकल्पिक इतिहास</string>
-    <string name="sync_pref_passwords">पासवर्ड और क्रेडेंशियल</string>
-    <string name="sync_pref_passwords_desc">एंड-टू-एंड एन्क्रिप्टेड ज़ीरो-नॉलेज वॉल्ट</string>
     <string name="sync_pref_settings">सेटिंग्स और एडब्लॉक नियम</string>
     <string name="sync_pref_settings_desc">कस्टम फ़िल्टर, थीम और खोज इंजन</string>
     <string name="sync_section_guarantees">गोपनीयता और एन्क्रिप्शन गारंटी</string>
@@ -1816,5 +1803,4 @@
     <string name="sync_tabs_sheet_title">सिंक किए गए टैब</string>
     <string name="sync_tabs_empty_title">कोई सिंक किया गया टैब उपलब्ध नहीं है</string>
     <string name="sync_tabs_empty_desc">सिंक के बाद अन्य डिवाइस के टैब यहां दिखाई देंगे</string>
-    <string name="sync_connected_fxa_toast">Firefox खाते से कनेक्ट हो गया!</string>
 </resources>

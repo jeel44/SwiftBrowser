@@ -24,9 +24,7 @@ enum class SyncStatus {
 }
 
 enum class SyncBackend {
-    SWIFT_LAN,
-    FIREFOX,
-    BOTH
+    SWIFT_LAN
 }
 
 data class SyncUiState(

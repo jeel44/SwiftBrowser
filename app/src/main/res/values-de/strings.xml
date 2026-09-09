@@ -1733,19 +1733,8 @@ tellungen &amp; Layout</string>
 
     <string name="sync_title">Swift Sync</string>
     <string name="sync_subtitle">Cloud- &amp; P2P-Gerätesynchronisierung</string>
-    <string name="sync_fxa_title">Firefox-Konto-Synchronisierung</string>
-    <string name="sync_fxa_subtitle">Mozilla Cloud Sync</string>
-    <string name="sync_fxa_connected">VERBUNDEN</string>
-    <string name="sync_fxa_not_connected">NICHT VERBUNDEN</string>
-    <string name="sync_fxa_synced_recently">Kürzlich mit Cloud synchronisiert</string>
-    <string name="sync_fxa_ready">Bereit zur Synchronisierung mit Firefox</string>
     <string name="sync_now">Jetzt synchronisieren</string>
     <string name="sync_remote_tabs">Remote-Tabs</string>
-    <string name="sync_sign_out">Abmelden</string>
-    <string name="sync_sign_in_fxa">Mit Firefox-Konto anmelden</string>
-    <string name="sync_fxa_desc">Melden Sie sich mit Ihrem Firefox-Konto an, um Lesezeichen, geöffnete Tabs von PC/Mac, Verlauf und Passwörter automatisch über die Mozilla Cloud zu synchronisieren.</string>
-    <string name="sync_fxa_complete_toast">Firefox Cloud-Synchronisierung abgeschlossen!</string>
-    <string name="sync_fxa_signed_out_toast">Vom Firefox-Konto abgemeldet</string>
     <string name="sync_mesh_title">Swift Sync Mesh (Offline / LAN)</string>
     <string name="sync_mesh_subtitle">Zero-Cloud · 100% E2EE P2P (Demnächst)</string>
     <string name="sync_mesh_upcoming_badge">Kommende Funktion — Testphase</string>
@@ -1779,8 +1768,6 @@ tellungen &amp; Layout</string>
     <string name="sync_pref_tabs_desc">Aktive Tabs geräteübergreifend anzeigen und wechseln</string>
     <string name="sync_pref_history">Browser-Verlauf</string>
     <string name="sync_pref_history_desc">Opt-in mit 90-Tage-Aufbewahrung und Tracker-Entfernung</string>
-    <string name="sync_pref_passwords">Passwörter &amp; Zugangsdaten</string>
-    <string name="sync_pref_passwords_desc">Ende-zu-Ende verschlüsselter Zero-Knowledge-Tresor</string>
     <string name="sync_pref_settings">Einstellungen &amp; Werbeblocker-Regeln</string>
     <string name="sync_pref_settings_desc">Eigene Filter, Design und Suchmaschine</string>
     <string name="sync_section_guarantees">Datenschutz- &amp; Verschlüsselungsgarantien</string>
@@ -1814,5 +1801,4 @@ tellungen &amp; Layout</string>
     <string name="sync_tabs_sheet_title">Synchronisierte Tabs</string>
     <string name="sync_tabs_empty_title">Keine synchronisierten Tabs verfügbar</string>
     <string name="sync_tabs_empty_desc">Tabs von anderen Geräten erscheinen hier nach dem Sync</string>
-    <string name="sync_connected_fxa_toast">Mit Firefox-Konto verbunden!</string>
 </resources>

@@ -1735,19 +1735,8 @@
 
     <string name="sync_title">Swift Sync</string>
     <string name="sync_subtitle">Synchronizacja w chmurze i P2P na wielu urządzeniach</string>
-    <string name="sync_fxa_title">Synchronizacja konta Firefox</string>
-    <string name="sync_fxa_subtitle">Mozilla Cloud Sync</string>
-    <string name="sync_fxa_connected">POŁĄCZONO</string>
-    <string name="sync_fxa_not_connected">NIE POŁĄCZONO</string>
-    <string name="sync_fxa_synced_recently">Ostatnio zsynchronizowano z chmurą</string>
-    <string name="sync_fxa_ready">Gotowy do synchronizacji z Firefoxem</string>
     <string name="sync_now">Synchronizuj teraz</string>
     <string name="sync_remote_tabs">Zdalne karty</string>
-    <string name="sync_sign_out">Wyloguj się</string>
-    <string name="sync_sign_in_fxa">Zaloguj się przez konto Firefox</string>
-    <string name="sync_fxa_desc">Zaloguj się na konto Firefox, aby automatycznie synchronizować zakładki, otwarte karty z PC/Mac, historię i hasła za pośrednictwem Mozilla Cloud.</string>
-    <string name="sync_fxa_complete_toast">Synchronizacja z Firefox Cloud zakończona!</string>
-    <string name="sync_fxa_signed_out_toast">Wylogowano z konta Firefox</string>
     <string name="sync_mesh_title">Swift Sync Mesh (Offline / LAN)</string>
     <string name="sync_mesh_subtitle">Zero chmury · 100% E2EE P2P (Wkrótce)</string>
     <string name="sync_mesh_upcoming_badge">Nadchodząca funkcja — Faza testowa</string>
@@ -1781,8 +1770,6 @@
     <string name="sync_pref_tabs_desc">Przeglądaj i przełączaj aktywne karty na różnych urządzeniach</string>
     <string name="sync_pref_history">Historia przeglądania</string>
     <string name="sync_pref_history_desc">Opcjonalne 90-dniowe przechowywanie z usuwaniem trackerów</string>
-    <string name="sync_pref_passwords">Hasła i poświadczenia</string>
-    <string name="sync_pref_passwords_desc">Szyfrowany skarbiec o zerowej wiedzy</string>
     <string name="sync_pref_settings">Ustawienia i reguły blokowania</string>
     <string name="sync_pref_settings_desc">Własne filtry, motyw i wyszukiwarka</string>
     <string name="sync_section_guarantees">Gwarancje prywatności i szyfrowania</string>
@@ -1816,5 +1803,4 @@
     <string name="sync_tabs_sheet_title">Zsynchronizowane karty</string>
     <string name="sync_tabs_empty_title">Brak zsynchronizowanych kart</string>
     <string name="sync_tabs_empty_desc">Karty z innych urządzeń pojawią się tutaj po synchronizacji</string>
-    <string name="sync_connected_fxa_toast">Połączono z kontem Firefox!</string>
 </resources>

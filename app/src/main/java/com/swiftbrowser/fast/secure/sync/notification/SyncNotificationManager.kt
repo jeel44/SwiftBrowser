@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 enum class SyncNotificationType {
     SYNC_SUCCESS,
     DEVICE_PAIRED,
-    FIREFOX_SYNC,
     SYNC_ERROR
 }
 
@@ -30,7 +29,7 @@ data class SyncEvent(
 
 object SyncNotificationManager {
     const val CHANNEL_ID = "swift_sync_notifications"
-    const val CHANNEL_NAME = "Swift Sync & Firefox Sync"
+    const val CHANNEL_NAME = "Swift Sync"
     private const val NOTIFICATION_ID_BASE = 87650
 
     private val _syncEvents = MutableSharedFlow<SyncEvent>(extraBufferCapacity = 32)
@@ -74,14 +73,6 @@ object SyncNotificationManager {
 
         _syncEvents.tryEmit(SyncEvent(SyncNotificationType.DEVICE_PAIRED, title, message))
         showNotification(context, NOTIFICATION_ID_BASE + 2, title, message)
-    }
-
-    fun notifyFirefoxSync(context: Context, email: String, summary: String) {
-        val title = "Firefox Sync Complete"
-        val message = "Account: $email • $summary"
-
-        _syncEvents.tryEmit(SyncEvent(SyncNotificationType.FIREFOX_SYNC, title, message))
-        showNotification(context, NOTIFICATION_ID_BASE + 3, title, message)
     }
 
     fun notifySyncError(context: Context, error: String) {

@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.stringResource
 import com.swiftbrowser.fast.secure.R
-import com.swiftbrowser.fast.secure.sync.mozilla.RemoteDeviceTabs
-import com.swiftbrowser.fast.secure.sync.mozilla.TabInfo
+import com.swiftbrowser.fast.secure.sync.core.RemoteDeviceTabs
+import com.swiftbrowser.fast.secure.sync.core.TabInfo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

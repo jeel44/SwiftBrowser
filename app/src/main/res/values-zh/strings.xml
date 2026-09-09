@@ -1734,19 +1734,8 @@
 
     <string name="sync_title">Swift Sync</string>
     <string name="sync_subtitle">云端与P2P多设备同步</string>
-    <string name="sync_fxa_title">Firefox 账号同步</string>
-    <string name="sync_fxa_subtitle">Mozilla Cloud Sync</string>
-    <string name="sync_fxa_connected">已连接</string>
-    <string name="sync_fxa_not_connected">未连接</string>
-    <string name="sync_fxa_synced_recently">最近已同步至云端</string>
-    <string name="sync_fxa_ready">准备好与 Firefox 同步</string>
     <string name="sync_now">立即同步</string>
     <string name="sync_remote_tabs">远程标签页</string>
-    <string name="sync_sign_out">退出登录</string>
-    <string name="sync_sign_in_fxa">登录 Firefox 账号</string>
-    <string name="sync_fxa_desc">登录您的 Firefox 账号，通过 Mozilla Cloud 自动同步书签、电脑端打开的标签页、历史记录和密码。</string>
-    <string name="sync_fxa_complete_toast">Firefox 云端同步已完成！</string>
-    <string name="sync_fxa_signed_out_toast">已退出 Firefox 账号</string>
     <string name="sync_mesh_title">Swift Sync Mesh (离线 / 局域网)</string>
     <string name="sync_mesh_subtitle">零云端 · 100% 端到端加密P2P (即将推出)</string>
     <string name="sync_mesh_upcoming_badge">即将推出的功能 — 测试阶段</string>
@@ -1780,8 +1769,6 @@
     <string name="sync_pref_tabs_desc">跨设备查看并切换活动标签页</string>
     <string name="sync_pref_history">浏览历史记录</string>
     <string name="sync_pref_history_desc">自选 90 天保留期并自动剥离跟踪参数</string>
-    <string name="sync_pref_passwords">密码与凭据</string>
-    <string name="sync_pref_passwords_desc">端到端加密零知识密码库</string>
     <string name="sync_pref_settings">设置与广告拦截规则</string>
     <string name="sync_pref_settings_desc">自定义过滤规则、主题及搜索引擎</string>
     <string name="sync_section_guarantees">隐私与加密保障</string>
@@ -1815,5 +1802,4 @@
     <string name="sync_tabs_sheet_title">已同步的标签页</string>
     <string name="sync_tabs_empty_title">暂无已同步的标签页</string>
     <string name="sync_tabs_empty_desc">同步完成后，其他设备的标签页将显示在此处</string>
-    <string name="sync_connected_fxa_toast">已连接到 Firefox 账号！</string>
 </resources>

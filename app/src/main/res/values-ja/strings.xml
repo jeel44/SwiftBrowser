@@ -1734,19 +1734,8 @@
 
     <string name="sync_title">Swift Sync</string>
     <string name="sync_subtitle">クラウド＆P2Pマルチデバイス同期</string>
-    <string name="sync_fxa_title">Firefoxアカウント同期</string>
-    <string name="sync_fxa_subtitle">Mozilla Cloud Sync</string>
-    <string name="sync_fxa_connected">接続済み</string>
-    <string name="sync_fxa_not_connected">未接続</string>
-    <string name="sync_fxa_synced_recently">最近クラウド同期されました</string>
-    <string name="sync_fxa_ready">Firefoxと同期する準備ができました</string>
     <string name="sync_now">今すぐ同期</string>
     <string name="sync_remote_tabs">リモートタブ</string>
-    <string name="sync_sign_out">サインアウト</string>
-    <string name="sync_sign_in_fxa">Firefoxアカウントでサインイン</string>
-    <string name="sync_fxa_desc">Firefoxアカウントにサインインして、ブックマーク、PC/Macの開いているタブ、履歴、パスワードをMozilla Cloud経由で自動同期します。</string>
-    <string name="sync_fxa_complete_toast">Firefoxクラウド同期が完了しました！</string>
-    <string name="sync_fxa_signed_out_toast">Firefoxアカウントからサインアウトしました</string>
     <string name="sync_mesh_title">Swift Sync Mesh (オフライン / LAN)</string>
     <string name="sync_mesh_subtitle">ゼロクラウド · 100% E2EE P2P (近日公開)</string>
     <string name="sync_mesh_upcoming_badge">近日公開機能 — テストフェーズ</string>
@@ -1780,8 +1769,6 @@
     <string name="sync_pref_tabs_desc">端末間でアクティブなタブを表示・切り替え</string>
     <string name="sync_pref_history">閲覧履歴</string>
     <string name="sync_pref_history_desc">トラッカー削除付きの90日間オプトイン保持</string>
-    <string name="sync_pref_passwords">パスワードと認証情報</string>
-    <string name="sync_pref_passwords_desc">エンドツーエンド暗号化ゼロ知識ロッカー</string>
     <string name="sync_pref_settings">設定と広告ブロックルール</string>
     <string name="sync_pref_settings_desc">カスタムフィルタ、テーマ、検索エンジン</string>
     <string name="sync_section_guarantees">プライバシー＆暗号化の保証</string>
@@ -1815,5 +1802,4 @@
     <string name="sync_tabs_sheet_title">同期されたタブ</string>
     <string name="sync_tabs_empty_title">同期されたタブはありません</string>
     <string name="sync_tabs_empty_desc">他の端末のタブは同期後にここに表示されます</string>
-    <string name="sync_connected_fxa_toast">Firefoxアカウントに接続しました！</string>
 </resources>
