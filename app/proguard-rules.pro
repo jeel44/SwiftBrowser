@@ -6,7 +6,7 @@
 # call site. This left GeckoView uninitialized and caused the black-screen bug
 # in signed release builds (worked fine on emulator/debug where R8 is off).
 # @Keep is on the method; these rules are a belt-and-suspenders safeguard.
--keepclassmembers class com.rebelroot.omni.browser.BrowserViewModel {
+-keepclassmembers class com.swiftbrowser.fast.secure.browser.BrowserViewModel {
     @androidx.annotation.Keep public *** getGeckoRuntime(...);
     private volatile *** geckoRuntime;
 }
@@ -24,10 +24,10 @@
 # 0c. Explicitly keep the runtime accessor and the graceful error fallback so
 # that, even if GeckoView fails to initialize, the app shows GeckoErrorScreen
 # instead of an opaque black screen.
--keepclassmembers class com.rebelroot.omni.browser.BrowserViewModel {
+-keepclassmembers class com.swiftbrowser.fast.secure.browser.BrowserViewModel {
     public *** getRuntime();
 }
--keep class com.rebelroot.omni.MainActivityKt { *; }
+-keep class com.swiftbrowser.fast.secure.MainActivityKt { *; }
 
 # 1. GeckoView (Firefox engine) — KEEP ALL; heavy reflection + JNI usage
 -keep class org.mozilla.geckoview.** { *; }
@@ -69,7 +69,7 @@
 -keep class * implements org.mozilla.geckoview.Autocomplete$StorageDelegate { *; }
 -keep class org.mozilla.geckoview.Autocomplete$LoginEntry { *; }
 -keep class org.mozilla.geckoview.WebExtension$PermissionPromptResponse { *; }
--keep class com.rebelroot.omni.browser.BrowserViewModel$Pending* { *; }
+-keep class com.swiftbrowser.fast.secure.browser.BrowserViewModel$Pending* { *; }
 # Keep all native method bindings (JNI) — R8 strips these by default, breaking GeckoView
 -keepclasseswithmembernames class * { native <methods>; }
 # Keep any subclasses of GeckoView (e.g. anonymous classes created in Compose AndroidView)
@@ -184,25 +184,25 @@
 # 15. App entry points & Compose UI singletons — R8 can strip the static
 # INSTANCE fields / lambda holders that Compose generates, which leaves the
 # screen blank (black screen) even though the class "exists". Keep them all.
--keep class com.rebelroot.omni.MainActivity { *; }
--keep class com.rebelroot.omni.MainActivity$* { *; }
--keep class com.rebelroot.omni.**.ComposableSingletons* { *; }
--keep class com.rebelroot.omni.**.ComposableSingletons*$* { *; }
+-keep class com.swiftbrowser.fast.secure.MainActivity { *; }
+-keep class com.swiftbrowser.fast.secure.MainActivity$* { *; }
+-keep class com.swiftbrowser.fast.secure.**.ComposableSingletons* { *; }
+-keep class com.swiftbrowser.fast.secure.**.ComposableSingletons*$* { *; }
 
 # 16. Native / JNI bridge classes — these call into bundled .so libraries
 # (FFmpeg, QR decoder). R8 strips native method bindings and the bridge classes
 # themselves, breaking media download/playback and QR scanning at runtime.
--keep class com.rebelroot.omni.media.FFmpegBridge { *; }
--keep class com.rebelroot.omni.media.FFmpegLoader { *; }
--keep class com.rebelroot.omni.media.MediaInterceptor { *; }
--keep class com.rebelroot.omni.media.StreamDownloadEngine { *; }
--keep class com.rebelroot.omni.tools.qrcode.QrCodeDecoder { *; }
+-keep class com.swiftbrowser.fast.secure.media.FFmpegBridge { *; }
+-keep class com.swiftbrowser.fast.secure.media.FFmpegLoader { *; }
+-keep class com.swiftbrowser.fast.secure.media.MediaInterceptor { *; }
+-keep class com.swiftbrowser.fast.secure.media.StreamDownloadEngine { *; }
+-keep class com.swiftbrowser.fast.secure.tools.qrcode.QrCodeDecoder { *; }
 -keepclasseswithmembernames class * { native <methods>; }
 
 # 17. Privacy / security managers and Room (SQLCipher) DAOs — loaded via the
 # ViewModel and DataStore; keep them so encrypted storage + VPN keep working.
--keep class com.rebelroot.omni.privacy.VpnManager { *; }
--keep class com.rebelroot.omni.tools.locker.PrivateLockerManager { *; }
+-keep class com.swiftbrowser.fast.secure.privacy.VpnManager { *; }
+-keep class com.swiftbrowser.fast.secure.tools.locker.PrivateLockerManager { *; }
 -keep class * extends androidx.room.RoomDatabase { *; }
 -keep interface * extends androidx.room.Dao { *; }
 -keepclassmembers class * extends androidx.room.RoomDatabase { *; }
@@ -210,8 +210,8 @@
 
 # 18. Built-in WebExtension management — GeckoView instantiates delegate
 # objects from these at runtime; keep the manager + its extension delegates.
--keep class com.rebelroot.omni.browser.extensions.** { *; }
--keep class com.rebelroot.omni.browser.tabs.** { *; }
+-keep class com.swiftbrowser.fast.secure.browser.extensions.** { *; }
+-keep class com.swiftbrowser.fast.secure.browser.tabs.** { *; }
 
 # 19. kmp-tor / kmp-process — the embedded Tor daemon and its process
 # management library. kmp-process has a JVM PID path that references

@@ -11,11 +11,11 @@ val baseVersionCode = 2052
 val baseVersionName = "1.3.3.1"
 
 android {
-    namespace = "com.rebelroot.omni"
+    namespace = "com.swiftbrowser.fast.secure"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.rebelroot.omni"
+        applicationId = "com.swiftbrowser.fast.secure"
         minSdk = 26
         targetSdk = 36
         versionCode = baseVersionCode

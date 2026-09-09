@@ -1,0 +1,401 @@
+/*
+ * Omni Browser - A premium, private, and secure web browser.
+ * Copyright (C) 2026 RebelRoot Ltd
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package com.swiftbrowser.fast.secure.bookmarks
+
+import android.net.Uri
+import android.widget.Toast
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.automirrored.rounded.ArrowForward
+import androidx.compose.material.icons.rounded.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.swiftbrowser.fast.secure.R
+import com.swiftbrowser.fast.secure.bookmarks.importexport.exportBookmarksToFile
+import com.swiftbrowser.fast.secure.bookmarks.importexport.prepareImportPreview
+import com.swiftbrowser.fast.secure.browser.*
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BookmarksScreen(
+    viewModel: BrowserViewModel,
+    onNavigateBack: () -> Unit,
+    onOpenUrl: (String) -> Unit,
+    onOpenImportPreview: () -> Unit
+) {
+    val context = LocalContext.current
+
+    // File picker for importing bookmarks (Netscape HTML)
+    // File picker for importing bookmarks (Netscape HTML from any browser)
+    val importLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            viewModel.prepareImportPreview(
+                context = context,
+                uri = uri,
+                onResult = { result ->
+                    result.onSuccess {
+                        onOpenImportPreview()
+                    }.onFailure { e ->
+                        Toast.makeText(
+                            context,
+                            context.getString(R.string.import_error_toast, e.message ?: "Unknown error"),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            )
+        }
+    }
+
+    BackHandler {
+        onNavigateBack()
+    }
+    var searchQuery by remember { mutableStateOf("") }
+    
+    val isDarkMode = viewModel.isDarkThemeEnabled
+    
+    val bgColor = MaterialTheme.colorScheme.background
+    val cardColor = MaterialTheme.colorScheme.surface
+    val cardBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
+    val textPrimaryColor = MaterialTheme.colorScheme.onSurface
+    val textSecondaryColor = MaterialTheme.colorScheme.onSurfaceVariant
+    
+    val navBgColor = MaterialTheme.colorScheme.surface
+    val navBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)
+    val navContentColor = MaterialTheme.colorScheme.onSurface
+    val navContentMutedColor = MaterialTheme.colorScheme.onSurfaceVariant
+    val inputBgColor = MaterialTheme.colorScheme.surfaceVariant
+    val inputBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
+
+    val filteredBookmarks = viewModel.bookmarksList.filter {
+        it.title.contains(searchQuery, ignoreCase = true) ||
+                it.url.contains(searchQuery, ignoreCase = true)
+    }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(id = R.string.bookmarks_title), fontWeight = FontWeight.Bold, color = textPrimaryColor) },
+                navigationIcon = {
+                    IconButton(onClick = onNavigateBack) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                            contentDescription = "Back",
+                            tint = textPrimaryColor
+                        )
+                    }
+                },
+                actions = {
+                    // Export button
+                    IconButton(onClick = {
+                        viewModel.exportBookmarksToFile(context) { result ->
+                            result.onSuccess { uri ->
+                                val shareIntent = android.content.Intent(android.content.Intent.ACTION_SEND).apply {
+                                    type = "text/html"
+                                    putExtra(android.content.Intent.EXTRA_STREAM, uri)
+                                    putExtra(android.content.Intent.EXTRA_SUBJECT, context.getString(R.string.export_share_subject))
+                                    addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                }
+                                val chooser = android.content.Intent.createChooser(shareIntent, context.getString(R.string.export_share_title))
+                                // Always add NEW_TASK flag so the chooser can launch from any context
+                                chooser.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
+                                try {
+                                    context.startActivity(chooser)
+                                } catch (e: Exception) {
+                                    Toast.makeText(
+                                        context,
+                                        context.getString(R.string.export_error_toast, e.message ?: "Unknown error"),
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            }.onFailure { e ->
+                                Toast.makeText(
+                                    context,
+                                    context.getString(R.string.export_error_toast, e.message ?: "Unknown error"),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                    }) {
+                        Icon(
+                            imageVector = Icons.Rounded.FileDownload,
+                            contentDescription = stringResource(id = R.string.bookmarks_export),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    // Import button
+                    IconButton(onClick = { importLauncher.launch(arrayOf("text/html", "text/plain")) }) {
+                        Icon(
+                            imageVector = Icons.Rounded.FileUpload,
+                            contentDescription = stringResource(id = R.string.bookmarks_import),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    if (viewModel.bookmarksList.isNotEmpty()) {
+                        TextButton(onClick = {
+                            viewModel.clearAllBookmarks()
+                        }) {
+                            Text(stringResource(id = R.string.bookmarks_clear_all), color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                        }
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = bgColor
+                ),
+                modifier = Modifier.border(
+                    BorderStroke(0.5.dp, cardBorderColor.copy(alpha = 0.2f))
+                )
+            )
+        },
+        bottomBar = {
+            Surface(
+                modifier = Modifier.fillMaxWidth().height(56.dp),
+                color = navBgColor,
+                border = BorderStroke(0.5.dp, navBorderColor)
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    IconButton(onClick = onNavigateBack) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                            contentDescription = "Back",
+                            tint = navContentColor,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                    IconButton(onClick = {}, enabled = false) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Rounded.ArrowForward,
+                            contentDescription = "Forward",
+                            tint = navContentMutedColor,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                    IconButton(onClick = {}, enabled = false) {
+                        Icon(
+                            imageVector = Icons.Rounded.Refresh,
+                            contentDescription = "Refresh",
+                            tint = navContentMutedColor,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                    Box(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .border(1.5.dp, navContentColor, RoundedCornerShape(4.dp))
+                            .clickable { onNavigateBack() },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = viewModel.tabs.size.toString(),
+                            color = navContentColor,
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                    IconButton(onClick = onNavigateBack) {
+                        Icon(
+                            imageVector = Icons.Rounded.Menu,
+                            contentDescription = "Menu",
+                            tint = navContentColor,
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                }
+            }
+        }
+    ) { paddingValues ->
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
+            val adaptiveContentCap = com.swiftbrowser.fast.secure.ui.adaptive.rememberAdaptiveUiMetrics().screenContentMaxWidth
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .widthIn(max = com.swiftbrowser.fast.secure.ui.adaptive.rememberAdaptiveUiMetrics().screenContentMaxWidth)
+                .padding(paddingValues)
+                .background(bgColor)
+        ) {
+            OutlinedTextField(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                placeholder = { Text(stringResource(id = R.string.bookmarks_search_placeholder), color = textSecondaryColor) },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Rounded.Search,
+                        contentDescription = "Search",
+                        tint = textSecondaryColor
+                    )
+                },
+                shape = RoundedCornerShape(16.dp),
+                singleLine = true,
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = textPrimaryColor,
+                    unfocusedTextColor = textPrimaryColor,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = inputBorderColor,
+                    focusedContainerColor = inputBgColor,
+                    unfocusedContainerColor = inputBgColor
+                )
+            )
+
+            if (filteredBookmarks.isEmpty()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.bookmarks_empty),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = textSecondaryColor
+                    )
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f)
+                        .padding(horizontal = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    contentPadding = PaddingValues(bottom = 16.dp)
+                ) {
+                    itemsIndexed(filteredBookmarks, key = { index, entry -> "${entry.url}_$index" }) { _, entry ->
+                        BookmarkRowItem(
+                            entry = entry,
+                            isDarkMode = isDarkMode,
+                            textPrimaryColor = textPrimaryColor,
+                            textSecondaryColor = textSecondaryColor,
+                            cardColor = cardColor,
+                            cardBorderColor = cardBorderColor,
+                            onClick = { onOpenUrl(entry.url) },
+                            onDelete = { viewModel.removeBookmark(entry.url) }
+                        )
+                    }
+                }
+            }
+        }
+        } // close adaptive centered container
+    }
+}
+
+@Composable
+fun BookmarkRowItem(
+    entry: BookmarkEntry,
+    isDarkMode: Boolean,
+    textPrimaryColor: Color,
+    textSecondaryColor: Color,
+    cardColor: Color,
+    cardBorderColor: Color,
+    onClick: () -> Unit,
+    onDelete: () -> Unit
+) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .clickable { onClick() },
+        color = cardColor,
+        border = BorderStroke(0.5.dp, cardBorderColor)
+    ) {
+        Row(
+            modifier = Modifier.padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(36.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.12f)),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.Bookmark,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(20.dp)
+                )
+            }
+
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = entry.title,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 13.sp,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    color = textPrimaryColor
+                )
+                Text(
+                    text = entry.url,
+                    fontSize = 11.sp,
+                    color = textSecondaryColor,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+
+            IconButton(
+                onClick = onDelete,
+                modifier = Modifier
+                    .size(24.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background((if (isDarkMode) Color(0xFF243647) else Color(0xFFE2E8F0)).copy(alpha = 0.5f))
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.Close,
+                    contentDescription = "Delete bookmark",
+                    tint = textSecondaryColor,
+                    modifier = Modifier.size(12.dp)
+                )
+            }
+        }
+    }
+}
