@@ -3030,6 +3030,11 @@ fun TorrentDownloaderDialog(
                     Text("External App")
                 }
 
+                // TODO Phase 2: torrent client excluded (Play Store risk) — this button
+                // still calls through to viewModel.startTorrentDownload(), but the
+                // underlying engine (StreamDownloadEngine.startTorrentDownload) is now
+                // neutered and immediately reports an error instead of downloading.
+                // The "External App" button above is unaffected.
                 Button(
                     onClick = {
                         if (urlToDownload.isNotBlank()) {

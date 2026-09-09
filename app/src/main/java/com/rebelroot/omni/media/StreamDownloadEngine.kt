@@ -619,6 +619,31 @@ class StreamDownloadEngine(
         suggestedName: String,
         saveToLocker: Boolean = false
     ): String {
+        // TODO Phase 2: torrent client excluded (Play Store risk) — the in-app
+        // jlibtorrent engine (com.rebelroot.omni.torrent.TorrentEngine) is no
+        // longer invoked from here. Original implementation preserved below,
+        // commented out. Callers (BrowserViewModel.startTorrentDownload, from
+        // the "Download in Omni" button in TorrentDownloaderDialog) still work
+        // but now just receive an immediate error state; the dialog's
+        // "External App" hand-off button is unaffected and still routes to a
+        // real installed torrent app via Intent.createChooser.
+        val jobId = UUID.randomUUID().toString()
+        val safeFilename = SecurityPolicy.sanitizeFilename(suggestedName).ifBlank { "Torrent Download" }
+        val progressFlow = MutableStateFlow<DownloadProgress>(
+            DownloadProgress.Error("In-app torrent downloading is disabled in this build")
+        )
+        val job = DownloadJob(
+            id = jobId,
+            filename = safeFilename,
+            url = magnetOrTorrentUrl,
+            saveToLocker = saveToLocker,
+            progress = progressFlow,
+            isGeneric = false
+        )
+        _jobs.update { it + job }
+        saveDownloadHistory()
+        return jobId
+        /*
         val jobId = UUID.randomUUID().toString()
         val safeFilename = SecurityPolicy.sanitizeFilename(suggestedName).ifBlank { "Torrent Download" }
         val progressFlow = MutableStateFlow<DownloadProgress>(DownloadProgress.Downloading(0, 0L))
@@ -682,6 +707,7 @@ class StreamDownloadEngine(
         runningJobs[jobId] = jobCoroutine
 
         return jobId
+        */
     }
 
     fun retryDownload(jobId: String) {
