@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Netscape Bookmark HTML Exporter
+ * Swift Browser - Netscape Bookmark HTML Exporter
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Exports the canonical bookmark model to Netscape Bookmark HTML format.

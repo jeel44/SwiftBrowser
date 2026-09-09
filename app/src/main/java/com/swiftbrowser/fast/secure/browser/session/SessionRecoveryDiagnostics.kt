@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Debug-only session recovery diagnostics.
+ * Swift Browser - Debug-only session recovery diagnostics.
  * Copyright (C) 2026 RebelRoot Ltd
  */
 

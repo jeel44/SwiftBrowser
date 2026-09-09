@@ -397,8 +397,6 @@ fun getSiteBrandStyle(url: String, title: String): SiteBrandStyle {
             SiteBrandStyle(listOf(Color(0xFFE65100), Color(0xFFBF360C)), badgeText = "RU", iconRes = com.swiftbrowser.fast.secure.R.drawable.ic_logo_rutracker)
         domain.contains("academictorrents") || name.contains("academic") ->
             SiteBrandStyle(listOf(Color(0xFF283593), Color(0xFF1A237E)), badgeText = "ACAD", iconRes = com.swiftbrowser.fast.secure.R.drawable.ic_logo_academictorrents)
-        domain.contains("rebelroot") ->
-            SiteBrandStyle(listOf(Color(0xFF00ACC1), Color(0xFF006064)), badgeText = "RR")
         domain.contains("twitter") || domain.contains("x.com") ->
             SiteBrandStyle(listOf(Color(0xFF1DA1F2), Color(0xFF0C7ABF)), badgeText = "X")
         domain.contains("spotify") ->

@@ -1,5 +1,5 @@
 /*
- * Omni Browser - A premium, private, and secure web browser.
+ * Swift Browser - A premium, private, and secure web browser.
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * This program is free software: you can redistribute it and/or modify
@@ -7100,7 +7100,7 @@ class BrowserViewModel : ViewModel() {
             val file = File(context.filesDir, "browser_shortcuts.json")
             if (!file.exists()) {
                 val defaultList = mutableListOf(
-                    HomeShortcut("rebelroot", "RebelRoot", "https://www.rebelroot.xyz/omnibrowser", isPermanent = true),
+                    HomeShortcut("swiftbrowser", "Swift Browser", "https://sites.google.com/view/swiftbrowseraibrowser/home", isPermanent = true),
                     HomeShortcut("twitter", "Twitter", "https://twitter.com"),
                     HomeShortcut("spotify", "Spotify", "https://spotify.com"),
                     HomeShortcut("amazon", "Amazon", "https://amazon.com"),
@@ -7125,8 +7125,8 @@ class BrowserViewModel : ViewModel() {
                 val jsonArray = JSONArray(file.readText())
                 val temp = mutableListOf<HomeShortcut>()
                 
-                // Always ensure the permanent RebelRoot shortcut is at the beginning
-                temp.add(HomeShortcut("rebelroot", "RebelRoot", "https://www.rebelroot.xyz/omnibrowser", isPermanent = true))
+                // Always ensure the permanent Swift Browser shortcut is at the beginning
+                temp.add(HomeShortcut("swiftbrowser", "Swift Browser", "https://sites.google.com/view/swiftbrowseraibrowser/home", isPermanent = true))
                 
                 for (i in 0 until jsonArray.length()) {
                     val obj = jsonArray.getJSONObject(i)
@@ -7134,8 +7134,8 @@ class BrowserViewModel : ViewModel() {
                     val title = obj.optString("title", "")
                     val url = obj.optString("url", "")
                     
-                    // Skip duplicate/old RebelRoot entries and about:blank
-                    if (id == "rebelroot" || url == "https://www.rebelroot.xyz/omnibrowser" || title.equals("RebelRoot", ignoreCase = true) || url.isBlank() || url == "about:blank" || url.contains("about:blank")) {
+                    // Skip duplicate/old Swift Browser shortcut entries and about:blank
+                    if (id == "swiftbrowser" || url == "https://sites.google.com/view/swiftbrowseraibrowser/home" || title.equals("Swift Browser", ignoreCase = true) || url.isBlank() || url == "about:blank" || url.contains("about:blank")) {
                         continue
                     }
                     
@@ -7242,8 +7242,8 @@ class BrowserViewModel : ViewModel() {
             return
         }
 
-        // Prevent adding custom shortcuts that point to RebelRoot or have the title RebelRoot
-        if (formattedUrl == "https://www.rebelroot.xyz/omnibrowser" || title.equals("RebelRoot", ignoreCase = true)) {
+        // Prevent adding custom shortcuts that duplicate the permanent Swift Browser shortcut
+        if (formattedUrl == "https://sites.google.com/view/swiftbrowseraibrowser/home" || title.equals("Swift Browser", ignoreCase = true)) {
             return
         }
         
@@ -7253,7 +7253,7 @@ class BrowserViewModel : ViewModel() {
             return
         }
         
-        // Add to index 1 (just after permanent RebelRoot shortcut) if RebelRoot is at index 0
+        // Add to index 1 (just after permanent Swift Browser shortcut) if it is at index 0
         if (shortcutsList.isNotEmpty() && shortcutsList[0].isPermanent) {
             shortcutsList.add(1, HomeShortcut(id, title, formattedUrl))
         } else {
@@ -8214,6 +8214,14 @@ class BrowserViewModel : ViewModel() {
     }
 
     fun checkForUpdatesInBackground(context: Context) {
+        // TODO Phase 3: update-check backend excluded — this used to poll
+        // github.com/REBEL-ROOT/omni-browser's releases API and would surface
+        // "update available" notifications pointing Swift Browser users at
+        // omni-browser's GitHub releases (a different app). Disabled rather
+        // than repointed to a guess. Wire up a real Swift Browser release feed
+        // before re-enabling. Original preserved commented-out.
+        return
+        /*
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val prefs = context.dataStore.data.first()
@@ -8258,9 +8266,18 @@ class BrowserViewModel : ViewModel() {
                 Log.d(TAG, "Background update check failed: ${e.message}")
             }
         }
+        */
     }
 
     fun checkAppUpdates(context: Context, onResult: (UpdateCheckResult) -> Unit) {
+        // TODO Phase 3: update-check backend excluded — see
+        // checkForUpdatesInBackground() above for why (this queried
+        // github.com/REBEL-ROOT/omni-browser's releases, a different app).
+        // Reports "no update available" rather than a guessed endpoint.
+        // Original preserved commented-out.
+        onResult(UpdateCheckResult.NoUpdateAvailable)
+        return
+        /*
         viewModelScope.launch(Dispatchers.IO) {
             val pInfo = try { context.packageManager.getPackageInfo(context.packageName, 0) } catch (e: Exception) { null }
             val currentVersionCode = if (pInfo != null && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
@@ -8314,6 +8331,7 @@ class BrowserViewModel : ViewModel() {
                 }
             }
         }
+        */
     }
 
     private fun compareVersionNames(v1: String, v2: String): Int {
@@ -8340,8 +8358,14 @@ class BrowserViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 var targetUrl = downloadUrl
-                // If it is a github release url, parse it to extract the latest APK asset
-                if (downloadUrl.contains("github.com") && downloadUrl.contains("/releases")) {
+                // TODO Phase 3: this used to unconditionally re-resolve ANY
+                // github.com/.../releases URL to REBEL-ROOT/omni-browser's own
+                // latest release — i.e. it ignored whatever URL was actually
+                // passed in and would fetch a different app's APK. Disabled
+                // (`false &&`) so targetUrl always stays what the caller passed.
+                // Original preserved below; fix to resolve the CALLER's repo
+                // (not a hardcoded one) before re-enabling.
+                if (false && downloadUrl.contains("github.com") && downloadUrl.contains("/releases")) {
                     try {
                         val apiConnection = java.net.URL("https://api.github.com/repos/REBEL-ROOT/omni-browser/releases/latest").openConnection() as java.net.HttpURLConnection
                         apiConnection.requestMethod = "GET"
@@ -8416,7 +8440,7 @@ class BrowserViewModel : ViewModel() {
 
                 if (responseCode == 200) {
                     val length = connection.contentLength
-                    val destination = java.io.File(context.cacheDir, "omni-browser-update.apk")
+                    val destination = java.io.File(context.cacheDir, "swift-browser-update.apk")
                     if (destination.exists()) destination.delete()
 
                     connection.inputStream.use { input ->
@@ -8440,7 +8464,7 @@ class BrowserViewModel : ViewModel() {
                     withContext(Dispatchers.Main) {
                         isDownloadingUpdate = false
                         try {
-                            val apkFile = java.io.File(context.cacheDir, "omni-browser-update.apk")
+                            val apkFile = java.io.File(context.cacheDir, "swift-browser-update.apk")
                             if (apkFile.exists() && apkFile.length() > 0) {
                                 // Android 8+ requires the app to have "Install Unknown Apps" permission
                                 val canInstall = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -8499,6 +8523,17 @@ class BrowserViewModel : ViewModel() {
         message: String,
         onResult: (Boolean, String?) -> Unit
     ) {
+        // TODO Phase 3: feedback backend excluded — this used to POST the user's
+        // name, email, rating, and message (real PII) to
+        // rebelroot-backend.parasdevprojects.workers.dev, a live third-party
+        // server owned by RebelRoot, not Swift Browser. Silently keeping that
+        // wired up would leak Swift Browser users' feedback (incl. email) to an
+        // unrelated party under the new app's identity, so it's disabled rather
+        // than repointed to a guess. Wire this up to a real Swift Browser
+        // feedback endpoint before re-enabling. Original preserved commented-out.
+        onResult(false, "Feedback submission is temporarily unavailable")
+        return
+        /*
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val url = java.net.URL("https://rebelroot-backend.parasdevprojects.workers.dev/api/feedback")
@@ -8506,22 +8541,22 @@ class BrowserViewModel : ViewModel() {
                 conn.requestMethod = "POST"
                 conn.setRequestProperty("Content-Type", "application/json")
                 conn.doOutput = true
-                
+
                 val jsonPayload = """
                     {
                         "name": ${escapeJson(name)},
                         "email": ${escapeJson(email)},
                         "rating": "${rating}",
-                        "product": "Omni Browser",
+                        "product": "Swift Browser",
                         "message": ${escapeJson(message)}
                     }
                 """.trimIndent()
-                
+
                 conn.outputStream.use { os ->
                     val input = jsonPayload.toByteArray(Charsets.UTF_8)
                     os.write(input, 0, input.size)
                 }
-                
+
                 val code = conn.responseCode
                 if (code in 200..299) {
                     withContext(Dispatchers.Main) {
@@ -8539,6 +8574,7 @@ class BrowserViewModel : ViewModel() {
                 }
             }
         }
+        */
     }
     
     private fun escapeJson(str: String): String {

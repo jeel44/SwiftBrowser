@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Bookmark Import Preview State
+ * Swift Browser - Bookmark Import Preview State
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Immutable preview of what an import will do, before the user confirms.

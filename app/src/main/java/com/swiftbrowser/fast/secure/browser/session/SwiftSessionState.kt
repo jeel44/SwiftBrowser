@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Durable session state serialization format.
+ * Swift Browser - Durable session state serialization format.
  * Copyright (C) 2026 RebelRoot Ltd
  */
 

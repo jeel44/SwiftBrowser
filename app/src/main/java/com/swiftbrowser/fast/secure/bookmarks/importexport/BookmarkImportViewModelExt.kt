@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Bookmark Import ViewModel Extension
+ * Swift Browser - Bookmark Import ViewModel Extension
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Extension functions on BrowserViewModel that wire the import pipeline

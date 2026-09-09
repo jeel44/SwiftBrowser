@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Central session recovery coordinator.
+ * Swift Browser - Central session recovery coordinator.
  * Copyright (C) 2026 RebelRoot Ltd
  */
 

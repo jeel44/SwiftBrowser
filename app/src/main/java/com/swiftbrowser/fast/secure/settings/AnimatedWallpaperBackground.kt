@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Premium Animated & Video Wallpaper Engine
+ * Swift Browser - Premium Animated & Video Wallpaper Engine
  * Copyright (C) 2026 RebelRoot Ltd
  */
 

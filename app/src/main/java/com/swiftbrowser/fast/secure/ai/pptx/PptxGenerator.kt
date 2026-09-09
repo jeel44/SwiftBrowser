@@ -1,5 +1,5 @@
 /*
- * Omni Browser - PPTX Generator
+ * Swift Browser - PPTX Generator
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Hand-built OpenXML (.pptx) writer — no external dependencies.

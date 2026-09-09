@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Netscape Bookmark HTML Parser
+ * Swift Browser - Netscape Bookmark HTML Parser
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Parses the standard Netscape Bookmark HTML format produced by Chrome,

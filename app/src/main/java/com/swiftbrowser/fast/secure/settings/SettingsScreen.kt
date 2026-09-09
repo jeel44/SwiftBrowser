@@ -1,5 +1,5 @@
 /*
- * Omni Browser - A premium, private, and secure web browser.
+ * Swift Browser - A premium, private, and secure web browser.
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * This program is free software: you can redistribute it and/or modify
@@ -1145,45 +1145,20 @@ fun SettingsScreen(
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 SectionHeader("Community")
                 SettingsCard {
-                    // Discord
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                try {
-                                    context.startActivity(
-                                        android.content.Intent(
-                                            android.content.Intent.ACTION_VIEW,
-                                            android.net.Uri.parse(discordInviteUrl)
-                                        ).apply {
-                                            addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
-                                        }
-                                    )
-                                } catch (e: Exception) {
-                                    Toast.makeText(context, "Unable to open Discord invite", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                            .padding(horizontal = 16.dp, vertical = 12.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        Icon(Icons.Rounded.Chat, contentDescription = null, tint = accentColor, modifier = Modifier.size(22.dp))
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text("Discord", color = textPrimaryColor, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
-                            Text("Join the Omni Browser community", color = textSecondaryColor, fontSize = 11.sp)
-                        }
-                        Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, contentDescription = null, tint = textSecondaryColor)
-                    }
-                    HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))
-                    NavRow(Icons.AutoMirrored.Rounded.Help, stringResource(id = R.string.help_support_title), stringResource(id = R.string.help_support_desc), onClick = { onOpenUrl("https://rebelroot.xyz/support") })
+                    // TODO Phase 3: Discord row removed — discordInviteUrl
+                    // ("https://discord.gg/uDR2PAy4dS") is RebelRoot's real
+                    // community server, not Swift Browser's. Re-add with a real
+                    // Swift Browser invite link if/when one exists.
+                    NavRow(Icons.AutoMirrored.Rounded.Help, stringResource(id = R.string.help_support_title), stringResource(id = R.string.help_support_desc), onClick = { onOpenUrl("https://sites.google.com/view/swiftbrowseraibrowser/home") })
                     HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))
                     NavRow(Icons.Rounded.Feedback, stringResource(id = R.string.send_feedback_title), stringResource(id = R.string.send_feedback_desc), onClick = { showFeedbackDialog = true })
                     HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))
-                    NavRow(Icons.Rounded.Code, stringResource(id = R.string.support_github), stringResource(id = R.string.support_github_desc), onClick = { onOpenUrl("https://github.com/REBEL-ROOT/omni-browser") })
+                    // TODO Phase 3: GitHub Support row removed — no Swift Browser
+                    // GitHub repo exists (was github.com/REBEL-ROOT/omni-browser).
+                    // Re-add pointing at a real repo if/when one exists.
+                    NavRow(Icons.Rounded.Public, stringResource(id = R.string.website_omnibrowser), stringResource(id = R.string.website_omnibrowser_desc), onClick = { onOpenUrl("https://sites.google.com/view/swiftbrowseraibrowser/home") })
                     HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))
-                    NavRow(Icons.Rounded.Public, stringResource(id = R.string.website_omnibrowser), stringResource(id = R.string.website_omnibrowser_desc), onClick = { onOpenUrl("https://www.rebelroot.xyz/omnibrowser") })
-                    HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))
-                    NavRow(Icons.Rounded.Shield, stringResource(id = R.string.privacy_policy_title), stringResource(id = R.string.privacy_policy_desc), onClick = { onOpenUrl("https://www.rebelroot.xyz/omnibrowser/privacy-policy") })
+                    NavRow(Icons.Rounded.Shield, stringResource(id = R.string.privacy_policy_title), stringResource(id = R.string.privacy_policy_desc), onClick = { onOpenUrl("https://sites.google.com/view/swiftbrowseraibrowser/home") })
                 }
             }
 

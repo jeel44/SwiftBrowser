@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Core Sync Pipeline
+ * Swift Browser - Core Sync Pipeline
  * Copyright (C) 2026 RebelRoot Ltd
  */
 

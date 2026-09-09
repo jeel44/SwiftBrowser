@@ -1,5 +1,5 @@
 /*
- * Omni Browser - YouTube Video stream extractor
+ * Swift Browser - YouTube Video stream extractor
  * Copyright (C) 2026 RebelRoot Ltd
  */
 

@@ -1,5 +1,5 @@
 /*
- * Omni Browser - A premium, private, and secure web browser.
+ * Swift Browser - A premium, private, and secure web browser.
  * Copyright (C) 2026 RebelRoot Ltd
  */
 

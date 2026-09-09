@@ -1,5 +1,5 @@
 /*
- * Omni Browser - A premium, private, and secure web browser.
+ * Swift Browser - A premium, private, and secure web browser.
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * This program is free software: you can redistribute it and/or modify
@@ -2468,11 +2468,11 @@ fun CompactDynamicShortcutItem(
         try { Uri.parse(url).host ?: url } catch (e: Exception) { url }
     }
     val faviconUrl = remember(domain) {
-        if (domain.contains("rebelroot")) {
-            "https://www.rebelroot.xyz/favicon.ico?v=${System.currentTimeMillis() / 86400000}"
-        } else {
-            "https://www.google.com/s2/favicons?sz=128&domain=$domain"
-        }
+        // TODO Phase 3: rebelroot.xyz-specific favicon override removed (that
+        // domain is no longer used anywhere in this app). Generic Google
+        // favicon service now covers every domain, including the Swift
+        // Browser site itself.
+        "https://www.google.com/s2/favicons?sz=128&domain=$domain"
     }
     val tileShape: androidx.compose.ui.graphics.Shape = when (tileStyle) {
         "Squircle" -> RoundedCornerShape(14.dp)

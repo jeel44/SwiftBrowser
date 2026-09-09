@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Canonical Bookmark Tree Nodes
+ * Swift Browser - Canonical Bookmark Tree Nodes
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Derived tree view of the canonical bookmark model. The stored model is flat

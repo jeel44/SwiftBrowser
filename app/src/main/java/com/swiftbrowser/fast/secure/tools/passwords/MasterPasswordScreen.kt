@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Password Manager master password / unlock screen.
+ * Swift Browser - Password Manager master password / unlock screen.
  * Copyright (C) 2026 RebelRoot Ltd
  */
 

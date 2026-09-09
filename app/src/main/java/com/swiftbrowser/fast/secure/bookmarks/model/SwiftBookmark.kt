@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Canonical Bookmark Model
+ * Swift Browser - Canonical Bookmark Model
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * The canonical bookmark data model. This is the sync-ready foundation that

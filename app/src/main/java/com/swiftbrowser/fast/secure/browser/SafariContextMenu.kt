@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Safari-style link/image context menu with live preview.
+ * Swift Browser - Safari-style link/image context menu with live preview.
  * Copyright (C) 2026 RebelRoot Ltd
  */
 

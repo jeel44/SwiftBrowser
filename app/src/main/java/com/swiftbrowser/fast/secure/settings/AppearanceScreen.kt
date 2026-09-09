@@ -1,5 +1,5 @@
 /*
- * Omni Browser - A premium, private, and secure web browser.
+ * Swift Browser - A premium, private, and secure web browser.
  * Copyright (C) 2026 RebelRoot Ltd
  */
 
@@ -229,7 +229,7 @@ fun AppearanceScreen(
                                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                                     ) {
                                         Icon(imageVector = Icons.Rounded.Lock, contentDescription = null, tint = Color(0xFF34C759), modifier = Modifier.size(10.dp))
-                                        Text("https://www.rebelroot.", color = textPrimaryColor, fontSize = 10.sp, maxLines = 1)
+                                        Text("https://www.example.com", color = textPrimaryColor, fontSize = 10.sp, maxLines = 1)
                                     }
                                     Icon(imageVector = Icons.Rounded.Build, contentDescription = null, tint = textSecondaryColor, modifier = Modifier.size(16.dp))
                                     Icon(imageVector = Icons.Rounded.Extension, contentDescription = null, tint = textSecondaryColor, modifier = Modifier.size(16.dp))

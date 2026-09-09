@@ -1,5 +1,5 @@
 /*
- * Omni Browser - A premium, private, and secure web browser.
+ * Swift Browser - A premium, private, and secure web browser.
  * Copyright (C) 2026 RebelRoot Ltd
  */
 
@@ -859,7 +859,7 @@ private fun AnimatedNavbarShowcase(selectedPos: String, modifier: Modifier = Mod
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             Icon(Icons.Rounded.Lock, null, tint = Color(0xFF10B981), modifier = Modifier.size(11.dp))
-            Text("rebelroot.xyz", color = Color(0xFFE3E2E6), fontSize = 10.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(1f), maxLines = 1)
+            Text("example.com", color = Color(0xFFE3E2E6), fontSize = 10.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(1f), maxLines = 1)
             Icon(Icons.Rounded.StarBorder, null, tint = Color(0xFF9BA2AB), modifier = Modifier.size(12.dp))
         }
     }
@@ -878,7 +878,7 @@ private fun AnimatedNavbarShowcase(selectedPos: String, modifier: Modifier = Mod
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             Icon(Icons.Rounded.Lock, null, tint = Color(0xFF10B981), modifier = Modifier.size(11.dp))
-            Text("rebelroot.xyz", color = Color(0xFFE3E2E6), fontSize = 9.sp, modifier = Modifier.weight(1f), maxLines = 1)
+            Text("example.com", color = Color(0xFFE3E2E6), fontSize = 9.sp, modifier = Modifier.weight(1f), maxLines = 1)
         }
         TabCountBadge(boxSize = 19.dp)
         Icon(Icons.Rounded.Menu, null, tint = Color(0xFF9BA2AB), modifier = Modifier.size(15.dp))
@@ -912,7 +912,7 @@ private fun AnimatedNavbarShowcase(selectedPos: String, modifier: Modifier = Mod
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             Icon(Icons.Rounded.Lock, null, tint = Color(0xFF10B981), modifier = Modifier.size(11.dp))
-            Text("rebelroot.xyz", color = Color(0xFFE3E2E6), fontSize = 9.sp, modifier = Modifier.weight(1f), maxLines = 1)
+            Text("example.com", color = Color(0xFFE3E2E6), fontSize = 9.sp, modifier = Modifier.weight(1f), maxLines = 1)
         }
         TabCountBadge(boxSize = 19.dp)
         Icon(Icons.Rounded.Menu, null, tint = Color(0xFF9BA2AB), modifier = Modifier.size(15.dp))

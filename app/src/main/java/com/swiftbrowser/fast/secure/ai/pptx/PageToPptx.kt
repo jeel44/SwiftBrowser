@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Page → PPTX high-level helper
+ * Swift Browser - Page → PPTX high-level helper
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Bridges browser state (page title, summary text) into PptxSlide list.

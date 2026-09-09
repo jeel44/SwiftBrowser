@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Canonical Bookmark Collection
+ * Swift Browser - Canonical Bookmark Collection
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * In-memory container and operation set over the canonical bookmark model.

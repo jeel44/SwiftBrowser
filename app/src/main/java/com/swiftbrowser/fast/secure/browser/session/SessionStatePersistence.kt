@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Debounced, atomic, versioned SessionState persistence.
+ * Swift Browser - Debounced, atomic, versioned SessionState persistence.
  * Copyright (C) 2026 RebelRoot Ltd
  */
 

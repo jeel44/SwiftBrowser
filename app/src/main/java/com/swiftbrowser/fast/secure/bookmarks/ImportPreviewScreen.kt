@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Bookmark Import Preview Screen
+ * Swift Browser - Bookmark Import Preview Screen
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Phase 05: UI for previewing what an import will do before the user confirms.

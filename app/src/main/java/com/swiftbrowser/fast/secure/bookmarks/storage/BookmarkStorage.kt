@@ -1,5 +1,5 @@
 /*
- * Omni Browser - Bookmark Storage (v2)
+ * Swift Browser - Bookmark Storage (v2)
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Atomic, versioned, JSON-backed persistence for the canonical bookmark model.
