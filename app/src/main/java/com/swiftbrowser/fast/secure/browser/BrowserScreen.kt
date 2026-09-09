@@ -2878,7 +2878,7 @@ fun BrowserScreen(
                                                     }
                                                     context.startActivity(chooser)
                                                 } catch (e: Exception) {
-                                                    android.util.Log.e("OmniBrowser", "Error sharing text", e)
+                                                    android.util.Log.e("SwiftBrowser", "Error sharing text", e)
                                                 }
                                             }
                                             viewModel.dismissTextSelection()

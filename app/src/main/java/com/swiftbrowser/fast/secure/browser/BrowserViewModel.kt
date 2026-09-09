@@ -9472,7 +9472,7 @@ class BrowserViewModel : ViewModel() {
     // Backup & Export Settings (GitHub #43)
     suspend fun buildSettingsBackupJson(context: Context): String {
         val root = JSONObject()
-        root.put("app", "OmniBrowser")
+        root.put("app", "SwiftBrowser")
         root.put("schema_version", 1)
         root.put("exported_at_ms", System.currentTimeMillis())
 
@@ -9594,7 +9594,7 @@ class BrowserViewModel : ViewModel() {
         }
 
         val app = root.optString("app", "")
-        if (app.isNotEmpty() && app != "OmniBrowser") {
+        if (app.isNotEmpty() && app != "SwiftBrowser") {
             return BackupImportResult.InvalidFile
         }
 

@@ -4115,13 +4115,13 @@ fun saveOrDownloadSingleMangaPage(
                 val contentValues = android.content.ContentValues().apply {
                     put(android.provider.MediaStore.MediaColumns.DISPLAY_NAME, fileName)
                     put(android.provider.MediaStore.MediaColumns.MIME_TYPE, mimeType)
-                    put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, "${android.os.Environment.DIRECTORY_DOWNLOADS}/OmniBrowser")
+                    put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, "${android.os.Environment.DIRECTORY_DOWNLOADS}/SwiftBrowser")
                 }
                 val uri = resolver.insert(android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
                 if (uri != null) {
                     savedUri = uri
                     val downloadsDir = android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS)
-                    savedFile = java.io.File(downloadsDir, "OmniBrowser/$fileName")
+                    savedFile = java.io.File(downloadsDir, "SwiftBrowser/$fileName")
                     resolver.openOutputStream(uri)?.use { out ->
                         if (asPdf) {
                             val doc = android.graphics.pdf.PdfDocument()
@@ -4329,7 +4329,7 @@ fun downloadMangaImagesAndPdf(
                             val contentValues = android.content.ContentValues().apply {
                                 put(android.provider.MediaStore.MediaColumns.DISPLAY_NAME, "page_${successCount + 1}$ext")
                                 put(android.provider.MediaStore.MediaColumns.MIME_TYPE, mimeType)
-                                put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, "${android.os.Environment.DIRECTORY_DOWNLOADS}/OmniBrowser/$folderName")
+                                put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, "${android.os.Environment.DIRECTORY_DOWNLOADS}/SwiftBrowser/$folderName")
                             }
                             val uri = resolver.insert(android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
                             if (uri != null) {
@@ -4398,11 +4398,11 @@ fun downloadMangaImagesAndPdf(
                     }
                 } else {
                     val downloadsDir = android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS)
-                    val targetPdfFile = java.io.File(downloadsDir, "OmniBrowser/$pdfFileName")
+                    val targetPdfFile = java.io.File(downloadsDir, "SwiftBrowser/$pdfFileName")
                     val contentValues = android.content.ContentValues().apply {
                         put(android.provider.MediaStore.MediaColumns.DISPLAY_NAME, pdfFileName)
                         put(android.provider.MediaStore.MediaColumns.MIME_TYPE, "application/pdf")
-                        put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, "${android.os.Environment.DIRECTORY_DOWNLOADS}/OmniBrowser")
+                        put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, "${android.os.Environment.DIRECTORY_DOWNLOADS}/SwiftBrowser")
                     }
                     val pdfUri = resolver.insert(android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
                     if (pdfUri != null) {
@@ -4441,7 +4441,7 @@ fun downloadMangaImagesAndPdf(
             }
 
             val downloadsDir = android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS)
-            val folderFile = java.io.File(downloadsDir, "OmniBrowser/$folderName")
+            val folderFile = java.io.File(downloadsDir, "SwiftBrowser/$folderName")
             if (jobId != null) {
                 downloadEngine?.completeExternalJob(jobId, filename, folderFile, totalBytesDownloaded, firstSavedUri)
             }

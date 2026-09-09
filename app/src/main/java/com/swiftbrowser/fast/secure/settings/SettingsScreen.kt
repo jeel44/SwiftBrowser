@@ -173,7 +173,7 @@ fun SettingsScreen(
                 val app = obj.optString("app", "")
                 val ver = obj.optInt("schema_version", 1)
                 val n = obj.optJSONObject("datastore")?.optJSONArray("omni_settings")?.length() ?: 0
-                if (app.isNotEmpty() && app != "OmniBrowser") throw IllegalArgumentException("Not an Omni Browser backup")
+                if (app.isNotEmpty() && app != "SwiftBrowser") throw IllegalArgumentException("Not a Swift Browser backup")
                 if (ver > 1) throw IllegalArgumentException("Unsupported backup version")
                 withContext(Dispatchers.Main) {
                     importSummary = context.getString(R.string.settings_backup_import_confirm_msg, n)

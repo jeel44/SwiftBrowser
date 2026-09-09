@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Omni Browser</string>
+    <string name="app_name">Swift Browser</string>
     <string name="settings_title">Paramètres</string>
     <string name="back_desc">Retour</string>
     <string name="general_section">GÉNÉRAL</string>
@@ -14,7 +14,7 @@
     <string name="private_browsing_title">Navigation privée</string>
     <string name="private_browsing_desc">Bloquer les traqueurs et cookies</string>
     <string name="native_player_title">Lecteur vidéo natif</string>
-    <string name="native_player_desc">Ouvrir les vidéos dans Omni Player avec téléchargement</string>
+    <string name="native_player_desc">Ouvrir les vidéos dans Swift Player avec téléchargement</string>
     <string name="ai_blocker_title">Bloqueur d’IA</string>
     <string name="ai_blocker_desc">Bloquer complètement les résumés de recherche générative</string>
     <string name="default_browser_title">Navigateur par défaut</string>
@@ -107,13 +107,13 @@
     <string name="update_dialog_later">Plus tard</string>
     <string name="update_dialog_btn">Mettre à jour</string>
     <string name="update_dialog_title">Mise à jour disponible</string>
-    <string name="update_dialog_desc">Une nouvelle version (%1$s) d’Omni Browser est disponible sur le Play Store. Voulez-vous mettre à jour maintenant ?</string>
+    <string name="update_dialog_desc">Une nouvelle version (%1$s) d’Swift Browser est disponible sur le Play Store. Voulez-vous mettre à jour maintenant ?</string>
     <string name="update_failed_title">Échec de la recherche de mise à jour</string>
     <string name="update_failed_desc">Impossible de se connecter au serveur de mise à jour (%1$s). Voulez-vous vérifier le Play Store manuellement ?</string>
     <string name="update_dialog_open_store">Ouvrir le Play Store</string>
-    <string name="support_github">Support GitHub (RebelRoot)</string>
-    <string name="website_omnibrowser">Site web OmniBrowser</string>
-    <string name="update_no_update">Omni Browser est à jour (v%1$s)</string>
+    <string name="support_github">Support GitHub</string>
+    <string name="website_omnibrowser">Site web Swift Browser</string>
+    <string name="update_no_update">Swift Browser est à jour (v%1$s)</string>
     <string name="locker_cat_images">Images</string>
     <string name="locker_cat_videos">Vidéos</string>
     <string name="locker_cat_docs">Documents</string>
@@ -286,7 +286,7 @@
     <string name="home_recently_visited">Récemment visités</string>
     <string name="home_see_all">Tout voir</string>
     <string name="home_more">Plus</string>
-    <string name="home_shield_active">Omni Shield actif</string>
+    <string name="home_shield_active">Swift Shield actif</string>
     <string name="home_view_report">Afficher le rapport de confidentialité</string>
     <string name="home_view_report_short">Voir le rapport</string>
     <string name="privacy_report_title">Rapport de confidentialité</string>
@@ -309,7 +309,7 @@
     <string name="privacy_cat_retargeting">Publicité et retargeting</string>
     <string name="privacy_cat_market_research">Études de marché et analytique</string>
     <string name="privacy_report_intelligent_tracking">Prévention intelligente du suivi</string>
-    <string name="privacy_report_banner_desc">La protection intelligente d’Omni empêche les traqueurs de profiler votre activité web et de collecter des données entre les sites.</string>
+    <string name="privacy_report_banner_desc">La protection intelligente d’Swift empêche les traqueurs de profiler votre activité web et de collecter des données entre les sites.</string>
     <string name="privacy_report_trackers_prevented">Traqueurs empêchés</string>
     <string name="privacy_report_est_data_saved">Données éco. estimées</string>
     <string name="privacy_report_faster_page_load">Chargement de page plus rapide</string>
@@ -390,7 +390,7 @@
     <string name="send_feedback_title">Envoyer des commentaires directs</string>
     <string name="send_feedback_desc">Signaler des bugs, suggérer des fonctionnalités et partager des idées</string>
     <string name="support_github_desc">Voir le code source et signaler des problèmes</string>
-    <string name="website_omnibrowser_desc">Visiter le site officiel d’Omni Browser</string>
+    <string name="website_omnibrowser_desc">Visiter le site officiel d’Swift Browser</string>
     <string name="privacy_policy_desc">Lire notre politique de confidentialité</string>
     <string name="appearance_address_bar">Barre d’adresse</string>
     <string name="appearance_top">Haut</string>
@@ -569,7 +569,7 @@
     <string name="onboarding_nav_bottom">3e Bas</string>
     <string name="onboarding_active_layout">Actif: Disposition %1$s</string>
     <string name="onboarding_layout_toast">Disposition réglée sur %1$s</string>
-    <string name="onboarding_title_default_browser">Définissez Omni comme votre\nNavigateur par défaut</string>
+    <string name="onboarding_title_default_browser">Définissez Swift comme votre\nNavigateur par défaut</string>
     <string name="onboarding_tagline_default_browser">Rapide · Privé · Sécurisé chaque jour</string>
     <string name="onboarding_feature_auto_protection_title">Protection automatique</string>
     <string name="onboarding_feature_auto_protection_desc">Bloque les scripts de suivi, popups et pubs nocives</string>
@@ -577,8 +577,8 @@
     <string name="onboarding_feature_lightning_desc">Rendu instantané sans ralentissements télémétriques</string>
     <string name="onboarding_feature_encrypted_title">Chiffré et sécurisé</string>
     <string name="onboarding_feature_encrypted_desc">Protection biométrique et chiffrement HTTPS automatique</string>
-    <string name="onboarding_default_card_title">Faites d’Omni votre navigateur par défaut</string>
-    <string name="onboarding_default_card_desc">Ouvrez les paramètres système pour choisir Omni par défaut</string>
+    <string name="onboarding_default_card_title">Faites d’Swift votre navigateur par défaut</string>
+    <string name="onboarding_default_card_desc">Ouvrez les paramètres système pour choisir Swift par défaut</string>
     <string name="onboarding_set_default_button">Définir comme navigateur par défaut</string>
     <string name="menu_incognito">Privé</string>
     <string name="menu_group">Groupe</string>
@@ -635,7 +635,7 @@
     <string name="toast_vpn_setup_required">Ajoutez d’abord la configuration VPN dans les paramètres</string>
     <string name="toast_direct_connection">Connexion directe active — pas de proxy</string>
     <string name="toast_burn_all">🔥 Tout l’historique et les onglets effacés</string>
-    <string name="exit_sheet_title">Quitter Omni Browser ?</string>
+    <string name="exit_sheet_title">Quitter Swift Browser ?</string>
     <string name="exit_sheet_subtitle">Choisissez comment quitter</string>
     <string name="exit_quit">Quitter</string>
     <string name="exit_quit_desc">Fermer le navigateur</string>
@@ -696,7 +696,7 @@
     <string name="ext_loading_extension">Chargement de l’extension…</string>
     <string name="ext_overview_title">Extensions Firefox pour ordinateur</string>
     <string name="ext_overview_subtitle">Bloqueurs de pubs &amp; outils développeurs</string>
-    <string name="ext_overview_desc">Omni Browser prend en charge les extensions Firefox pour ordinateur. Vous pouvez installer des outils comme uBlock Origin directement depuis le panneau d’extensions pour bloquer les publicités et les traqueurs.\n\nTout le traitement des extensions s’effectue entièrement en local sur votre appareil.</string>
+    <string name="ext_overview_desc">Swift Browser prend en charge les extensions Firefox pour ordinateur. Vous pouvez installer des outils comme uBlock Origin directement depuis le panneau d’extensions pour bloquer les publicités et les traqueurs.\n\nTout le traitement des extensions s’effectue entièrement en local sur votre appareil.</string>
     <string name="ext_by_author">par %1$s</string>
     <string name="ext_curated_meta">par %1$s · ★ %2$s</string>
     <string name="ext_options">Options</string>
@@ -709,14 +709,14 @@
     <string name="ext_installed_badge">Installée</string>
     <string name="ext_install_button">Installer</string>
     <string name="ext_menu_cd">Extensions</string>
-    <string name="ext_team_author">Équipe Omni Browser</string>
+    <string name="ext_team_author">Équipe Swift Browser</string>
     <string name="ext_builtin_popup_blocker">Bloqueur de pop-ups</string>
     <string name="ext_builtin_popup_blocker_desc">Bloque les onglets publicitaires auto-ouvrants, les pop-unders et les pop-ups injectés par script.</string>
     <string name="ext_builtin_universal_copy">Copie universelle</string>
     <string name="ext_builtin_universal_copy_desc">Contourne les restrictions du site pour forcer la sélection et la copie de texte.</string>
     <string name="ext_builtin_media_sniffer">Sniffer de médias</string>
     <string name="ext_builtin_media_sniffer_desc">Détecte et capture hors ligne les segments et flux HLS/DASH dynamiques.</string>
-    <string name="ext_builtin_omni_translate">Omni Translate</string>
+    <string name="ext_builtin_omni_translate">Swift Translate</string>
     <string name="ext_builtin_omni_translate_desc">Traduction de pages web sur l\'appareil</string>
     <string name="offline_ai_settings_title">IA hors ligne</string>
     <string name="offline_ai_settings_desc">Traduction et sous-titres sur l\'appareil — téléchargez des modèles, sans cloud</string>
@@ -734,7 +734,7 @@
     <string name="wallpaper_dim_label">Assombrissement</string>
     <string name="wallpaper_blur_label">Flou</string>
     <string name="shortcut_shape_helper">Choisissez la forme de vos icônes de raccourcis</string>
-    <string name="show_logo_desc">Afficher le logo Omni en haut</string>
+    <string name="show_logo_desc">Afficher le logo Swift en haut</string>
     <string name="show_shortcuts_desc">Liens rapides vers les sites et raccourcis intégrés</string>
     <string name="privacy_stats_widget">Widget de statistiques de confidentialité</string>
     <string name="privacy_stats_widget_desc">Afficher la carte des traqueurs bloqués et des données économisées</string>
@@ -879,7 +879,7 @@
     <string name="qr_gallery">Image de la galerie</string>
     <string name="qr_scan_another">Scanner un autre code</string>
     <string name="qr_scan_code">Scanner le code</string>
-    <string name="qr_secured_by">Sécurisé par Omni QR Scanner</string>
+    <string name="qr_secured_by">Sécurisé par Swift QR Scanner</string>
     <string name="qr_detected">Code QR détecté</string>
     <string name="qr_found_codes">%1$d codes trouvés (%2$d/%3$d)</string>
     <string name="qr_copied_clipboard">Copié dans le presse-papiers</string>
@@ -942,13 +942,13 @@
     <string name="overview_got_it">Compris</string>
     <string name="overview_qr_title">Scanner &amp; générateur QR</string>
     <string name="overview_qr_subtitle">Entièrement local &amp; sécurisé</string>
-    <string name="overview_qr_desc">Omni Browser intègre des outils QR locaux fonctionnant hors ligne.\n\n• Scanner la page : détecte et décode automatiquement les codes QR visibles sur l\'onglet actif.\n• Générateur QR : convertit instantanément l\'URL active en code QR à partager ; texte/URL modifiables.</string>
+    <string name="overview_qr_desc">Swift Browser intègre des outils QR locaux fonctionnant hors ligne.\n\n• Scanner la page : détecte et décode automatiquement les codes QR visibles sur l\'onglet actif.\n• Générateur QR : convertit instantanément l\'URL active en code QR à partager ; texte/URL modifiables.</string>
     <string name="overview_pdf_title">Page web en PDF</string>
     <string name="overview_pdf_subtitle">Enregistrement propre hors ligne</string>
     <string name="overview_pdf_desc">Convertissez toute page ou article web en un PDF propre et optimisé pour la lecture, localement sur votre appareil.\n\nIdéal pour enregistrer actualités, documentation ou cours hors ligne, sans traqueurs.</string>
     <string name="overview_edit_title">Éditeur de page web</string>
     <string name="overview_edit_subtitle">Manipulation DOM en direct</string>
-    <string name="overview_edit_desc">Omni Browser vous permet de modifier le texte et les éléments de toute page web en temps réel.\n\nTouchez simplement les éléments pour modifier le texte, supprimer des composants ou changer la mise en page. Retouchez pour enregistrer ou quitter.</string>
+    <string name="overview_edit_desc">Swift Browser vous permet de modifier le texte et les éléments de toute page web en temps réel.\n\nTouchez simplement les éléments pour modifier le texte, supprimer des composants ou changer la mise en page. Retouchez pour enregistrer ou quitter.</string>
     <string name="overview_console_title">Console développeur</string>
     <string name="overview_console_subtitle">Journaux JS &amp; diagnostics</string>
     <string name="overview_console_desc">Inspectez les messages, avertissements et erreurs de console de la page active.\n\nIdéal pour déboguer des scripts, suivre les requêtes réseau ou analyser le comportement de la page.</string>
@@ -1065,10 +1065,10 @@
     <!-- Download Sheet -->
     <string name="download_sheet_mp3">MP3</string>
     <string name="download_toast_external">Opening external download manager...</string>
-    <string name="download_toast_no_handoff">This media needs Omni\'s built-in downloader -- handing off isn\'t supported</string>
+    <string name="download_toast_no_handoff">This media needs Swift\'s built-in downloader -- handing off isn\'t supported</string>
     <string name="download_toast_started">Download started...</string>
     <string name="download_toast_locker">Downloading to Locker...</string>
-    <string name="download_toast_mp3_no_handoff">MP3 extraction needs Omni\'s built-in downloader -- handing off isn\'t supported</string>
+    <string name="download_toast_mp3_no_handoff">MP3 extraction needs Swift\'s built-in downloader -- handing off isn\'t supported</string>
     <string name="download_toast_mp3_started">Downloading as MP3...</string>
     <string name="download_destination_local">Download Locally</string>
     <string name="download_destination_vault">Save to Private Vault 🔒</string>
@@ -1076,12 +1076,12 @@
     <!-- Manga Download Toasts -->
     <string name="manga_toast_starting">⏳ Starting download (%1$s to %2$s)...</string>
     <string name="manga_toast_pdf_vault">🔒 Saved Manga PDF (%1$d pages) to Private Vault</string>
-    <string name="manga_toast_pdf_downloads">📄 Saved Manga PDF (%1$d pages) to Downloads/OmniBrowser/%2$s</string>
+    <string name="manga_toast_pdf_downloads">📄 Saved Manga PDF (%1$d pages) to Downloads/Swift Browser/%2$s</string>
     <string name="manga_toast_pdf_failed">Failed to compile PDF: %1$s</string>
     <string name="manga_mode_pdf">PDF document</string>
     <string name="manga_mode_images">%1$d images</string>
     <string name="manga_toast_images_vault">🔒 Saved %1$d images to Private Vault</string>
-    <string name="manga_toast_images_downloads">✅ Downloaded %1$d images to Downloads/OmniBrowser/%2$s</string>
+    <string name="manga_toast_images_downloads">✅ Downloaded %1$d images to Downloads/Swift Browser/%2$s</string>
 
 
     <!-- Download Sheet -->
@@ -1125,7 +1125,7 @@
     <string name="settings_notifications_denied">Notification permission denied.</string>
     <string name="settings_notifications_disabled">Notifications disabled.</string>
     <string name="settings_set_default_browser_system">Please set default browser in System Settings</string>
-    <string name="settings_already_default_browser">Omni Browser is already your default browser!</string>
+    <string name="settings_already_default_browser">Swift Browser is already your default browser!</string>
     <string name="settings_clear_cache_dialog_title">Clear Cache &amp; Site Data</string>
     <string name="settings_clear_cache_dialog_desc">This will log you out of websites, clear all cookies, offline data, and free up browser storage. This cannot be undone.</string>
     <string name="settings_clear">Clear</string>
@@ -1184,7 +1184,7 @@
     <string name="settings_private_browsing_desc">Incognito mode without saving browsing history</string>
     <string name="settings_clear_cache_search">Clear Cache &amp; Site Data</string>
     <string name="settings_clear_cache_search_desc">Removes cookies, offline data, and frees storage</string>
-    <string name="settings_default_browser_desc">Set Omni Browser as system default browser</string>
+    <string name="settings_default_browser_desc">Set Swift Browser as system default browser</string>
     <string name="settings_language_desc">Change app display language (%1$s)</string>
     <string name="settings_native_player_desc">Custom floating video player with gesture controls</string>
     <string name="settings_ai_blocker_desc">Filter AI generated search results and web bloat</string>
@@ -1222,7 +1222,7 @@
     <string name="privacy_safe_browsing_protection">Safe Browsing protection</string>
     <string name="privacy_proxy_vpn_config">Configure Proxy &amp; VPN in Privacy Hub</string>
     <string name="browser_auto_recovery">Auto Recovery</string>
-    <string name="browser_auto_recovery_desc">Omni Browser recovered from an unexpected error:  %1$s  You can continue browsing safely.</string>
+    <string name="browser_auto_recovery_desc">Swift Browser recovered from an unexpected error:  %1$s  You can continue browsing safely.</string>
     <string name="browser_unable_load_page">Unable to Load Page</string>
     <string name="browser_retry">Retry</string>
     <string name="browser_copy_text">Copy</string>
@@ -1285,8 +1285,8 @@
     <string name="browser_clear_console">Clear Console</string>
     <string name="browser_clear_search">Clear search</string>
     <string name="browser_favicon_cd">Favicon</string>
-    <string name="browser_omni_logo_cd">Omni Browser Custom Logo</string>
-    <string name="browser_omni_logo_cd2">Omni Browser Logo</string>
+    <string name="browser_omni_logo_cd">Swift Browser Custom Logo</string>
+    <string name="browser_omni_logo_cd2">Swift Browser Logo</string>
     <string name="browser_reload_cd">Reload</string>
     <string name="address_bar_history">History</string>
     <string name="address_bar_clear_browsing_data">Clear Browsing Data</string>
@@ -1593,7 +1593,7 @@
     <string name="onboarding_title_proxy">Choose Your Privacy Mode</string>
     <string name="onboarding_tagline_proxy">Direct is fastest. Tor hides your identity.</string>
     <string name="onboarding_proxy_section_title">Network Routing</string>
-    <string name="onboarding_proxy_section_desc">Choose how Omni Browser connects to the internet. You can always change this later in Proxy Hub settings.</string>
+    <string name="onboarding_proxy_section_desc">Choose how Swift Browser connects to the internet. You can always change this later in Proxy Hub settings.</string>
     <string name="onboarding_proxy_direct_title">Direct Connection</string>
     <string name="onboarding_proxy_direct_desc">Fastest speed, no routing overhead. Your ISP can see which sites you visit.</string>
     <string name="onboarding_proxy_tor_title">Built-in Tor</string>
@@ -1640,14 +1640,14 @@
     <string name="import_error_toast">Import failed: %1$s</string>
     <string name="bookmarks_import">Import</string>
     <string name="bookmarks_export">Export</string>
-    <string name="export_share_subject">Omni Bookmarks Export</string>
+    <string name="export_share_subject">Swift Bookmarks Export</string>
     <string name="export_share_title">Share bookmarks</string>
     <string name="export_error_toast">Export failed: %1$s</string>
     <string name="download_settings_title">Download Settings</string>
     <string name="download_settings_desc">Default downloader, preferences, and download rules</string>
     <string name="default_downloader_title">Default Downloader</string>
     <string name="default_downloader_desc">Choose default engine or app for file downloads</string>
-    <string name="downloader_internal">Omni Downloader (Built-in)</string>
+    <string name="downloader_internal">Swift Downloader (Built-in)</string>
     <string name="downloader_internal_desc">Fast internal engine with video sniffer and vault support</string>
     <string name="downloader_system">Android System Downloader</string>
     <string name="downloader_system_desc">Native OS DownloadManager service</string>
@@ -1723,7 +1723,7 @@
     <string name="download_copy_url">Copy download link</string>
     <string name="autofill_provider_title">Autofill provider</string>
     <string name="autofill_provider_system">Android system (Bitwarden, etc.)</string>
-    <string name="autofill_provider_omni">Omni password vault</string>
+    <string name="autofill_provider_omni">Swift password vault</string>
     <string name="autofill_provider_both">Both</string>
     <string name="extension_download_policy_title">Extension downloads</string>
     <string name="extension_download_policy_ask">Ask every time</string>
@@ -1732,7 +1732,7 @@
     <string name="show_recents">Afficher les récents</string>
     <string name="show_recents_desc">"Afficher les sites récemment visités sur l\'écran d\'accueil"</string>
 
-    <string name="sync_title">Omni Sync</string>
+    <string name="sync_title">Swift Sync</string>
     <string name="sync_subtitle">Synchronisation Cloud &amp; P2P multi-appareils</string>
     <string name="sync_fxa_title">Compte Firefox Sync</string>
     <string name="sync_fxa_subtitle">Mozilla Cloud Sync</string>
@@ -1747,10 +1747,10 @@
     <string name="sync_fxa_desc">"Connectez-vous à votre compte Firefox pour synchroniser automatiquement vos marque-pages, onglets ouverts, historique et mots de passe via Mozilla Cloud."</string>
     <string name="sync_fxa_complete_toast">Synchronisation Firefox Cloud terminée !</string>
     <string name="sync_fxa_signed_out_toast">Déconnecté du compte Firefox</string>
-    <string name="sync_mesh_title">Omni Sync Mesh (Hors-ligne / LAN)</string>
+    <string name="sync_mesh_title">Swift Sync Mesh (Hors-ligne / LAN)</string>
     <string name="sync_mesh_subtitle">Zéro-Cloud · 100% E2EE P2P (Bientôt)</string>
     <string name="sync_mesh_upcoming_badge">Fonctionnalité à venir — Phase de test</string>
-    <string name="sync_mesh_upcoming_desc">"Omni Sync Mesh est en phase de test. Nécessite l'extension Omni Sync (Testing) sur votre navigateur de bureau."</string>
+    <string name="sync_mesh_upcoming_desc">"Swift Sync Mesh est en phase de test. Nécessite l'extension Swift Sync (Testing) sur votre navigateur de bureau."</string>
     <string name="sync_mesh_desc">Synchronisez directement vos marque-pages, onglets, historique et préférences en pair-à-pair via Wi-Fi local sans serveur central.</string>
     <string name="sync_pair_device">Associer un appareil</string>
     <string name="sync_sync_p2p">Sync P2P</string>
@@ -1762,7 +1762,7 @@
     <string name="sync_outbox_journal">Journal des envois</string>
     <string name="sync_pending_mutations">%1$d mutations en attente</string>
     <string name="sync_safe_layer_title">Couche de synchronisation sécurisée et non destructive</string>
-    <string name="sync_safe_layer_desc">Les données existantes du navigateur ne sont jamais écrasées. Omni Sync fonctionne dans un espace isolé et chiffré.</string>
+    <string name="sync_safe_layer_desc">Les données existantes du navigateur ne sont jamais écrasées. Swift Sync fonctionne dans un espace isolé et chiffré.</string>
     <string name="sync_section_actions">"Centre d'importation et d'exportation"</string>
     <string name="sync_btn_from_pc">Depuis PC</string>
     <string name="sync_btn_to_pc">Vers PC</string>
@@ -1796,11 +1796,11 @@
     <string name="sync_guarantee_settings_title">Paramètres portables</string>
     <string name="sync_guarantee_settings_desc">Synchronise les moteurs et filtres tout en isolant les réglages matériels.</string>
     <string name="sync_section_browsers">Navigateurs de bureau pris en charge (Extension de test)</string>
-    <string name="sync_browsers_desc">"La synchronisation directe P2P nécessite l'extension Omni Sync (Test) sur votre navigateur :"</string>
+    <string name="sync_browsers_desc">"La synchronisation directe P2P nécessite l'extension Swift Sync (Test) sur votre navigateur :"</string>
     <string name="sync_section_paired_devices">Appareils associés (%1$d)</string>
     <string name="sync_no_paired_devices">"Aucun appareil associé. Touchez 'Associer un appareil' pour générer ou scanner un code QR."</string>
     <string name="sync_pair_dialog_title">Associer un appareil</string>
-    <string name="sync_pair_dialog_extension_req">"Nécessite l'extension Omni Sync (Test) installée sur votre navigateur de bureau."</string>
+    <string name="sync_pair_dialog_extension_req">"Nécessite l'extension Swift Sync (Test) installée sur votre navigateur de bureau."</string>
     <string name="sync_scan_desktop_qr">Scanner le QR code du bureau</string>
     <string name="sync_share_invitation_code">"Ou partagez ce code d'invitation sur votre PC :"</string>
     <string name="sync_copy_phone_code">"Copier le code d'association"</string>
