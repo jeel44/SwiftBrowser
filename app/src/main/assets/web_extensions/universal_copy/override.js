@@ -29,5 +29,5 @@
         document.body.style.webkitUserSelect = 'text';
     }
 
-    console.log('[OmniCopy] Universal selection forced.');
+    console.log('[SwiftCopy] Universal selection forced.');
 })();

@@ -41,7 +41,7 @@ import org.mozilla.geckoview.WebExtensionController
  * val aiBlocker = BuiltInExtensionManager(
  *     runtime = geckoRuntime,
  *     assetPath = "web_extensions/ai_blocker/",
- *     extensionId = "omni-ai-blocker@omnibrowser.app",
+ *     extensionId = "ai-blocker@swiftbrowser.app",
  *     label = "AI Blocker"
  * )
  * aiBlocker.installAndSync(enabled = true)

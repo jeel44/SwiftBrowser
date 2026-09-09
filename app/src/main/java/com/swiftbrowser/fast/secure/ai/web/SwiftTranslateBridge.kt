@@ -32,10 +32,10 @@ import org.mozilla.geckoview.GeckoResult
 import org.mozilla.geckoview.WebExtension
 
 /**
- * Bridges page text from the `omni-translate` content script to the app's
+ * Bridges page text from the `swift-translate` content script to the app's
  * [TranslationCoordinator].
  *
- * The content script (running in the page) sends `{nativeApp:"omniTranslate",
+ * The content script (running in the page) sends `{nativeApp:"swiftTranslate",
  * type:"translate", segments:[{i,text}]}`. This delegate translates the segments
  * (deduplicated via [PageTranslationPlanner]) and returns a JSON map `{i: text}`
  * which the content script applies to the DOM.
@@ -60,7 +60,7 @@ class SwiftTranslateBridge(
             message: Any,
             sender: WebExtension.MessageSender
         ): GeckoResult<Any>? {
-            if (nativeApp != "omniTranslate") return null
+            if (nativeApp != "swiftTranslate") return null
             val msg = message as? JSONObject ?: return null
             val type = msg.optString("type")
 
@@ -117,9 +117,9 @@ class SwiftTranslateBridge(
         }
     }
 
-    /** Register this delegate on the loaded `omni-translate` extension. */
+    /** Register this delegate on the loaded `swift-translate` extension. */
     fun register(extension: WebExtension) {
-        extension.setMessageDelegate(delegate, "omniTranslate")
+        extension.setMessageDelegate(delegate, "swiftTranslate")
     }
 
     private fun parseSegments(arr: JSONArray): List<PageSegment> {

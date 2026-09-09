@@ -1,9 +1,9 @@
 /* ─────────────────────────────────────────────────────────────────────────────
- * Omni True Black & Dark Engine (Dark Reader Dynamic Architecture)
+ * Swift True Black & Dark Engine (Dark Reader Dynamic Architecture)
  * Direct DOM & CSS Variable Engine — Crisp White Text, Zero Grey Wash
  * ───────────────────────────────────────────────────────────────────────────── */
 
-html.omni-force-dark-active {
+html.swift-force-dark-active {
     --bg: #121214 !important;
     --bg-color: #121214 !important;
     --background: #121214 !important;
@@ -24,66 +24,66 @@ html.omni-force-dark-active {
     color-scheme: dark !important;
 }
 
-html.omni-force-dark-active,
-html.omni-force-dark-active body,
-html.omni-force-dark-active #__next,
-html.omni-force-dark-active #root,
-html.omni-force-dark-active #app,
-html.omni-force-dark-active main,
-html.omni-force-dark-active [role="main"],
-html.omni-force-dark-active [role="article"] {
+html.swift-force-dark-active,
+html.swift-force-dark-active body,
+html.swift-force-dark-active #__next,
+html.swift-force-dark-active #root,
+html.swift-force-dark-active #app,
+html.swift-force-dark-active main,
+html.swift-force-dark-active [role="main"],
+html.swift-force-dark-active [role="article"] {
     background-color: #121214 !important;
     background: #121214 !important;
     color: #f1f5f9 !important;
 }
 
-html.omni-force-dark-active section,
-html.omni-force-dark-active article,
-html.omni-force-dark-active header,
-html.omni-force-dark-active nav,
-html.omni-force-dark-active footer,
-html.omni-force-dark-active aside,
-html.omni-force-dark-active dialog,
-html.omni-force-dark-active .container,
-html.omni-force-dark-active .wrapper,
-html.omni-force-dark-active .content,
-html.omni-force-dark-active [class*="container" i],
-html.omni-force-dark-active [class*="wrapper" i],
-html.omni-force-dark-active [class*="content" i],
-html.omni-force-dark-active [class*="layout" i],
-html.omni-force-dark-active [class*="page" i] {
-    &:not(.omni-video-player-active):not(.omni-video-player-active *):not([class*="player" i]):not([class*="player" i] *):not([class*="video" i]):not([class*="video" i] *) {
+html.swift-force-dark-active section,
+html.swift-force-dark-active article,
+html.swift-force-dark-active header,
+html.swift-force-dark-active nav,
+html.swift-force-dark-active footer,
+html.swift-force-dark-active aside,
+html.swift-force-dark-active dialog,
+html.swift-force-dark-active .container,
+html.swift-force-dark-active .wrapper,
+html.swift-force-dark-active .content,
+html.swift-force-dark-active [class*="container" i],
+html.swift-force-dark-active [class*="wrapper" i],
+html.swift-force-dark-active [class*="content" i],
+html.swift-force-dark-active [class*="layout" i],
+html.swift-force-dark-active [class*="page" i] {
+    &:not(.swift-video-player-active):not(.swift-video-player-active *):not([class*="player" i]):not([class*="player" i] *):not([class*="video" i]):not([class*="video" i] *) {
         background-color: #121214 !important;
         background: #121214 !important;
         color: #f1f5f9 !important;
     }
 }
 
-html.omni-force-dark-active .card,
-html.omni-force-dark-active .panel,
-html.omni-force-dark-active .box,
-html.omni-force-dark-active .sidebar,
-html.omni-force-dark-active .modal,
-html.omni-force-dark-active .dropdown,
-html.omni-force-dark-active .menu,
-html.omni-force-dark-active [class*="card" i],
-html.omni-force-dark-active [class*="panel" i],
-html.omni-force-dark-active [class*="box" i],
-html.omni-force-dark-active [class*="sidebar" i],
-html.omni-force-dark-active [class*="modal" i],
-html.omni-force-dark-active [class*="menu" i],
-html.omni-force-dark-active [class*="list" i],
-html.omni-force-dark-active table,
-html.omni-force-dark-active tr,
-html.omni-force-dark-active td,
-html.omni-force-dark-active th,
-html.omni-force-dark-active ul,
-html.omni-force-dark-active ol,
-html.omni-force-dark-active li,
-html.omni-force-dark-active dl,
-html.omni-force-dark-active dt,
-html.omni-force-dark-active dd {
-    &:not(.omni-video-player-active):not(.omni-video-player-active *):not([class*="player" i]):not([class*="player" i] *):not([class*="video" i]):not([class*="video" i] *) {
+html.swift-force-dark-active .card,
+html.swift-force-dark-active .panel,
+html.swift-force-dark-active .box,
+html.swift-force-dark-active .sidebar,
+html.swift-force-dark-active .modal,
+html.swift-force-dark-active .dropdown,
+html.swift-force-dark-active .menu,
+html.swift-force-dark-active [class*="card" i],
+html.swift-force-dark-active [class*="panel" i],
+html.swift-force-dark-active [class*="box" i],
+html.swift-force-dark-active [class*="sidebar" i],
+html.swift-force-dark-active [class*="modal" i],
+html.swift-force-dark-active [class*="menu" i],
+html.swift-force-dark-active [class*="list" i],
+html.swift-force-dark-active table,
+html.swift-force-dark-active tr,
+html.swift-force-dark-active td,
+html.swift-force-dark-active th,
+html.swift-force-dark-active ul,
+html.swift-force-dark-active ol,
+html.swift-force-dark-active li,
+html.swift-force-dark-active dl,
+html.swift-force-dark-active dt,
+html.swift-force-dark-active dd {
+    &:not(.swift-video-player-active):not(.swift-video-player-active *):not([class*="player" i]):not([class*="player" i] *):not([class*="video" i]):not([class*="video" i] *) {
         background-color: #18191c !important;
         background: #18191c !important;
         border-color: #2e3035 !important;
@@ -92,38 +92,38 @@ html.omni-force-dark-active dd {
 }
 
 /* Crisp readable text across all elements — zero grey wash */
-html.omni-force-dark-active p,
-html.omni-force-dark-active h1,
-html.omni-force-dark-active h2,
-html.omni-force-dark-active h3,
-html.omni-force-dark-active h4,
-html.omni-force-dark-active h5,
-html.omni-force-dark-active h6,
-html.omni-force-dark-active label,
-html.omni-force-dark-active strong,
-html.omni-force-dark-active b,
-html.omni-force-dark-active em,
-html.omni-force-dark-active i,
-html.omni-force-dark-active span,
-html.omni-force-dark-active summary,
-html.omni-force-dark-active small,
-html.omni-force-dark-active blockquote,
-html.omni-force-dark-active q,
-html.omni-force-dark-active cite,
-html.omni-force-dark-active figcaption {
+html.swift-force-dark-active p,
+html.swift-force-dark-active h1,
+html.swift-force-dark-active h2,
+html.swift-force-dark-active h3,
+html.swift-force-dark-active h4,
+html.swift-force-dark-active h5,
+html.swift-force-dark-active h6,
+html.swift-force-dark-active label,
+html.swift-force-dark-active strong,
+html.swift-force-dark-active b,
+html.swift-force-dark-active em,
+html.swift-force-dark-active i,
+html.swift-force-dark-active span,
+html.swift-force-dark-active summary,
+html.swift-force-dark-active small,
+html.swift-force-dark-active blockquote,
+html.swift-force-dark-active q,
+html.swift-force-dark-active cite,
+html.swift-force-dark-active figcaption {
     color: #f1f5f9 !important;
 }
 
 /* High-contrast crisp links */
-html.omni-force-dark-active a,
-html.omni-force-dark-active a:visited {
+html.swift-force-dark-active a,
+html.swift-force-dark-active a:visited {
     color: #8ab4f8 !important;
 }
 
-html.omni-force-dark-active input,
-html.omni-force-dark-active textarea,
-html.omni-force-dark-active select,
-html.omni-force-dark-active [contenteditable="true"] {
+html.swift-force-dark-active input,
+html.swift-force-dark-active textarea,
+html.swift-force-dark-active select,
+html.swift-force-dark-active [contenteditable="true"] {
     background-color: #1e2024 !important;
     background: #1e2024 !important;
     color: #ffffff !important;
@@ -131,33 +131,33 @@ html.omni-force-dark-active [contenteditable="true"] {
     border: 1px solid #3c4043 !important;
 }
 
-html.omni-force-dark-active button,
-html.omni-force-dark-active [role="button"],
-html.omni-force-dark-active .btn,
-html.omni-force-dark-active [class*="btn" i],
-html.omni-force-dark-active [class*="chip" i],
-html.omni-force-dark-active [class*="pill" i] {
+html.swift-force-dark-active button,
+html.swift-force-dark-active [role="button"],
+html.swift-force-dark-active .btn,
+html.swift-force-dark-active [class*="btn" i],
+html.swift-force-dark-active [class*="chip" i],
+html.swift-force-dark-active [class*="pill" i] {
     background-color: #202228 !important;
     color: #f1f5f9 !important;
 }
 
 /* Images, Videos, Canvases are NEVER inverted */
-html.omni-force-dark-active img,
-html.omni-force-dark-active video,
-html.omni-force-dark-active canvas,
-html.omni-force-dark-active svg,
-html.omni-force-dark-active picture,
-html.omni-force-dark-active iframe,
-html.omni-force-dark-active [style*="background-image"],
-html.omni-force-dark-active [style*="background: url"],
-html.omni-force-dark-active [class*="thumb" i],
-html.omni-force-dark-active [class*="thumbnail" i],
-html.omni-force-dark-active [class*="avatar" i],
-html.omni-force-dark-active [class*="poster" i],
-html.omni-force-dark-active [class*="cover" i],
-html.omni-force-dark-active [class*="media" i],
-html.omni-force-dark-active [class*="image" i],
-html.omni-force-dark-active [class*="photo" i],
+html.swift-force-dark-active img,
+html.swift-force-dark-active video,
+html.swift-force-dark-active canvas,
+html.swift-force-dark-active svg,
+html.swift-force-dark-active picture,
+html.swift-force-dark-active iframe,
+html.swift-force-dark-active [style*="background-image"],
+html.swift-force-dark-active [style*="background: url"],
+html.swift-force-dark-active [class*="thumb" i],
+html.swift-force-dark-active [class*="thumbnail" i],
+html.swift-force-dark-active [class*="avatar" i],
+html.swift-force-dark-active [class*="poster" i],
+html.swift-force-dark-active [class*="cover" i],
+html.swift-force-dark-active [class*="media" i],
+html.swift-force-dark-active [class*="image" i],
+html.swift-force-dark-active [class*="photo" i],
 g-img, figure {
     filter: none !important;
     opacity: 1 !important;

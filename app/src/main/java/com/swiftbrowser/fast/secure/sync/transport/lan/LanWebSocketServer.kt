@@ -126,8 +126,8 @@ class LanWebSocketServer(
                 // Perform RFC 6455 Handshake
                 val acceptKey = computeSecWebSocketAccept(secKey)
                 val requestedProtocol = headers["sec-websocket-protocol"]
-                val protocolHeader = if (!requestedProtocol.isNullOrBlank() && requestedProtocol.contains("omni-sync-v1")) {
-                    "Sec-WebSocket-Protocol: omni-sync-v1\r\n"
+                val protocolHeader = if (!requestedProtocol.isNullOrBlank() && requestedProtocol.contains("swift-sync-v1")) {
+                    "Sec-WebSocket-Protocol: swift-sync-v1\r\n"
                 } else {
                     ""
                 }

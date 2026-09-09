@@ -53,8 +53,8 @@ object CryptoEngine {
         keyAgreement.doPhase(peerPublicKey, true)
         val rawSecret = keyAgreement.generateSecret()
 
-        val salt = "omni-sync-v1-salt".toByteArray(Charsets.UTF_8)
-        val info = "omni-sync-aes-gcm-key".toByteArray(Charsets.UTF_8)
+        val salt = "swift-sync-v1-salt".toByteArray(Charsets.UTF_8)
+        val info = "swift-sync-aes-gcm-key".toByteArray(Charsets.UTF_8)
         val aesKeyBytes = hkdf(rawSecret, salt, info, 32)
         return SecretKeySpec(aesKeyBytes, "AES")
     }

@@ -27,10 +27,10 @@ import org.mozilla.geckoview.GeckoSession
  *
  * Responsibilities:
  *  - Hold the lifecycle/state for ONE tab/session.
- *  - Trigger translation by dispatching the `omni-translate-start` DOM event that
- *    the `omni-translate` content script listens for (GeckoView 145 has no
+ *  - Trigger translation by dispatching the `swift-translate-start` DOM event that
+ *    the `swift-translate` content script listens for (GeckoView 145 has no
  *    `evaluateJS`; JS is executed via `loadUri("javascript:...")`).
- *  - Stop translation and restore the original page via `omni-translate-stop`.
+ *  - Stop translation and restore the original page via `swift-translate-stop`.
  *  - Scope every request by [sessionId] (+ [isPrivate]) so a result from a
  *    previous page can never mutate the new one.
  *
@@ -56,7 +56,7 @@ class WebTranslationController(
         bridge.request = req
         _state.value = WebTranslationState.Extracting
         runCatching {
-            session.loadUri("javascript:document.dispatchEvent(new Event('omni-translate-start'))")
+            session.loadUri("javascript:document.dispatchEvent(new Event('swift-translate-start'))")
         }.onFailure {
             _state.value = WebTranslationState.Error(it.message)
         }.onSuccess {
@@ -67,7 +67,7 @@ class WebTranslationController(
     /** Stop translating and restore the original page text. */
     fun stop() {
         runCatching {
-            session.loadUri("javascript:document.dispatchEvent(new Event('omni-translate-stop'))")
+            session.loadUri("javascript:document.dispatchEvent(new Event('swift-translate-stop'))")
         }
         if (activeRequest?.sessionId == bridge.request?.sessionId) {
             bridge.request = null

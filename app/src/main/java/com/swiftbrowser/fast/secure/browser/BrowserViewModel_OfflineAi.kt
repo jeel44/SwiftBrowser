@@ -24,28 +24,28 @@ import org.mozilla.geckoview.GeckoRuntime
 import org.mozilla.geckoview.GeckoSession
 import org.mozilla.geckoview.WebExtensionController
 
-private const val OMNI_TRANSLATE_EXTENSION_ID = "omni-translate@omnibrowser.app"
+private const val SWIFT_TRANSLATE_EXTENSION_ID = "translate@swiftbrowser.app"
 
 /**
- * Installs the always-on `omni_translate` content-script bridge. The content
- * script sends page text to [BrowserViewModel.omniTranslateBridge] which applies
+ * Installs the always-on `swift_translate` content-script bridge. The content
+ * script sends page text to [BrowserViewModel.swiftTranslateBridge] which applies
  * the active translation policy (OFFLINE_ONLY / ONLINE_ONLY / ASK) via the app's
  * coordinator. The page never receives native model/runtime access.
  */
-internal fun BrowserViewModel.installOmniTranslateExtension(runtime: GeckoRuntime) {
+internal fun BrowserViewModel.installSwiftTranslateExtension(runtime: GeckoRuntime) {
     runtime.webExtensionController.ensureBuiltIn(
-        "resource://android/assets/web_extensions/omni_translate/",
-        OMNI_TRANSLATE_EXTENSION_ID
+        "resource://android/assets/web_extensions/swift_translate/",
+        SWIFT_TRANSLATE_EXTENSION_ID
     ).accept(
         { ext ->
             ext?.let {
                 runtime.webExtensionController.setAllowedInPrivateBrowsing(it, true)
                 runtime.webExtensionController.enable(it, WebExtensionController.EnableSource.APP)
-                omniTranslateBridge.register(it)
+                swiftTranslateBridge.register(it)
             }
         },
         { error ->
-            Log.e(BrowserViewModel.Companion.TAG, "Failed to load Omni Translate extension", error)
+            Log.e(BrowserViewModel.Companion.TAG, "Failed to load Swift Translate extension", error)
         }
     )
 }
@@ -62,7 +62,7 @@ internal fun BrowserViewModel.translatePage(
     isPrivate: Boolean
 ) {
     stopPageTranslation(tabId)
-    val controller = WebTranslationController(session, tabId, isPrivate, omniTranslateBridge)
+    val controller = WebTranslationController(session, tabId, isPrivate, swiftTranslateBridge)
     pageTranslationControllers[tabId] = controller
     controller.translatePage(sourceLanguage, targetLanguage)
 }

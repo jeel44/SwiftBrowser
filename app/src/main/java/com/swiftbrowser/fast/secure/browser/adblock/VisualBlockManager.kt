@@ -202,22 +202,22 @@ class VisualBlockManager(private val context: Context) {
                     actionToolbar.id = 'omni-visual-block-toolbar';
                     actionToolbar.style.cssText = 'position: fixed !important; bottom: ${bottomOffsetPx}px !important; left: 50% !important; transform: translateX(-50%) !important; z-index: 2147483647 !important; background: #1C1C1E !important; color: #FFFFFF !important; font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important; font-size: 12px !important; font-weight: 600 !important; padding: 8px 12px !important; border-radius: 30px !important; display: flex !important; align-items: center !important; gap: 8px !important; box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important; border: 1px solid rgba(255,255,255,0.18) !important; backdrop-filter: blur(16px) !important; width: auto !important; max-width: 92% !important; box-sizing: border-box !important;';
                     
-                    actionToolbar.innerHTML = '<span id="omni-vb-text" style="max-width: 70px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; opacity: 0.85 !important; flex-shrink: 1 !important;">Tap element</span>' +
-                        '<button id="omni-vb-parent" style="background: #2C2C2E !important; color: #FFF !important; border: none !important; padding: 6px 10px !important; border-radius: 16px !important; font-weight: 600 !important; font-size: 11px !important; cursor: pointer !important; flex-shrink: 0 !important; white-space: nowrap !important;">⬆ Parent</button>' +
-                        '<button id="omni-vb-confirm" style="background: #FF3B30 !important; color: #FFF !important; border: none !important; padding: 6px 12px !important; border-radius: 16px !important; font-weight: 700 !important; font-size: 11px !important; cursor: pointer !important; flex-shrink: 0 !important; white-space: nowrap !important;">✓ Block</button>' +
-                        '<button id="omni-vb-settings" style="background: transparent !important; color: #8E8E93 !important; border: none !important; font-size: 14px !important; cursor: pointer !important; padding: 0 4px !important; flex-shrink: 0 !important;">⚙</button>' +
-                        '<button id="omni-vb-cancel" style="background: transparent !important; color: #8E8E93 !important; border: none !important; font-size: 14px !important; cursor: pointer !important; padding: 0 4px !important; flex-shrink: 0 !important;">✕</button>';
+                    actionToolbar.innerHTML = '<span id="swift-vb-text" style="max-width: 70px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; opacity: 0.85 !important; flex-shrink: 1 !important;">Tap element</span>' +
+                        '<button id="swift-vb-parent" style="background: #2C2C2E !important; color: #FFF !important; border: none !important; padding: 6px 10px !important; border-radius: 16px !important; font-weight: 600 !important; font-size: 11px !important; cursor: pointer !important; flex-shrink: 0 !important; white-space: nowrap !important;">⬆ Parent</button>' +
+                        '<button id="swift-vb-confirm" style="background: #FF3B30 !important; color: #FFF !important; border: none !important; padding: 6px 12px !important; border-radius: 16px !important; font-weight: 700 !important; font-size: 11px !important; cursor: pointer !important; flex-shrink: 0 !important; white-space: nowrap !important;">✓ Block</button>' +
+                        '<button id="swift-vb-settings" style="background: transparent !important; color: #8E8E93 !important; border: none !important; font-size: 14px !important; cursor: pointer !important; padding: 0 4px !important; flex-shrink: 0 !important;">⚙</button>' +
+                        '<button id="swift-vb-cancel" style="background: transparent !important; color: #8E8E93 !important; border: none !important; font-size: 14px !important; cursor: pointer !important; padding: 0 4px !important; flex-shrink: 0 !important;">✕</button>';
                     
                     document.body.appendChild(actionToolbar);
 
-                    document.getElementById('omni-vb-settings').addEventListener('click', function(e) {
+                    document.getElementById('swift-vb-settings').addEventListener('click', function(e) {
                         e.stopPropagation();
                         e.preventDefault();
                         cleanup();
                         alert('OMNI_VISUAL_BLOCK_SETTINGS:true');
                     });
 
-                    document.getElementById('omni-vb-parent').addEventListener('click', function(e) {
+                    document.getElementById('swift-vb-parent').addEventListener('click', function(e) {
                         e.stopPropagation();
                         e.preventDefault();
                         if (selectedEl && selectedEl.parentElement && selectedEl.parentElement !== document.body && selectedEl.parentElement !== document.documentElement) {
@@ -226,7 +226,7 @@ class VisualBlockManager(private val context: Context) {
                         }
                     });
 
-                    document.getElementById('omni-vb-confirm').addEventListener('click', function(e) {
+                    document.getElementById('swift-vb-confirm').addEventListener('click', function(e) {
                         e.stopPropagation();
                         e.preventDefault();
                         if (!selectedEl) return;
@@ -242,7 +242,7 @@ class VisualBlockManager(private val context: Context) {
                         alert('OMNI_VISUAL_BLOCK_ADD:' + payload);
                     });
 
-                    document.getElementById('omni-vb-cancel').addEventListener('click', function(e) {
+                    document.getElementById('swift-vb-cancel').addEventListener('click', function(e) {
                         e.stopPropagation();
                         e.preventDefault();
                         cleanup();
@@ -259,7 +259,7 @@ class VisualBlockManager(private val context: Context) {
                     hoverOverlay.style.height = rect.height + 'px';
                     hoverOverlay.style.display = 'block';
 
-                    const txtEl = document.getElementById('omni-vb-text');
+                    const txtEl = document.getElementById('swift-vb-text');
                     if (txtEl) {
                         txtEl.textContent = '<' + el.tagName.toLowerCase() + '>' + (el.id ? '#' + el.id : '');
                     }

@@ -455,7 +455,7 @@ internal fun BrowserViewModel.setupNativeAppMessageDelegate(extension: WebExtens
             }
             return null
         }
-    }, "omniApp")
+    }, "swiftApp")
     } catch (e: Exception) {
         Log.e(TAG, "Failed to set native app message delegate for ${extension.id}", e)
     }
@@ -1184,7 +1184,7 @@ internal fun BrowserViewModel.sendJsMessage(type: String, payload: String, targe
  */
 internal fun BrowserViewModel.setupWebExtensionDelegates(extension: WebExtension) {
     val extId = extension.safeId ?: return
-    // Only Omni's built-in media grabber requires the "omniApp" native messaging port.
+    // Only the built-in media grabber requires the "swiftApp" native messaging port.
     // Registering third-party extensions with native messaging causes GeckoView's internal
     // WebExtension.Sender HashMap to throw NullPointerException when comparing sender IDs.
     if (extId == BrowserViewModel.GRABBER_ID) {

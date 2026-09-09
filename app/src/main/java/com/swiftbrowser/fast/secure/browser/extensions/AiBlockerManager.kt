@@ -27,7 +27,7 @@ class AiBlockerManager(private val runtime: GeckoRuntime) {
 
     companion object {
         private const val TAG = "AiBlockerManager"
-        private const val EXTENSION_ID = "omni-ai-blocker@omnibrowser.app"
+        private const val EXTENSION_ID = "ai-blocker@swiftbrowser.app"
     }
 
     private var extension: WebExtension? = null

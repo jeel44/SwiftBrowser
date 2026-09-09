@@ -27,7 +27,7 @@ class UniversalCopyManager(private val runtime: GeckoRuntime) {
 
     companion object {
         private const val TAG = "UniversalCopyManager"
-        private const val EXTENSION_ID = "omni-universal-copy@omnibrowser.app"
+        private const val EXTENSION_ID = "universal-copy@swiftbrowser.app"
     }
 
     private var extension: WebExtension? = null

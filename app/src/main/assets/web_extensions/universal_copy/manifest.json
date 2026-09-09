@@ -1,11 +1,11 @@
 {
     "manifest_version": 2,
-    "name": "Omni Universal Copy",
+    "name": "Universal Copy",
     "version": "1.0.0",
     "description": "Bypasses CSS and JS copy event blocks, forcing universal selection of any page content.",
     "browser_specific_settings": {
         "gecko": {
-            "id": "omni-universal-copy@omnibrowser.app"
+            "id": "universal-copy@swiftbrowser.app"
         }
     },
     "content_scripts": [

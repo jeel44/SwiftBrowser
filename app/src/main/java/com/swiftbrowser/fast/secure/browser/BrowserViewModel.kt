@@ -124,12 +124,12 @@ class BrowserViewModel : ViewModel() {
          */
         internal const val MAX_SOFT_SUSPENDED_TABS = 8
 
-        internal const val GRABBER_ID = "omni-media-grabber@omnibrowser.app"
-        internal const val AI_BLOCKER_ID = "omni-ai-blocker@omnibrowser.app"
+        internal const val GRABBER_ID = "media-grabber@swiftbrowser.app"
+        internal const val AI_BLOCKER_ID = "ai-blocker@swiftbrowser.app"
         // Bundled WebExtension that routes traffic through the active Tor / SOCKS
         // proxy via the WebExtension `proxy` API (network.proxy.* prefs do not
         // route on GeckoView/Android). Always-on; treated as a protected core id.
-        internal const val PROXY_ROUTER_ID = "omni-proxy-router@omnibrowser.app"
+        internal const val PROXY_ROUTER_ID = "proxy-router@swiftbrowser.app"
 
         val OPEN_EXTERNAL_APP_ALLOWED_KEY = booleanPreferencesKey("open_external_app_allowed")
         val UNIVERSAL_COPY_ENABLED_KEY = booleanPreferencesKey("universal_copy_enabled")
@@ -202,7 +202,7 @@ class BrowserViewModel : ViewModel() {
         val EDIT_PAGE_OVERVIEW_SEEN_KEY = booleanPreferencesKey("edit_page_overview_seen")
         val CONSOLE_OVERVIEW_SEEN_KEY = booleanPreferencesKey("console_overview_seen")
         val FORCE_DARK_WEBSITES_KEY = booleanPreferencesKey("force_dark_websites")
-        private const val FORCE_DARK_EXTENSION_ID = "omni-force-dark@omnibrowser.app"
+        private const val FORCE_DARK_EXTENSION_ID = "force-dark@swiftbrowser.app"
         val SHOW_SCROLL_BUTTONS_KEY = booleanPreferencesKey("show_scroll_buttons")
         val NAV_BAR_HIDE_TOP_KEY = booleanPreferencesKey("nav_bar_hide_top")
         val NAV_BAR_HIDE_BOTTOM_KEY = booleanPreferencesKey("nav_bar_hide_bottom")
@@ -368,7 +368,7 @@ class BrowserViewModel : ViewModel() {
     var navigateToUserAgentSettingsTrigger by mutableStateOf(false)
     val translationManager = com.swiftbrowser.fast.secure.tools.TranslationManager()
     /** Bridge for offline/hybrid page translation (content script <-> coordinator). */
-    internal val omniTranslateBridge = com.swiftbrowser.fast.secure.ai.web.SwiftTranslateBridge(translationManager.translationCoordinator)
+    internal val swiftTranslateBridge = com.swiftbrowser.fast.secure.ai.web.SwiftTranslateBridge(translationManager.translationCoordinator)
     /** Active per-tab page-translation controllers. */
     internal val pageTranslationControllers = mutableMapOf<String, com.swiftbrowser.fast.secure.ai.web.WebTranslationController>()
     internal var copyManager: UniversalCopyManager? = null
@@ -3055,10 +3055,10 @@ class BrowserViewModel : ViewModel() {
                 // Only auto-approve our own built-in extensions. External extensions must
                 // go through the native GeckoView permission prompt so the user can review.
                 private val BUNDLED_EXTENSION_IDS = setOf(
-                    "omni-media-grabber@omnibrowser.app",
-                    "omni-ai-blocker@omnibrowser.app",
-                    "omni-force-dark@omnibrowser.app",
-                    "omni-universal-copy@omnibrowser.app"
+                    "media-grabber@swiftbrowser.app",
+                    "ai-blocker@swiftbrowser.app",
+                    "force-dark@swiftbrowser.app",
+                    "universal-copy@swiftbrowser.app"
                 )
 
                 private fun isBundledExtension(extension: org.mozilla.geckoview.WebExtension): Boolean {
@@ -3485,12 +3485,12 @@ class BrowserViewModel : ViewModel() {
             neverSavePasswordDomains = context.dataStore.data.map { it[NEVER_SAVE_PASSWORD_DOMAINS_KEY] ?: emptySet() }.first()
             installGrabberExtension(runtime)
             // On-device page translation bridge (content script <-> coordinator).
-            installOmniTranslateExtension(runtime)
+            installSwiftTranslateExtension(runtime)
 
             // Always-on: routes traffic through the active Tor / SOCKS proxy via
             // the WebExtension `proxy` API. No user toggle.
             installProxyRouterExtension(runtime)
-            installOmniSyncExtension(runtime)
+            installSwiftSyncExtension(runtime)
 
             isUniversalCopyEnabled = getUniversalCopyPreference(context).first()
             syncUniversalCopyState(shouldReload = false)
@@ -3553,7 +3553,7 @@ class BrowserViewModel : ViewModel() {
      * into geckoview-config.yaml do NOT route on GeckoView/Android, so this
      * extension is the only reliable routing mechanism — mirroring WebLibre.
      *
-     * It is always enabled (no user toggle) and registers the shared "omniApp"
+     * It is always enabled (no user toggle) and registers the shared "swiftApp"
      * native-messaging delegate so it can poll [currentProxyEndpoint].
      */
     private fun installProxyRouterExtension(runtime: GeckoRuntime) {
@@ -3565,8 +3565,8 @@ class BrowserViewModel : ViewModel() {
                 ext?.let {
                     runtime.webExtensionController.setAllowedInPrivateBrowsing(it, true)
                     runtime.webExtensionController.enable(it, org.mozilla.geckoview.WebExtensionController.EnableSource.APP)
-                    // Dedicated delegate on its OWN native-app name "omniProxy".
-                    // media_grabber already owns "omniApp"; reusing it here breaks
+                    // Dedicated delegate on its OWN native-app name "swiftProxy".
+                    // media_grabber already owns "swiftApp"; reusing it here breaks
                     // native-message routing in GeckoView (the poll for the proxy
                     // endpoint would never be answered -> traffic goes direct).
                     setupProxyRouterMessageDelegate(it)
@@ -3583,8 +3583,8 @@ class BrowserViewModel : ViewModel() {
      * Native-messaging delegate for the proxy_router extension only. It answers
      * the extension's `GET_PROXY_ENDPOINT` poll with the current SOCKS endpoint
      * (or a null host = direct). Registered under the native-app name
-     * "omniProxy", which MUST match `NATIVE_APP` in the extension's background.js
-     * and MUST NOT collide with media_grabber's "omniApp".
+     * "swiftProxy", which MUST match `NATIVE_APP` in the extension's background.js
+     * and MUST NOT collide with media_grabber's "swiftApp".
      */
     private fun setupProxyRouterMessageDelegate(extension: WebExtension) {
         extension.setMessageDelegate(object : WebExtension.MessageDelegate {
@@ -3612,7 +3612,7 @@ class BrowserViewModel : ViewModel() {
                 }
                 return null
             }
-        }, "omniProxy")
+        }, "swiftProxy")
     }
 
     /**
@@ -3741,7 +3741,7 @@ class BrowserViewModel : ViewModel() {
                 }
                 return null
             }
-        }, "omniApp")
+        }, "swiftApp")
         } catch (e: Exception) {
             Log.e(TAG, "Failed to set native app message delegate for ${extension.id}", e)
         }
@@ -6504,7 +6504,7 @@ class BrowserViewModel : ViewModel() {
                     "var headings = cleanContentDiv.querySelectorAll('h2, h3');" +
                     "var tocHtml = '';" +
                     "if(headings.length > 1){" +
-                    "    tocHtml += '<div id=\"omni-reader-toc\" style=\"margin:20px 0;padding:16px;border-radius:12px;background:rgba(128,128,128,0.08);border:1px solid rgba(128,128,128,0.15);\"><div style=\"font-weight:bold;margin-bottom:10px;font-size:1.1em;display:flex;align-items:center;justify-content:space-between;cursor:pointer;\" onclick=\"var l = document.getElementById(\\'omni-toc-list\\'); l.style.display = l.style.display===\\'none\\'?\\'block\\':\\'none\\';\"><span>📖 Table of Contents</span><span style=\"font-size:0.8em;\">▼</span></div><ul id=\"omni-toc-list\" style=\"margin:0;padding-left:20px;display:none;list-style-type:square;line-height:1.8;\">';" +
+                    "    tocHtml += '<div id=\"swift-reader-toc\" style=\"margin:20px 0;padding:16px;border-radius:12px;background:rgba(128,128,128,0.08);border:1px solid rgba(128,128,128,0.15);\"><div style=\"font-weight:bold;margin-bottom:10px;font-size:1.1em;display:flex;align-items:center;justify-content:space-between;cursor:pointer;\" onclick=\"var l = document.getElementById(\\'swift-toc-list\\'); l.style.display = l.style.display===\\'none\\'?\\'block\\':\\'none\\';\"><span>📖 Table of Contents</span><span style=\"font-size:0.8em;\">▼</span></div><ul id=\"swift-toc-list\" style=\"margin:0;padding-left:20px;display:none;list-style-type:square;line-height:1.8;\">';" +
                     "    headings.forEach(function(h, idx){" +
                     "        h.id = 'omni-heading-' + idx;" +
                     "        var indent = h.tagName.toLowerCase() === 'h3' ? 'margin-left: 15px;' : '';" +
@@ -6521,7 +6521,7 @@ class BrowserViewModel : ViewModel() {
                     "        .replace(/(\".*?\"|\\'.*?\\'|\\`.*?\\`)/g, '<span style=\"color:#e6db74;\">$1</span>');" +
                     "    codeBlock.innerHTML = html;" +
                     "});" +
-                    "var htmlPayload = '<!DOCTYPE html><html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>' + title.replace(/\\'/g, \"\\\\'\") + '</title><style id=\"omni-reader-styles\"></style></head><body style=\"margin:0;padding:0;\"><div id=\"omni-reader-progress\" style=\"position:fixed;top:0;left:0;height:4px;width:0%;z-index:10000;transition:width 0.1s ease-out;\"></div><div id=\"omni-reader-container\"><h1 id=\"omni-reader-title\">' + title + '</h1><div id=\"omni-reader-meta\" style=\"font-size:0.88em;opacity:0.75;margin-bottom:24px;border-bottom:1px solid rgba(128,128,128,0.25);padding-bottom:12px;\">⏱️ ' + readingTime + ' min read &bull; ' + wordCount + ' words</div>' + tocHtml + cleanContentDiv.innerHTML + '</div></body></html>';" +
+                    "var htmlPayload = '<!DOCTYPE html><html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>' + title.replace(/\\'/g, \"\\\\'\") + '</title><style id=\"swift-reader-styles\"></style></head><body style=\"margin:0;padding:0;\"><div id=\"swift-reader-progress\" style=\"position:fixed;top:0;left:0;height:4px;width:0%;z-index:10000;transition:width 0.1s ease-out;\"></div><div id=\"swift-reader-container\"><h1 id=\"swift-reader-title\">' + title + '</h1><div id=\"swift-reader-meta\" style=\"font-size:0.88em;opacity:0.75;margin-bottom:24px;border-bottom:1px solid rgba(128,128,128,0.25);padding-bottom:12px;\">⏱️ ' + readingTime + ' min read &bull; ' + wordCount + ' words</div>' + tocHtml + cleanContentDiv.innerHTML + '</div></body></html>';" +
                     "document.open();" +
                     "document.write(htmlPayload);" +
                     "document.close();" +
@@ -6529,7 +6529,7 @@ class BrowserViewModel : ViewModel() {
                     "    var winScroll = document.documentElement.scrollTop || document.body.scrollTop;" +
                     "    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;" +
                     "    var scrolled = (winScroll / height) * 100;" +
-                    "    var bar = document.getElementById('omni-reader-progress');" +
+                    "    var bar = document.getElementById('swift-reader-progress');" +
                     "    if(bar){ bar.style.width = scrolled + '%'; }" +
                     "});" +
                     "})();"
@@ -6579,8 +6579,8 @@ class BrowserViewModel : ViewModel() {
 
         val css = "* { font-family: $fontStack !important; } " +
                   "body { background-color: $bgColor !important; color: $textColor !important; } " +
-                  "#omni-reader-progress { background-color: $linkColor !important; } " +
-                  "#omni-reader-container { font-size: ${fontSizePx} !important; line-height: ${lineHeightVal} !important; max-width: $widthPx !important; text-align: $alignStyle !important; letter-spacing: $letterSpacingVal !important; word-spacing: $wordSpacingVal !important; margin: 0 auto; padding: 24px 20px 80px 20px; min-height: 100vh; box-sizing: border-box; } " +
+                  "#swift-reader-progress { background-color: $linkColor !important; } " +
+                  "#swift-reader-container { font-size: ${fontSizePx} !important; line-height: ${lineHeightVal} !important; max-width: $widthPx !important; text-align: $alignStyle !important; letter-spacing: $letterSpacingVal !important; word-spacing: $wordSpacingVal !important; margin: 0 auto; padding: 24px 20px 80px 20px; min-height: 100vh; box-sizing: border-box; } " +
                   "p, span, li, div, h1, h2, h3, h4, h5 { color: $textColor !important; } " +
                   "a { color: $linkColor !important; } " +
                   "img { max-width: 100% !important; height: auto !important; border-radius: 8px !important; } " +
@@ -6589,7 +6589,7 @@ class BrowserViewModel : ViewModel() {
                   "pre code { background-color: transparent !important; color: inherit !important; padding: 0 !important; border-radius: 0 !important; }"
         val escapedCss = css.replace("'", "\\'").replace("\n", " ")
         val js = "javascript:(function(){" +
-                 "  var style = document.getElementById('omni-reader-styles');" +
+                 "  var style = document.getElementById('swift-reader-styles');" +
                  "  if (style) { style.innerHTML = '$escapedCss'; }" +
                  "})();"
         geckoSession.loadUri(js)
@@ -6655,7 +6655,7 @@ class BrowserViewModel : ViewModel() {
 
     fun readAloudCurrentPage() {
         val js = "javascript:(function(){" +
-                 "  var text = document.getElementById('omni-reader-container')?.innerText || document.body.innerText || '';" +
+                 "  var text = document.getElementById('swift-reader-container')?.innerText || document.body.innerText || '';" +
                  "  window.postMessage({ type: 'OMNI_CONSOLE_LOG', level: 'READER_TTS_CONTENT', message: text }, '*');" +
                  "})();"
         geckoSession.loadUri(js)
@@ -6814,12 +6814,12 @@ class BrowserViewModel : ViewModel() {
                 { list ->
                     val coreIds = setOf(
                         GRABBER_ID, // TODO Phase 2: media_grabber excluded — never actually installed in this build; kept here so it's still filtered out of "user extensions" if it ever shows up on a device upgraded from a build that had it.
-                        "omni-universal-copy@omnibrowser.app",
+                        "universal-copy@swiftbrowser.app",
                         AI_BLOCKER_ID,
-                        "omni-agent@omnibrowser.app",
+                        "agent@swiftbrowser.app",
                         PROXY_ROUTER_ID,
                         FORCE_DARK_EXTENSION_ID,
-                        "omni-translate@omnibrowser.app"
+                        "translate@swiftbrowser.app"
                     )
                     // Skip null-id extensions (e.g. a built-in installed before its
                     // manifest declared applications.gecko.id): they cannot be
@@ -6828,9 +6828,9 @@ class BrowserViewModel : ViewModel() {
                         val id = ext.safeId
                         !id.isNullOrBlank() && id !in coreIds
                     } ?: emptyList()
-                    val leftoverAgent = list?.find { it.safeId == "omni-agent@omnibrowser.app" }
+                    val leftoverAgent = list?.find { it.safeId == "agent@swiftbrowser.app" }
                     if (leftoverAgent != null) {
-                        Log.i(TAG, "Leftover Omni Agent extension found in profile database. Uninstalling...")
+                        Log.i(TAG, "Leftover Agent extension found in profile database. Uninstalling...")
                         try {
                             runtime.webExtensionController.uninstall(leftoverAgent)
                         } catch (e: Exception) {
@@ -7876,7 +7876,7 @@ class BrowserViewModel : ViewModel() {
         val activeTab = tabs.find { it.id == activeTabId } ?: return
         val session = activeTab.session
         val js = "javascript:(function(){" +
-                "  var el = document.querySelector('#omni-reader-container') || document.body;" +
+                "  var el = document.querySelector('#swift-reader-container') || document.body;" +
                 "  var text = el ? (el.innerText || el.textContent) : '';" +
                 "  if (text) { console.warn('READER_TTS_CONTENT:' + text.substring(0, 8000)); }" +
                 "})();"
@@ -8074,13 +8074,13 @@ class BrowserViewModel : ViewModel() {
             .replace("'", "\\'")
             .replace("\n", "\\n")
 
-        // JS that idempotently injects / replaces the <style id="omni-print-style"> tag
+        // JS that idempotently injects / replaces the <style id="swift-print-style"> tag
         val injectCssJs = """
             (function() {
-                var el = document.getElementById('omni-print-style');
+                var el = document.getElementById('swift-print-style');
                 if (!el) {
                     el = document.createElement('style');
-                    el.id = 'omni-print-style';
+                    el.id = 'swift-print-style';
                     (document.head || document.documentElement).appendChild(el);
                 }
                 el.textContent = '$escapedCss';
