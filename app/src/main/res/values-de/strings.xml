@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Swift Browser</string>
+    <string name="app_description">Schnelles, sicheres, privates Surfen</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_home">Startseite</string>
+    <string name="nav_browser">Browser</string>
+    <string name="nav_tabs">Tabs</string>
+    <string name="nav_bookmarks">Lesezeichen</string>
+    <string name="nav_history">Verlauf</string>
+    <string name="nav_settings">Einstellungen</string>
+    <string name="nav_downloads">Downloads</string>
+
+    <!-- URL Bar -->
+    <string name="url_bar_hint">Suchen oder URL eingeben</string>
+    <string name="url_bar_go">Los</string>
+    <string name="url_bar_search">Suchen</string>
+
+    <!-- Home Screen -->
+    <string name="home_speed_dial_title">Kurzwahl</string>
+    <string name="home_quick_access">Schnellzugriff</string>
+    <string name="home_news_title">Nachrichten</string>
+    <string name="home_top_stories">Top-Meldungen</string>
+    <string name="home_see_all">Alle anzeigen</string>
+    <string name="home_welcome">Willkommen bei Swift Browser</string>
+    <string name="home_search_hint">Web durchsuchen oder URL eingeben</string>
+    <string name="home_search_bar_hint">Suchen oder Webadresse eingeben</string>
+    <string name="home_add_speed_dial">Seite hinzufügen</string>
+
+    <!-- Tabs -->
+    <string name="tab_new_incognito">Neuer privater Tab</string>
+    <string name="tab_count_label">%d Tabs geöffnet</string>
+
+    <!-- Speed Dial -->
+    <string name="speed_dial_edit">Bearbeiten</string>
+    <string name="speed_dial_remove">Entfernen</string>
+    <string name="speed_dial_options">Website-Optionen</string>
+
+    <!-- Ads -->
+    <string name="ad_badge">Anzeige</string>
+    <string name="ad_learn_more">Mehr erfahren</string>
+    <string name="ad_shop_now">Jetzt kaufen</string>
+
+    <!-- Browser Actions -->
+    <string name="action_back">Zurück</string>
+    <string name="action_forward">Vorwärts</string>
+    <string name="action_reload">Neu laden</string>
+    <string name="action_stop">Stopp</string>
+    <string name="action_share">Teilen</string>
+    <string name="action_bookmark">Lesezeichen</string>
+    <string name="action_bookmark_added">Lesezeichen gesetzt!</string>
+    <string name="action_bookmark_removed">Lesezeichen entfernt</string>
+    <string name="action_add_tab">Neuer Tab</string>
+    <string name="action_close_tab">Tab schließen</string>
+    <string name="action_close_all_tabs">Alle Tabs schließen</string>
+    <string name="action_new_private_tab">Neuer privater Tab</string>
+    <string name="action_find_in_page">Auf Seite suchen</string>
+    <string name="action_print">Drucken</string>
+    <string name="action_download">Herunterladen</string>
+
+    <!-- Bookmarks -->
+    <string name="bookmarks_empty">Noch keine Lesezeichen</string>
+    <string name="bookmarks_empty_hint">Tippe beim Surfen auf das Stern-Symbol, um Lesezeichen zu speichern</string>
+    <string name="bookmark_delete_confirm">Dieses Lesezeichen löschen?</string>
+    <string name="bookmark_edit_title">Lesezeichen bearbeiten</string>
+    <string name="bookmark_name_label">Name</string>
+    <string name="bookmark_url_label">URL</string>
+
+    <!-- History -->
+    <string name="history_empty">Kein Browserverlauf</string>
+    <string name="history_empty_hint">Besuchte Seiten werden hier angezeigt</string>
+    <string name="history_clear_confirm">Gesamten Browserverlauf löschen?</string>
+    <string name="history_clear_action">Verlauf löschen</string>
+    <string name="history_today">Heute</string>
+    <string name="history_yesterday">Gestern</string>
+    <string name="history_older">Älter</string>
+
+    <!-- Downloads -->
+    <string name="downloads_empty">Keine Downloads</string>
+    <string name="downloads_empty_hint">Heruntergeladene Dateien werden hier angezeigt</string>
+    <string name="download_started">Download gestartet</string>
+    <string name="download_complete">Download abgeschlossen</string>
+    <string name="download_failed">Download fehlgeschlagen</string>
+    <string name="download_delete_confirm">Diesen Download löschen?</string>
+
+    <!-- Tabs -->
+    <string name="tabs_count">%d Tab(s) geöffnet</string>
+    <string name="tabs_new_tab">Neuer Tab</string>
+    <string name="tabs_private">Privat</string>
+    <string name="tabs_close_confirm">Alle Tabs schließen?</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_general">Allgemein</string>
+    <string name="settings_privacy">Datenschutz &amp; Sicherheit</string>
+    <string name="settings_appearance">Darstellung</string>
+    <string name="settings_advanced">Erweitert</string>
+    <string name="settings_about">Über</string>
+    <string name="settings_homepage">Startseite</string>
+    <string name="settings_homepage_hint">URL für Startseite eingeben</string>
+    <string name="settings_search_engine">Standard-Suchmaschine</string>
+    <string name="settings_dark_mode">Dunkelmodus für Seiten</string>
+    <string name="settings_dark_mode_desc">Dunkelmodus auf Websites erzwingen</string>
+    <string name="settings_data_saver">Datensparmodus</string>
+    <string name="settings_data_saver_desc">Datenverbrauch beim Surfen reduzieren</string>
+    <string name="settings_popup_block">Pop-ups blockieren</string>
+    <string name="settings_popup_block_desc">Websites daran hindern, Pop-up-Fenster zu öffnen</string>
+    <string name="settings_text_size">Textgröße</string>
+    <string name="settings_clear_data">Browserdaten löschen</string>
+    <string name="settings_clear_data_desc">Löscht Verlauf, Cache und Cookies</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_default_browser">Als Standard-Browser festlegen</string>
+    <string name="settings_default_browser_desc">Swift Browser als Standard-Browser festlegen</string>
+
+    <!-- Error Messages -->
+    <string name="error_no_internet">Keine Internetverbindung</string>
+    <string name="error_page_load">Seite konnte nicht geladen werden</string>
+    <string name="error_invalid_url">Ungültige URL</string>
+    <string name="error_generic">Etwas ist schiefgelaufen</string>
+
+    <!-- Common Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Abbrechen</string>
+    <string name="action_delete">Löschen</string>
+    <string name="action_edit">Bearbeiten</string>
+    <string name="action_save">Speichern</string>
+    <string name="action_retry">Wiederholen</string>
+    <string name="action_copy_url">URL kopieren</string>
+    <string name="action_open_in_new_tab">In neuem Tab öffnen</string>
+
+    <!-- Permissions -->
+    <string name="permission_camera_title">Kamera-Berechtigung</string>
+    <string name="permission_camera_desc">Kamerazugriff ist für das Scannen von QR-Codes erforderlich</string>
+    <string name="permission_storage_title">Speicher-Berechtigung</string>
+    <string name="permission_storage_desc">Speicherzugriff ist zum Speichern heruntergeladener Dateien erforderlich</string>
+    <string name="permission_notification_title">Benachrichtigungs-Berechtigung</string>
+    <string name="permission_notification_desc">Benachrichtigungen für Download-Fortschritt zulassen</string>
+    <string name="permission_grant">Berechtigung erteilen</string>
+    <string name="permission_deny">Nicht jetzt</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Mit Lichtgeschwindigkeit surfen</string>
+    <string name="onboarding_desc_1">Swift Browser ist für das schnellste Web-Erlebnis auf Android optimiert</string>
+    <string name="onboarding_title_2">Datenschutz zuerst</string>
+    <string name="onboarding_desc_2">Eingebauter Werbeblocker, Tracker-Schutz und privater Browsermodus</string>
+    <string name="onboarding_title_3">Leistungsstarke Funktionen</string>
+    <string name="onboarding_desc_3">Multi-Tab-Browsen, Lesezeichen, Downloads und vieles mehr</string>
+    <string name="onboarding_get_started">Loslegen</string>
+    <string name="onboarding_skip">Überspringen</string>
+    <string name="onboarding_next">Weiter</string>
+
+    <!-- Tabs extended -->
+    <string name="tabs_count_header">%d Tabs</string>
+    <string name="tabs_close_all">Alle schließen</string>
+    <string name="tabs_active_badge">Aktiv</string>
+    <string name="tabs_incognito">Privat</string>
+    <string name="tabs_close_all_message">Alle geöffneten Tabs werden geschlossen</string>
+
+    <!-- Bookmarks extended -->
+    <string name="bookmarks_search_hint">Lesezeichen suchen</string>
+
+    <!-- History extended -->
+    <string name="history_this_week">Diese Woche</string>
+    <string name="history_delete_item">Aus Verlauf löschen</string>
+
+    <!-- Common actions extended -->
+    <string name="action_duplicate_tab">Tab duplizieren</string>
+    <string name="action_open">Öffnen</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_notifications">Benachrichtigungen</string>
+    <string name="cd_settings">Einstellungen</string>
+    <string name="cd_more_options">Weitere Optionen</string>
+    <string name="cd_clear">Löschen</string>
+
+    <!-- Splash Screen -->
+    <string name="splash_tagline">SCHNELL · SICHER · PRIVAT</string>
+    <string name="splash_ads_disclaimer">Diese App kann Werbung enthalten</string>
+    <string name="splash_notif_title">Bleib informiert</string>
+    <string name="splash_notif_body">Erhalte Benachrichtigungen über neue Funktionen, Sicherheitsupdates und Tipps</string>
+    <string name="splash_notif_allow">Benachrichtigungen zulassen</string>
+    <string name="splash_notif_not_now">Nicht jetzt</string>
+
+    <!-- Onboarding — Page 1 -->
+    <string name="onboarding_page1_title">Überall sicher\nsurfen</string>
+    <string name="onboarding_page1_subtitle">Deine Privatsphäre, immer geschützt</string>
+    <string name="onboarding_chip1_title">Kein Tracking</string>
+    <string name="onboarding_chip1_subtitle">Null Tracker, null Datenlecks</string>
+    <string name="onboarding_chip2_title">Verschlüsselt</string>
+    <string name="onboarding_chip2_subtitle">256-Bit-SSL auf jeder Seite</string>
+    <string name="onboarding_chip3_title">Privater Modus</string>
+    <string name="onboarding_chip3_subtitle">Kein Verlauf, keine Spuren</string>
+
+    <!-- Onboarding — Page 2 -->
+    <string name="onboarding_page2_title">Schnelles Surfen,\nKein Tracking</string>
+    <string name="onboarding_page2_subtitle">Blitzschnell mit vollständiger Privatsphäre</string>
+    <string name="onboarding_stat1_label">Schnelleres Laden</string>
+    <string name="onboarding_stat2_label">Weniger Daten</string>
+    <string name="onboarding_stat3_label">Tracker</string>
+    <string name="onboarding_speed_label">Seitenladegeschwindigkeit</string>
+
+    <!-- Onboarding — Page 3 -->
+    <string name="onboarding_page3_title">Dein Browser,\nDeine Regeln</string>
+    <string name="onboarding_page3_subtitle">Für Geschwindigkeit, Privatsphäre &amp; Einfachheit entwickelt</string>
+    <string name="onboarding_feature1_title">Eingebauter Werbeblocker</string>
+    <string name="onboarding_feature1_subtitle">Werbung &amp; Pop-ups automatisch blockieren</string>
+    <string name="onboarding_feature1_badge">Aktiv</string>
+    <string name="onboarding_feature2_title">Smarte Downloads</string>
+    <string name="onboarding_feature2_subtitle">Videos, Dateien sofort speichern</string>
+    <string name="onboarding_feature2_badge">Schnell</string>
+    <string name="onboarding_feature3_title">Nachtmodus</string>
+    <string name="onboarding_feature3_subtitle">Schonend für deine Augen, immer</string>
+    <string name="onboarding_feature3_badge">An</string>
+
+    <!-- Language Screen -->
+    <string name="language_title">Sprache</string>
+    <string name="language_next">Weiter</string>
+    <string name="language_open">ÖFFNEN</string>
+
+    <!-- Home Screen — Greetings -->
+    <string name="home_greeting_morning">Guten Morgen</string>
+    <string name="home_greeting_afternoon">Guten Tag</string>
+    <string name="home_greeting_evening">Guten Abend</string>
+
+    <!-- Home Screen — Hero text -->
+    <string name="home_hero_prefix">Wo möchtest du\nheute </string>
+    <string name="home_hero_highlight">surfen</string>
+    <string name="home_hero_suffix">?</string>
+
+    <!-- Home Screen — Pill buttons -->
+    <string name="home_pill_google_search">Google-Suche</string>
+    <string name="home_pill_youtube">YouTube</string>
+    <string name="home_pill_incognito">Privat</string>
+
+    <!-- Home Screen — Search bar -->
+    <string name="home_search_placeholder">Suchen oder URL eingeben…</string>
+
+    <!-- Home Screen — Section headers -->
+    <string name="home_tools_section">Tools</string>
+
+    <!-- Home Screen — Tool cards -->
+    <string name="home_tool_incognito_title">Privat</string>
+    <string name="home_tool_incognito_subtitle">Privater Tab</string>
+    <string name="home_tool_downloads_title">Downloads</string>
+    <string name="home_tool_downloads_subtitle">Gespeicherte Dateien</string>
+    <string name="home_tool_bookmarks_title">Lesezeichen</string>
+    <string name="home_tool_bookmarks_subtitle">Gespeicherte Seiten</string>
+
+    <!-- Home Screen — Notification dialog -->
+    <string name="home_notif_dialog_title">Benachrichtigungen aktivieren?</string>
+    <string name="home_notif_dialog_body">Verpasse keine wichtigen Updates. Aktiviere Benachrichtigungen, um informiert zu bleiben.</string>
+    <string name="home_notif_enable">Jetzt aktivieren</string>
+    <string name="home_notif_later">Später</string>
+
+    <!-- Browser Screen -->
+    <string name="browser_download_snackbar">Wird heruntergeladen: %s</string>
+    <string name="browser_download_description">Herunterladen über Swift Browser</string>
+    <string name="browser_share_chooser_title">URL teilen</string>
+    <string name="browser_unknown_error">Unbekannter Fehler</string>
+    <string name="browser_error_title">Diese Seite ist nicht erreichbar</string>
+    <string name="browser_try_again">Erneut versuchen</string>
+    <string name="browser_go_home">Zur Startseite</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_app_tagline">Schnell &amp; Privat</string>
+    <string name="settings_download_instructions">Download-Anleitung</string>
+    <string name="settings_privacy_policy">Datenschutzrichtlinie</string>
+    <string name="settings_rate_us">Bewerte uns</string>
+    <string name="settings_version_label">App-Version: %s</string>
+
+    <!-- Downloads Screen -->
+    <string name="downloads_tab_progress">Fortschritt</string>
+    <string name="downloads_tab_player">Player</string>
+    <string name="downloads_saved_empty">Deine gespeicherte Liste ist leer</string>
+    <string name="downloads_no_active">Keine aktiven Download-Aufgaben</string>
+</resources>

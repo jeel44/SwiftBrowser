@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Swift Browser</string>
+    <string name="app_description">Penjelajahan cepat, aman, dan pribadi</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_home">Beranda</string>
+    <string name="nav_browser">Browser</string>
+    <string name="nav_tabs">Tab</string>
+    <string name="nav_bookmarks">Bookmark</string>
+    <string name="nav_history">Riwayat</string>
+    <string name="nav_settings">Pengaturan</string>
+    <string name="nav_downloads">Unduhan</string>
+
+    <!-- URL Bar -->
+    <string name="url_bar_hint">Cari atau masukkan URL</string>
+    <string name="url_bar_go">Buka</string>
+    <string name="url_bar_search">Cari</string>
+
+    <!-- Home Screen -->
+    <string name="home_speed_dial_title">Panggilan Cepat</string>
+    <string name="home_quick_access">Akses Cepat</string>
+    <string name="home_news_title">Berita</string>
+    <string name="home_top_stories">Berita Utama</string>
+    <string name="home_see_all">Lihat semua</string>
+    <string name="home_welcome">Selamat datang di Swift Browser</string>
+    <string name="home_search_hint">Cari web atau masukkan URL</string>
+    <string name="home_search_bar_hint">Cari atau masukkan alamat web</string>
+    <string name="home_add_speed_dial">Tambah situs</string>
+
+    <!-- Tabs -->
+    <string name="tab_new_incognito">Tab Pribadi Baru</string>
+    <string name="tab_count_label">%d tab terbuka</string>
+
+    <!-- Speed Dial -->
+    <string name="speed_dial_edit">Edit</string>
+    <string name="speed_dial_remove">Hapus</string>
+    <string name="speed_dial_options">Opsi situs</string>
+
+    <!-- Ads -->
+    <string name="ad_badge">Iklan</string>
+    <string name="ad_learn_more">Pelajari Lebih Lanjut</string>
+    <string name="ad_shop_now">Belanja Sekarang</string>
+
+    <!-- Browser Actions -->
+    <string name="action_back">Kembali</string>
+    <string name="action_forward">Maju</string>
+    <string name="action_reload">Muat Ulang</string>
+    <string name="action_stop">Berhenti</string>
+    <string name="action_share">Bagikan</string>
+    <string name="action_bookmark">Bookmark</string>
+    <string name="action_bookmark_added">Ditambahkan ke bookmark!</string>
+    <string name="action_bookmark_removed">Bookmark dihapus</string>
+    <string name="action_add_tab">Tab Baru</string>
+    <string name="action_close_tab">Tutup Tab</string>
+    <string name="action_close_all_tabs">Tutup Semua Tab</string>
+    <string name="action_new_private_tab">Tab Pribadi Baru</string>
+    <string name="action_find_in_page">Cari di Halaman</string>
+    <string name="action_print">Cetak</string>
+    <string name="action_download">Unduh</string>
+
+    <!-- Bookmarks -->
+    <string name="bookmarks_empty">Belum ada bookmark</string>
+    <string name="bookmarks_empty_hint">Ketuk ikon bintang saat menjelajah untuk menyimpan bookmark</string>
+    <string name="bookmark_delete_confirm">Hapus bookmark ini?</string>
+    <string name="bookmark_edit_title">Edit Bookmark</string>
+    <string name="bookmark_name_label">Nama</string>
+    <string name="bookmark_url_label">URL</string>
+
+    <!-- History -->
+    <string name="history_empty">Tidak ada riwayat penjelajahan</string>
+    <string name="history_empty_hint">Halaman yang Anda kunjungi akan muncul di sini</string>
+    <string name="history_clear_confirm">Hapus semua riwayat penjelajahan?</string>
+    <string name="history_clear_action">Hapus Riwayat</string>
+    <string name="history_today">Hari ini</string>
+    <string name="history_yesterday">Kemarin</string>
+    <string name="history_older">Lebih lama</string>
+
+    <!-- Downloads -->
+    <string name="downloads_empty">Tidak ada unduhan</string>
+    <string name="downloads_empty_hint">File yang Anda unduh akan muncul di sini</string>
+    <string name="download_started">Unduhan dimulai</string>
+    <string name="download_complete">Unduhan selesai</string>
+    <string name="download_failed">Unduhan gagal</string>
+    <string name="download_delete_confirm">Hapus unduhan ini?</string>
+
+    <!-- Tabs -->
+    <string name="tabs_count">%d tab terbuka</string>
+    <string name="tabs_new_tab">Tab Baru</string>
+    <string name="tabs_private">Pribadi</string>
+    <string name="tabs_close_confirm">Tutup semua tab?</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Pengaturan</string>
+    <string name="settings_general">Umum</string>
+    <string name="settings_privacy">Privasi &amp; Keamanan</string>
+    <string name="settings_appearance">Tampilan</string>
+    <string name="settings_advanced">Lanjutan</string>
+    <string name="settings_about">Tentang</string>
+    <string name="settings_homepage">Beranda</string>
+    <string name="settings_homepage_hint">Masukkan URL untuk beranda</string>
+    <string name="settings_search_engine">Mesin Pencari Default</string>
+    <string name="settings_dark_mode">Mode Gelap untuk Situs</string>
+    <string name="settings_dark_mode_desc">Paksa mode gelap di situs web</string>
+    <string name="settings_data_saver">Hemat Data</string>
+    <string name="settings_data_saver_desc">Kurangi penggunaan data saat menjelajah</string>
+    <string name="settings_popup_block">Blokir Pop-up</string>
+    <string name="settings_popup_block_desc">Cegah situs web membuka jendela pop-up</string>
+    <string name="settings_text_size">Ukuran Teks</string>
+    <string name="settings_clear_data">Hapus Data Penjelajahan</string>
+    <string name="settings_clear_data_desc">Menghapus riwayat, cache, dan cookie</string>
+    <string name="settings_version">Versi</string>
+    <string name="settings_default_browser">Atur sebagai Browser Default</string>
+    <string name="settings_default_browser_desc">Jadikan Swift Browser sebagai browser default Anda</string>
+
+    <!-- Error Messages -->
+    <string name="error_no_internet">Tidak ada koneksi internet</string>
+    <string name="error_page_load">Gagal memuat halaman</string>
+    <string name="error_invalid_url">URL tidak valid</string>
+    <string name="error_generic">Terjadi kesalahan</string>
+
+    <!-- Common Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Batal</string>
+    <string name="action_delete">Hapus</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_save">Simpan</string>
+    <string name="action_retry">Coba Lagi</string>
+    <string name="action_copy_url">Salin URL</string>
+    <string name="action_open_in_new_tab">Buka di Tab Baru</string>
+
+    <!-- Permissions -->
+    <string name="permission_camera_title">Izin Kamera</string>
+    <string name="permission_camera_desc">Akses kamera diperlukan untuk pemindaian kode QR</string>
+    <string name="permission_storage_title">Izin Penyimpanan</string>
+    <string name="permission_storage_desc">Akses penyimpanan diperlukan untuk menyimpan file unduhan</string>
+    <string name="permission_notification_title">Izin Notifikasi</string>
+    <string name="permission_notification_desc">Izinkan notifikasi untuk kemajuan unduhan</string>
+    <string name="permission_grant">Berikan Izin</string>
+    <string name="permission_deny">Tidak Sekarang</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Jelajahi dengan Kecepatan Kilat</string>
+    <string name="onboarding_desc_1">Swift Browser dioptimalkan untuk pengalaman web tercepat di Android</string>
+    <string name="onboarding_title_2">Privasi Utama</string>
+    <string name="onboarding_desc_2">Pemblokir iklan bawaan, perlindungan pelacak, dan mode penjelajahan pribadi</string>
+    <string name="onboarding_title_3">Fitur Canggih</string>
+    <string name="onboarding_desc_3">Penjelajahan multi-tab, bookmark, unduhan, dan banyak lagi</string>
+    <string name="onboarding_get_started">Mulai</string>
+    <string name="onboarding_skip">Lewati</string>
+    <string name="onboarding_next">Berikutnya</string>
+
+    <!-- Tabs extended -->
+    <string name="tabs_count_header">%d Tab</string>
+    <string name="tabs_close_all">Tutup semua</string>
+    <string name="tabs_active_badge">Aktif</string>
+    <string name="tabs_incognito">Pribadi</string>
+    <string name="tabs_close_all_message">Semua tab yang terbuka akan ditutup</string>
+
+    <!-- Bookmarks extended -->
+    <string name="bookmarks_search_hint">Cari bookmark</string>
+
+    <!-- History extended -->
+    <string name="history_this_week">Minggu ini</string>
+    <string name="history_delete_item">Hapus dari riwayat</string>
+
+    <!-- Common actions extended -->
+    <string name="action_duplicate_tab">Duplikat tab</string>
+    <string name="action_open">Buka</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_notifications">Notifikasi</string>
+    <string name="cd_settings">Pengaturan</string>
+    <string name="cd_more_options">Opsi lainnya</string>
+    <string name="cd_clear">Hapus</string>
+
+    <!-- Splash Screen -->
+    <string name="splash_tagline">CEPAT · AMAN · PRIBADI</string>
+    <string name="splash_ads_disclaimer">Aplikasi ini mungkin berisi iklan</string>
+    <string name="splash_notif_title">Tetap Terupdate</string>
+    <string name="splash_notif_body">Dapatkan notifikasi tentang fitur baru, pembaruan keamanan, dan tips</string>
+    <string name="splash_notif_allow">Izinkan Notifikasi</string>
+    <string name="splash_notif_not_now">Tidak Sekarang</string>
+
+    <!-- Onboarding — Page 1 -->
+    <string name="onboarding_page1_title">Jelajahi dengan Aman\nDi Mana Saja</string>
+    <string name="onboarding_page1_subtitle">Privasi Anda, selalu terlindungi</string>
+    <string name="onboarding_chip1_title">Tanpa Pelacakan</string>
+    <string name="onboarding_chip1_subtitle">Nol pelacak, nol kebocoran data</string>
+    <string name="onboarding_chip2_title">Terenkripsi</string>
+    <string name="onboarding_chip2_subtitle">SSL 256-bit di setiap halaman</string>
+    <string name="onboarding_chip3_title">Mode Pribadi</string>
+    <string name="onboarding_chip3_subtitle">Tanpa riwayat, tanpa jejak</string>
+
+    <!-- Onboarding — Page 2 -->
+    <string name="onboarding_page2_title">Jelajah Cepat,\nTanpa Pelacakan</string>
+    <string name="onboarding_page2_subtitle">Secepat kilat dengan privasi penuh</string>
+    <string name="onboarding_stat1_label">Muat Lebih Cepat</string>
+    <string name="onboarding_stat2_label">Hemat Data</string>
+    <string name="onboarding_stat3_label">Pelacak</string>
+    <string name="onboarding_speed_label">Kecepatan muat halaman</string>
+
+    <!-- Onboarding — Page 3 -->
+    <string name="onboarding_page3_title">Browser Anda,\nAturan Anda</string>
+    <string name="onboarding_page3_subtitle">Dibuat untuk kecepatan, privasi &amp; kesederhanaan</string>
+    <string name="onboarding_feature1_title">Pemblokir Iklan Bawaan</string>
+    <string name="onboarding_feature1_subtitle">Blokir iklan &amp; pop-up secara otomatis</string>
+    <string name="onboarding_feature1_badge">Aktif</string>
+    <string name="onboarding_feature2_title">Unduhan Cerdas</string>
+    <string name="onboarding_feature2_subtitle">Simpan video, file secara instan</string>
+    <string name="onboarding_feature2_badge">Cepat</string>
+    <string name="onboarding_feature3_title">Mode Malam</string>
+    <string name="onboarding_feature3_subtitle">Nyaman di mata Anda, selalu</string>
+    <string name="onboarding_feature3_badge">Aktif</string>
+
+    <!-- Language Screen -->
+    <string name="language_title">Bahasa</string>
+    <string name="language_next">Berikutnya</string>
+    <string name="language_open">BUKA</string>
+
+    <!-- Home Screen — Greetings -->
+    <string name="home_greeting_morning">Selamat pagi</string>
+    <string name="home_greeting_afternoon">Selamat siang</string>
+    <string name="home_greeting_evening">Selamat malam</string>
+
+    <!-- Home Screen — Hero text -->
+    <string name="home_hero_prefix">Anda ingin\nmenjelajahi </string>
+    <string name="home_hero_highlight">apa</string>
+    <string name="home_hero_suffix">\nhari ini?</string>
+
+    <!-- Home Screen — Pill buttons -->
+    <string name="home_pill_google_search">Pencarian Google</string>
+    <string name="home_pill_youtube">YouTube</string>
+    <string name="home_pill_incognito">Pribadi</string>
+
+    <!-- Home Screen — Search bar -->
+    <string name="home_search_placeholder">Cari atau masukkan URL…</string>
+
+    <!-- Home Screen — Section headers -->
+    <string name="home_tools_section">Alat</string>
+
+    <!-- Home Screen — Tool cards -->
+    <string name="home_tool_incognito_title">Pribadi</string>
+    <string name="home_tool_incognito_subtitle">Tab pribadi</string>
+    <string name="home_tool_downloads_title">Unduhan</string>
+    <string name="home_tool_downloads_subtitle">File tersimpan</string>
+    <string name="home_tool_bookmarks_title">Bookmark</string>
+    <string name="home_tool_bookmarks_subtitle">Situs tersimpan</string>
+
+    <!-- Home Screen — Notification dialog -->
+    <string name="home_notif_dialog_title">Aktifkan Notifikasi?</string>
+    <string name="home_notif_dialog_body">Jangan lewatkan pembaruan penting. Aktifkan notifikasi untuk tetap terinformasi.</string>
+    <string name="home_notif_enable">Aktifkan Sekarang</string>
+    <string name="home_notif_later">Nanti Saja</string>
+
+    <!-- Browser Screen -->
+    <string name="browser_download_snackbar">Mengunduh: %s</string>
+    <string name="browser_download_description">Mengunduh melalui Swift Browser</string>
+    <string name="browser_share_chooser_title">Bagikan URL</string>
+    <string name="browser_unknown_error">Kesalahan tidak diketahui</string>
+    <string name="browser_error_title">Tidak dapat membuka halaman ini</string>
+    <string name="browser_try_again">Coba Lagi</string>
+    <string name="browser_go_home">Ke Beranda</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_app_tagline">Cepat &amp; Pribadi</string>
+    <string name="settings_download_instructions">Petunjuk Unduhan</string>
+    <string name="settings_privacy_policy">Kebijakan Privasi</string>
+    <string name="settings_rate_us">Beri Nilai</string>
+    <string name="settings_version_label">Versi Aplikasi: %s</string>
+
+    <!-- Downloads Screen -->
+    <string name="downloads_tab_progress">Progres</string>
+    <string name="downloads_tab_player">Pemutar</string>
+    <string name="downloads_saved_empty">Daftar tersimpan Anda kosong</string>
+    <string name="downloads_no_active">Tidak ada tugas unduhan aktif</string>
+</resources>

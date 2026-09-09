@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.SwiftBrowser" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.SwiftBrowser" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/swift_blue</item>
+        <item name="colorPrimaryDark">@color/swift_blue_dark</item>
+        <item name="colorAccent">@color/swift_cyan</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="Theme.SwiftBrowser.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/swift_blue</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.SwiftBrowser</item>
+    </style>
+
 </resources>

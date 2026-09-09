@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Swift 瀏覽器</string>
+    <string name="app_description">快速、安全、私密的瀏覽體驗</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_home">首頁</string>
+    <string name="nav_browser">瀏覽器</string>
+    <string name="nav_tabs">分頁</string>
+    <string name="nav_bookmarks">書籤</string>
+    <string name="nav_history">歷史記錄</string>
+    <string name="nav_settings">設定</string>
+    <string name="nav_downloads">下載</string>
+
+    <!-- URL Bar -->
+    <string name="url_bar_hint">搜尋或輸入網址</string>
+    <string name="url_bar_go">前往</string>
+    <string name="url_bar_search">搜尋</string>
+
+    <!-- Home Screen -->
+    <string name="home_speed_dial_title">快速撥號</string>
+    <string name="home_quick_access">快速存取</string>
+    <string name="home_news_title">新聞</string>
+    <string name="home_top_stories">熱門新聞</string>
+    <string name="home_see_all">查看全部</string>
+    <string name="home_welcome">歡迎使用 Swift 瀏覽器</string>
+    <string name="home_search_hint">搜尋網路或輸入網址</string>
+    <string name="home_search_bar_hint">搜尋或輸入網址</string>
+    <string name="home_add_speed_dial">新增網站</string>
+
+    <!-- Tabs -->
+    <string name="tab_new_incognito">新增無痕分頁</string>
+    <string name="tab_count_label">已開啟 %d 個分頁</string>
+
+    <!-- Speed Dial -->
+    <string name="speed_dial_edit">編輯</string>
+    <string name="speed_dial_remove">移除</string>
+    <string name="speed_dial_options">網站選項</string>
+
+    <!-- Ads -->
+    <string name="ad_badge">廣告</string>
+    <string name="ad_learn_more">了解更多</string>
+    <string name="ad_shop_now">立即購買</string>
+
+    <!-- Browser Actions -->
+    <string name="action_back">返回</string>
+    <string name="action_forward">前進</string>
+    <string name="action_reload">重新載入</string>
+    <string name="action_stop">停止</string>
+    <string name="action_share">分享</string>
+    <string name="action_bookmark">書籤</string>
+    <string name="action_bookmark_added">已加入書籤！</string>
+    <string name="action_bookmark_removed">書籤已移除</string>
+    <string name="action_add_tab">新增分頁</string>
+    <string name="action_close_tab">關閉分頁</string>
+    <string name="action_close_all_tabs">關閉所有分頁</string>
+    <string name="action_new_private_tab">新增無痕分頁</string>
+    <string name="action_find_in_page">在頁面中搜尋</string>
+    <string name="action_print">列印</string>
+    <string name="action_download">下載</string>
+
+    <!-- Bookmarks -->
+    <string name="bookmarks_empty">尚無書籤</string>
+    <string name="bookmarks_empty_hint">瀏覽時點擊星形圖示以儲存書籤</string>
+    <string name="bookmark_delete_confirm">刪除此書籤？</string>
+    <string name="bookmark_edit_title">編輯書籤</string>
+    <string name="bookmark_name_label">名稱</string>
+    <string name="bookmark_url_label">網址</string>
+
+    <!-- History -->
+    <string name="history_empty">無瀏覽記錄</string>
+    <string name="history_empty_hint">您造訪的頁面將顯示在這裡</string>
+    <string name="history_clear_confirm">清除所有瀏覽記錄？</string>
+    <string name="history_clear_action">清除記錄</string>
+    <string name="history_today">今天</string>
+    <string name="history_yesterday">昨天</string>
+    <string name="history_older">更早</string>
+
+    <!-- Downloads -->
+    <string name="downloads_empty">沒有下載</string>
+    <string name="downloads_empty_hint">您下載的檔案將顯示在這裡</string>
+    <string name="download_started">開始下載</string>
+    <string name="download_complete">下載完成</string>
+    <string name="download_failed">下載失敗</string>
+    <string name="download_delete_confirm">刪除此下載？</string>
+
+    <!-- Tabs -->
+    <string name="tabs_count">已開啟 %d 個分頁</string>
+    <string name="tabs_new_tab">新增分頁</string>
+    <string name="tabs_private">無痕</string>
+    <string name="tabs_close_confirm">關閉所有分頁？</string>
+
+    <!-- Settings -->
+    <string name="settings_title">設定</string>
+    <string name="settings_general">一般</string>
+    <string name="settings_privacy">隱私權與安全性</string>
+    <string name="settings_appearance">外觀</string>
+    <string name="settings_advanced">進階</string>
+    <string name="settings_about">關於</string>
+    <string name="settings_homepage">首頁</string>
+    <string name="settings_homepage_hint">輸入首頁網址</string>
+    <string name="settings_search_engine">預設搜尋引擎</string>
+    <string name="settings_dark_mode">網站深色模式</string>
+    <string name="settings_dark_mode_desc">在網站上強制使用深色模式</string>
+    <string name="settings_data_saver">省流量模式</string>
+    <string name="settings_data_saver_desc">瀏覽時減少數據使用</string>
+    <string name="settings_popup_block">封鎖彈出視窗</string>
+    <string name="settings_popup_block_desc">防止網站開啟彈出視窗</string>
+    <string name="settings_text_size">文字大小</string>
+    <string name="settings_clear_data">清除瀏覽資料</string>
+    <string name="settings_clear_data_desc">清除歷史記錄、快取和 Cookie</string>
+    <string name="settings_version">版本</string>
+    <string name="settings_default_browser">設為預設瀏覽器</string>
+    <string name="settings_default_browser_desc">將 Swift 瀏覽器設為您的預設瀏覽器</string>
+
+    <!-- Error Messages -->
+    <string name="error_no_internet">無網路連線</string>
+    <string name="error_page_load">頁面載入失敗</string>
+    <string name="error_invalid_url">無效的網址</string>
+    <string name="error_generic">發生錯誤</string>
+
+    <!-- Common Actions -->
+    <string name="action_ok">確定</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_delete">刪除</string>
+    <string name="action_edit">編輯</string>
+    <string name="action_save">儲存</string>
+    <string name="action_retry">重試</string>
+    <string name="action_copy_url">複製網址</string>
+    <string name="action_open_in_new_tab">在新分頁中開啟</string>
+
+    <!-- Permissions -->
+    <string name="permission_camera_title">相機權限</string>
+    <string name="permission_camera_desc">掃描 QR 碼需要相機存取權限</string>
+    <string name="permission_storage_title">儲存空間權限</string>
+    <string name="permission_storage_desc">儲存下載檔案需要儲存空間存取權限</string>
+    <string name="permission_notification_title">通知權限</string>
+    <string name="permission_notification_desc">允許下載進度通知</string>
+    <string name="permission_grant">授予權限</string>
+    <string name="permission_deny">暫不授權</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">以閃電速度瀏覽</string>
+    <string name="onboarding_desc_1">Swift 瀏覽器為 Android 上最快速的網路體驗而優化</string>
+    <string name="onboarding_title_2">隱私優先</string>
+    <string name="onboarding_desc_2">內建廣告攔截器、追蹤器保護和無痕瀏覽模式</string>
+    <string name="onboarding_title_3">強大功能</string>
+    <string name="onboarding_desc_3">多分頁瀏覽、書籤、下載等更多功能</string>
+    <string name="onboarding_get_started">開始使用</string>
+    <string name="onboarding_skip">跳過</string>
+    <string name="onboarding_next">下一步</string>
+
+    <!-- Tabs extended -->
+    <string name="tabs_count_header">%d 個分頁</string>
+    <string name="tabs_close_all">全部關閉</string>
+    <string name="tabs_active_badge">使用中</string>
+    <string name="tabs_incognito">無痕</string>
+    <string name="tabs_close_all_message">所有開啟的分頁將被關閉</string>
+
+    <!-- Bookmarks extended -->
+    <string name="bookmarks_search_hint">搜尋書籤</string>
+
+    <!-- History extended -->
+    <string name="history_this_week">本週</string>
+    <string name="history_delete_item">從記錄中刪除</string>
+
+    <!-- Common actions extended -->
+    <string name="action_duplicate_tab">複製分頁</string>
+    <string name="action_open">開啟</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_notifications">通知</string>
+    <string name="cd_settings">設定</string>
+    <string name="cd_more_options">更多選項</string>
+    <string name="cd_clear">清除</string>
+
+    <!-- Splash Screen -->
+    <string name="splash_tagline">快速 · 安全 · 私密</string>
+    <string name="splash_ads_disclaimer">此應用程式可能包含廣告</string>
+    <string name="splash_notif_title">保持最新資訊</string>
+    <string name="splash_notif_body">接收關於新功能、安全更新和技巧的通知</string>
+    <string name="splash_notif_allow">允許通知</string>
+    <string name="splash_notif_not_now">暫不允許</string>
+
+    <!-- Onboarding — Page 1 -->
+    <string name="onboarding_page1_title">隨處安全\n瀏覽</string>
+    <string name="onboarding_page1_subtitle">您的隱私，永遠受到保護</string>
+    <string name="onboarding_chip1_title">無追蹤</string>
+    <string name="onboarding_chip1_subtitle">零追蹤器，零數據洩露</string>
+    <string name="onboarding_chip2_title">加密保護</string>
+    <string name="onboarding_chip2_subtitle">每個頁面均有 256 位元 SSL</string>
+    <string name="onboarding_chip3_title">無痕模式</string>
+    <string name="onboarding_chip3_subtitle">無記錄，無蹤跡</string>
+
+    <!-- Onboarding — Page 2 -->
+    <string name="onboarding_page2_title">快速瀏覽，\n零追蹤</string>
+    <string name="onboarding_page2_subtitle">完整隱私保護下的極速體驗</string>
+    <string name="onboarding_stat1_label">更快載入</string>
+    <string name="onboarding_stat2_label">省流量</string>
+    <string name="onboarding_stat3_label">追蹤器</string>
+    <string name="onboarding_speed_label">頁面載入速度</string>
+
+    <!-- Onboarding — Page 3 -->
+    <string name="onboarding_page3_title">您的瀏覽器，\n您的規則</string>
+    <string name="onboarding_page3_subtitle">為速度、隱私 &amp; 簡約而生</string>
+    <string name="onboarding_feature1_title">內建廣告攔截器</string>
+    <string name="onboarding_feature1_subtitle">自動攔截廣告 &amp; 彈出視窗</string>
+    <string name="onboarding_feature1_badge">已啟用</string>
+    <string name="onboarding_feature2_title">智慧下載</string>
+    <string name="onboarding_feature2_subtitle">即時儲存影片、檔案</string>
+    <string name="onboarding_feature2_badge">快速</string>
+    <string name="onboarding_feature3_title">夜間模式</string>
+    <string name="onboarding_feature3_subtitle">讓您的眼睛更舒適，隨時隨地</string>
+    <string name="onboarding_feature3_badge">開啟</string>
+
+    <!-- Language Screen -->
+    <string name="language_title">語言</string>
+    <string name="language_next">下一步</string>
+    <string name="language_open">開啟</string>
+
+    <!-- Home Screen — Greetings -->
+    <string name="home_greeting_morning">早安</string>
+    <string name="home_greeting_afternoon">午安</string>
+    <string name="home_greeting_evening">晚安</string>
+
+    <!-- Home Screen — Hero text -->
+    <string name="home_hero_prefix">今天您想\n</string>
+    <string name="home_hero_highlight">瀏覽</string>
+    <string name="home_hero_suffix">\n哪裡？</string>
+
+    <!-- Home Screen — Pill buttons -->
+    <string name="home_pill_google_search">Google 搜尋</string>
+    <string name="home_pill_youtube">YouTube</string>
+    <string name="home_pill_incognito">無痕</string>
+
+    <!-- Home Screen — Search bar -->
+    <string name="home_search_placeholder">搜尋或輸入網址…</string>
+
+    <!-- Home Screen — Section headers -->
+    <string name="home_tools_section">工具</string>
+
+    <!-- Home Screen — Tool cards -->
+    <string name="home_tool_incognito_title">無痕</string>
+    <string name="home_tool_incognito_subtitle">無痕分頁</string>
+    <string name="home_tool_downloads_title">下載</string>
+    <string name="home_tool_downloads_subtitle">已儲存的檔案</string>
+    <string name="home_tool_bookmarks_title">書籤</string>
+    <string name="home_tool_bookmarks_subtitle">已儲存的網站</string>
+
+    <!-- Home Screen — Notification dialog -->
+    <string name="home_notif_dialog_title">啟用通知？</string>
+    <string name="home_notif_dialog_body">不要錯過重要更新。啟用通知以保持即時資訊。</string>
+    <string name="home_notif_enable">立即啟用</string>
+    <string name="home_notif_later">稍後再說</string>
+
+    <!-- Browser Screen -->
+    <string name="browser_download_snackbar">正在下載：%s</string>
+    <string name="browser_download_description">透過 Swift 瀏覽器下載</string>
+    <string name="browser_share_chooser_title">分享網址</string>
+    <string name="browser_unknown_error">未知錯誤</string>
+    <string name="browser_error_title">無法連上此頁面</string>
+    <string name="browser_try_again">再試一次</string>
+    <string name="browser_go_home">回到首頁</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_app_tagline">快速 &amp; 私密</string>
+    <string name="settings_download_instructions">下載說明</string>
+    <string name="settings_privacy_policy">隱私權政策</string>
+    <string name="settings_rate_us">為我們評分</string>
+    <string name="settings_version_label">應用程式版本：%s</string>
+
+    <!-- Downloads Screen -->
+    <string name="downloads_tab_progress">進度</string>
+    <string name="downloads_tab_player">播放器</string>
+    <string name="downloads_saved_empty">您的儲存清單為空</string>
+    <string name="downloads_no_active">沒有進行中的下載任務</string>
+</resources>

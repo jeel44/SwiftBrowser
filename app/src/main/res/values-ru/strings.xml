@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Swift Browser</string>
+    <string name="app_description">Быстрый, безопасный, приватный браузер</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_home">Главная</string>
+    <string name="nav_browser">Браузер</string>
+    <string name="nav_tabs">Вкладки</string>
+    <string name="nav_bookmarks">Закладки</string>
+    <string name="nav_history">История</string>
+    <string name="nav_settings">Настройки</string>
+    <string name="nav_downloads">Загрузки</string>
+
+    <!-- URL Bar -->
+    <string name="url_bar_hint">Поиск или ввод URL</string>
+    <string name="url_bar_go">Перейти</string>
+    <string name="url_bar_search">Поиск</string>
+
+    <!-- Home Screen -->
+    <string name="home_speed_dial_title">Быстрый набор</string>
+    <string name="home_quick_access">Быстрый доступ</string>
+    <string name="home_news_title">Новости</string>
+    <string name="home_top_stories">Главные новости</string>
+    <string name="home_see_all">Показать всё</string>
+    <string name="home_welcome">Добро пожаловать в Swift Browser</string>
+    <string name="home_search_hint">Поиск в сети или ввод URL</string>
+    <string name="home_search_bar_hint">Поиск или ввод веб-адреса</string>
+    <string name="home_add_speed_dial">Добавить сайт</string>
+
+    <!-- Tabs -->
+    <string name="tab_new_incognito">Новая приватная вкладка</string>
+    <string name="tab_count_label">Открыто вкладок: %d</string>
+
+    <!-- Speed Dial -->
+    <string name="speed_dial_edit">Изменить</string>
+    <string name="speed_dial_remove">Удалить</string>
+    <string name="speed_dial_options">Параметры сайта</string>
+
+    <!-- Ads -->
+    <string name="ad_badge">Реклама</string>
+    <string name="ad_learn_more">Подробнее</string>
+    <string name="ad_shop_now">Купить сейчас</string>
+
+    <!-- Browser Actions -->
+    <string name="action_back">Назад</string>
+    <string name="action_forward">Вперёд</string>
+    <string name="action_reload">Обновить</string>
+    <string name="action_stop">Стоп</string>
+    <string name="action_share">Поделиться</string>
+    <string name="action_bookmark">Закладка</string>
+    <string name="action_bookmark_added">Добавлено в закладки!</string>
+    <string name="action_bookmark_removed">Закладка удалена</string>
+    <string name="action_add_tab">Новая вкладка</string>
+    <string name="action_close_tab">Закрыть вкладку</string>
+    <string name="action_close_all_tabs">Закрыть все вкладки</string>
+    <string name="action_new_private_tab">Новая приватная вкладка</string>
+    <string name="action_find_in_page">Найти на странице</string>
+    <string name="action_print">Печать</string>
+    <string name="action_download">Загрузить</string>
+
+    <!-- Bookmarks -->
+    <string name="bookmarks_empty">Закладок пока нет</string>
+    <string name="bookmarks_empty_hint">Нажмите на звёздочку при просмотре, чтобы сохранить закладку</string>
+    <string name="bookmark_delete_confirm">Удалить эту закладку?</string>
+    <string name="bookmark_edit_title">Изменить закладку</string>
+    <string name="bookmark_name_label">Название</string>
+    <string name="bookmark_url_label">URL</string>
+
+    <!-- History -->
+    <string name="history_empty">Нет истории просмотров</string>
+    <string name="history_empty_hint">Посещённые страницы появятся здесь</string>
+    <string name="history_clear_confirm">Очистить всю историю просмотров?</string>
+    <string name="history_clear_action">Очистить историю</string>
+    <string name="history_today">Сегодня</string>
+    <string name="history_yesterday">Вчера</string>
+    <string name="history_older">Раньше</string>
+
+    <!-- Downloads -->
+    <string name="downloads_empty">Нет загрузок</string>
+    <string name="downloads_empty_hint">Загруженные файлы появятся здесь</string>
+    <string name="download_started">Загрузка началась</string>
+    <string name="download_complete">Загрузка завершена</string>
+    <string name="download_failed">Загрузка не удалась</string>
+    <string name="download_delete_confirm">Удалить эту загрузку?</string>
+
+    <!-- Tabs -->
+    <string name="tabs_count">Открыто вкладок: %d</string>
+    <string name="tabs_new_tab">Новая вкладка</string>
+    <string name="tabs_private">Приватный</string>
+    <string name="tabs_close_confirm">Закрыть все вкладки?</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Настройки</string>
+    <string name="settings_general">Общие</string>
+    <string name="settings_privacy">Конфиденциальность и безопасность</string>
+    <string name="settings_appearance">Внешний вид</string>
+    <string name="settings_advanced">Дополнительно</string>
+    <string name="settings_about">О приложении</string>
+    <string name="settings_homepage">Домашняя страница</string>
+    <string name="settings_homepage_hint">Введите URL домашней страницы</string>
+    <string name="settings_search_engine">Поисковая система по умолчанию</string>
+    <string name="settings_dark_mode">Тёмный режим для сайтов</string>
+    <string name="settings_dark_mode_desc">Принудительный тёмный режим на сайтах</string>
+    <string name="settings_data_saver">Экономия данных</string>
+    <string name="settings_data_saver_desc">Снизить использование данных при просмотре</string>
+    <string name="settings_popup_block">Блокировать всплывающие окна</string>
+    <string name="settings_popup_block_desc">Запретить сайтам открывать всплывающие окна</string>
+    <string name="settings_text_size">Размер текста</string>
+    <string name="settings_clear_data">Очистить данные просмотра</string>
+    <string name="settings_clear_data_desc">Удаляет историю, кэш и файлы cookie</string>
+    <string name="settings_version">Версия</string>
+    <string name="settings_default_browser">Установить браузером по умолчанию</string>
+    <string name="settings_default_browser_desc">Сделать Swift Browser браузером по умолчанию</string>
+
+    <!-- Error Messages -->
+    <string name="error_no_internet">Нет подключения к интернету</string>
+    <string name="error_page_load">Не удалось загрузить страницу</string>
+    <string name="error_invalid_url">Неверный URL</string>
+    <string name="error_generic">Что-то пошло не так</string>
+
+    <!-- Common Actions -->
+    <string name="action_ok">ОК</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_delete">Удалить</string>
+    <string name="action_edit">Изменить</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_retry">Повторить</string>
+    <string name="action_copy_url">Скопировать URL</string>
+    <string name="action_open_in_new_tab">Открыть в новой вкладке</string>
+
+    <!-- Permissions -->
+    <string name="permission_camera_title">Разрешение камеры</string>
+    <string name="permission_camera_desc">Доступ к камере необходим для сканирования QR-кодов</string>
+    <string name="permission_storage_title">Разрешение хранилища</string>
+    <string name="permission_storage_desc">Доступ к хранилищу необходим для сохранения файлов</string>
+    <string name="permission_notification_title">Разрешение уведомлений</string>
+    <string name="permission_notification_desc">Разрешить уведомления о ходе загрузки</string>
+    <string name="permission_grant">Дать разрешение</string>
+    <string name="permission_deny">Не сейчас</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Браузер со скоростью молнии</string>
+    <string name="onboarding_desc_1">Swift Browser оптимизирован для самого быстрого веб-опыта на Android</string>
+    <string name="onboarding_title_2">Конфиденциальность прежде всего</string>
+    <string name="onboarding_desc_2">Встроенный блокировщик рекламы, защита от трекеров и режим приватного просмотра</string>
+    <string name="onboarding_title_3">Мощные функции</string>
+    <string name="onboarding_desc_3">Просмотр в нескольких вкладках, закладки, загрузки и многое другое</string>
+    <string name="onboarding_get_started">Начать</string>
+    <string name="onboarding_skip">Пропустить</string>
+    <string name="onboarding_next">Далее</string>
+
+    <!-- Tabs extended -->
+    <string name="tabs_count_header">%d вкладок</string>
+    <string name="tabs_close_all">Закрыть все</string>
+    <string name="tabs_active_badge">Активна</string>
+    <string name="tabs_incognito">Инкогнито</string>
+    <string name="tabs_close_all_message">Все открытые вкладки будут закрыты</string>
+
+    <!-- Bookmarks extended -->
+    <string name="bookmarks_search_hint">Поиск закладок</string>
+
+    <!-- History extended -->
+    <string name="history_this_week">На этой неделе</string>
+    <string name="history_delete_item">Удалить из истории</string>
+
+    <!-- Common actions extended -->
+    <string name="action_duplicate_tab">Дублировать вкладку</string>
+    <string name="action_open">Открыть</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_notifications">Уведомления</string>
+    <string name="cd_settings">Настройки</string>
+    <string name="cd_more_options">Ещё варианты</string>
+    <string name="cd_clear">Очистить</string>
+
+    <!-- Splash Screen -->
+    <string name="splash_tagline">БЫСТРО · БЕЗОПАСНО · ПРИВАТНО</string>
+    <string name="splash_ads_disclaimer">Приложение может содержать рекламу</string>
+    <string name="splash_notif_title">Будьте в курсе</string>
+    <string name="splash_notif_body">Получайте уведомления о новых функциях, обновлениях безопасности и советах</string>
+    <string name="splash_notif_allow">Разрешить уведомления</string>
+    <string name="splash_notif_not_now">Не сейчас</string>
+
+    <!-- Onboarding — Page 1 -->
+    <string name="onboarding_page1_title">Безопасный просмотр\nвезде</string>
+    <string name="onboarding_page1_subtitle">Ваша конфиденциальность всегда под защитой</string>
+    <string name="onboarding_chip1_title">Без слежки</string>
+    <string name="onboarding_chip1_subtitle">Ноль трекеров, ноль утечек данных</string>
+    <string name="onboarding_chip2_title">Зашифровано</string>
+    <string name="onboarding_chip2_subtitle">256-битный SSL на каждой странице</string>
+    <string name="onboarding_chip3_title">Приватный режим</string>
+    <string name="onboarding_chip3_subtitle">Нет истории, нет следов</string>
+
+    <!-- Onboarding — Page 2 -->
+    <string name="onboarding_page2_title">Быстрый просмотр,\nноль слежки</string>
+    <string name="onboarding_page2_subtitle">Молниеносная скорость с полной конфиденциальностью</string>
+    <string name="onboarding_stat1_label">Быстрее загрузка</string>
+    <string name="onboarding_stat2_label">Меньше данных</string>
+    <string name="onboarding_stat3_label">Трекеры</string>
+    <string name="onboarding_speed_label">Скорость загрузки страниц</string>
+
+    <!-- Onboarding — Page 3 -->
+    <string name="onboarding_page3_title">Ваш браузер,\nваши правила</string>
+    <string name="onboarding_page3_subtitle">Создан для скорости, конфиденциальности &amp; простоты</string>
+    <string name="onboarding_feature1_title">Встроенный блокировщик рекламы</string>
+    <string name="onboarding_feature1_subtitle">Блокирует рекламу &amp; всплывающие окна автоматически</string>
+    <string name="onboarding_feature1_badge">Активен</string>
+    <string name="onboarding_feature2_title">Умные загрузки</string>
+    <string name="onboarding_feature2_subtitle">Мгновенное сохранение видео и файлов</string>
+    <string name="onboarding_feature2_badge">Быстро</string>
+    <string name="onboarding_feature3_title">Ночной режим</string>
+    <string name="onboarding_feature3_subtitle">Комфортно для глаз, всегда</string>
+    <string name="onboarding_feature3_badge">Вкл</string>
+
+    <!-- Language Screen -->
+    <string name="language_title">Язык</string>
+    <string name="language_next">Далее</string>
+    <string name="language_open">ОТКРЫТЬ</string>
+
+    <!-- Home Screen — Greetings -->
+    <string name="home_greeting_morning">Доброе утро</string>
+    <string name="home_greeting_afternoon">Добрый день</string>
+    <string name="home_greeting_evening">Добрый вечер</string>
+
+    <!-- Home Screen — Hero text -->
+    <string name="home_hero_prefix">Где вы хотите\n</string>
+    <string name="home_hero_highlight">смотреть</string>
+    <string name="home_hero_suffix">\nсегодня?</string>
+
+    <!-- Home Screen — Pill buttons -->
+    <string name="home_pill_google_search">Поиск Google</string>
+    <string name="home_pill_youtube">YouTube</string>
+    <string name="home_pill_incognito">Инкогнито</string>
+
+    <!-- Home Screen — Search bar -->
+    <string name="home_search_placeholder">Поиск или ввод URL…</string>
+
+    <!-- Home Screen — Section headers -->
+    <string name="home_tools_section">Инструменты</string>
+
+    <!-- Home Screen — Tool cards -->
+    <string name="home_tool_incognito_title">Инкогнито</string>
+    <string name="home_tool_incognito_subtitle">Приватная вкладка</string>
+    <string name="home_tool_downloads_title">Загрузки</string>
+    <string name="home_tool_downloads_subtitle">Сохранённые файлы</string>
+    <string name="home_tool_bookmarks_title">Закладки</string>
+    <string name="home_tool_bookmarks_subtitle">Сохранённые сайты</string>
+
+    <!-- Home Screen — Notification dialog -->
+    <string name="home_notif_dialog_title">Включить уведомления?</string>
+    <string name="home_notif_dialog_body">Не пропустите важные обновления. Включите уведомления, чтобы быть в курсе.</string>
+    <string name="home_notif_enable">Включить сейчас</string>
+    <string name="home_notif_later">Позже</string>
+
+    <!-- Browser Screen -->
+    <string name="browser_download_snackbar">Загрузка: %s</string>
+    <string name="browser_download_description">Загрузка через Swift Browser</string>
+    <string name="browser_share_chooser_title">Поделиться URL</string>
+    <string name="browser_unknown_error">Неизвестная ошибка</string>
+    <string name="browser_error_title">Не удаётся открыть страницу</string>
+    <string name="browser_try_again">Попробовать снова</string>
+    <string name="browser_go_home">На главную</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_app_tagline">Быстро &amp; приватно</string>
+    <string name="settings_download_instructions">Инструкции по загрузке</string>
+    <string name="settings_privacy_policy">Политика конфиденциальности</string>
+    <string name="settings_rate_us">Оценить нас</string>
+    <string name="settings_version_label">Версия приложения: %s</string>
+
+    <!-- Downloads Screen -->
+    <string name="downloads_tab_progress">Прогресс</string>
+    <string name="downloads_tab_player">Плеер</string>
+    <string name="downloads_saved_empty">Ваш список сохранений пуст</string>
+    <string name="downloads_no_active">Нет активных задач загрузки</string>
+</resources>

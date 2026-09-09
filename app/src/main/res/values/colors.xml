@@ -1,10 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- SwiftBrowser Brand Colors -->
+    <color name="swift_blue">#1565C0</color>
+    <color name="swift_blue_dark">#0D47A1</color>   <!-- ADD THIS LINE -->
+    <color name="swift_light_blue">#0288D1</color>
+    <color name="swift_cyan">#00BCD4</color>
+    <color name="swift_dark">#0D1B2A</color>
+    <color name="swift_gray">#F5F7FA</color>
+
+    <!-- Semantic Colors -->
+    <color name="primary">#1565C0</color>
+    <color name="primary_variant">#003C8F</color>
+    <color name="secondary">#0288D1</color>
+    <color name="secondary_variant">#005B9F</color>
+    <color name="accent">#00BCD4</color>
+    <color name="background">#FAFAFA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="error">#D32F2F</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="on_background">#1A1A2E</color>
+    <color name="on_surface">#1A1A2E</color>
+    <color name="on_error">#FFFFFF</color>
+
+    <!-- Dark Theme Colors -->
+    <color name="dark_background">#0D1B2A</color>
+    <color name="dark_surface">#1A2E40</color>
+    <color name="dark_on_background">#E8EAF6</color>
+    <color name="dark_on_surface">#E8EAF6</color>
+
+    <!-- URL Bar Colors -->
+    <color name="url_bar_background">#F0F4FF</color>
+    <color name="url_bar_background_dark">#1E2D40</color>
+
+    <!-- Tab Colors -->
+    <color name="tab_selected">#1565C0</color>
+    <color name="tab_unselected">#9E9E9E</color>
+
+    <!-- FCM Notification -->
+    <color name="purple_primary">#6C47D9</color>
+
+    <!-- Lock icon colors -->
+    <color name="lock_secure_color">#0F9D58</color>
+    <color name="lock_warning_color">#F44336</color>
+    <color name="icon_refresh_color">#5F6368</color>
+    <color name="icon_stop_color">#5F6368</color>
 </resources>
