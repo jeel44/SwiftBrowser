@@ -256,10 +256,10 @@ fun ThemeScreen(
                 }
 
                 val presets = listOf(
-                    ThemeAppIconPreset("Light", stringResource(id = R.string.icon_preset_light), R.drawable.ic_omni_logo, Color.White to Color.Unspecified),
-                    ThemeAppIconPreset("Dark", stringResource(id = R.string.icon_preset_dark), R.drawable.ic_omni_logo, Color(0xFF0D0D0F) to Color.Unspecified),
-                    ThemeAppIconPreset("Aura Dark", stringResource(id = R.string.icon_preset_aura_dark), R.drawable.ic_omni_ring_dark, Color.Unspecified to Color.Unspecified),
-                    ThemeAppIconPreset("Aura Light", stringResource(id = R.string.icon_preset_aura_light), R.drawable.ic_omni_ring_light, Color.Unspecified to Color.Unspecified)
+                    ThemeAppIconPreset("Light", stringResource(id = R.string.icon_preset_light), R.drawable.ic_swift_logo, Color.White to Color.Unspecified),
+                    ThemeAppIconPreset("Dark", stringResource(id = R.string.icon_preset_dark), R.drawable.ic_swift_logo, Color(0xFF0D0D0F) to Color.Unspecified),
+                    ThemeAppIconPreset("Aura Dark", stringResource(id = R.string.icon_preset_aura_dark), R.drawable.ic_swift_ring_dark, Color.Unspecified to Color.Unspecified),
+                    ThemeAppIconPreset("Aura Light", stringResource(id = R.string.icon_preset_aura_light), R.drawable.ic_swift_ring_light, Color.Unspecified to Color.Unspecified)
                 )
 
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {

@@ -528,9 +528,9 @@ fun HomeScreenContent(
                 androidx.compose.foundation.Image(
                     painter = androidx.compose.ui.res.painterResource(
                         id = if (viewModel.isDarkThemeEnabled) {
-                            com.swiftbrowser.fast.secure.R.drawable.omni_home_logo
+                            com.swiftbrowser.fast.secure.R.drawable.swift_home_logo
                         } else {
-                            com.swiftbrowser.fast.secure.R.drawable.omni_home_logo_light
+                            com.swiftbrowser.fast.secure.R.drawable.swift_home_logo_light
                         }
                     ),
                     contentDescription = "Omni Browser Logo",

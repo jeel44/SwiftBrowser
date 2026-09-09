@@ -278,7 +278,7 @@ fun PrivacySecurityScreen(
                         title = stringResource(id = R.string.autofill_provider_title),
                         subtitle = when (viewModel.autofillProviderMode) {
                             BrowserViewModel.AutofillProviderMode.THIRD_PARTY -> stringResource(R.string.autofill_provider_system)
-                            BrowserViewModel.AutofillProviderMode.OMNI_VAULT -> stringResource(R.string.autofill_provider_omni)
+                            BrowserViewModel.AutofillProviderMode.OMNI_VAULT -> stringResource(R.string.autofill_provider_swift)
                             BrowserViewModel.AutofillProviderMode.BOTH -> stringResource(R.string.autofill_provider_both)
                         },
                         onClick = { showAutofillProviderDialog = true },
@@ -659,7 +659,7 @@ fun PrivacySecurityScreen(
     if (showAutofillProviderDialog) {
         val autofillOptions = listOf(
             BrowserViewModel.AutofillProviderMode.THIRD_PARTY to stringResource(R.string.autofill_provider_system),
-            BrowserViewModel.AutofillProviderMode.OMNI_VAULT to stringResource(R.string.autofill_provider_omni),
+            BrowserViewModel.AutofillProviderMode.OMNI_VAULT to stringResource(R.string.autofill_provider_swift),
             BrowserViewModel.AutofillProviderMode.BOTH to stringResource(R.string.autofill_provider_both)
         )
         AlertDialog(

@@ -196,7 +196,7 @@
     <string name="update_dialog_open_store">Open Play Store</string>
     <!-- Currently unused: the GitHub Support row was removed from Settings (no Swift Browser repo exists yet). -->
     <string name="support_github">GitHub Support</string>
-    <string name="website_omnibrowser">Swift Browser Website</string>
+    <string name="website_swiftbrowser">Swift Browser Website</string>
     <string name="update_no_update">Swift Browser is up to date (v%1$s)</string>
     <string name="locker_cat_images">Images</string>
     <string name="locker_cat_videos">Videos</string>
@@ -452,7 +452,7 @@
     <string name="send_feedback_title">Send Direct Feedback</string>
     <string name="send_feedback_desc">Report bugs, suggest features, share thoughts</string>
     <string name="support_github_desc">View source code and file issues</string>
-    <string name="website_omnibrowser_desc">Visit the official Swift Browser website</string>
+    <string name="website_swiftbrowser_desc">Visit the official Swift Browser website</string>
     <string name="privacy_policy_desc">Read our privacy policy</string>
     <string name="appearance_address_bar">Address Bar</string>
     <string name="appearance_top">Top</string>
@@ -789,8 +789,8 @@
     <string name="ext_builtin_universal_copy_desc">Bypass website restrictions to force-enable text selection and copying.</string>
     <string name="ext_builtin_media_sniffer">Media Sniffer</string>
     <string name="ext_builtin_media_sniffer_desc">Sniff and capture offline dynamic HLS/DASH segments and streams.</string>
-    <string name="ext_builtin_omni_translate">Swift Translate</string>
-    <string name="ext_builtin_omni_translate_desc">On-device page translation for webpages</string>
+    <string name="ext_builtin_swift_translate">Swift Translate</string>
+    <string name="ext_builtin_swift_translate_desc">On-device page translation for webpages</string>
     <string name="offline_ai_settings_title">Offline AI</string>
     <string name="offline_ai_settings_desc">On-device translation &amp; captions — download models, no cloud</string>
     <string name="ext_builtin_ai_blocker">AI Blocker</string>
@@ -1387,8 +1387,8 @@
     <string name="media_sniffer_add_domain_btn">Add Domain</string>
     <string name="media_sniffer_add_current_site">+ Add current site (%1$s)</string>
     <string name="media_sniffer_no_blocked_sites">No websites added to blocklist</string>
-    <string name="browser_omni_logo_cd">Swift Browser Custom Logo</string>
-    <string name="browser_omni_logo_cd2">Swift Browser Logo</string>
+    <string name="browser_swift_logo_cd">Swift Browser Custom Logo</string>
+    <string name="browser_swift_logo_cd2">Swift Browser Logo</string>
     <string name="browser_reload_cd">Reload</string>
 
     <!-- Phone Address Bar -->
@@ -1794,7 +1794,7 @@
     <string name="download_copy_url">Copy download link</string>
     <string name="autofill_provider_title">Autofill provider</string>
     <string name="autofill_provider_system">Android system (Bitwarden, etc.)</string>
-    <string name="autofill_provider_omni">Swift Browser password vault</string>
+    <string name="autofill_provider_swift">Swift Browser password vault</string>
     <string name="autofill_provider_both">Both</string>
     <string name="extension_download_policy_title">Extension downloads</string>
     <string name="extension_download_policy_ask">Ask every time</string>

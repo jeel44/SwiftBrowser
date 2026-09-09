@@ -112,7 +112,7 @@
     <string name="update_failed_desc">Не удалось подключиться к серверу обновлений (%1$s). Хотите проверить Play Store вручную?</string>
     <string name="update_dialog_open_store">Открыть Play Store</string>
     <string name="support_github">Поддержка GitHub</string>
-    <string name="website_omnibrowser">Сайт Swift Browser</string>
+    <string name="website_swiftbrowser">Сайт Swift Browser</string>
     <string name="update_no_update">Swift Browser обновлен до последней версии (v%1$s)</string>
     <string name="locker_cat_images">Изображения</string>
     <string name="locker_cat_videos">Видео</string>
@@ -390,7 +390,7 @@
     <string name="send_feedback_title">Отправить отзыв</string>
     <string name="send_feedback_desc">Сообщить об ошибках, предложить функции, поделиться идеями</string>
     <string name="support_github_desc">Просмотреть исходный код и сообщить о проблемах</string>
-    <string name="website_omnibrowser_desc">Посетить официальный сайт Swift Browser</string>
+    <string name="website_swiftbrowser_desc">Посетить официальный сайт Swift Browser</string>
     <string name="privacy_policy_desc">Прочитать нашу политику конфиденциальности</string>
     <string name="appearance_address_bar">Адресная строка</string>
     <string name="appearance_top">Вверху</string>
@@ -714,8 +714,8 @@
     <string name="ext_builtin_universal_copy_desc">Обход ограничений сайта для принудительного выделения и копирования текста.</string>
     <string name="ext_builtin_media_sniffer">Сниффер медиа</string>
     <string name="ext_builtin_media_sniffer_desc">Обнаружение и захват офлайн динамических сегментов HLS/DASH и потоков.</string>
-    <string name="ext_builtin_omni_translate">Swift Translate</string>
-    <string name="ext_builtin_omni_translate_desc">Перевод веб-страниц на устройстве</string>
+    <string name="ext_builtin_swift_translate">Swift Translate</string>
+    <string name="ext_builtin_swift_translate_desc">Перевод веб-страниц на устройстве</string>
     <string name="offline_ai_settings_title">Офлайн-ИИ</string>
     <string name="offline_ai_settings_desc">Перевод и субтитры на устройстве — скачайте модели, без облака</string>
     <string name="ext_builtin_ai_blocker">Блокировщик ИИ</string>
@@ -1284,8 +1284,8 @@
     <string name="browser_clear_console">Clear Console</string>
     <string name="browser_clear_search">Clear search</string>
     <string name="browser_favicon_cd">Favicon</string>
-    <string name="browser_omni_logo_cd">Swift Browser Custom Logo</string>
-    <string name="browser_omni_logo_cd2">Swift Browser Logo</string>
+    <string name="browser_swift_logo_cd">Swift Browser Custom Logo</string>
+    <string name="browser_swift_logo_cd2">Swift Browser Logo</string>
     <string name="browser_reload_cd">Reload</string>
     <string name="address_bar_history">History</string>
     <string name="address_bar_clear_browsing_data">Clear Browsing Data</string>
@@ -1722,7 +1722,7 @@
     <string name="download_copy_url">Copy download link</string>
     <string name="autofill_provider_title">Autofill provider</string>
     <string name="autofill_provider_system">Android system (Bitwarden, etc.)</string>
-    <string name="autofill_provider_omni">Swift password vault</string>
+    <string name="autofill_provider_swift">Swift password vault</string>
     <string name="autofill_provider_both">Both</string>
     <string name="extension_download_policy_title">Extension downloads</string>
     <string name="extension_download_policy_ask">Ask every time</string>

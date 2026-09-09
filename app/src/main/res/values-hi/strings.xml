@@ -112,7 +112,7 @@
     <string name="update_failed_desc">अपडेट सर्वर (%1$s) से कनेक्ट करने में असमर्थ। क्या आप मैन्युअल रूप से Play स्टोर की जांच करना चाहेंगे?</string>
     <string name="update_dialog_open_store">प्ले स्टोर खोलें</string>
     <string name="support_github">GitHub समर्थन</string>
-    <string name="website_omnibrowser">Swift Browser वेबसाइट</string>
+    <string name="website_swiftbrowser">Swift Browser वेबसाइट</string>
     <string name="update_no_update">Swift Browser अद्यतित है (v%1$s)</string>
     <string name="locker_cat_images">फ़ोटो</string>
     <string name="locker_cat_videos">वीडियो</string>
@@ -390,7 +390,7 @@
     <string name="send_feedback_title">प्रत्यक्ष प्रतिक्रिया भेजें</string>
     <string name="send_feedback_desc">बग रिपोर्ट करें, सुविधाओं का सुझाव दें, विचार साझा करें</string>
     <string name="support_github_desc">स्रोत कोड देखें और समस्याएं दर्ज करें</string>
-    <string name="website_omnibrowser_desc">आधिकारिक ओम्नी ब्राउज़र वेबसाइट पर जाएं</string>
+    <string name="website_swiftbrowser_desc">आधिकारिक ओम्नी ब्राउज़र वेबसाइट पर जाएं</string>
     <string name="privacy_policy_desc">हमारी गोपनीयता नीति पढ़ें</string>
     <string name="appearance_address_bar">एड्रेस बार</string>
     <string name="appearance_top">ऊपर</string>
@@ -716,8 +716,8 @@
     <string name="ext_builtin_universal_copy_desc">वेबसाइट प्रतिबंधों को बायपास करके टेक्स्ट चयन और कॉपी करने को मजबूर करें।</string>
     <string name="ext_builtin_media_sniffer">मीडिया स्निफर</string>
     <string name="ext_builtin_media_sniffer_desc">ऑफलाइन गतिशील HLS/DASH सेगमेंट और स्ट्रीम को सूंघें और कैप्चर करें।</string>
-    <string name="ext_builtin_omni_translate">Swift Translate</string>
-    <string name="ext_builtin_omni_translate_desc">वेबपेजों का ऑन-डिवाइस अनुवाद</string>
+    <string name="ext_builtin_swift_translate">Swift Translate</string>
+    <string name="ext_builtin_swift_translate_desc">वेबपेजों का ऑन-डिवाइस अनुवाद</string>
     <string name="offline_ai_settings_title">ऑफ़लाइन AI</string>
     <string name="offline_ai_settings_desc">डिवाइस पर अनुवाद और कैप्शन — मॉडल डाउनलोड करें, कोई क्लाउड नहीं</string>
     <string name="ext_builtin_ai_blocker">AI ब्लॉकर</string>
@@ -1285,8 +1285,8 @@
     <string name="browser_clear_console">Clear Console</string>
     <string name="browser_clear_search">Clear search</string>
     <string name="browser_favicon_cd">Favicon</string>
-    <string name="browser_omni_logo_cd">Swift Browser Custom Logo</string>
-    <string name="browser_omni_logo_cd2">Swift Browser Logo</string>
+    <string name="browser_swift_logo_cd">Swift Browser Custom Logo</string>
+    <string name="browser_swift_logo_cd2">Swift Browser Logo</string>
     <string name="browser_reload_cd">Reload</string>
     <string name="address_bar_history">History</string>
     <string name="address_bar_clear_browsing_data">Clear Browsing Data</string>
@@ -1723,7 +1723,7 @@
     <string name="download_copy_url">Copy download link</string>
     <string name="autofill_provider_title">Autofill provider</string>
     <string name="autofill_provider_system">Android system (Bitwarden, etc.)</string>
-    <string name="autofill_provider_omni">Swift password vault</string>
+    <string name="autofill_provider_swift">Swift password vault</string>
     <string name="autofill_provider_both">Both</string>
     <string name="extension_download_policy_title">Extension downloads</string>
     <string name="extension_download_policy_ask">Ask every time</string>

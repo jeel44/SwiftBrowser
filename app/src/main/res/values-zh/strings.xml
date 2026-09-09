@@ -112,7 +112,7 @@
     <string name="update_failed_desc">无法连接到更新服务器 (%1$s)。您想手动检查 Play 商店吗？</string>
     <string name="update_dialog_open_store">打开 Play 商店</string>
     <string name="support_github">GitHub 支持</string>
-    <string name="website_omnibrowser">Swift Browser 网站</string>
+    <string name="website_swiftbrowser">Swift Browser 网站</string>
     <string name="update_no_update">Swift 浏览器已是最新版本 (v%1$s)</string>
     <string name="locker_cat_images">图片</string>
     <string name="locker_cat_videos">视频</string>
@@ -390,7 +390,7 @@
     <string name="send_feedback_title">发送直接反馈</string>
     <string name="send_feedback_desc">报告错误、建议新功能、分享想法</string>
     <string name="support_github_desc">查看源代码并提交问题</string>
-    <string name="website_omnibrowser_desc">访问 Swift Browser 官方网站</string>
+    <string name="website_swiftbrowser_desc">访问 Swift Browser 官方网站</string>
     <string name="privacy_policy_desc">阅读我们的隐私政策</string>
     <string name="appearance_address_bar">地址栏</string>
     <string name="appearance_top">顶部</string>
@@ -715,8 +715,8 @@
     <string name="ext_builtin_universal_copy_desc">绕过网站限制，强制启用文本选择和复制。</string>
     <string name="ext_builtin_media_sniffer">媒体嗅探器</string>
     <string name="ext_builtin_media_sniffer_desc">嗅探并捕获离线动态 HLS/DASH 片段和流。</string>
-    <string name="ext_builtin_omni_translate">Swift Translate</string>
-    <string name="ext_builtin_omni_translate_desc">网页设备端翻译</string>
+    <string name="ext_builtin_swift_translate">Swift Translate</string>
+    <string name="ext_builtin_swift_translate_desc">网页设备端翻译</string>
     <string name="offline_ai_settings_title">离线 AI</string>
     <string name="offline_ai_settings_desc">设备端翻译和字幕 — 下载模型，无需云端</string>
     <string name="ext_builtin_ai_blocker">AI 拦截器</string>
@@ -1284,8 +1284,8 @@
     <string name="browser_clear_console">Clear Console</string>
     <string name="browser_clear_search">Clear search</string>
     <string name="browser_favicon_cd">Favicon</string>
-    <string name="browser_omni_logo_cd">Swift Browser Custom Logo</string>
-    <string name="browser_omni_logo_cd2">Swift Browser Logo</string>
+    <string name="browser_swift_logo_cd">Swift Browser Custom Logo</string>
+    <string name="browser_swift_logo_cd2">Swift Browser Logo</string>
     <string name="browser_reload_cd">Reload</string>
     <string name="address_bar_history">History</string>
     <string name="address_bar_clear_browsing_data">Clear Browsing Data</string>
@@ -1722,7 +1722,7 @@
     <string name="download_copy_url">Copy download link</string>
     <string name="autofill_provider_title">Autofill provider</string>
     <string name="autofill_provider_system">Android system (Bitwarden, etc.)</string>
-    <string name="autofill_provider_omni">Swift password vault</string>
+    <string name="autofill_provider_swift">Swift password vault</string>
     <string name="autofill_provider_both">Both</string>
     <string name="extension_download_policy_title">Extension downloads</string>
     <string name="extension_download_policy_ask">Ask every time</string>

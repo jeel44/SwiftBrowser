@@ -165,7 +165,7 @@
     <string name="update_failed_desc">تعذر الاتصال بسيرفر التحديث (%1$s).</string>
     <string name="update_dialog_open_store">فتح المتجر</string>
     <string name="support_github">دعم GitHub</string>
-    <string name="website_omnibrowser">موقع Swift Browser</string>
+    <string name="website_swiftbrowser">موقع Swift Browser</string>
     <string name="update_no_update">Swift Browser محدث بأحدث إصدار (v%1$s)</string>
     <string name="locker_cat_images">الصور</string>
     <string name="locker_cat_videos">الفيديوهات</string>
@@ -390,7 +390,7 @@
     <string name="send_feedback_title">إرسال ملاحظات مباشرة</string>
     <string name="send_feedback_desc">الإبلاغ عن الأخطاء، اقتراح الميزات ومشاركة الأفكار</string>
     <string name="support_github_desc">عرض الشفرة المصدرية والإبلاغ عن المشكلات</string>
-    <string name="website_omnibrowser_desc">زيارة الموقع الرسمي لمتصفح Swift Browser</string>
+    <string name="website_swiftbrowser_desc">زيارة الموقع الرسمي لمتصفح Swift Browser</string>
     <string name="privacy_policy_desc">قراءة سياسة الخصوصية الخاصة بنا</string>
     <string name="appearance_address_bar">شريط العنوان</string>
     <string name="appearance_top">أعلى</string>
@@ -715,8 +715,8 @@
     <string name="ext_builtin_universal_copy_desc">تجاوز قيود الموقع لتمكين تحديد النص والنسخ بالقوة.</string>
     <string name="ext_builtin_media_sniffer">كاشف الوسائط</string>
     <string name="ext_builtin_media_sniffer_desc">الشم والتقاط شرائح HLS/DASH الديناميكية وجداول البث بدون اتصال.</string>
-    <string name="ext_builtin_omni_translate">Swift Translate</string>
-    <string name="ext_builtin_omni_translate_desc">الترجمة على الجهاز لصفحات الويب</string>
+    <string name="ext_builtin_swift_translate">Swift Translate</string>
+    <string name="ext_builtin_swift_translate_desc">الترجمة على الجهاز لصفحات الويب</string>
     <string name="offline_ai_settings_title">الذكاء الاصطناعي دون اتصال</string>
     <string name="offline_ai_settings_desc">ترجمة وترجمة فورية على الجهاز — تنزيل النماذج، بدون سحابة</string>
     <string name="ext_builtin_ai_blocker">حاجب الذكاء الاصطناعي</string>
@@ -1284,8 +1284,8 @@
     <string name="browser_clear_console">Clear Console</string>
     <string name="browser_clear_search">Clear search</string>
     <string name="browser_favicon_cd">Favicon</string>
-    <string name="browser_omni_logo_cd">Swift Browser Custom Logo</string>
-    <string name="browser_omni_logo_cd2">Swift Browser Logo</string>
+    <string name="browser_swift_logo_cd">Swift Browser Custom Logo</string>
+    <string name="browser_swift_logo_cd2">Swift Browser Logo</string>
     <string name="browser_reload_cd">Reload</string>
     <string name="address_bar_history">History</string>
     <string name="address_bar_clear_browsing_data">Clear Browsing Data</string>
@@ -1722,7 +1722,7 @@
     <string name="download_copy_url">Copy download link</string>
     <string name="autofill_provider_title">Autofill provider</string>
     <string name="autofill_provider_system">Android system (Bitwarden, etc.)</string>
-    <string name="autofill_provider_omni">Swift password vault</string>
+    <string name="autofill_provider_swift">Swift password vault</string>
     <string name="autofill_provider_both">Both</string>
     <string name="extension_download_policy_title">Extension downloads</string>
     <string name="extension_download_policy_ask">Ask every time</string>

@@ -107,7 +107,7 @@ object SyncNotificationManager {
             )
 
             val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_omni_logo_dark)
+                .setSmallIcon(R.drawable.ic_swift_logo_dark)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setStyle(NotificationCompat.BigTextStyle().bigText(message))

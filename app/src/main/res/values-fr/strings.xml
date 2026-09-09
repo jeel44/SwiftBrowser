@@ -112,7 +112,7 @@
     <string name="update_failed_desc">Impossible de se connecter au serveur de mise à jour (%1$s). Voulez-vous vérifier le Play Store manuellement ?</string>
     <string name="update_dialog_open_store">Ouvrir le Play Store</string>
     <string name="support_github">Support GitHub</string>
-    <string name="website_omnibrowser">Site web Swift Browser</string>
+    <string name="website_swiftbrowser">Site web Swift Browser</string>
     <string name="update_no_update">Swift Browser est à jour (v%1$s)</string>
     <string name="locker_cat_images">Images</string>
     <string name="locker_cat_videos">Vidéos</string>
@@ -390,7 +390,7 @@
     <string name="send_feedback_title">Envoyer des commentaires directs</string>
     <string name="send_feedback_desc">Signaler des bugs, suggérer des fonctionnalités et partager des idées</string>
     <string name="support_github_desc">Voir le code source et signaler des problèmes</string>
-    <string name="website_omnibrowser_desc">Visiter le site officiel d’Swift Browser</string>
+    <string name="website_swiftbrowser_desc">Visiter le site officiel d’Swift Browser</string>
     <string name="privacy_policy_desc">Lire notre politique de confidentialité</string>
     <string name="appearance_address_bar">Barre d’adresse</string>
     <string name="appearance_top">Haut</string>
@@ -716,8 +716,8 @@
     <string name="ext_builtin_universal_copy_desc">Contourne les restrictions du site pour forcer la sélection et la copie de texte.</string>
     <string name="ext_builtin_media_sniffer">Sniffer de médias</string>
     <string name="ext_builtin_media_sniffer_desc">Détecte et capture hors ligne les segments et flux HLS/DASH dynamiques.</string>
-    <string name="ext_builtin_omni_translate">Swift Translate</string>
-    <string name="ext_builtin_omni_translate_desc">Traduction de pages web sur l\'appareil</string>
+    <string name="ext_builtin_swift_translate">Swift Translate</string>
+    <string name="ext_builtin_swift_translate_desc">Traduction de pages web sur l\'appareil</string>
     <string name="offline_ai_settings_title">IA hors ligne</string>
     <string name="offline_ai_settings_desc">Traduction et sous-titres sur l\'appareil — téléchargez des modèles, sans cloud</string>
     <string name="ext_builtin_ai_blocker">Bloqueur d’IA</string>
@@ -1285,8 +1285,8 @@
     <string name="browser_clear_console">Clear Console</string>
     <string name="browser_clear_search">Clear search</string>
     <string name="browser_favicon_cd">Favicon</string>
-    <string name="browser_omni_logo_cd">Swift Browser Custom Logo</string>
-    <string name="browser_omni_logo_cd2">Swift Browser Logo</string>
+    <string name="browser_swift_logo_cd">Swift Browser Custom Logo</string>
+    <string name="browser_swift_logo_cd2">Swift Browser Logo</string>
     <string name="browser_reload_cd">Reload</string>
     <string name="address_bar_history">History</string>
     <string name="address_bar_clear_browsing_data">Clear Browsing Data</string>
@@ -1723,7 +1723,7 @@
     <string name="download_copy_url">Copy download link</string>
     <string name="autofill_provider_title">Autofill provider</string>
     <string name="autofill_provider_system">Android system (Bitwarden, etc.)</string>
-    <string name="autofill_provider_omni">Swift password vault</string>
+    <string name="autofill_provider_swift">Swift password vault</string>
     <string name="autofill_provider_both">Both</string>
     <string name="extension_download_policy_title">Extension downloads</string>
     <string name="extension_download_policy_ask">Ask every time</string>

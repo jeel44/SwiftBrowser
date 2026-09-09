@@ -6986,8 +6986,8 @@ fun BrowserScreen(
                         val extAiBlockerDesc = stringResource(R.string.ext_builtin_ai_blocker_desc)
                         val extForceDark = stringResource(R.string.appearance_force_dark_websites)
                         val extForceDarkDesc = stringResource(R.string.appearance_force_dark_websites_desc)
-                        val extOmniTranslate = stringResource(R.string.ext_builtin_omni_translate)
-                        val extOmniTranslateDesc = stringResource(R.string.ext_builtin_omni_translate_desc)
+                        val extOmniTranslate = stringResource(R.string.ext_builtin_swift_translate)
+                        val extOmniTranslateDesc = stringResource(R.string.ext_builtin_swift_translate_desc)
                         // TODO Phase 2: media_grabber excluded — the "Media Sniffer" entry
                         // below still lists it, but its extension is never actually
                         // installed in this build, so toggling it is inert.

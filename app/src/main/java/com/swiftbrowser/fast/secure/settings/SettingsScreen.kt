@@ -1156,7 +1156,7 @@ fun SettingsScreen(
                     // TODO Phase 3: GitHub Support row removed — no Swift Browser
                     // GitHub repo exists (was github.com/REBEL-ROOT/omni-browser).
                     // Re-add pointing at a real repo if/when one exists.
-                    NavRow(Icons.Rounded.Public, stringResource(id = R.string.website_omnibrowser), stringResource(id = R.string.website_omnibrowser_desc), onClick = { onOpenUrl("https://sites.google.com/view/swiftbrowseraibrowser/home") })
+                    NavRow(Icons.Rounded.Public, stringResource(id = R.string.website_swiftbrowser), stringResource(id = R.string.website_swiftbrowser_desc), onClick = { onOpenUrl("https://sites.google.com/view/swiftbrowseraibrowser/home") })
                     HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))
                     NavRow(Icons.Rounded.Shield, stringResource(id = R.string.privacy_policy_title), stringResource(id = R.string.privacy_policy_desc), onClick = { onOpenUrl("https://sites.google.com/view/swiftbrowseraibrowser/home") })
                 }

@@ -112,7 +112,7 @@
     <string name="update_failed_desc">Verbindung zum Update-Server (%1$s) nicht möglich. Möchten Sie den Play Store manuell überprüfen?</string>
     <string name="update_dialog_open_store">Play Store öffnen</string>
     <string name="support_github">GitHub-Support</string>
-    <string name="website_omnibrowser">Swift Browser-Website</string>
+    <string name="website_swiftbrowser">Swift Browser-Website</string>
     <string name="update_no_update">Swift Browser ist auf dem neuesten Stand (v%1$s)</string>
     <string name="locker_cat_images">Bilder</string>
     <string name="locker_cat_videos">Videos</string>
@@ -390,7 +390,7 @@
     <string name="send_feedback_title">Direktes Feedback senden</string>
     <string name="send_feedback_desc">Fehler melden, Funktionen vorschlagen, Ideen teilen</string>
     <string name="support_github_desc">Quellcode anzeigen und Fehler melden</string>
-    <string name="website_omnibrowser_desc">Offizielle Swift Browser-Website besuchen</string>
+    <string name="website_swiftbrowser_desc">Offizielle Swift Browser-Website besuchen</string>
     <string name="privacy_policy_desc">Unsere Datenschutzrichtlinie lesen</string>
     <string name="appearance_address_bar">Adressleiste</string>
     <string name="appearance_top">Oben</string>
@@ -712,8 +712,8 @@
     <string name="ext_builtin_universal_copy_desc">Umgeht Website-Beschränkungen, um Textauswahl und Kopieren zu erzwingen.</string>
     <string name="ext_builtin_media_sniffer">Media Sniffer</string>
     <string name="ext_builtin_media_sniffer_desc">Erfasst und speichert offline dynamische HLS/DASH-Segmente und Streams.</string>
-    <string name="ext_builtin_omni_translate">Swift Translate</string>
-    <string name="ext_builtin_omni_translate_desc">Übersetzung von Webseiten auf dem Gerät</string>
+    <string name="ext_builtin_swift_translate">Swift Translate</string>
+    <string name="ext_builtin_swift_translate_desc">Übersetzung von Webseiten auf dem Gerät</string>
     <string name="offline_ai_settings_title">Offline-KI</string>
     <string name="offline_ai_settings_desc">Übersetzung und Untertitel auf dem Gerät — Modelle herunterladen, ohne Cloud</string>
     <string name="ext_builtin_ai_blocker">AI-Blocker</string>
@@ -1283,8 +1283,8 @@ tellungen &amp; Layout</string>
     <string name="browser_clear_console">Clear Console</string>
     <string name="browser_clear_search">Clear search</string>
     <string name="browser_favicon_cd">Favicon</string>
-    <string name="browser_omni_logo_cd">Swift Browser Custom Logo</string>
-    <string name="browser_omni_logo_cd2">Swift Browser Logo</string>
+    <string name="browser_swift_logo_cd">Swift Browser Custom Logo</string>
+    <string name="browser_swift_logo_cd2">Swift Browser Logo</string>
     <string name="browser_reload_cd">Reload</string>
     <string name="address_bar_history">History</string>
     <string name="address_bar_clear_browsing_data">Clear Browsing Data</string>
@@ -1721,7 +1721,7 @@ tellungen &amp; Layout</string>
     <string name="download_copy_url">Copy download link</string>
     <string name="autofill_provider_title">Autofill provider</string>
     <string name="autofill_provider_system">Android system (Bitwarden, etc.)</string>
-    <string name="autofill_provider_omni">Swift password vault</string>
+    <string name="autofill_provider_swift">Swift password vault</string>
     <string name="autofill_provider_both">Both</string>
     <string name="extension_download_policy_title">Extension downloads</string>
     <string name="extension_download_policy_ask">Ask every time</string>
