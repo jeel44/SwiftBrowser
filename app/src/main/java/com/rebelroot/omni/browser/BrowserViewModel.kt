@@ -7078,20 +7078,25 @@ class BrowserViewModel : ViewModel() {
 
     val shortcutsList = mutableStateListOf<HomeShortcut>()
     
+    // TODO Phase 1c: torrent/piracy site shortcuts excluded (Play Store risk).
+    // This list is preserved (not deleted) but is no longer seeded as default
+    // home shortcuts and no longer force-re-added to existing users' shortcut
+    // lists — see the two call sites below, both now neutered.
+    private val torrentShortcuts = listOf(
+        HomeShortcut("1337x", "1337x", "https://1337x.to"),
+        HomeShortcut("piratebay", "The Pirate Bay", "https://thepiratebay.org"),
+        HomeShortcut("yts", "YTS Movies", "https://yts.mx"),
+        HomeShortcut("torrentgalaxy", "TorrentGalaxy", "https://torrentgalaxy.mx"),
+        HomeShortcut("eztv", "EZTV Series", "https://eztv.re"),
+        HomeShortcut("fitgirl", "FitGirl Repacks", "https://fitgirl-repacks.site"),
+        HomeShortcut("limetorrents", "LimeTorrents", "https://www.limetorrents.lol"),
+        HomeShortcut("nyaa", "Nyaa Anime", "https://nyaa.si"),
+        HomeShortcut("rutracker", "RuTracker", "https://rutracker.org"),
+        HomeShortcut("academictorrents", "Academic Torrents", "https://academictorrents.com")
+    )
+
     private fun loadShortcuts(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
-            val torrentShortcuts = listOf(
-                HomeShortcut("1337x", "1337x", "https://1337x.to"),
-                HomeShortcut("piratebay", "The Pirate Bay", "https://thepiratebay.org"),
-                HomeShortcut("yts", "YTS Movies", "https://yts.mx"),
-                HomeShortcut("torrentgalaxy", "TorrentGalaxy", "https://torrentgalaxy.mx"),
-                HomeShortcut("eztv", "EZTV Series", "https://eztv.re"),
-                HomeShortcut("fitgirl", "FitGirl Repacks", "https://fitgirl-repacks.site"),
-                HomeShortcut("limetorrents", "LimeTorrents", "https://www.limetorrents.lol"),
-                HomeShortcut("nyaa", "Nyaa Anime", "https://nyaa.si"),
-                HomeShortcut("rutracker", "RuTracker", "https://rutracker.org"),
-                HomeShortcut("academictorrents", "Academic Torrents", "https://academictorrents.com")
-            )
             val file = File(context.filesDir, "browser_shortcuts.json")
             if (!file.exists()) {
                 val defaultList = mutableListOf(
@@ -7101,7 +7106,8 @@ class BrowserViewModel : ViewModel() {
                     HomeShortcut("amazon", "Amazon", "https://amazon.com"),
                     HomeShortcut("pinterest", "Pinterest", "https://pinterest.com")
                 )
-                defaultList.addAll(torrentShortcuts)
+                // TODO Phase 1c: torrent/piracy site shortcuts excluded (Play Store risk).
+                // defaultList.addAll(torrentShortcuts)
                 defaultList.addAll(listOf(
                     HomeShortcut("downloads", "Downloads", "downloads", isFeature = true),
                     HomeShortcut("history", "History", "history", isFeature = true),
@@ -7133,7 +7139,11 @@ class BrowserViewModel : ViewModel() {
                         continue
                     }
                     
-                    // Migrate old/outdated torrent domains to official active ones
+                    // TODO Phase 1c: torrent/piracy mirror-domain migration excluded
+                    // (Play Store risk) — no longer rewrites saved shortcut URLs to
+                    // newer mirrors of these sites. Original preserved commented-out.
+                    val migratedUrl = url
+                    /*
                     var migratedUrl = url
                     if (url.contains("torrentgalaxy.to") || url.contains("tgx.rs")) {
                         migratedUrl = url.replace("torrentgalaxy.to", "torrentgalaxy.mx").replace("tgx.rs", "torrentgalaxy.mx")
@@ -7149,6 +7159,7 @@ class BrowserViewModel : ViewModel() {
                     } else if (url.contains("yts.am") || url.contains("yts.ag")) {
                         migratedUrl = url.replace("yts.am", "yts.mx").replace("yts.ag", "yts.mx")
                     }
+                    */
 
                     temp.add(HomeShortcut(
                         id = id,
@@ -7159,6 +7170,12 @@ class BrowserViewModel : ViewModel() {
                     ))
                 }
 
+                // TODO Phase 1c: torrent/piracy shortcut re-injection excluded (Play
+                // Store risk) — no longer force-adds or force-updates these shortcuts
+                // for existing users. Original preserved commented-out below. Users
+                // who already have these saved (e.g. from a prior build) keep them
+                // as-is; they're just no longer auto-repaired/re-added.
+                /*
                 // Ensure popular torrent shortcuts are present if missing and updated if outdated
                 for (ts in torrentShortcuts) {
                     val existingIndex = temp.indexOfFirst { it.id == ts.id }
@@ -7176,6 +7193,7 @@ class BrowserViewModel : ViewModel() {
                         }
                     }
                 }
+                */
 
                 val cleanTemp = temp.filter { !it.url.isBlank() && it.url != "about:blank" && !it.url.contains("about:blank") }
                 withContext(Dispatchers.Main) {
@@ -7245,7 +7263,13 @@ class BrowserViewModel : ViewModel() {
         Toast.makeText(context, "Added to Home Shortcuts", Toast.LENGTH_SHORT).show()
     }
 
+    // TODO Phase 1c: torrent/piracy mirror-hopping excluded (Play Store risk) —
+    // always returns null now, so the "Try Working Mirror" button in
+    // BrowserScreen.kt's error page never renders. Original preserved
+    // commented-out below.
     fun getTorrentMirrorFallback(url: String): String? {
+        return null
+        /*
         val lower = url.lowercase()
         return when {
             lower.contains("1337x.to") -> url.replace("1337x.to", "1337x.st")
@@ -7269,6 +7293,7 @@ class BrowserViewModel : ViewModel() {
             lower.contains("nyaa.si") -> url.replace("nyaa.si", "nyaa.land")
             else -> null
         }
+        */
     }
 
     fun editShortcut(shortcut: HomeShortcut, newTitle: String, newUrl: String) {
