@@ -24,21 +24,21 @@ class BookmarkCollection(
     private val clock: () -> Long = System::currentTimeMillis
 ) {
 
-    private val bookmarks = LinkedHashMap<String, OmniBookmark>()
-    private val folders = LinkedHashMap<String, OmniBookmarkFolder>()
+    private val bookmarks = LinkedHashMap<String, SwiftBookmark>()
+    private val folders = LinkedHashMap<String, SwiftBookmarkFolder>()
 
     // ── Reads ────────────────────────────────────────────────────────────────
 
-    fun bookmark(id: String): OmniBookmark? = bookmarks[id]
+    fun bookmark(id: String): SwiftBookmark? = bookmarks[id]
 
-    fun folder(id: String): OmniBookmarkFolder? = folders[id]
+    fun folder(id: String): SwiftBookmarkFolder? = folders[id]
 
     /** Leaf bookmarks directly inside [parentId], ordered by position. */
-    fun bookmarkChildren(parentId: String): List<OmniBookmark> =
+    fun bookmarkChildren(parentId: String): List<SwiftBookmark> =
         bookmarks.values.filter { it.parentId == parentId }.sortedBy { it.position }
 
     /** Folders directly inside [parentId], ordered by position. */
-    fun folderChildren(parentId: String): List<OmniBookmarkFolder> =
+    fun folderChildren(parentId: String): List<SwiftBookmarkFolder> =
         folders.values.filter { it.parentId == parentId }.sortedBy { it.position }
 
     /** Total number of items (folders + bookmarks) directly inside [parentId]. */
@@ -50,10 +50,10 @@ class BookmarkCollection(
     fun childIds(parentId: String): List<String> = mutableChildIds(parentId)
 
     /** All bookmarks (insertion order — for storage round-trips, use the tree). */
-    fun allBookmarks(): List<OmniBookmark> = bookmarks.values.toList()
+    fun allBookmarks(): List<SwiftBookmark> = bookmarks.values.toList()
 
     /** All folders (insertion order). */
-    fun allFolders(): List<OmniBookmarkFolder> = folders.values.toList()
+    fun allFolders(): List<SwiftBookmarkFolder> = folders.values.toList()
 
     fun bookmarkCount(): Int = bookmarks.size
 
@@ -71,10 +71,10 @@ class BookmarkCollection(
         url: String,
         parentId: String = ROOT_FOLDER_ID,
         position: Long? = null
-    ): OmniBookmark {
+    ): SwiftBookmark {
         requireParentExists(parentId)
         val now = clock()
-        val entry = OmniBookmark(
+        val entry = SwiftBookmark(
             id = UUID.randomUUID().toString(),
             parentId = parentId,
             position = position ?: nextPosition(parentId),
@@ -95,10 +95,10 @@ class BookmarkCollection(
         title: String,
         parentId: String = ROOT_FOLDER_ID,
         position: Long? = null
-    ): OmniBookmarkFolder {
+    ): SwiftBookmarkFolder {
         requireParentExists(parentId)
         val now = clock()
-        val entry = OmniBookmarkFolder(
+        val entry = SwiftBookmarkFolder(
             id = UUID.randomUUID().toString(),
             parentId = parentId,
             position = position ?: nextPosition(parentId),
@@ -121,10 +121,10 @@ class BookmarkCollection(
         position: Long? = null,
         createdAt: Long? = null,
         modifiedAt: Long? = null
-    ): OmniBookmark {
+    ): SwiftBookmark {
         requireParentExists(parentId)
         val now = clock()
-        val entry = OmniBookmark(
+        val entry = SwiftBookmark(
             id = id,
             parentId = parentId,
             position = position ?: nextPosition(parentId),
@@ -147,10 +147,10 @@ class BookmarkCollection(
         position: Long? = null,
         createdAt: Long? = null,
         modifiedAt: Long? = null
-    ): OmniBookmarkFolder {
+    ): SwiftBookmarkFolder {
         requireParentExists(parentId)
         val now = clock()
-        val entry = OmniBookmarkFolder(
+        val entry = SwiftBookmarkFolder(
             id = id,
             parentId = parentId,
             position = position ?: nextPosition(parentId),
@@ -329,7 +329,7 @@ class BookmarkCollection(
      * the data is clean (fatal errors must never partially corrupt the live
      * bookmark state). The UI never calls this.
      */
-    fun replaceAll(newBookmarks: List<OmniBookmark>, newFolders: List<OmniBookmarkFolder>) {
+    fun replaceAll(newBookmarks: List<SwiftBookmark>, newFolders: List<SwiftBookmarkFolder>) {
         bookmarks.clear()
         folders.clear()
         newBookmarks.forEach { bookmarks[it.id] = it }
@@ -388,7 +388,7 @@ class BookmarkCollection(
          * storage and import layers use this before committing untrusted data
          * (legacy JSON, parsed bookmark HTML) via [replaceAll].
          */
-        fun validate(newBookmarks: List<OmniBookmark>, newFolders: List<OmniBookmarkFolder>): List<BookmarkValidationIssue> {
+        fun validate(newBookmarks: List<SwiftBookmark>, newFolders: List<SwiftBookmarkFolder>): List<BookmarkValidationIssue> {
             val issues = mutableListOf<BookmarkValidationIssue>()
             val allIds = mutableSetOf<String>()
             val knownFolders = newFolders.map { it.id }.toMutableSet()
@@ -460,7 +460,7 @@ class BookmarkCollection(
                 issues += BookmarkValidationIssue(id, BookmarkValidationIssue.Kind.UNKNOWN_PARENT, "$label references missing parent $parentId")
             }
             // Bookmarks must not be parented to a bookmark.
-            if (label == "bookmark" && entity is OmniBookmark && entity.parentId != ROOT_FOLDER_ID && entity.parentId !in knownFolders) {
+            if (label == "bookmark" && entity is SwiftBookmark && entity.parentId != ROOT_FOLDER_ID && entity.parentId !in knownFolders) {
                 // Already caught as UNKNOWN_PARENT; no extra issue needed.
             }
         }
@@ -483,8 +483,8 @@ class BookmarkCollection(
         }
 
         private fun computePositionDensityIssues(
-            newBookmarks: List<OmniBookmark>,
-            newFolders: List<OmniBookmarkFolder>
+            newBookmarks: List<SwiftBookmark>,
+            newFolders: List<SwiftBookmarkFolder>
         ): List<BookmarkValidationIssue> {
             val issues = mutableListOf<BookmarkValidationIssue>()
             val itemsByParent = mutableMapOf<String, MutableSet<Long>>()
@@ -531,7 +531,7 @@ class BookmarkCollection(
             return issues
         }
 
-        private fun computeCycleIssues(newFolders: List<OmniBookmarkFolder>): List<BookmarkValidationIssue> {
+        private fun computeCycleIssues(newFolders: List<SwiftBookmarkFolder>): List<BookmarkValidationIssue> {
             val issues = mutableListOf<BookmarkValidationIssue>()
             val parentOf = newFolders.associate { it.id to it.parentId }
             val knownIds = newFolders.map { it.id }.toSet()

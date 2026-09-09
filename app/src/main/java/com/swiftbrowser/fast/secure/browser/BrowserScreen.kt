@@ -2590,7 +2590,7 @@ fun BrowserScreen(
                                 val configTopPad = if (hasTopBar && !viewModel.isFullscreen) topBarHeightDp else 0.dp
                                 val configBottomPad = if (!hasTopBar && !viewModel.isFullscreen) (config.searchBoxHeight + (config.paddingVertical * 2) + config.bottomNavBarHeight + 16.dp) else 16.dp
 
-                                OmniConfigContent(
+                                SwiftConfigContent(
                                     viewModel = viewModel,
                                     topPadding = configTopPad,
                                     bottomPadding = configBottomPad
@@ -5440,7 +5440,7 @@ fun BrowserScreen(
 
             // Omni Beam — Live P2P Chat & File Drop Sheet
             if (showOmniChatSheet) {
-                com.swiftbrowser.fast.secure.sync.chat.ui.OmniChatSheet(
+                com.swiftbrowser.fast.secure.sync.chat.ui.SwiftChatSheet(
                     activeTabTitle = activeTab?.title ?: "",
                     activeTabUrl = activeTab?.url ?: "",
                     onOpenUrl = { url -> viewModel.loadUrl(url) },

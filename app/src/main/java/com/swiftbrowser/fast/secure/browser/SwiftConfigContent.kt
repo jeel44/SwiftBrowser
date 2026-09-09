@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.Dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OmniConfigContent(
+fun SwiftConfigContent(
     viewModel: BrowserViewModel,
     topPadding: Dp = 0.dp,
     bottomPadding: Dp = 16.dp,

@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 // ── Google-Quality Typography Tokens ──
 // Adhering strictly to 8dp grid spacing (line heights must breathe and be divisible by 4/8 ideally)
 
-val OmniTypography = Typography(
+val SwiftTypography = Typography(
     displayLarge = TextStyle(
         fontFamily = FontFamily.SansSerif,
         fontWeight = FontWeight.Normal,

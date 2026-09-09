@@ -33,7 +33,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class OmniApplication : Application(), coil.ImageLoaderFactory {
+class SwiftBrowserApplication : Application(), coil.ImageLoaderFactory {
 
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
@@ -207,17 +207,17 @@ class OmniApplication : Application(), coil.ImageLoaderFactory {
             // Start global Omni Sync LAN server so desktop extensions can connect & sync anytime
             try {
                 val baseDir = filesDir
-                val collection = com.swiftbrowser.fast.secure.bookmarks.storage.loadBookmarks(this@OmniApplication)
+                val collection = com.swiftbrowser.fast.secure.bookmarks.storage.loadBookmarks(this@SwiftBrowserApplication)
                 val coord = SyncCoordinatorHolder.getOrCreate(baseDir, collection)
                 com.swiftbrowser.fast.secure.sync.core.SyncBridge.getInstance().tabBridge = com.swiftbrowser.fast.secure.sync.mozilla.MozillaSyncManager.getInstance().tabBridge
             } catch (e: Exception) {
-                android.util.Log.e("OmniApplication", "Failed to initialize global SyncCoordinator", e)
+                android.util.Log.e("SwiftBrowserApplication", "Failed to initialize global SyncCoordinator", e)
             }
         }
     }
 
     companion object {
-        @Volatile var appContext: OmniApplication? = null
+        @Volatile var appContext: SwiftBrowserApplication? = null
             private set
 
         val DARK_THEME_ENABLED_KEY = booleanPreferencesKey("dark_theme_enabled")
@@ -249,7 +249,7 @@ object ThemeStateHolder {
 /**
  * Holds UI layout and wallpaper preferences that must be available on the very
  * first Compose frame to prevent visible scale jumps and wallpaper pop-in.
- * Populated synchronously in [OmniApplication.onCreate] via runBlocking before
+ * Populated synchronously in [SwiftBrowserApplication.onCreate] via runBlocking before
  * [com.swiftbrowser.fast.secure.MainActivity.setContent] is called.
  */
 object UiStateHolder {

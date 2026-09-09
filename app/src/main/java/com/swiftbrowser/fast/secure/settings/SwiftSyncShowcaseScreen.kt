@@ -50,7 +50,7 @@ import com.swiftbrowser.fast.secure.tools.qrcode.BarcodeGenerator
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OmniSyncShowcaseScreen(
+fun SwiftSyncShowcaseScreen(
     viewModel: BrowserViewModel,
     onNavigateBack: () -> Unit
 ) {

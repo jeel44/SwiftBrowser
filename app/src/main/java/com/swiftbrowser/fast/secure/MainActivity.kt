@@ -76,7 +76,7 @@ import com.swiftbrowser.fast.secure.history.HistoryScreen
 import com.swiftbrowser.fast.secure.bookmarks.BookmarksScreen
 import com.swiftbrowser.fast.secure.tools.locker.PrivateLockerScreen
 import com.swiftbrowser.fast.secure.tools.qrcode.QrToolsScreen
-import com.swiftbrowser.fast.secure.ui.theme.OmniTheme
+import com.swiftbrowser.fast.secure.ui.theme.SwiftTheme
 import java.io.File
 import com.swiftbrowser.fast.secure.browser.dataStore
 import kotlinx.coroutines.flow.first
@@ -129,9 +129,9 @@ class MainActivity : FragmentActivity() {
         val isSystemDark = (resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES
         val effectiveStartupDark = if (themeState.followSystemTheme) isSystemDark else themeState.darkThemeEnabled
         val themeRes = when {
-            effectiveStartupDark && themeState.amoledMode -> R.style.Theme_OmniBrowser_Amoled
-            effectiveStartupDark -> R.style.Theme_OmniBrowser_Dark
-            else -> R.style.Theme_OmniBrowser_Light
+            effectiveStartupDark && themeState.amoledMode -> R.style.Theme_SwiftBrowser_Amoled
+            effectiveStartupDark -> R.style.Theme_SwiftBrowser_Dark
+            else -> R.style.Theme_SwiftBrowser_Light
         }
         setTheme(themeRes)
         androidx.core.view.WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -277,7 +277,7 @@ class MainActivity : FragmentActivity() {
                 androidx.activity.compose.LocalActivityResultRegistryOwner provides this@MainActivity,
                 androidx.activity.compose.LocalOnBackPressedDispatcherOwner provides this@MainActivity
             ) {
-                OmniTheme(
+                SwiftTheme(
                     darkTheme = effectiveDarkTheme,
                     accentTheme = browserViewModel.selectedAccentTheme,
                     amoledMode = effectiveAmoledMode,
@@ -582,7 +582,7 @@ class MainActivity : FragmentActivity() {
 
                         // Omni Sync Showcase & Feature Screen
                         composable("omni_sync_showcase") {
-                            com.swiftbrowser.fast.secure.settings.OmniSyncShowcaseScreen(
+                            com.swiftbrowser.fast.secure.settings.SwiftSyncShowcaseScreen(
                                 viewModel = browserViewModel,
                                 onNavigateBack = { navController.popBackStack() }
                             )

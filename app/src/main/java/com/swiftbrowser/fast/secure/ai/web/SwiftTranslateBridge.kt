@@ -44,7 +44,7 @@ import org.mozilla.geckoview.WebExtension
  * are ever exposed to web content. The active [TranslationRequest] (including the
  * target language) is chosen by the app, never by the page.
  */
-class OmniTranslateBridge(
+class SwiftTranslateBridge(
     private val coordinator: TranslationCoordinator,
     private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 ) {
@@ -141,6 +141,6 @@ class OmniTranslateBridge(
     }
 
     companion object {
-        private const val TAG = "OmniTranslateBridge"
+        private const val TAG = "SwiftTranslateBridge"
     }
 }

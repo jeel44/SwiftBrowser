@@ -27,7 +27,7 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 
 @OptIn(androidx.media3.common.util.UnstableApi::class)
-class OmniMediaService : MediaSessionService() {
+class SwiftMediaService : MediaSessionService() {
 
     private var mediaSession: MediaSession? = null
 

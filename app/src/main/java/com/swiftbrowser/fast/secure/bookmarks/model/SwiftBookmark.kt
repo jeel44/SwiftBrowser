@@ -31,7 +31,7 @@ const val ROOT_FOLDER_ID: String = "root"
  * @param createdAt epoch millis of creation
  * @param modifiedAt epoch millis of last modification
  */
-data class OmniBookmark(
+data class SwiftBookmark(
     val id: String,
     val parentId: String,
     val position: Long,
@@ -51,7 +51,7 @@ data class OmniBookmark(
  * @param createdAt epoch millis of creation
  * @param modifiedAt epoch millis of last modification
  */
-data class OmniBookmarkFolder(
+data class SwiftBookmarkFolder(
     val id: String,
     val parentId: String,
     val position: Long,

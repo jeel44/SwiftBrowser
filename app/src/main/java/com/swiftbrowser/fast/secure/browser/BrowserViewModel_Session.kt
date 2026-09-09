@@ -1423,7 +1423,7 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
                 sessionStatePersistence?.requestPersist(
                     tabId = tab.id,
                     sessionState = sessionState,
-                    metadata = com.swiftbrowser.fast.secure.browser.session.OmniSessionState.TabMetadata(
+                    metadata = com.swiftbrowser.fast.secure.browser.session.SwiftSessionState.TabMetadata(
                         title = tab.title,
                         url = tab.url,
                         isIncognito = tab.isIncognito,

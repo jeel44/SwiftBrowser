@@ -14,7 +14,7 @@ import org.json.JSONObject
  * the raw [GeckoSession.SessionState] bytes alongside browser-level metadata
  * so that recovery can proceed even if Gecko changes its serialization format.
  */
-data class OmniSessionState(
+data class SwiftSessionState(
     /** Schema version for forward/backward compatibility. */
     val schemaVersion: Int = CURRENT_SCHEMA_VERSION,
     /** Tab identifier (matches [TabState.id]). */
@@ -38,7 +38,7 @@ data class OmniSessionState(
     companion object {
         const val CURRENT_SCHEMA_VERSION = 1
 
-        fun fromJson(json: JSONObject): OmniSessionState {
+        fun fromJson(json: JSONObject): SwiftSessionState {
             val schema = json.optInt("schemaVersion", 1)
             val tabId = json.getString("tabId")
             val b64 = json.getString("sessionStateBytes")
@@ -52,7 +52,7 @@ data class OmniSessionState(
                 canGoBack = metaObj.optBoolean("canGoBack", false),
                 canGoForward = metaObj.optBoolean("canGoForward", false)
             )
-            return OmniSessionState(
+            return SwiftSessionState(
                 schemaVersion = schema,
                 tabId = tabId,
                 sessionStateBytes = sessionStateBytes,
@@ -81,7 +81,7 @@ data class OmniSessionState(
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is OmniSessionState) return false
+        if (other !is SwiftSessionState) return false
         return schemaVersion == other.schemaVersion &&
                 tabId == other.tabId &&
                 sessionStateBytes.contentEquals(other.sessionStateBytes) &&

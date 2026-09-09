@@ -42,7 +42,7 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OmniChatSheet(
+fun SwiftChatSheet(
     activeTabTitle: String = "",
     activeTabUrl: String = "",
     onOpenUrl: (String) -> Unit = {},

@@ -212,7 +212,7 @@ class MozillaSyncManager(
                 val finishTime = System.currentTimeMillis()
                 accountManager.setLastSyncTime(finishTime)
                 val userEmail = (accountManager.accountState.value as? FxaState.SignedIn)?.email ?: "Firefox Account"
-                val appCtx = com.swiftbrowser.fast.secure.OmniApplication.appContext
+                val appCtx = com.swiftbrowser.fast.secure.SwiftBrowserApplication.appContext
                 if (appCtx != null) {
                     com.swiftbrowser.fast.secure.sync.notification.SyncNotificationManager.notifyFirefoxSync(
                         context = appCtx,

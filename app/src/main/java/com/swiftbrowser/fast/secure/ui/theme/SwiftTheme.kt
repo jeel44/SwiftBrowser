@@ -34,7 +34,7 @@ import androidx.activity.enableEdgeToEdge
 
 @Suppress("DEPRECATION")
 @Composable
-fun OmniTheme(
+fun SwiftTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     accentTheme: String = "Ocean Blue",
     /** true → use pure-black AMOLED surfaces (only applies when darkTheme = true) */
@@ -79,8 +79,8 @@ fun OmniTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = OmniTypography,
-        shapes = OmniShapes,
+        typography = SwiftTypography,
+        shapes = SwiftShapes,
         content = content
     )
 }

@@ -162,14 +162,14 @@ private fun serializeV2(collection: BookmarkCollection): JSONObject {
 }
 
 private fun parseV2(json: JSONObject, collection: BookmarkCollection) {
-    val bookmarks = mutableListOf<OmniBookmark>()
-    val folders = mutableListOf<OmniBookmarkFolder>()
+    val bookmarks = mutableListOf<SwiftBookmark>()
+    val folders = mutableListOf<SwiftBookmarkFolder>()
 
     val bookmarksArray = json.optJSONArray("bookmarks") ?: JSONArray()
     for (i in 0 until bookmarksArray.length()) {
         val obj = bookmarksArray.getJSONObject(i)
         bookmarks.add(
-            OmniBookmark(
+            SwiftBookmark(
                 id = obj.getString("id"),
                 parentId = obj.getString("parentId"),
                 position = obj.getLong("position"),
@@ -185,7 +185,7 @@ private fun parseV2(json: JSONObject, collection: BookmarkCollection) {
     for (i in 0 until foldersArray.length()) {
         val obj = foldersArray.getJSONObject(i)
         folders.add(
-            OmniBookmarkFolder(
+            SwiftBookmarkFolder(
                 id = obj.getString("id"),
                 parentId = obj.getString("parentId"),
                 position = obj.getLong("position"),

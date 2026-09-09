@@ -179,7 +179,7 @@ class LanWebSocketServer(
                 }
                 val body = String(bodyChars, 0, readTotal)
                 val chatRepo = com.swiftbrowser.fast.secure.sync.chat.ChatRepository.getInstance(keyManager.deviceId, keyManager.deviceName)
-                val appCtx = com.swiftbrowser.fast.secure.OmniApplication.appContext
+                val appCtx = com.swiftbrowser.fast.secure.SwiftBrowserApplication.appContext
                 chatRepo.onIncomingMessage(appCtx, body)
 
                 val responseJson = JSONObject().apply {
@@ -452,7 +452,7 @@ class LanWebSocketServer(
                 })
             }
 
-            val appCtx = com.swiftbrowser.fast.secure.OmniApplication.appContext
+            val appCtx = com.swiftbrowser.fast.secure.SwiftBrowserApplication.appContext
             if (appCtx != null) {
                 val senderName = json.optString("deviceName", "Desktop Browser")
                 com.swiftbrowser.fast.secure.sync.notification.SyncNotificationManager.notifySyncSuccess(
@@ -503,7 +503,7 @@ class LanWebSocketServer(
             trustManager.addTrustedDevice(trusted)
             Log.i(TAG, "Successfully registered paired device: $remoteDeviceName ($remoteDeviceId)")
 
-            val appCtx = com.swiftbrowser.fast.secure.OmniApplication.appContext
+            val appCtx = com.swiftbrowser.fast.secure.SwiftBrowserApplication.appContext
             if (appCtx != null) {
                 com.swiftbrowser.fast.secure.sync.notification.SyncNotificationManager.notifyDevicePaired(
                     context = appCtx,

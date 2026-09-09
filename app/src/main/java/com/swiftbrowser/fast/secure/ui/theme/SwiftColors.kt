@@ -138,8 +138,8 @@ fun buildAmoledScheme(accent: AccentPalette): ColorScheme = darkColorScheme(
 )
 
 // Legacy schemes for backward compat (default Ocean Blue)
-val OmniDarkScheme = buildDarkScheme(OceanBlueDark)
-val OmniLightScheme = buildLightScheme(OceanBlueLight)
+val SwiftDarkScheme = buildDarkScheme(OceanBlueDark)
+val SwiftLightScheme = buildLightScheme(OceanBlueLight)
 
 /**
  * Returns the appropriate ColorScheme for the given theme mode, accent name, and context.
@@ -201,11 +201,11 @@ fun getColorScheme(
  * - Light → MaterialTheme surface (White)
  */
 @Composable
-fun omniSheetContainerColor(): Color = MaterialTheme.colorScheme.surface
+fun swiftSheetContainerColor(): Color = MaterialTheme.colorScheme.surface
 
 /**
  * Returns the drag-handle color for bottom sheets.
  * Always use this instead of hardcoded hex values.
  */
 @Composable
-fun omniDragHandleColor(): Color = MaterialTheme.colorScheme.outlineVariant
+fun swiftDragHandleColor(): Color = MaterialTheme.colorScheme.outlineVariant

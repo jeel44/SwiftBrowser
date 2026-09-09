@@ -1,8 +1,8 @@
 package com.swiftbrowser.fast.secure.sync.mozilla
 
 import com.swiftbrowser.fast.secure.bookmarks.model.BookmarkCollection
-import com.swiftbrowser.fast.secure.bookmarks.model.OmniBookmark
-import com.swiftbrowser.fast.secure.bookmarks.model.OmniBookmarkFolder
+import com.swiftbrowser.fast.secure.bookmarks.model.SwiftBookmark
+import com.swiftbrowser.fast.secure.bookmarks.model.SwiftBookmarkFolder
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.UUID

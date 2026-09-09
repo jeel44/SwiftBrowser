@@ -57,13 +57,13 @@ class SessionStatePersistence(private val baseDir: File) {
     private val persistenceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     /** Latest durable state per tab (read from disk or set after successful write). */
-    private val durableStateCache = ConcurrentHashMap<String, OmniSessionState>()
+    private val durableStateCache = ConcurrentHashMap<String, SwiftSessionState>()
 
     /**
      * Request a debounced persistence write for the given tab.
      * Multiple rapid calls for the same tab are coalesced into a single disk write.
      */
-    fun requestPersist(tabId: String, sessionState: GeckoSession.SessionState, metadata: OmniSessionState.TabMetadata) {
+    fun requestPersist(tabId: String, sessionState: GeckoSession.SessionState, metadata: SwiftSessionState.TabMetadata) {
         if (metadata.isIncognito) {
             // Privacy: never persist incognito state to disk.
             return
@@ -77,7 +77,7 @@ class SessionStatePersistence(private val baseDir: File) {
             if (!isActive) return@launch
 
             val bytes = sessionState.toString().toByteArray(Charsets.UTF_8)
-            val state = OmniSessionState(
+            val state = SwiftSessionState(
                 tabId = tabId,
                 sessionStateBytes = bytes,
                 metadata = metadata
@@ -92,7 +92,7 @@ class SessionStatePersistence(private val baseDir: File) {
      * Blocks (with timeout) until the write completes or fails.
      * Use before critical boundaries: external app launch, onStop, etc.
      */
-    fun forceCheckpoint(tabId: String, sessionState: GeckoSession.SessionState, metadata: OmniSessionState.TabMetadata): Boolean {
+    fun forceCheckpoint(tabId: String, sessionState: GeckoSession.SessionState, metadata: SwiftSessionState.TabMetadata): Boolean {
         if (metadata.isIncognito) return false
 
         // Cancel debounce and write immediately.
@@ -101,7 +101,7 @@ class SessionStatePersistence(private val baseDir: File) {
         return runBlocking(Dispatchers.IO) {
             withTimeoutOrNull(FORCE_CHECKPOINT_TIMEOUT_MS) {
                 val bytes = sessionState.toString().toByteArray(Charsets.UTF_8)
-                val state = OmniSessionState(
+                val state = SwiftSessionState(
                     tabId = tabId,
                     sessionStateBytes = bytes,
                     metadata = metadata
@@ -115,14 +115,14 @@ class SessionStatePersistence(private val baseDir: File) {
     /**
      * Checkpoint multiple tabs at once. Used before process-death-prone transitions.
      */
-    fun forceCheckpointBatch(states: Map<String, Pair<GeckoSession.SessionState, OmniSessionState.TabMetadata>>) {
+    fun forceCheckpointBatch(states: Map<String, Pair<GeckoSession.SessionState, SwiftSessionState.TabMetadata>>) {
         pendingJobs.values.forEach { it.cancel() }
         pendingJobs.clear()
 
         persistenceScope.launch {
             val validStates = states.filter { !it.value.second.isIncognito }.map { (tabId, pair) ->
                 val (sessionState, metadata) = pair
-                OmniSessionState(
+                SwiftSessionState(
                     tabId = tabId,
                     sessionStateBytes = sessionState.toString().toByteArray(Charsets.UTF_8),
                     metadata = metadata
@@ -166,7 +166,7 @@ class SessionStatePersistence(private val baseDir: File) {
             statesObj.keys().forEach { tabId ->
                 try {
                     val stateJson = statesObj.getJSONObject(tabId)
-                    val omniState = OmniSessionState.fromJson(stateJson)
+                    val omniState = SwiftSessionState.fromJson(stateJson)
                     val geckoState = GeckoSession.SessionState.fromString(String(omniState.sessionStateBytes, Charsets.UTF_8))
                         ?: return@forEach
                     durableStateCache[tabId] = omniState
@@ -229,7 +229,7 @@ class SessionStatePersistence(private val baseDir: File) {
     // Private implementation
     // ─────────────────────────────────────────────────────────────────────────
 
-    private fun performAtomicWrite(state: OmniSessionState) {
+    private fun performAtomicWrite(state: SwiftSessionState) {
         try {
             val file = File(baseDir, SESSION_STATE_FILE)
             val existingJson = if (file.exists()) {
@@ -244,7 +244,7 @@ class SessionStatePersistence(private val baseDir: File) {
             val statesObj = existingJson.optJSONObject("states") ?: JSONObject()
             statesObj.put(state.tabId, state.toJson())
             existingJson.put("states", statesObj)
-            existingJson.put("version", OmniSessionState.CURRENT_SCHEMA_VERSION)
+            existingJson.put("version", SwiftSessionState.CURRENT_SCHEMA_VERSION)
             existingJson.put("lastWritten", System.currentTimeMillis())
 
             atomicWriteFile(existingJson.toString())
@@ -255,7 +255,7 @@ class SessionStatePersistence(private val baseDir: File) {
         }
     }
 
-    private fun performAtomicWriteBatch(states: List<OmniSessionState>) {
+    private fun performAtomicWriteBatch(states: List<SwiftSessionState>) {
         try {
             val file = File(baseDir, SESSION_STATE_FILE)
             val existingJson = if (file.exists()) {
@@ -273,7 +273,7 @@ class SessionStatePersistence(private val baseDir: File) {
                 durableStateCache[state.tabId] = state
             }
             existingJson.put("states", statesObj)
-            existingJson.put("version", OmniSessionState.CURRENT_SCHEMA_VERSION)
+            existingJson.put("version", SwiftSessionState.CURRENT_SCHEMA_VERSION)
             existingJson.put("lastWritten", System.currentTimeMillis())
 
             atomicWriteFile(existingJson.toString())
@@ -303,7 +303,7 @@ class SessionStatePersistence(private val baseDir: File) {
             val statesObj = json.optJSONObject("states") ?: return null
             if (!statesObj.has(tabId)) return null
             val stateJson = statesObj.getJSONObject(tabId)
-            val omniState = OmniSessionState.fromJson(stateJson)
+            val omniState = SwiftSessionState.fromJson(stateJson)
             durableStateCache[tabId] = omniState
             GeckoSession.SessionState.fromString(String(omniState.sessionStateBytes, Charsets.UTF_8))
         } catch (e: Exception) {

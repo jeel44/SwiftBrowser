@@ -368,7 +368,7 @@ class BrowserViewModel : ViewModel() {
     var navigateToUserAgentSettingsTrigger by mutableStateOf(false)
     val translationManager = com.swiftbrowser.fast.secure.tools.TranslationManager()
     /** Bridge for offline/hybrid page translation (content script <-> coordinator). */
-    internal val omniTranslateBridge = com.swiftbrowser.fast.secure.ai.web.OmniTranslateBridge(translationManager.translationCoordinator)
+    internal val omniTranslateBridge = com.swiftbrowser.fast.secure.ai.web.SwiftTranslateBridge(translationManager.translationCoordinator)
     /** Active per-tab page-translation controllers. */
     internal val pageTranslationControllers = mutableMapOf<String, com.swiftbrowser.fast.secure.ai.web.WebTranslationController>()
     internal var copyManager: UniversalCopyManager? = null
@@ -419,10 +419,10 @@ class BrowserViewModel : ViewModel() {
         val persistence = sessionStatePersistence ?: return
         com.swiftbrowser.fast.secure.browser.session.SessionRecoveryDiagnostics.logActivityStop()
         try {
-            val states = mutableMapOf<String, Pair<org.mozilla.geckoview.GeckoSession.SessionState, com.swiftbrowser.fast.secure.browser.session.OmniSessionState.TabMetadata>>()
+            val states = mutableMapOf<String, Pair<org.mozilla.geckoview.GeckoSession.SessionState, com.swiftbrowser.fast.secure.browser.session.SwiftSessionState.TabMetadata>>()
             tabs.forEach { tab ->
                 val state = tab.savedSessionState ?: return@forEach
-                states[tab.id] = state to com.swiftbrowser.fast.secure.browser.session.OmniSessionState.TabMetadata(
+                states[tab.id] = state to com.swiftbrowser.fast.secure.browser.session.SwiftSessionState.TabMetadata(
                     title = tab.title,
                     url = tab.url,
                     isIncognito = tab.isIncognito,
@@ -448,7 +448,7 @@ class BrowserViewModel : ViewModel() {
         persistence.requestPersist(
             tabId = tab.id,
             sessionState = state,
-            metadata = com.swiftbrowser.fast.secure.browser.session.OmniSessionState.TabMetadata(
+            metadata = com.swiftbrowser.fast.secure.browser.session.SwiftSessionState.TabMetadata(
                 title = tab.title,
                 url = tab.url,
                 isIncognito = tab.isIncognito,
@@ -728,7 +728,7 @@ class BrowserViewModel : ViewModel() {
     var appIconState by mutableStateOf("Default")
     var customIconPath by mutableStateOf<String?>(null)
     // Wallpaper and UI scale fields are pre-seeded from UiStateHolder, which is
-    // populated synchronously in OmniApplication.onCreate() before the first
+    // populated synchronously in SwiftBrowserApplication.onCreate() before the first
     // Compose frame — this eliminates the visible layout jump and wallpaper pop-in.
     var browserWallpaperUri by mutableStateOf<String?>(com.swiftbrowser.fast.secure.UiStateHolder.browserWallpaperUri)
     var changeWallpaperDaily by mutableStateOf(false)

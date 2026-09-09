@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.OmniBrowser" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.SwiftBrowser" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -18,7 +18,7 @@
         <item name="android:windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.OmniBrowser.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.SwiftBrowser.Dark" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -28,7 +28,7 @@
         <item name="android:windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.OmniBrowser.Light" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.SwiftBrowser.Light" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -38,7 +38,7 @@
         <item name="android:windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.OmniBrowser.Amoled" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.SwiftBrowser.Amoled" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

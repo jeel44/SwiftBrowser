@@ -34,7 +34,7 @@ import org.mozilla.geckoview.GeckoSession
  *  - Scope every request by [sessionId] (+ [isPrivate]) so a result from a
  *    previous page can never mutate the new one.
  *
- * The actual extraction, translation (via [OmniTranslateBridge] →
+ * The actual extraction, translation (via [SwiftTranslateBridge] →
  * [TranslationCoordinator]) and DOM write happen in the content script + bridge;
  * this class deliberately knows nothing about the translation providers.
  */
@@ -42,7 +42,7 @@ class WebTranslationController(
     private val session: GeckoSession,
     val sessionId: String,
     val isPrivate: Boolean,
-    private val bridge: OmniTranslateBridge
+    private val bridge: SwiftTranslateBridge
 ) {
     private val _state = MutableStateFlow<WebTranslationState>(WebTranslationState.Idle)
     val state: StateFlow<WebTranslationState> = _state
