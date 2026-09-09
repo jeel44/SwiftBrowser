@@ -1,4 +1,4 @@
-# ProGuard rules for Omni Browser
+# ProGuard rules for Swift Browser
 
 # 0. CRITICAL: Preserve GeckoRuntime initialization.
 # R8 strips getGeckoRuntime() calls as "dead code" because the return value is

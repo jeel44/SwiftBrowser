@@ -302,7 +302,7 @@
         </service>
 
         <!-- Disable and remove GeckoView's CrashHelper service to prevent NullPointerException
-             on startup (Mozilla Bug 1963220) which triggers the "Omni Browser keeps stopping" dialog.
+             on startup (Mozilla Bug 1963220) which triggers the "Swift Browser keeps stopping" dialog.
              Crash handling is managed in-process via Thread.setDefaultUncaughtExceptionHandler. -->
         <service
             android:name="org.mozilla.gecko.crashhelper.CrashHelper"

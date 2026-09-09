@@ -25,5 +25,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Omni Browser"
+rootProject.name = "Swift Browser"
 include(":app")
