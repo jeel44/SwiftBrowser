@@ -31,6 +31,7 @@
     <string name="website_title">आधिकारिक वेबसाइट</string>
     <string name="privacy_policy_title">गोपनीयता नीति</string>
     <string name="app_version_title">ऐप संस्करण</string>
+    <string name="about_oss_attribution">Built on open-source technology from the omni-browser project (github.com/REBEL-ROOT/omni-browser), licensed under GPLv3.</string>
     <string name="check_updates_title">अपडेट के लिए जांचें</string>
     <string name="checking_text">जांच की जा रही है...</string>
     <string name="check_now_text">अभी जांचें</string>

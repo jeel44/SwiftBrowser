@@ -31,6 +31,7 @@
     <string name="website_title">Website oficial</string>
     <string name="privacy_policy_title">Política de privacidade</string>
     <string name="app_version_title">Versão do aplicativo</string>
+    <string name="about_oss_attribution">Built on open-source technology from the omni-browser project (github.com/REBEL-ROOT/omni-browser), licensed under GPLv3.</string>
     <string name="check_updates_title">Buscar atualizações</string>
     <string name="checking_text">Verificando...</string>
     <string name="check_now_text">Verificar agora</string>

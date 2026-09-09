@@ -31,6 +31,7 @@
     <string name="website_title">官方网站</string>
     <string name="privacy_policy_title">隐私政策</string>
     <string name="app_version_title">应用版本</string>
+    <string name="about_oss_attribution">Built on open-source technology from the omni-browser project (github.com/REBEL-ROOT/omni-browser), licensed under GPLv3.</string>
     <string name="check_updates_title">检查更新</string>
     <string name="checking_text">正在检查...</string>
     <string name="check_now_text">立即检查</string>

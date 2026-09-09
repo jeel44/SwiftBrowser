@@ -1040,6 +1040,18 @@ fun SettingsScreen(
                     }
                     HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))
 
+                    // Required GPLv3 attribution (Section 7(b) / omni-browser's TRADEMARK.md) for the
+                    // open-source project this app builds on. This is the one place the upstream
+                    // project's real name is allowed to appear — it's a legal notice, not branding.
+                    // Do not remove; see /THIRD_PARTY_LICENSES.md at the repo root for the full text.
+                    Text(
+                        text = stringResource(id = R.string.about_oss_attribution),
+                        color = textSecondaryColor,
+                        fontSize = 11.sp,
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp)
+                    )
+                    HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))
+
                     Row(
                         modifier = Modifier.fillMaxWidth().clickable(enabled = !isCheckingUpdate) {
                             isCheckingUpdate = true

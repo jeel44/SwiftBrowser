@@ -31,6 +31,7 @@
     <string name="website_title">公式サイト</string>
     <string name="privacy_policy_title">プライバシーポリシー</string>
     <string name="app_version_title">アプリのバージョン</string>
+    <string name="about_oss_attribution">Built on open-source technology from the omni-browser project (github.com/REBEL-ROOT/omni-browser), licensed under GPLv3.</string>
     <string name="check_updates_title">アップデートを確認</string>
     <string name="checking_text">確認中...</string>
     <string name="check_now_text">今すぐ確認</string>

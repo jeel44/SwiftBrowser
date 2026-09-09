@@ -84,6 +84,8 @@
     <string name="website_title">Official Website</string>
     <string name="privacy_policy_title">Privacy Policy</string>
     <string name="app_version_title">App Version</string>
+    <!-- Required GPLv3 attribution — see the comment at its call site (SettingsScreen.kt) before changing. -->
+    <string name="about_oss_attribution">Built on open-source technology from the omni-browser project (github.com/REBEL-ROOT/omni-browser), licensed under GPLv3.</string>
     <string name="check_updates_title">Check for updates</string>
     <string name="checking_text">Checking...</string>
     <string name="check_now_text">Check now</string>
