@@ -31,7 +31,7 @@ import kotlinx.coroutines.withContext
  * Unified Manga & Comic Image Translation Pipeline.
  *
  * Coordinates on-device text detection & speech bubble clustering, translation
- * via Omni's [TranslationCoordinator], manual user editing, and comic typography inpainting.
+ * via Swift's [TranslationCoordinator], manual user editing, and comic typography inpainting.
  * Includes a fast two-tier memory cache for silky-smooth continuous reading.
  */
 class MangaTranslationPipeline(

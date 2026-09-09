@@ -172,7 +172,7 @@ fun SettingsScreen(
                 val obj = org.json.JSONObject(text)
                 val app = obj.optString("app", "")
                 val ver = obj.optInt("schema_version", 1)
-                val n = obj.optJSONObject("datastore")?.optJSONArray("omni_settings")?.length() ?: 0
+                val n = obj.optJSONObject("datastore")?.optJSONArray("swift_settings")?.length() ?: 0
                 if (app.isNotEmpty() && app != "SwiftBrowser") throw IllegalArgumentException("Not a Swift Browser backup")
                 if (ver > 1) throw IllegalArgumentException("Unsupported backup version")
                 withContext(Dispatchers.Main) {
@@ -532,7 +532,7 @@ fun SettingsScreen(
                         SettingSearchResult(context.getString(R.string.accessibility_title), context.getString(R.string.accessibility_desc), "PERSONALIZATION", Icons.Rounded.AccessibilityNew, onOpenAccessibility),
                         SettingSearchResult(context.getString(R.string.tabs_settings_title), context.getString(R.string.tabs_settings_desc), "BROWSING", Icons.Rounded.Tab, onOpenTabs),
                         SettingSearchResult("Site Settings", "Manage site permissions, javascript, autoplay, popups", "BROWSING", Icons.Rounded.Language, onOpenSiteSettings),
-                        SettingSearchResult(context.getString(R.string.default_browser_title), "Set Omni Browser as system default browser", "BROWSING", Icons.Rounded.OpenInBrowser, {
+                        SettingSearchResult(context.getString(R.string.default_browser_title), "Set Swift Browser as system default browser", "BROWSING", Icons.Rounded.OpenInBrowser, {
                             if (!isDefaultBrowser) {
                                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
                                     val intent = RoleManagerHelper.createRequestRoleIntent(context)
@@ -543,7 +543,7 @@ fun SettingsScreen(
                                     try { defaultBrowserLauncher.launch(android.content.Intent("android.intent.action.SET_DEFAULT").apply { addCategory(android.content.Intent.CATEGORY_DEFAULT); type = "text/html" }) }
                                     catch (e: Exception) { try { defaultBrowserLauncher.launch(android.content.Intent(android.provider.Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS)) } catch (ex: Exception) { Toast.makeText(context, "Please set default browser in System Settings", Toast.LENGTH_LONG).show() } }
                                 }
-                            } else { Toast.makeText(context, "Omni Browser is already your default browser!", Toast.LENGTH_SHORT).show() }
+                            } else { Toast.makeText(context, "Swift Browser is already your default browser!", Toast.LENGTH_SHORT).show() }
                         }),
                         SettingSearchResult(context.getString(R.string.app_language_title), "Change app display language ($currentLangName)", "BROWSING", Icons.Rounded.Translate, { showLanguageSelector = true }),
                         SettingSearchResult(context.getString(R.string.pdf_export_theme_title), "PDF export styling and background colors", "BROWSING", Icons.Rounded.Print, {}),
@@ -649,7 +649,7 @@ fun SettingsScreen(
                                             catch (ex: Exception) { Toast.makeText(context, "Please set default browser in System Settings", Toast.LENGTH_LONG).show() }
                                         }
                                     }
-                                } else { Toast.makeText(context, "Omni Browser is already your default browser!", Toast.LENGTH_SHORT).show() }
+                                } else { Toast.makeText(context, "Swift Browser is already your default browser!", Toast.LENGTH_SHORT).show() }
                             }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically,
@@ -894,7 +894,7 @@ fun SettingsScreen(
                 SettingsCard {
                     NavRow(
                         Icons.Rounded.Bolt,
-                        "Omni Sync (Experimental)",
+                        "Swift Sync (Experimental)",
                         "Experimental zero-cloud, E2EE sync for bookmarks, tabs & settings with Chrome, Firefox, Edge & Safari.",
                         onClick = onOpenSync
                     )
@@ -1154,7 +1154,7 @@ fun SettingsScreen(
                     NavRow(Icons.Rounded.Feedback, stringResource(id = R.string.send_feedback_title), stringResource(id = R.string.send_feedback_desc), onClick = { showFeedbackDialog = true })
                     HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))
                     // TODO Phase 3: GitHub Support row removed — no Swift Browser
-                    // GitHub repo exists (was github.com/REBEL-ROOT/omni-browser).
+                    // GitHub repo exists (was github.com/REBEL-ROOT/swift-browser).
                     // Re-add pointing at a real repo if/when one exists.
                     NavRow(Icons.Rounded.Public, stringResource(id = R.string.website_swiftbrowser), stringResource(id = R.string.website_swiftbrowser_desc), onClick = { onOpenUrl("https://sites.google.com/view/swiftbrowseraibrowser/home") })
                     HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))

@@ -37,7 +37,7 @@ class FxAccountManager private constructor() {
     private var prefs: SharedPreferences? = null
 
     fun initialize(context: Context) {
-        prefs = context.getSharedPreferences("omni_fx_sync_prefs", Context.MODE_PRIVATE)
+        prefs = context.getSharedPreferences("swift_fx_sync_prefs", Context.MODE_PRIVATE)
         val savedEmail = prefs?.getString(KEY_EMAIL, null)
         if (!savedEmail.isNullOrBlank()) {
             val displayName = prefs?.getString(KEY_DISPLAY_NAME, null)
@@ -66,7 +66,7 @@ class FxAccountManager private constructor() {
         return url.startsWith(REDIRECT_URI) ||
                url.startsWith(CUSTOM_SCHEME_REDIRECT) ||
                url.contains("/oauth/success/") ||
-               (url.contains("code=") && (url.contains("accounts.firefox.com") || url.contains("omni://") || url.contains("localhost")))
+               (url.contains("code=") && (url.contains("accounts.firefox.com") || url.contains("swiftbrowser://") || url.contains("localhost")))
     }
 
     /**
@@ -119,7 +119,7 @@ class FxAccountManager private constructor() {
     private val webChannelClient = MozillaWebChannelClient()
 
     /**
-     * Pairs Omni Browser with Desktop Firefox via scanned Desktop QR code parameters.
+     * Pairs Swift Browser with Desktop Firefox via scanned Desktop QR code parameters.
      */
     fun pairWithDesktopQr(
         pairingUrl: String,
@@ -248,14 +248,14 @@ class FxAccountManager private constructor() {
 
     fun getDeviceName(): String {
         val model = Build.MODEL ?: "Android"
-        return "Omni ($model)"
+        return "Swift Browser ($model)"
     }
 
     companion object {
         const val CLIENT_ID = "a2270f727f45f648"
         const val AUTH_ENDPOINT = "https://accounts.firefox.com/authorization"
         const val REDIRECT_URI = "https://accounts.firefox.com/oauth/success/a2270f727f45f648"
-        const val CUSTOM_SCHEME_REDIRECT = "omni://fxa-auth"
+        const val CUSTOM_SCHEME_REDIRECT = "swiftbrowser://fxa-auth"
         const val DEFAULT_SCOPES = "profile sync https://identity.mozilla.com/apps/oldsync"
 
         private const val KEY_EMAIL = "fxa_email"

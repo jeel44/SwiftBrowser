@@ -1,5 +1,5 @@
 /*
- * Omni Browser — Bookmark Import Pipeline
+ * Swift Browser — Bookmark Import Pipeline
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Phase 04: validates parsed data, applies duplicate policy, and merges

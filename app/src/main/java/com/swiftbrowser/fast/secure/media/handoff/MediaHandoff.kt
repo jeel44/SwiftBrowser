@@ -1,5 +1,5 @@
 /*
- * Omni Browser — Media Handoff Model
+ * Swift Browser — Media Handoff Model
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Immutable snapshot of a website HTML5 <video> element's live playback state,

@@ -31,7 +31,7 @@ fun BrowserViewModel.toggleVisualBlockMode() {
             Toast.makeText(it, "Block Area: Tap any element to select & hide", Toast.LENGTH_SHORT).show()
         }
     } else {
-        session.loadUri("javascript:(function(){ if (window.__omniVisualBlockCleanup) window.__omniVisualBlockCleanup(); })();")
+        session.loadUri("javascript:(function(){ if (window.__swiftVisualBlockCleanup) window.__swiftVisualBlockCleanup(); })();")
     }
 }
 
@@ -53,7 +53,7 @@ fun BrowserViewModel.applyVisualBlockRulesToTab(tab: TabState? = activeTab) {
         javascript:(function() {
             function applyStyle() {
                 try {
-                    const styleId = 'omni-custom-visual-block-style';
+                    const styleId = 'swift-custom-visual-block-style';
                     let styleEl = document.getElementById(styleId);
                     if ('$cssEscaped' === '') {
                         if (styleEl) styleEl.remove();

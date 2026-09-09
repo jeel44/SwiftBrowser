@@ -85,7 +85,7 @@ class MozillaWebChannelClient(
                     put("channelId", channelId)
                     put("clientPublicKey", mobilePubB64)
                     put("clientMetadata", JSONObject().apply {
-                        put("deviceName", "Omni ($model)")
+                        put("deviceName", "Swift Browser ($model)")
                         put("os", "Android " + Build.VERSION.RELEASE)
                         put("appVersion", "1.3.6")
                     })

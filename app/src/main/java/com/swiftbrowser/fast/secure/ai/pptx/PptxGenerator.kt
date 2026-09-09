@@ -119,8 +119,8 @@ object PptxGenerator {
                    xmlns:dcmitype="http://purl.org/dc/dcmitype/"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <dc:title>${xmlEscape(title)}</dc:title>
-  <dc:creator>Omni Browser</dc:creator>
-  <cp:lastModifiedBy>Omni Browser</cp:lastModifiedBy>
+  <dc:creator>Swift Browser</dc:creator>
+  <cp:lastModifiedBy>Swift Browser</cp:lastModifiedBy>
   <dcterms:created xsi:type="dcterms:W3CDTF">$now</dcterms:created>
   <dcterms:modified xsi:type="dcterms:W3CDTF">$now</dcterms:modified>
 </cp:coreProperties>""".trimIndent()
@@ -130,7 +130,7 @@ object PptxGenerator {
         val appXml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"
             xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
-  <Application>Omni Browser</Application>
+  <Application>Swift Browser</Application>
   <AppVersion>1.0.0</AppVersion>
   <Slides>$slideCount</Slides>
 </Properties>""".trimIndent()
@@ -166,9 +166,9 @@ object PptxGenerator {
 
         // 7. ppt/theme/theme1.xml (minimal but valid)
         val themeXml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<a:theme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="Omni Theme">
+<a:theme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="Swift Theme">
   <a:themeElements>
-    <a:clrScheme name="Omni">
+    <a:clrScheme name="Swift">
       <a:dk1><a:sysClr val="windowText" lastClr="000000"/></a:dk1>
       <a:lt1><a:sysClr val="window" lastClr="FFFFFF"/></a:lt1>
       <a:dk2><a:srgbClr val="1F2937"/></a:dk2>
@@ -182,7 +182,7 @@ object PptxGenerator {
       <a:hlink><a:srgbClr val="2563EB"/></a:hlink>
       <a:folHlink><a:srgbClr val="7C3AED"/></a:folHlink>
     </a:clrScheme>
-    <a:fontScheme name="Omni">
+    <a:fontScheme name="Swift">
       <a:majorFont>
         <a:latin typeface="Inter"/>
         <a:ea typeface=""/>
@@ -194,7 +194,7 @@ object PptxGenerator {
         <a:cs typeface=""/>
       </a:minorFont>
     </a:fontScheme>
-    <a:fmtScheme name="Omni">
+    <a:fmtScheme name="Swift">
       <a:fillStyleLst>
         <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>
         <a:solidFill><a:schemeClr val="phClr"/></a:solidFill>

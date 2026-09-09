@@ -353,7 +353,7 @@ fun NewsScreen(
                                                     )
                                                 }
                                                 Text(
-                                                    text = article.source.ifBlank { "Omni News" },
+                                                    text = article.source.ifBlank { "Swift News" },
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                                     fontSize = 12.sp,
                                                     fontWeight = FontWeight.Bold

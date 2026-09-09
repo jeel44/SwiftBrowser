@@ -3,7 +3,7 @@
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * The canonical bookmark data model. This is the sync-ready foundation that
- * import/export and future Omni Sync build on. It intentionally mirrors the
+ * import/export and future Swift Sync build on. It intentionally mirrors the
  * shape used by mainstream browsers (stable string ID + parent ID + position)
  * so browser interoperability is a representation problem, not a model problem.
  *

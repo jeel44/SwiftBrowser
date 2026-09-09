@@ -449,7 +449,7 @@ fun DownloadSettingsScreen(
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
 
-                    // Option 1: Omni Downloader (Built-in)
+                    // Option 1: Swift Downloader (Built-in)
                     DownloaderOptionRow(
                         title = stringResource(id = R.string.downloader_internal),
                         subtitle = stringResource(id = R.string.downloader_internal_desc),

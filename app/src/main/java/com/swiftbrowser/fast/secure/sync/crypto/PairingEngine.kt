@@ -31,7 +31,7 @@ data class PairingInvitation(
             val nonce = if (obj.has("nonce")) obj.getString("nonce") else if (obj.has("nonceBase64")) obj.getString("nonceBase64") else ""
             val ver = if (obj.has("version")) obj.getInt("version") else 1
             val ts = if (obj.has("timestamp")) obj.getLong("timestamp") else System.currentTimeMillis()
-            val name = if (obj.has("deviceName")) obj.getString("deviceName") else "Omni Device"
+            val name = if (obj.has("deviceName")) obj.getString("deviceName") else "Swift Device"
             val host = if (obj.has("lanHost")) obj.getString("lanHost") else null
             val port = if (obj.has("lanPort")) obj.getInt("lanPort") else null
 

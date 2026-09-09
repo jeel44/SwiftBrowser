@@ -68,7 +68,7 @@ class LanDiscoveryService(
                 val socket = DatagramSocket()
                 socket.broadcast = true
                 val beaconJson = JSONObject().apply {
-                    put("service", "_omni-sync._tcp")
+                    put("service", "_swift-sync._tcp")
                     put("deviceId", deviceId)
                     put("deviceName", deviceName)
                     put("port", port)

@@ -14,7 +14,7 @@ import android.util.Log
 import com.swiftbrowser.fast.secure.media.MediaInterceptor
 
 /**
- * Authoritative video source resolver for Omni Browser.
+ * Authoritative video source resolver for Swift Browser.
  *
  * Responsibilities:
  * 1. Resolves HTML5 <video> sources (including MSE `blob:` URLs) to exact, playable network streams.
@@ -48,7 +48,7 @@ object WebVideoSourceResolver {
      *
      * @param session The captured live video session from the webpage.
      * @param associatedStreams Stream URLs explicitly associated with this video element by JS.
-     * @param tabDetectedMedia Sniffed media items strictly scoped to the originating Omni tab/page.
+     * @param tabDetectedMedia Sniffed media items strictly scoped to the originating Swift tab/page.
      */
     fun resolve(
         session: WebVideoSession,

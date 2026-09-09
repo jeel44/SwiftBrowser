@@ -29,7 +29,7 @@ object PageToPptx {
         context: Context,
         title: String,
         bulletsBySlide: List<List<String>>,
-        fileName: String = "omni_presentation"
+        fileName: String = "swift_presentation"
     ): Uri? {
         if (bulletsBySlide.isEmpty()) {
             Log.w(TAG, "buildPresentation: no slides")
@@ -42,7 +42,7 @@ object PageToPptx {
             }
             PptxSlide(title = slideTitle, bullets = bullets)
         }
-        val safeName = fileName.replace(Regex("[^a-zA-Z0-9._ -]"), "_").ifBlank { "omni_presentation" }
+        val safeName = fileName.replace(Regex("[^a-zA-Z0-9._ -]"), "_").ifBlank { "swift_presentation" }
         val outFile = PptxGenerator.writeToCache(context, slides, title, safeName) ?: return null
         return try {
             FileProvider.getUriForFile(
@@ -64,7 +64,7 @@ object PageToPptx {
         context: Context,
         title: String,
         body: String,
-        fileName: String = "omni_presentation"
+        fileName: String = "swift_presentation"
     ): Uri? {
         val chunks = chunkText(body)
         val slides = chunks.mapIndexed { idx, chunk ->
@@ -73,7 +73,7 @@ object PageToPptx {
                 bullets = chunk
             )
         }
-        val safeName = fileName.replace(Regex("[^a-zA-Z0-9._ -]"), "_").ifBlank { "omni_presentation" }
+        val safeName = fileName.replace(Regex("[^a-zA-Z0-9._ -]"), "_").ifBlank { "swift_presentation" }
         val outFile = PptxGenerator.writeToCache(context, slides, title, safeName) ?: return null
         return try {
             FileProvider.getUriForFile(
@@ -95,7 +95,7 @@ object PageToPptx {
         title: String,
         bullets: List<String>,
         coverImage: Bitmap,
-        fileName: String = "omni_presentation"
+        fileName: String = "swift_presentation"
     ): Uri? {
         val coverBytes = bitmapToBytes(coverImage, "image/png")
         val slides = mutableListOf<PptxSlide>()
@@ -104,7 +104,7 @@ object PageToPptx {
         for (chunk in bodyChunks) {
             slides.add(PptxSlide(title = title, bullets = chunk))
         }
-        val safeName = fileName.replace(Regex("[^a-zA-Z0-9._ -]"), "_").ifBlank { "omni_presentation" }
+        val safeName = fileName.replace(Regex("[^a-zA-Z0-9._ -]"), "_").ifBlank { "swift_presentation" }
         val outFile = PptxGenerator.writeToCache(context, slides, title, safeName) ?: return null
         return try {
             FileProvider.getUriForFile(

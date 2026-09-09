@@ -1,5 +1,5 @@
 /*
- * Omni Browser — Media Source Classifier
+ * Swift Browser — Media Source Classifier
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Classifies media source URIs into [MediaSourceType] based on URL patterns,

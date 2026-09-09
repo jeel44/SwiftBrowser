@@ -1,9 +1,9 @@
 /*
- * Omni Browser — Web Video Session Model
+ * Swift Browser — Web Video Session Model
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Authoritative single media session model representing a webpage HTML5 <video>
- * element under Omni control and its handoff to/from the native Media3/ExoPlayer.
+ * element under Swift control and its handoff to/from the native Media3/ExoPlayer.
  */
 
 package com.swiftbrowser.fast.secure.media.handoff

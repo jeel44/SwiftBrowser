@@ -1341,7 +1341,7 @@ private fun saveBitmapToGallery(context: android.content.Context, bitmap: Bitmap
     val contentValues = ContentValues().apply {
         put(MediaStore.MediaColumns.DISPLAY_NAME, displayName)
         put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
-        put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/OmniBrowser")
+        put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/SwiftBrowser")
     }
 
     val targetUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
@@ -1708,7 +1708,7 @@ fun QrGeneratorDialog(
                     onClick = {
                         qrBitmap?.let { bitmap ->
                             try {
-                                val cacheFile = File(context.cacheDir, "omni_shared_qr.png")
+                                val cacheFile = File(context.cacheDir, "swift_shared_qr.png")
                                 FileOutputStream(cacheFile).use { out ->
                                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
                                 }
@@ -1748,7 +1748,7 @@ fun QrGeneratorDialog(
                     onClick = {
                         qrBitmap?.let { bitmap ->
                             try {
-                                val saved = saveBitmapToGallery(context, bitmap, "Omni_QR_${System.currentTimeMillis()}.png")
+                                val saved = saveBitmapToGallery(context, bitmap, "Swift_QR_${System.currentTimeMillis()}.png")
                                 if (saved) {
                                     Toast.makeText(context, context.getString(R.string.qr_gen_saved), Toast.LENGTH_SHORT).show()
                                 } else {
@@ -3046,7 +3046,7 @@ fun TorrentDownloaderDialog(
                     enabled = urlToDownload.isNotBlank(),
                     shape = RoundedCornerShape(12.dp)
                 ) {
-                    Text("Download in Omni")
+                    Text("Download in Swift")
                 }
             }
         },

@@ -148,7 +148,7 @@ private fun tabletChromeColors(
  * outside the scroll region so a new tab is always one tap away.
  */
 @Composable
-fun OmniTabStrip(
+fun SwiftTabStrip(
     tabs: List<TabState>,
     activeTabId: String?,
     onSelectTab: (String) -> Unit,
@@ -679,7 +679,7 @@ fun AdaptiveTabletToolbar(
 /**
  * Persistent navigation rail for expanded+ browser windows (≥840dp). Replaces the
  * phone bottom bar, which would either duplicate the tablet toolbar or stretch a
- * 5-button row across a desktop-class window. Items reuse Omni's existing
+ * 5-button row across a desktop-class window. Items reuse Swift's existing
  * interaction model (tab groups sheet, quick tools, all-in-one menu) and visuals.
  */
 @Composable

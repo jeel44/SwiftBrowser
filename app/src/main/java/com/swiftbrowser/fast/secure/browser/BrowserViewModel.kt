@@ -106,7 +106,7 @@ sealed class BackupImportResult {
     object InvalidVersion : BackupImportResult()
 }
 
-val Context.dataStore by preferencesDataStore(name = "omni_settings")
+val Context.dataStore by preferencesDataStore(name = "swift_settings")
 
 class BrowserViewModel : ViewModel() {
 
@@ -153,8 +153,8 @@ class BrowserViewModel : ViewModel() {
         val DOWNLOAD_NOTIFICATIONS_ENABLED_KEY = booleanPreferencesKey("download_notifications_enabled")
         val DOWNLOAD_SOUND_ENABLED_KEY = booleanPreferencesKey("download_sound_enabled")
         val DOWNLOAD_VIBRATE_ENABLED_KEY = booleanPreferencesKey("download_vibrate_enabled")
-        val OMNI_PASSWORD_MANAGER_ENABLED_KEY = booleanPreferencesKey("omni_password_manager_enabled")
-        const val CHANNEL_ID_APP_UPDATES = "omni_app_updates"
+        val SWIFT_PASSWORD_MANAGER_ENABLED_KEY = booleanPreferencesKey("swift_password_manager_enabled")
+        const val CHANNEL_ID_APP_UPDATES = "swift_app_updates"
         const val NOTIFICATION_ID_APP_UPDATE = 4001
         val LAST_UPDATE_CHECK_TIME_KEY = longPreferencesKey("last_update_check_time")
         val LAST_NOTIFIED_UPDATE_VERSION_KEY = stringPreferencesKey("last_notified_update_version")
@@ -385,7 +385,7 @@ class BrowserViewModel : ViewModel() {
     /** Central recovery state machine. */
     internal var recoveryCoordinator: com.swiftbrowser.fast.secure.browser.session.SessionRecoveryCoordinator? = null
 
-    /** True when Omni launched an external app (UPI/PayPal/banking/camera) and
+    /** True when Swift launched an external app (UPI/PayPal/banking/camera) and
      *  we checkpointed state before leaving. Cleared on resume after health check. */
     var isInExternalAppHandoff by mutableStateOf(false)
 
@@ -504,7 +504,7 @@ class BrowserViewModel : ViewModel() {
     var hasSeenDevNotesOverview by mutableStateOf(false)
 
     val DEFAULT_QUICK_TOOLS_ORDER = listOf(
-        "omni_beam", "qr_scanner", "safe_locker", "translator", "edit_page",
+        "swift_beam", "qr_scanner", "safe_locker", "translator", "edit_page",
         "save_pdf", "vpn", "pin_web_app", "auto_scroll", "qr_scan_page",
         "qr_generator", "console_log", "dev_notes", "site_style"
     )
@@ -550,7 +550,7 @@ class BrowserViewModel : ViewModel() {
 
     enum class AutofillProviderMode {
         THIRD_PARTY,
-        OMNI_VAULT,
+        SWIFT_VAULT,
         BOTH
     }
 
@@ -572,7 +572,7 @@ class BrowserViewModel : ViewModel() {
         val onCancel: () -> Unit
     )
 
-    var isOmniPasswordManagerEnabled by mutableStateOf(true)
+    var isSwiftPasswordManagerEnabled by mutableStateOf(true)
     var autofillProviderMode by mutableStateOf(AutofillProviderMode.THIRD_PARTY)
     var extensionDownloadPolicy by mutableStateOf(ExtensionDownloadPolicy.ASK_EVERY_TIME)
     var pendingWebExtensionDownload by mutableStateOf<PendingWebExtensionDownload?>(null)
@@ -2589,11 +2589,11 @@ class BrowserViewModel : ViewModel() {
         if (formattedUrl.isEmpty()) return
 
         val lowerInTab = formattedUrl.lowercase()
-        if (lowerInTab == "omni:config" || lowerInTab == "omni://config" || lowerInTab == "about:config") {
-            formattedUrl = "omni:config"
+        if (lowerInTab == "swift:config" || lowerInTab == "swift://config" || lowerInTab == "about:config") {
+            formattedUrl = "swift:config"
         }
 
-        if (formattedUrl.startsWith("about:") || formattedUrl.startsWith("omni:")) {
+        if (formattedUrl.startsWith("about:") || formattedUrl.startsWith("swift:")) {
             val idx = tabs.indexOfFirst { it.id == tab.id }
             if (idx != -1) {
                 tabs[idx] = tabs[idx].copy(url = formattedUrl, title = if (formattedUrl == "about:blank") "New Tab" else formattedUrl, isUriLoaded = true)
@@ -2779,7 +2779,7 @@ class BrowserViewModel : ViewModel() {
                     val oneDayMs = 24 * 60 * 60 * 1000L
                     cacheDir.listFiles()?.forEach { file ->
                         if (file.name.startsWith("hls_") || 
-                            file.name.startsWith("omni_") || 
+                            file.name.startsWith("swift_") || 
                             file.name.endsWith(".zip") || 
                             file.name.endsWith(".pdf")) {
                             if (now - file.lastModified() > oneDayMs) {
@@ -2817,7 +2817,7 @@ class BrowserViewModel : ViewModel() {
             
             // Retrieve the user's selected app language preference to configure GeckoView locale
             val lang = try {
-                val sp = appCtx.getSharedPreferences("omni_prefs", Context.MODE_PRIVATE)
+                val sp = appCtx.getSharedPreferences("swift_prefs", Context.MODE_PRIVATE)
                 sp.getString("selected_language", "en") ?: "en"
             } catch (e: Exception) {
                 "en"
@@ -2961,7 +2961,7 @@ class BrowserViewModel : ViewModel() {
                 sb.append("  privacy.clearOnShutdown.cache: ${isClearCookiesOnShutdown}\n")
                 sb.append("  privacy.clearOnShutdown.cookies: ${isClearCookiesOnShutdown}\n")
                 // Disable automatic GeckoView handoff of HTTP/HTTPS URLs to external Android apps
-                // (e.g. YouTube app), guaranteeing all web browsing loads cleanly inside Omni Browser tabs.
+                // (e.g. YouTube app), guaranteeing all web browsing loads cleanly inside Swift Browser tabs.
                 sb.append("  network.protocol-handler.external.http: false\n")
                 sb.append("  network.protocol-handler.external.https: false\n")
                 sb.append("  network.protocol-handler.external-default: false\n")
@@ -3294,7 +3294,7 @@ class BrowserViewModel : ViewModel() {
             }
 
             try {
-                val sp = appCtx.getSharedPreferences("omni_prefs", Context.MODE_PRIVATE)
+                val sp = appCtx.getSharedPreferences("swift_prefs", Context.MODE_PRIVATE)
                 val savedLang = sp.getString("selected_language", null)
                 if (!savedLang.isNullOrEmpty()) {
                     selectedLanguageCode = savedLang
@@ -3353,7 +3353,7 @@ class BrowserViewModel : ViewModel() {
             loadSitePermissions(appCtx)
 
             viewModelScope.launch {
-                val sp = appCtx.getSharedPreferences("omni_prefs", Context.MODE_PRIVATE)
+                val sp = appCtx.getSharedPreferences("swift_prefs", Context.MODE_PRIVATE)
                 siteStyleFontSize = sp.getInt("site_style_font_size", 100)
                 siteStyleTheme = sp.getString("site_style_theme", "DEFAULT") ?: "DEFAULT"
                 siteStyleLineSpacing = sp.getFloat("site_style_line_spacing", 1.4f)
@@ -3423,7 +3423,7 @@ class BrowserViewModel : ViewModel() {
                     showPrivacyStatsWidget = prefs[SHOW_PRIVACY_STATS_KEY] ?: true
                     isMinimalistFocusMode = prefs[MINIMALIST_FOCUS_MODE_KEY] ?: false
                     trackersBlockedCount = prefs[TRACKERS_BLOCKED_COUNT_KEY] ?: 0
-                    isOmniPasswordManagerEnabled = prefs[OMNI_PASSWORD_MANAGER_ENABLED_KEY] ?: true
+                    isSwiftPasswordManagerEnabled = prefs[SWIFT_PASSWORD_MANAGER_ENABLED_KEY] ?: true
                     autofillProviderMode = prefs[AUTOFILL_PROVIDER_MODE_KEY]?.let {
                         try { AutofillProviderMode.valueOf(it) } catch (e: Exception) { AutofillProviderMode.THIRD_PARTY }
                     } ?: AutofillProviderMode.THIRD_PARTY
@@ -4304,9 +4304,9 @@ class BrowserViewModel : ViewModel() {
             val session = geckoSession
             if (session != null) {
                 if (enabled) {
-                    session.loadUri("javascript:(function(){try{var s=document.createElement('style');s.id='omni-hide-scrollbars';s.innerHTML='*::-webkit-scrollbar { display: none !important; } html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; }';document.head.appendChild(s);}catch(e){}})();")
+                    session.loadUri("javascript:(function(){try{var s=document.createElement('style');s.id='swift-hide-scrollbars';s.innerHTML='*::-webkit-scrollbar { display: none !important; } html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; }';document.head.appendChild(s);}catch(e){}})();")
                 } else {
-                    session.loadUri("javascript:(function(){var s=document.getElementById('omni-hide-scrollbars');if(s)s.remove();})();")
+                    session.loadUri("javascript:(function(){var s=document.getElementById('swift-hide-scrollbars');if(s)s.remove();})();")
                 }
             }
         }
@@ -4592,7 +4592,7 @@ class BrowserViewModel : ViewModel() {
         val today = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
         if (lastDailyWallpaperDate != today) {
             dailyWallpaperSeed = today.hashCode()
-            val url = "https://picsum.photos/seed/omni_daily_$dailyWallpaperSeed/1600/2560"
+            val url = "https://picsum.photos/seed/swift_daily_$dailyWallpaperSeed/1600/2560"
             viewModelScope.launch {
                 downloadAndSetWallpaper(context, url)
                 // Save the new date after rotation completes
@@ -4761,7 +4761,7 @@ class BrowserViewModel : ViewModel() {
             preferences[SELECTED_LANGUAGE_KEY] = langCode
         }
         try {
-            val sp = context.applicationContext.getSharedPreferences("omni_prefs", Context.MODE_PRIVATE)
+            val sp = context.applicationContext.getSharedPreferences("swift_prefs", Context.MODE_PRIVATE)
             sp.edit().putString("selected_language", langCode).apply()
         } catch (e: Exception) { /* ignore */ }
         selectedLanguageCode = langCode
@@ -4788,7 +4788,7 @@ class BrowserViewModel : ViewModel() {
                 preferences[LANGUAGE_SELECTION_DONE_KEY] = true
             }
             try {
-                val sp = appCtx.getSharedPreferences("omni_prefs", Context.MODE_PRIVATE)
+                val sp = appCtx.getSharedPreferences("swift_prefs", Context.MODE_PRIVATE)
                 sp.edit().putString("selected_language", langCode).commit()
             } catch (e: Exception) { /* ignore */ }
             try {
@@ -4989,7 +4989,7 @@ class BrowserViewModel : ViewModel() {
 
     // ── Web Video Session State & Handoff (Quetta-Style) ──────────────────
 
-    /** Authoritative video session currently under Omni control. */
+    /** Authoritative video session currently under Swift control. */
     var activeVideoSession: com.swiftbrowser.fast.secure.media.handoff.WebVideoSession? = null
         internal set
 
@@ -5377,8 +5377,8 @@ class BrowserViewModel : ViewModel() {
         }
     }
 
-    fun setOmniPasswordManagerEnabled(enabled: Boolean, context: Context) {
-        isOmniPasswordManagerEnabled = enabled
+    fun setSwiftPasswordManagerEnabled(enabled: Boolean, context: Context) {
+        isSwiftPasswordManagerEnabled = enabled
         if (!enabled) {
             showAutofillBottomSheet = false
             autofillMatches = emptyList()
@@ -5387,10 +5387,10 @@ class BrowserViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 context.dataStore.edit { prefs ->
-                    prefs[OMNI_PASSWORD_MANAGER_ENABLED_KEY] = enabled
+                    prefs[SWIFT_PASSWORD_MANAGER_ENABLED_KEY] = enabled
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Failed to save isOmniPasswordManagerEnabled", e)
+                Log.e(TAG, "Failed to save isSwiftPasswordManagerEnabled", e)
             }
         }
     }
@@ -6306,11 +6306,11 @@ class BrowserViewModel : ViewModel() {
             return
         }
 
-        if (lower == "omni:config" || lower == "omni://config" || lower == "about:config") {
-            formattedUrl = "omni:config"
+        if (lower == "swift:config" || lower == "swift://config" || lower == "about:config") {
+            formattedUrl = "swift:config"
         }
 
-        if (!formattedUrl.startsWith("http://") && !formattedUrl.startsWith("https://") && !formattedUrl.startsWith("about:") && !formattedUrl.startsWith("omni:") && !formattedUrl.startsWith("javascript:") && !formattedUrl.startsWith("moz-extension://")) {
+        if (!formattedUrl.startsWith("http://") && !formattedUrl.startsWith("https://") && !formattedUrl.startsWith("about:") && !formattedUrl.startsWith("swift:") && !formattedUrl.startsWith("javascript:") && !formattedUrl.startsWith("moz-extension://")) {
             formattedUrl = if (formattedUrl.contains(".") && !formattedUrl.contains(" ")) {
                 "https://$formattedUrl"
             } else {
@@ -6346,11 +6346,11 @@ class BrowserViewModel : ViewModel() {
             return
         }
 
-        if (formattedUrl.startsWith("about:") || formattedUrl.startsWith("omni:") || formattedUrl.startsWith("javascript:")) {
+        if (formattedUrl.startsWith("about:") || formattedUrl.startsWith("swift:") || formattedUrl.startsWith("javascript:")) {
             val activeId = activeTabId
             if (activeId != null) {
                 val idx = tabs.indexOfFirst { it.id == activeId }
-                if (idx != -1 && (formattedUrl.startsWith("about:") || formattedUrl.startsWith("omni:"))) {
+                if (idx != -1 && (formattedUrl.startsWith("about:") || formattedUrl.startsWith("swift:"))) {
                     tabs[idx] = tabs[idx].copy(url = formattedUrl, title = if (formattedUrl == "about:blank") "New Tab" else formattedUrl, isUriLoaded = true)
                     currentUrl = formattedUrl
                 }
@@ -6506,7 +6506,7 @@ class BrowserViewModel : ViewModel() {
                     "if(headings.length > 1){" +
                     "    tocHtml += '<div id=\"swift-reader-toc\" style=\"margin:20px 0;padding:16px;border-radius:12px;background:rgba(128,128,128,0.08);border:1px solid rgba(128,128,128,0.15);\"><div style=\"font-weight:bold;margin-bottom:10px;font-size:1.1em;display:flex;align-items:center;justify-content:space-between;cursor:pointer;\" onclick=\"var l = document.getElementById(\\'swift-toc-list\\'); l.style.display = l.style.display===\\'none\\'?\\'block\\':\\'none\\';\"><span>📖 Table of Contents</span><span style=\"font-size:0.8em;\">▼</span></div><ul id=\"swift-toc-list\" style=\"margin:0;padding-left:20px;display:none;list-style-type:square;line-height:1.8;\">';" +
                     "    headings.forEach(function(h, idx){" +
-                    "        h.id = 'omni-heading-' + idx;" +
+                    "        h.id = 'swift-heading-' + idx;" +
                     "        var indent = h.tagName.toLowerCase() === 'h3' ? 'margin-left: 15px;' : '';" +
                     "        tocHtml += '<li style=\"' + indent + '\"><a href=\"#' + h.id + '\" style=\"text-decoration:none;font-size:0.95em;\">' + h.innerText + '</a></li>';" +
                     "    });" +
@@ -6656,7 +6656,7 @@ class BrowserViewModel : ViewModel() {
     fun readAloudCurrentPage() {
         val js = "javascript:(function(){" +
                  "  var text = document.getElementById('swift-reader-container')?.innerText || document.body.innerText || '';" +
-                 "  window.postMessage({ type: 'OMNI_CONSOLE_LOG', level: 'READER_TTS_CONTENT', message: text }, '*');" +
+                 "  window.postMessage({ type: 'SWIFT_CONSOLE_LOG', level: 'READER_TTS_CONTENT', message: text }, '*');" +
                  "})();"
         geckoSession.loadUri(js)
     }
@@ -7858,7 +7858,7 @@ class BrowserViewModel : ViewModel() {
     fun speakText(text: String) {
         val engine = tts ?: return
         engine.setSpeechRate(ttsRate)
-        engine.speak(text, TextToSpeech.QUEUE_FLUSH, null, "omni_tts")
+        engine.speak(text, TextToSpeech.QUEUE_FLUSH, null, "swift_tts")
         isTtsPlaying = true
     }
 
@@ -7969,10 +7969,10 @@ class BrowserViewModel : ViewModel() {
                     "    if (document.documentElement) {" +
                     "      document.documentElement.contentEditable = 'true';" +
                     "    }" +
-                    "    var banner = document.getElementById('omni-edit-indicator');" +
+                    "    var banner = document.getElementById('swift-edit-indicator');" +
                     "    if (!banner) {" +
                     "      banner = document.createElement('div');" +
-                    "      banner.id = 'omni-edit-indicator';" +
+                    "      banner.id = 'swift-edit-indicator';" +
                     "      banner.textContent = '✏️ Edit Mode Active — Tap text to edit';" +
                     "      banner.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(139,92,246,0.95);color:#ffffff;padding:8px 18px;border-radius:24px;font-size:13px;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,0.35);z-index:2147483647;pointer-events:none;font-family:sans-serif;letter-spacing:0.2px;';" +
                     "      (document.body || document.documentElement).appendChild(banner);" +
@@ -8005,7 +8005,7 @@ class BrowserViewModel : ViewModel() {
                     "    document.designMode = 'off';" +
                     "    if (document.body) { document.body.contentEditable = 'false'; }" +
                     "    if (document.documentElement) { document.documentElement.contentEditable = 'false'; }" +
-                    "    var banner = document.getElementById('omni-edit-indicator');" +
+                    "    var banner = document.getElementById('swift-edit-indicator');" +
                     "    if (banner) { banner.remove(); }" +
                     "  } catch(e) {}" +
                     "})();"
@@ -8098,7 +8098,7 @@ class BrowserViewModel : ViewModel() {
                                     try {
                                         val printManager = activity.getSystemService(Context.PRINT_SERVICE) as android.print.PrintManager
                                         val printAdapter = org.mozilla.geckoview.GeckoViewPrintDocumentAdapter(inputStream, activity)
-                                        printManager.print("Omni Browser — Print", printAdapter, android.print.PrintAttributes.Builder().build())
+                                        printManager.print("Swift Browser — Print", printAdapter, android.print.PrintAttributes.Builder().build())
                                         Log.i(TAG, "printCurrentPage: PrintManager.print() called successfully")
                                     } catch (e: Exception) {
                                         Log.e(TAG, "printCurrentPage: PrintManager error", e)
@@ -8154,7 +8154,7 @@ class BrowserViewModel : ViewModel() {
                     "App Updates",
                     android.app.NotificationManager.IMPORTANCE_DEFAULT
                 ).apply {
-                    description = "Notifications when a new version of Omni Browser is available on GitHub"
+                    description = "Notifications when a new version of Swift Browser is available on GitHub"
                 }
                 notificationManager.createNotificationChannel(channel)
             }
@@ -8188,7 +8188,7 @@ class BrowserViewModel : ViewModel() {
                 android.app.PendingIntent.FLAG_UPDATE_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE
             )
 
-            val updateTitle = "Omni Browser v$newVersion Available"
+            val updateTitle = "Swift Browser v$newVersion Available"
             val updateText = "A new release (v$newVersion) is available on GitHub. Tap to view and install the latest APK."
 
             val notification = androidx.core.app.NotificationCompat.Builder(context, CHANNEL_ID_APP_UPDATES)
@@ -8215,9 +8215,9 @@ class BrowserViewModel : ViewModel() {
 
     fun checkForUpdatesInBackground(context: Context) {
         // TODO Phase 3: update-check backend excluded — this used to poll
-        // github.com/REBEL-ROOT/omni-browser's releases API and would surface
+        // github.com/REBEL-ROOT/swift-browser's releases API and would surface
         // "update available" notifications pointing Swift Browser users at
-        // omni-browser's GitHub releases (a different app). Disabled rather
+        // swift-browser's GitHub releases (a different app). Disabled rather
         // than repointed to a guess. Wire up a real Swift Browser release feed
         // before re-enabling. Original preserved commented-out.
         return
@@ -8240,11 +8240,11 @@ class BrowserViewModel : ViewModel() {
                 val pInfo = try { context.packageManager.getPackageInfo(context.packageName, 0) } catch (e: Exception) { null }
                 val currentVersionName = pInfo?.versionName ?: "1.0.0"
 
-                val apiUrl = java.net.URL("https://api.github.com/repos/REBEL-ROOT/omni-browser/releases/latest")
+                val apiUrl = java.net.URL("https://api.github.com/repos/REBEL-ROOT/swift-browser/releases/latest")
                 val apiConn = apiUrl.openConnection() as java.net.HttpURLConnection
                 apiConn.requestMethod = "GET"
                 apiConn.setRequestProperty("Accept", "application/vnd.github+json")
-                apiConn.setRequestProperty("User-Agent", "OmniBrowser-OTA-Checker")
+                apiConn.setRequestProperty("User-Agent", "SwiftBrowser-OTA-Checker")
                 apiConn.connectTimeout = 8000
                 apiConn.readTimeout = 8000
                 apiConn.connect()
@@ -8253,7 +8253,7 @@ class BrowserViewModel : ViewModel() {
                     val apiResponse = apiConn.inputStream.bufferedReader().use { it.readText() }
                     val json = org.json.JSONObject(apiResponse)
                     val tagName = json.optString("tag_name", "").removePrefix("v").trim()
-                    val htmlUrl = json.optString("html_url", "https://github.com/REBEL-ROOT/omni-browser/releases/latest")
+                    val htmlUrl = json.optString("html_url", "https://github.com/REBEL-ROOT/swift-browser/releases/latest")
 
                     if (tagName.isNotEmpty() && compareVersionNames(tagName, currentVersionName) > 0) {
                         if (tagName != lastNotifiedVersion) {
@@ -8272,7 +8272,7 @@ class BrowserViewModel : ViewModel() {
     fun checkAppUpdates(context: Context, onResult: (UpdateCheckResult) -> Unit) {
         // TODO Phase 3: update-check backend excluded — see
         // checkForUpdatesInBackground() above for why (this queried
-        // github.com/REBEL-ROOT/omni-browser's releases, a different app).
+        // github.com/REBEL-ROOT/swift-browser's releases, a different app).
         // Reports "no update available" rather than a guessed endpoint.
         // Original preserved commented-out.
         onResult(UpdateCheckResult.NoUpdateAvailable)
@@ -8292,11 +8292,11 @@ class BrowserViewModel : ViewModel() {
             // This means no separate version.json to forget updating, and the
             // download path already fetches the latest release assets anyway.
             try {
-                val apiUrl = java.net.URL("https://api.github.com/repos/REBEL-ROOT/omni-browser/releases/latest")
+                val apiUrl = java.net.URL("https://api.github.com/repos/REBEL-ROOT/swift-browser/releases/latest")
                 val apiConn = apiUrl.openConnection() as java.net.HttpURLConnection
                 apiConn.requestMethod = "GET"
                 apiConn.setRequestProperty("Accept", "application/vnd.github+json")
-                apiConn.setRequestProperty("User-Agent", "OmniBrowser-OTA-Checker")
+                apiConn.setRequestProperty("User-Agent", "SwiftBrowser-OTA-Checker")
                 apiConn.connectTimeout = 8000
                 apiConn.readTimeout = 8000
                 apiConn.connect()
@@ -8305,7 +8305,7 @@ class BrowserViewModel : ViewModel() {
                     val apiResponse = apiConn.inputStream.bufferedReader().use { it.readText() }
                     val json = org.json.JSONObject(apiResponse)
                     val tagName = json.optString("tag_name", "").removePrefix("v").trim()
-                    val htmlUrl = json.optString("html_url", "https://github.com/REBEL-ROOT/omni-browser/releases/latest")
+                    val htmlUrl = json.optString("html_url", "https://github.com/REBEL-ROOT/swift-browser/releases/latest")
 
                     // Compare by version name — compareVersionNames handles 4-part versions
                     val hasNewerVersion = tagName.isNotEmpty() &&
@@ -8359,7 +8359,7 @@ class BrowserViewModel : ViewModel() {
             try {
                 var targetUrl = downloadUrl
                 // TODO Phase 3: this used to unconditionally re-resolve ANY
-                // github.com/.../releases URL to REBEL-ROOT/omni-browser's own
+                // github.com/.../releases URL to REBEL-ROOT/swift-browser's own
                 // latest release — i.e. it ignored whatever URL was actually
                 // passed in and would fetch a different app's APK. Disabled
                 // (`false &&`) so targetUrl always stays what the caller passed.
@@ -8367,10 +8367,10 @@ class BrowserViewModel : ViewModel() {
                 // (not a hardcoded one) before re-enabling.
                 if (false && downloadUrl.contains("github.com") && downloadUrl.contains("/releases")) {
                     try {
-                        val apiConnection = java.net.URL("https://api.github.com/repos/REBEL-ROOT/omni-browser/releases/latest").openConnection() as java.net.HttpURLConnection
+                        val apiConnection = java.net.URL("https://api.github.com/repos/REBEL-ROOT/swift-browser/releases/latest").openConnection() as java.net.HttpURLConnection
                         apiConnection.requestMethod = "GET"
                         apiConnection.setRequestProperty("Accept", "application/vnd.github+json")
-                        apiConnection.setRequestProperty("User-Agent", "OmniBrowser-OTA-Installer")
+                        apiConnection.setRequestProperty("User-Agent", "SwiftBrowser-OTA-Installer")
                         apiConnection.connectTimeout = 8000
                         apiConnection.connect()
                         if (apiConnection.responseCode == 200) {
@@ -8479,7 +8479,7 @@ class BrowserViewModel : ViewModel() {
                                         android.net.Uri.parse("package:${context.packageName}")
                                     ).apply { addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK) }
                                     context.startActivity(settingsIntent)
-                                    updateDownloadError = "Please enable 'Install Unknown Apps' for Omni Browser in settings, then try again."
+                                    updateDownloadError = "Please enable 'Install Unknown Apps' for Swift Browser in settings, then try again."
                                     return@withContext
                                 }
                                 val apkUri = androidx.core.content.FileProvider.getUriForFile(
@@ -8877,9 +8877,9 @@ class BrowserViewModel : ViewModel() {
                 try {
                     var res = eval('$escaped');
                     var output = (res === undefined) ? 'undefined' : (res === null) ? 'null' : (typeof res === 'object') ? JSON.stringify(res, null, 2) : String(res);
-                    alert('OMNI_EVAL_RESULT:' + JSON.stringify({ ok: true, val: output }));
+                    alert('SWIFT_EVAL_RESULT:' + JSON.stringify({ ok: true, val: output }));
                 } catch(e) {
-                    alert('OMNI_EVAL_RESULT:' + JSON.stringify({ ok: false, val: e.toString() }));
+                    alert('SWIFT_EVAL_RESULT:' + JSON.stringify({ ok: false, val: e.toString() }));
                 }
             })();
         """.trimIndent()
@@ -8964,7 +8964,7 @@ class BrowserViewModel : ViewModel() {
                         }
                     } catch(e){}
 
-                    alert('OMNI_PAGE_STATS:' + JSON.stringify({
+                    alert('SWIFT_PAGE_STATS:' + JSON.stringify({
                         w: wordCount, r: readTime, i: imgs, l: links, s: scripts, c: css, ch: text.length,
                         meta: metas, h1: h1, h2: h2, h3: h3, dom: domNodes, res: resources, ck: cookies, ls: localStore
                     }));
@@ -9290,10 +9290,10 @@ class BrowserViewModel : ViewModel() {
                             function step() {
                                 if (index >= linkUrls.length) {
                                     if (collected.length > 0) {
-                                        alert('OMNI_IMAGES:' + JSON.stringify(collected));
+                                        alert('SWIFT_IMAGES:' + JSON.stringify(collected));
                                     } else {
                                         collectDomImages();
-                                        alert('OMNI_IMAGES:' + JSON.stringify(urls));
+                                        alert('SWIFT_IMAGES:' + JSON.stringify(urls));
                                     }
                                     return;
                                 }
@@ -9447,11 +9447,11 @@ class BrowserViewModel : ViewModel() {
                     }
 
                     if (extractNhentaiGallery()) {
-                        alert('OMNI_IMAGES:' + JSON.stringify(urls));
+                        alert('SWIFT_IMAGES:' + JSON.stringify(urls));
                         return;
                     }
                     if (extractHitomiGallery()) {
-                        alert('OMNI_IMAGES:' + JSON.stringify(urls));
+                        alert('SWIFT_IMAGES:' + JSON.stringify(urls));
                         return;
                     }
                     if (extractEhentaiGallery()) {
@@ -9460,9 +9460,9 @@ class BrowserViewModel : ViewModel() {
 
                     collectDomImages();
                     extractScriptImages();
-                    alert('OMNI_IMAGES:' + JSON.stringify(urls));
+                    alert('SWIFT_IMAGES:' + JSON.stringify(urls));
                 } catch(e) {
-                    alert('OMNI_IMAGES:[]');
+                    alert('SWIFT_IMAGES:[]');
                 }
             })();
         """.trimIndent()
@@ -9525,11 +9525,11 @@ class BrowserViewModel : ViewModel() {
         }
 
         val dsObj = JSONObject()
-        dsObj.put("omni_settings", dsArray)
+        dsObj.put("swift_settings", dsArray)
         root.put("datastore", dsObj)
 
-        val sp = context.getSharedPreferences("omni_prefs", Context.MODE_PRIVATE).all
-        val spOmniPrefs = JSONObject()
+        val sp = context.getSharedPreferences("swift_prefs", Context.MODE_PRIVATE).all
+        val spSwiftPrefs = JSONObject()
 
         for ((key, v) in sp) {
             if (v == null) continue
@@ -9572,11 +9572,11 @@ class BrowserViewModel : ViewModel() {
                     continue
                 }
             }
-            spOmniPrefs.put(key, entry)
+            spSwiftPrefs.put(key, entry)
         }
 
         val spObj = JSONObject()
-        spObj.put("omni_prefs", spOmniPrefs)
+        spObj.put("swift_prefs", spSwiftPrefs)
         root.put("shared_prefs", spObj)
 
         if (skippedCount > 0) {
@@ -9608,11 +9608,11 @@ class BrowserViewModel : ViewModel() {
 
         try {
             val dsObj = root.optJSONObject("datastore")
-            val omniSettingsArray = dsObj?.optJSONArray("omni_settings")
-            if (omniSettingsArray != null) {
+            val swiftSettingsArray = dsObj?.optJSONArray("swift_settings")
+            if (swiftSettingsArray != null) {
                 context.dataStore.edit { prefs ->
-                    for (i in 0 until omniSettingsArray.length()) {
-                        val item = omniSettingsArray.optJSONObject(i) ?: continue
+                    for (i in 0 until swiftSettingsArray.length()) {
+                        val item = swiftSettingsArray.optJSONObject(i) ?: continue
                         val name = item.optString("key", "")
                         val type = item.optString("type", "")
                         if (name.isEmpty()) {
@@ -9667,14 +9667,14 @@ class BrowserViewModel : ViewModel() {
             }
 
             val spObj = root.optJSONObject("shared_prefs")
-            val omniPrefsObj = spObj?.optJSONObject("omni_prefs")
-            if (omniPrefsObj != null) {
-                val sp = context.getSharedPreferences("omni_prefs", Context.MODE_PRIVATE)
+            val swiftPrefsObj = spObj?.optJSONObject("swift_prefs")
+            if (swiftPrefsObj != null) {
+                val sp = context.getSharedPreferences("swift_prefs", Context.MODE_PRIVATE)
                 val editor = sp.edit()
-                val keys = omniPrefsObj.keys()
+                val keys = swiftPrefsObj.keys()
                 while (keys.hasNext()) {
                     val key = keys.next()
-                    val entry = omniPrefsObj.optJSONObject(key) ?: continue
+                    val entry = swiftPrefsObj.optJSONObject(key) ?: continue
                     val type = entry.optString("type", "")
                     val rawValue = entry.opt("value")
                     if (rawValue == null || rawValue == JSONObject.NULL) {
@@ -9757,7 +9757,7 @@ class BrowserViewModel : ViewModel() {
         defaultJavascriptAllowed = prefs[DEFAULT_JAVASCRIPT_KEY] ?: true
         defaultAutoplayAllowed = prefs[DEFAULT_AUTOPLAY_KEY] ?: true
 
-        val sp = context.getSharedPreferences("omni_prefs", Context.MODE_PRIVATE)
+        val sp = context.getSharedPreferences("swift_prefs", Context.MODE_PRIVATE)
         val savedLang = sp.getString("selected_language", null)
         if (!savedLang.isNullOrEmpty()) {
             selectedLanguageCode = savedLang

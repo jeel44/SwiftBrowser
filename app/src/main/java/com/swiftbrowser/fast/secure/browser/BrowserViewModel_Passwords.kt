@@ -34,7 +34,7 @@ internal fun BrowserViewModel.persistSavedPasswords() {
 }
 
 fun BrowserViewModel.savePassword(domain: String, username: String, password: String) {
-    if (!isOmniPasswordManagerEnabled) {
+    if (!isSwiftPasswordManagerEnabled) {
         pendingSaveCredential = null
         return
     }
@@ -94,7 +94,7 @@ fun BrowserViewModel.clearSavedPasswordsSince(cutoffTime: Long) {
 }
 
 fun BrowserViewModel.getPasswordsForDomain(domain: String): List<BrowserViewModel.SavedPassword> {
-    if (!isOmniPasswordManagerEnabled) return emptyList()
+    if (!isSwiftPasswordManagerEnabled) return emptyList()
     return savedPasswords.filter { it.domain.contains(domain, ignoreCase = true) || domain.contains(it.domain, ignoreCase = true) }
 }
 
@@ -106,7 +106,7 @@ fun BrowserViewModel.checkAutofillForUrl(url: String) {
 }
 
 fun BrowserViewModel.checkAutofillForFocus(url: String) {
-    if (!isOmniPasswordManagerEnabled || url.isBlank() || url == "about:blank") {
+    if (!isSwiftPasswordManagerEnabled || url.isBlank() || url == "about:blank") {
         autofillMatches = emptyList()
         showAutofillBottomSheet = false
         // Reset post-fill chip when navigating away
@@ -121,7 +121,7 @@ fun BrowserViewModel.checkAutofillForFocus(url: String) {
             it.domain == domain || domain.contains(it.domain) || it.domain.contains(domain)
         }
         autofillMatches = matches
-        if (matches.isNotEmpty() && (autofillProviderMode == BrowserViewModel.AutofillProviderMode.OMNI_VAULT || autofillProviderMode == BrowserViewModel.AutofillProviderMode.BOTH)) {
+        if (matches.isNotEmpty() && (autofillProviderMode == BrowserViewModel.AutofillProviderMode.SWIFT_VAULT || autofillProviderMode == BrowserViewModel.AutofillProviderMode.BOTH)) {
             showAutofillBottomSheet = true
         } else {
             showAutofillBottomSheet = false

@@ -446,7 +446,7 @@ fun HomeScreenContent(
                                 modifier = Modifier.size(20.dp)
                             )
                         }
-                        omnimenuDropdown(
+                        mainMenuDropdown(
                             expanded = showHomeMenu,
                             onDismissRequest = { showHomeMenu = false },
                             viewModel = viewModel,
@@ -513,11 +513,11 @@ fun HomeScreenContent(
                 )
             }
         } else if (viewModel.showHomeLogo) {
-            // Center branding OMNI stylized logo Image or Custom Cropped Image
+            // Center branding SWIFT stylized logo Image or Custom Cropped Image
             if (viewModel.customIconPath != null) {
                 coil.compose.AsyncImage(
                     model = java.io.File(viewModel.customIconPath!!),
-                    contentDescription = "Omni Browser Custom Logo",
+                    contentDescription = "Swift Browser Custom Logo",
                     modifier = Modifier
                         .size(100.dp)
                         .clip(CircleShape)
@@ -533,7 +533,7 @@ fun HomeScreenContent(
                             com.swiftbrowser.fast.secure.R.drawable.swift_home_logo_light
                         }
                     ),
-                    contentDescription = "Omni Browser Logo",
+                    contentDescription = "Swift Browser Logo",
                     modifier = Modifier
                         .height(scaledLogoHeight)
                         .padding(horizontal = 16.dp),

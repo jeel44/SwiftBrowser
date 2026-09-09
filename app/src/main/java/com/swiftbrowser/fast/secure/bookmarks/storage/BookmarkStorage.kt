@@ -23,7 +23,7 @@ import java.io.File
 
 /** JVM/Android compatible logger. On Android this is a no-op wrapper around android.util.Log
  *  that is replaced at link time; in unit tests it falls back to System.err. */
-private object OmniLog {
+private object SwiftLog {
     fun w(tag: String, msg: String) {
         try {
             android.util.Log.w(tag, msg)
@@ -87,10 +87,10 @@ internal fun loadBookmarksFromDir(filesDir: File): BookmarkCollection {
             if (version >= 2) {
                 parseV2(json, collection)
             } else {
-                OmniLog.w(TAG, "Unknown schema version $version, treating as empty")
+                SwiftLog.w(TAG, "Unknown schema version $version, treating as empty")
             }
         } catch (e: Exception) {
-            OmniLog.e(TAG, "Error loading v2 bookmarks", e)
+            SwiftLog.e(TAG, "Error loading v2 bookmarks", e)
         }
     } else if (legacyFile.exists()) {
         try {
@@ -98,7 +98,7 @@ internal fun loadBookmarksFromDir(filesDir: File): BookmarkCollection {
             // Persist the migrated data immediately so legacy is no longer needed.
             saveBookmarksToDir(filesDir, collection)
         } catch (e: Exception) {
-            OmniLog.e(TAG, "Error migrating legacy bookmarks", e)
+            SwiftLog.e(TAG, "Error migrating legacy bookmarks", e)
         }
     }
     return collection
@@ -122,7 +122,7 @@ internal fun saveBookmarksToDir(filesDir: File, collection: BookmarkCollection) 
             throw IllegalStateException("Failed to rename temp file to $V2_FILE")
         }
     } catch (e: Exception) {
-        OmniLog.e(TAG, "Error saving bookmarks: ${e.message}", e)
+        SwiftLog.e(TAG, "Error saving bookmarks: ${e.message}", e)
         // Clean up temp file on failure.
         tempFile.delete()
     }
@@ -199,7 +199,7 @@ private fun parseV2(json: JSONObject, collection: BookmarkCollection) {
     // Validate before committing — if the stored data is corrupt, start fresh.
     val issues = BookmarkCollection.validate(bookmarks, folders)
     if (issues.isNotEmpty()) {
-        OmniLog.w(TAG, "Stored bookmark data is corrupt (${issues.size} issues), starting fresh: ${issues.first().message}")
+        SwiftLog.w(TAG, "Stored bookmark data is corrupt (${issues.size} issues), starting fresh: ${issues.first().message}")
         return
     }
     collection.replaceAll(bookmarks, folders)
@@ -223,5 +223,5 @@ private fun migrateLegacy(legacyFile: File, collection: BookmarkCollection) {
             position = i.toLong()
         )
     }
-    OmniLog.i(TAG, "Migrated ${jsonArray.length()} legacy bookmarks to v2")
+    SwiftLog.i(TAG, "Migrated ${jsonArray.length()} legacy bookmarks to v2")
 }

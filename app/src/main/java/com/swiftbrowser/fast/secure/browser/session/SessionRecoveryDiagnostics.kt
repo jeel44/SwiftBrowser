@@ -23,11 +23,11 @@ import android.util.Log
  */
 object SessionRecoveryDiagnostics {
 
-    private const val TAG_LIFECYCLE = "[OmniLifecycle]"
-    private const val TAG_SESSION = "[OmniSession]"
-    private const val TAG_RECOVERY = "[OmniRecovery]"
-    private const val TAG_PERSISTENCE = "[OmniPersistence]"
-    private const val TAG_STARTUP = "[OmniStartup]"
+    private const val TAG_LIFECYCLE = "[SwiftLifecycle]"
+    private const val TAG_SESSION = "[SwiftSession]"
+    private const val TAG_RECOVERY = "[SwiftRecovery]"
+    private const val TAG_PERSISTENCE = "[SwiftPersistence]"
+    private const val TAG_STARTUP = "[SwiftStartup]"
 
     private val isDebug: Boolean by lazy {
         try {

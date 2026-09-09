@@ -380,7 +380,7 @@ fun SwiftSyncShowcaseScreen(
                 }
             }
 
-            // ── 2. OMNI SYNC MESH (OFFLINE / LAN P2P) ──────────────────────────
+            // ── 2. SWIFT SYNC MESH (OFFLINE / LAN P2P) ──────────────────────────
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),

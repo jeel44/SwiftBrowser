@@ -50,7 +50,7 @@ data class UserAgentSiteRule(
 }
 
 class UserAgentManager(context: Context) {
-    private val prefs: SharedPreferences = context.getSharedPreferences("omni_user_agent_prefs", Context.MODE_PRIVATE)
+    private val prefs: SharedPreferences = context.getSharedPreferences("swift_user_agent_prefs", Context.MODE_PRIVATE)
 
     private val _globalPreset = MutableStateFlow(loadGlobalPreset())
     val globalPreset: StateFlow<UserAgentPreset> = _globalPreset.asStateFlow()

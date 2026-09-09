@@ -114,7 +114,7 @@ fun SwiftChatSheet(
 
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Omni Beam Live Drop",
+                        text = "Swift Beam Live Drop",
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp,
                         color = Color.White
@@ -515,6 +515,6 @@ private fun openFileExternally(context: Context, file: File) {
         }
         context.startActivity(intent)
     } catch (_: Exception) {
-        Toast.makeText(context, "Saved in Downloads/OmniDrop folder", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Saved in Downloads/SwiftDrop folder", Toast.LENGTH_SHORT).show()
     }
 }

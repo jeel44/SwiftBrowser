@@ -301,7 +301,7 @@ fun BrowserScreen(
     val haptic = LocalHapticFeedback.current
 
     val currentUrlLower = viewModel.currentUrl.lowercase()
-    val isConfig = currentUrlLower == "omni:config" || currentUrlLower == "omni://config" || currentUrlLower == "about:config"
+    val isConfig = currentUrlLower == "swift:config" || currentUrlLower == "swift://config" || currentUrlLower == "about:config"
     val showHomeScreen = (viewModel.currentUrl == "about:blank" || viewModel.currentUrl.isEmpty()) && !isConfig
     val activeTab = viewModel.tabs.find { it.id == viewModel.activeTabId }
 
@@ -476,7 +476,7 @@ fun BrowserScreen(
     var showTorrentDownloaderDialog by remember { mutableStateOf(false) }
     var showSpeedDialSheet by remember { mutableStateOf(false) }
     var showFeedbackDialog by remember { mutableStateOf(false) }
-    var showOmniChatSheet by remember { mutableStateOf(false) }
+    var showSwiftChatSheet by remember { mutableStateOf(false) }
     var isHomeSearchFocused by remember { mutableStateOf(false) }
 
     LaunchedEffect(isKeyboardVisible) {
@@ -1076,7 +1076,7 @@ fun BrowserScreen(
     }
 
     // Uncaught exception crash recovery notification dialog
-    val crashPrefs = remember { context.getSharedPreferences("omni_crash_prefs", android.content.Context.MODE_PRIVATE) }
+    val crashPrefs = remember { context.getSharedPreferences("swift_crash_prefs", android.content.Context.MODE_PRIVATE) }
     var crashMsg by remember { mutableStateOf(crashPrefs.getString("last_crash_msg", null)) }
     if (crashMsg != null) {
         AlertDialog(
@@ -1089,7 +1089,7 @@ fun BrowserScreen(
                 Text("Auto Recovery", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.error)
             },
             text = {
-                Text("Omni Browser recovered from an unexpected error: \n\n$crashMsg\n\nYou can continue browsing safely.")
+                Text("Swift Browser recovered from an unexpected error: \n\n$crashMsg\n\nYou can continue browsing safely.")
             },
             confirmButton = {
                 Button(
@@ -1216,7 +1216,7 @@ fun BrowserScreen(
                                 // Adaptive tablet tab strip — widths computed from the
                                 // available window width (min/max clamped, active tab kept
                                 // in view, "+" always accessible).
-                                OmniTabStrip(
+                                SwiftTabStrip(
                                     tabs = viewModel.tabs.filter { it.isIncognito == viewModel.isIncognitoMode },
                                     activeTabId = viewModel.activeTabId,
                                     onSelectTab = { viewModel.selectTab(it) },
@@ -1788,7 +1788,7 @@ fun BrowserScreen(
             }
         }
 
-        // ── Content area: mirrors Omni Browser 2.0 layout exactly ──────────────────
+        // ── Content area: mirrors Swift Browser 2.0 layout exactly ──────────────────
         // Outer Box uses system inset padding directly (not Scaffold paddingValues) so
         // the content area is never tied to Scaffold's measurement. GeckoView padding
         // snaps binary on isScrollNavBarVisible, so no reflow happens during the
@@ -4402,7 +4402,7 @@ fun BrowserScreen(
                                             Text(stringResource(R.string.translator_translate_page), color = Color.White, fontWeight = FontWeight.Bold)
                                         }
 
-                                        // Omni on-device page translation (offline-aware).
+                                        // Swift on-device page translation (offline-aware).
                                         Row(
                                             modifier = Modifier.fillMaxWidth(),
                                             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -5438,13 +5438,13 @@ fun BrowserScreen(
                 }
             }
 
-            // Omni Beam — Live P2P Chat & File Drop Sheet
-            if (showOmniChatSheet) {
+            // Swift Beam — Live P2P Chat & File Drop Sheet
+            if (showSwiftChatSheet) {
                 com.swiftbrowser.fast.secure.sync.chat.ui.SwiftChatSheet(
                     activeTabTitle = activeTab?.title ?: "",
                     activeTabUrl = activeTab?.url ?: "",
                     onOpenUrl = { url -> viewModel.loadUrl(url) },
-                    onDismiss = { showOmniChatSheet = false }
+                    onDismiss = { showSwiftChatSheet = false }
                 )
             }
 
@@ -6491,7 +6491,7 @@ fun BrowserScreen(
 
             // ── Menu Bottom Sheet (Unified with All-In-One Menu Sheet) ──────────────────
             // Only redirect to the bottom sheet when the AllInOne nav is at the bottom.
-            // When nav is at the top, showMenu drives the omnimenuDropdown popup directly.
+            // When nav is at the top, showMenu drives the mainMenuDropdown popup directly.
             LaunchedEffect(showMenu) {
                 if (showMenu && viewModel.addressBarPosition == "Bottom") {
                     showMenu = false
@@ -6531,7 +6531,7 @@ fun BrowserScreen(
                             .align(Alignment.TopEnd)
                             .padding(top = menuTopOffset, end = menuEndPadding)
                     ) {
-                        omnimenuDropdownCard(
+                        mainMenuDropdownCard(
                             expanded = showMenu,
                             onDismissRequest = { showMenu = false },
                             availableHeight = screenHeightDp - menuTopOffset - 16.dp,
@@ -6986,8 +6986,8 @@ fun BrowserScreen(
                         val extAiBlockerDesc = stringResource(R.string.ext_builtin_ai_blocker_desc)
                         val extForceDark = stringResource(R.string.appearance_force_dark_websites)
                         val extForceDarkDesc = stringResource(R.string.appearance_force_dark_websites_desc)
-                        val extOmniTranslate = stringResource(R.string.ext_builtin_swift_translate)
-                        val extOmniTranslateDesc = stringResource(R.string.ext_builtin_swift_translate_desc)
+                        val extSwiftTranslate = stringResource(R.string.ext_builtin_swift_translate)
+                        val extSwiftTranslateDesc = stringResource(R.string.ext_builtin_swift_translate_desc)
                         // TODO Phase 2: media_grabber excluded — the "Media Sniffer" entry
                         // below still lists it, but its extension is never actually
                         // installed in this build, so toggling it is inert.
@@ -7007,8 +7007,8 @@ fun BrowserScreen(
                                     viewModel.isMediaGrabberEnabled, !viewModel.isMediaGrabberToggling,
                                     { viewModel.toggleMediaGrabber(context) },
                                     { showSnifferSettingsDialogState.value = true }),
-                                BuiltInExt(Icons.Rounded.Translate, extOmniTranslate, extTeamAuthor,
-                                    extOmniTranslateDesc,
+                                BuiltInExt(Icons.Rounded.Translate, extSwiftTranslate, extTeamAuthor,
+                                    extSwiftTranslateDesc,
                                     true, false,
                                     { /* always-on bridge: not user-togglable */ },
                                     { showTranslationDialog = true }),
@@ -7523,7 +7523,7 @@ fun BrowserScreen(
                                 val vmOrder = viewModel.quickToolsOrder
                                  val allTools = listOf(
                                     "image_grabber", "page_inspector", "block_area", "spoof_identity", "force_zoom", "vpn",
-                                    "torrent_downloader", "omni_config",
+                                    "torrent_downloader", "swift_config",
                                     "qr_scanner", "safe_locker", "translator", "edit_page",
                                     "save_pdf", "pin_web_app", "auto_scroll", "qr_scan_page",
                                     "qr_generator", "console_log", "dev_notes", "site_style"
@@ -7542,7 +7542,7 @@ fun BrowserScreen(
                             "block_area"          -> context.getString(R.string.tool_block_area)
                             "spoof_identity"      -> "Spoof Identity"
                             "torrent_downloader"  -> "Torrent & Magnet"
-                            "omni_config"         -> "omni:config"
+                            "swift_config"         -> "swift:config"
                             "force_zoom"          -> if (viewModel.accessibilityForceZoom) context.getString(R.string.tool_force_zoom_on) else context.getString(R.string.tool_force_zoom)
                             "vpn"                 -> when (viewModel.proxyProvider) {
                                 "tor", "tor_builtin" -> {
@@ -7567,7 +7567,7 @@ fun BrowserScreen(
                             "console_log"    -> context.getString(R.string.tool_console_log)
                             "dev_notes"      -> context.getString(R.string.tool_dev_notes)
                             "site_style"     -> context.getString(R.string.tool_site_style)
-                            "omni_beam"      -> "Omni Beam"
+                            "swift_beam"      -> "Swift Beam"
                             else -> id
                         }
                         fun toolIcon(id: String): androidx.compose.ui.graphics.vector.ImageVector = when (id) {
@@ -7576,7 +7576,7 @@ fun BrowserScreen(
                             "block_area"          -> Icons.Rounded.LayersClear
                             "spoof_identity"      -> Icons.Rounded.Devices
                             "torrent_downloader"  -> Icons.Rounded.Download
-                            "omni_config"         -> Icons.Rounded.Tune
+                            "swift_config"         -> Icons.Rounded.Tune
                             "force_zoom"          -> Icons.Rounded.ZoomIn
                             "vpn"                 -> when (viewModel.proxyProvider) {
                                 "tor" -> Icons.Rounded.Security
@@ -7595,7 +7595,7 @@ fun BrowserScreen(
                             "console_log"    -> Icons.Rounded.Terminal
                             "dev_notes"      -> Icons.Rounded.Description
                             "site_style"     -> Icons.Rounded.Palette
-                            "omni_beam"      -> Icons.Rounded.Devices
+                            "swift_beam"      -> Icons.Rounded.Devices
                             else -> Icons.Rounded.Build
                         }
                         fun toolAction(id: String): () -> Unit = when (id) {
@@ -7622,9 +7622,9 @@ fun BrowserScreen(
                                 showQuickToolsSheet = false
                                 showTorrentDownloaderDialog = true
                             })
-                            "omni_config" -> ({
+                            "swift_config" -> ({
                                 showQuickToolsSheet = false
-                                viewModel.loadUrl("omni:config")
+                                viewModel.loadUrl("swift:config")
                             })
                             "force_zoom" -> ({
                                 val nextState = !viewModel.accessibilityForceZoom
@@ -7723,9 +7723,9 @@ fun BrowserScreen(
                                 if (showHomeScreen || activeTab == null) Toast.makeText(context, context.getString(R.string.toast_open_webpage_tool), Toast.LENGTH_SHORT).show()
                                 else { showQuickToolsSheet = false; showSiteStyleCustomizerSheet = true }
                             })
-                            "omni_beam" -> ({
+                            "swift_beam" -> ({
                                 showQuickToolsSheet = false
-                                showOmniChatSheet = true
+                                showSwiftChatSheet = true
                             })
                             else -> ({})
                         }
@@ -8208,7 +8208,7 @@ fun BrowserScreen(
                 FeatureOverviewDialog(
                     title = "Media Player & Downloader",
                     subtitle = "Disclaimer & Rules",
-                    description = "Stream video feeds through our hardware-accelerated Media3 player with gesture controls and multi-threaded parallel downloads.\n\n⚠️ Piracy Disclaimer: Omni Browser does not host, index, or endorse the download of copyrighted content. Downloads are only permitted for personal, non-commercial use of public or freely available media.\n\n🚫 YouTube/Google Restriction: In compliance with terms of service, video detection and downloading are disabled on YouTube and other Google services by default. Enable them in Native Video Player settings if you accept the terms-of-service risk.",
+                    description = "Stream video feeds through our hardware-accelerated Media3 player with gesture controls and multi-threaded parallel downloads.\n\n⚠️ Piracy Disclaimer: Swift Browser does not host, index, or endorse the download of copyrighted content. Downloads are only permitted for personal, non-commercial use of public or freely available media.\n\n🚫 YouTube/Google Restriction: In compliance with terms of service, video detection and downloading are disabled on YouTube and other Google services by default. Enable them in Native Video Player settings if you accept the terms-of-service risk.",
                     icon = Icons.Rounded.Download,
                     accentColor = Color(0xFFFF6D00), // Sunset Orange
                     isDarkTheme = viewModel.isDarkThemeEnabled,

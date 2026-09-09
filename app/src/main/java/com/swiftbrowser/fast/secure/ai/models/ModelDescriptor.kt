@@ -23,7 +23,7 @@ package com.swiftbrowser.fast.secure.ai.models
  *
  * Models are NEVER bundled in the APK. This descriptor only carries tiny
  * metadata (a few hundred bytes). The actual weights live at [downloadUrl] on a
- * legitimate upstream host chosen by Omni; the application downloads, verifies
+ * legitimate upstream host chosen by Swift; the application downloads, verifies
  * (size + SHA-256), and installs them into application-private storage.
  *
  * Web content can NEVER supply or alter these values — the catalog is

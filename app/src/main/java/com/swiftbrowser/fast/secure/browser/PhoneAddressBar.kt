@@ -913,7 +913,7 @@ fun PhoneAddressBar(
 }
 
 @Composable
-fun omnimenuDropdownCard(
+fun mainMenuDropdownCard(
     expanded: Boolean,
     onDismissRequest: () -> Unit,
     viewModel: BrowserViewModel,
@@ -1354,7 +1354,7 @@ fun omnimenuDropdownCard(
 
 
 @Composable
-fun omnimenuDropdown(
+fun mainMenuDropdown(
     expanded: Boolean,
     onDismissRequest: () -> Unit,
     viewModel: BrowserViewModel,
@@ -1389,7 +1389,7 @@ fun omnimenuDropdown(
         shadowElevation = 0.dp,
         border = null
     ) {
-        omnimenuDropdownCard(
+        mainMenuDropdownCard(
             expanded = expanded,
             onDismissRequest = onDismissRequest,
             availableHeight = screenHeightHint,

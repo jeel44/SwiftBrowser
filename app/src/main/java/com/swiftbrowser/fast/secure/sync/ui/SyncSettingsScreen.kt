@@ -40,7 +40,7 @@ fun SyncSettingsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Omni Sync (Experimental)", fontWeight = FontWeight.SemiBold) },
+                title = { Text("Swift Sync (Experimental)", fontWeight = FontWeight.SemiBold) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = "Back")
@@ -130,7 +130,7 @@ fun SyncSettingsScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             if (uiState.trustedDevices.isEmpty()) {
-                Text("No devices paired yet. Tap 'Pair New Device' to connect another Omni browser.", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp)
+                Text("No devices paired yet. Tap 'Pair New Device' to connect another Swift browser.", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp)
             } else {
                 uiState.trustedDevices.forEach { dev ->
                     Card(

@@ -31,12 +31,12 @@ class MozillaTabBridge {
     private val remoteTabsByDevice = mutableMapOf<String, RemoteDeviceTabs>()
 
     /**
-     * Converts Omni [TabState] instances to [TabInfo] records for uploading to Firefox Sync.
+     * Converts Swift [TabState] instances to [TabInfo] records for uploading to Firefox Sync.
      * Strictly excludes incognito tabs and internal blank pages.
      */
     fun exportTabs(tabs: List<TabState>): List<TabInfo> {
         return tabs
-            .filter { !it.isIncognito && it.url.isNotBlank() && it.url != "about:blank" && !it.url.startsWith("omni://") }
+            .filter { !it.isIncognito && it.url.isNotBlank() && it.url != "about:blank" && !it.url.startsWith("swift://") }
             .map {
                 TabInfo(
                     title = it.title.takeIf { t -> t.isNotBlank() } ?: it.url,
@@ -146,7 +146,7 @@ class MozillaTabBridge {
     }
 
     /**
-     * Stores synced tabs received from a remote Firefox/Omni device.
+     * Stores synced tabs received from a remote Firefox/Swift device.
      */
     fun updateRemoteDeviceTabs(remoteDevice: RemoteDeviceTabs) {
         remoteTabsByDevice[remoteDevice.deviceId] = remoteDevice

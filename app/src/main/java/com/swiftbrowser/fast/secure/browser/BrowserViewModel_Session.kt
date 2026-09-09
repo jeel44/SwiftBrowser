@@ -309,14 +309,14 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
 
         /**
          * Validates that the current tab's origin is trusted for receiving privileged
-         * OMNI_* messages. These messages control browser chrome features (visual blocking,
+         * SWIFT_* messages. These messages control browser chrome features (visual blocking,
          * page stats, console eval) and must only come from:
          * 1. Our own moz-extension:// content scripts (built-in extensions)
          * 2. The current top-level web page (not a cross-origin iframe)
          *
          * Rejects messages from about:blank, data:, javascript:, blob: origins.
          */
-        private fun isTrustedOmniOrigin(): Boolean {
+        private fun isTrustedSwiftOrigin(): Boolean {
             val url = tab.url
             if (url.isNullOrBlank()) return false
             // Always trust our own built-in extensions
@@ -325,7 +325,7 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
             val lower = url.lowercase()
             if (lower.startsWith("about:") || lower.startsWith("data:") ||
                 lower.startsWith("javascript:") || lower.startsWith("blob:")) {
-                Log.w(TAG, "🛡️ Rejected OMNI_* message from dangerous origin: $url")
+                Log.w(TAG, "🛡️ Rejected SWIFT_* message from dangerous origin: $url")
                 return false
             }
             // Trust any http/https page — the message came from the top-level content
@@ -339,15 +339,15 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
         ): GeckoResult<GeckoSession.PromptDelegate.PromptResponse>? {
             val message = prompt.message ?: ""
 
-            // All OMNI_* prefixed messages are privileged native-app channels.
+            // All SWIFT_* prefixed messages are privileged native-app channels.
             // Reject them from untrusted origins to prevent privilege escalation.
-            if (message.startsWith("OMNI_") && !isTrustedOmniOrigin()) {
-                Log.w(TAG, "🛡️ Blocked OMNI_* alert from untrusted origin: ${tab.url}, messagePrefix=${message.take(30)}")
+            if (message.startsWith("SWIFT_") && !isTrustedSwiftOrigin()) {
+                Log.w(TAG, "🛡️ Blocked SWIFT_* alert from untrusted origin: ${tab.url}, messagePrefix=${message.take(30)}")
                 return GeckoResult.fromValue(prompt.dismiss())
             }
 
-            if (message.startsWith("OMNI_VISUAL_BLOCK_ADD:")) {
-                val jsonStr = message.removePrefix("OMNI_VISUAL_BLOCK_ADD:")
+            if (message.startsWith("SWIFT_VISUAL_BLOCK_ADD:")) {
+                val jsonStr = message.removePrefix("SWIFT_VISUAL_BLOCK_ADD:")
                 try {
                     val obj = org.json.JSONObject(jsonStr)
                     val selector = obj.optString("selector", "")
@@ -370,21 +370,21 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
                 }
                 return GeckoResult.fromValue(prompt.dismiss())
             }
-            if (message.startsWith("OMNI_VISUAL_BLOCK_CANCEL:")) {
+            if (message.startsWith("SWIFT_VISUAL_BLOCK_CANCEL:")) {
                 viewModelScope.launch(Dispatchers.Main) {
                     isVisualBlockModeActive = false
                 }
                 return GeckoResult.fromValue(prompt.dismiss())
             }
-            if (message.startsWith("OMNI_VISUAL_BLOCK_SETTINGS:")) {
+            if (message.startsWith("SWIFT_VISUAL_BLOCK_SETTINGS:")) {
                 viewModelScope.launch(Dispatchers.Main) {
                     isVisualBlockModeActive = false
                     navigateToVisualBlockSettingsTrigger = true
                 }
                 return GeckoResult.fromValue(prompt.dismiss())
             }
-            if (message.startsWith("OMNI_IMAGES:")) {
-                val json = message.removePrefix("OMNI_IMAGES:")
+            if (message.startsWith("SWIFT_IMAGES:")) {
+                val json = message.removePrefix("SWIFT_IMAGES:")
                 try {
                     val jsonArray = org.json.JSONArray(json)
                     val rawUrls = mutableListOf<String>()
@@ -404,8 +404,8 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
                 }
                 return GeckoResult.fromValue(prompt.dismiss())
             }
-            if (message.startsWith("OMNI_EVAL_RESULT:")) {
-                val jsonStr = message.removePrefix("OMNI_EVAL_RESULT:")
+            if (message.startsWith("SWIFT_EVAL_RESULT:")) {
+                val jsonStr = message.removePrefix("SWIFT_EVAL_RESULT:")
                 try {
                     val obj = org.json.JSONObject(jsonStr)
                     val ok = obj.optBoolean("ok", true)
@@ -419,8 +419,8 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
                 }
                 return GeckoResult.fromValue(prompt.dismiss())
             }
-            if (message.startsWith("OMNI_PAGE_STATS:")) {
-                val jsonStr = message.removePrefix("OMNI_PAGE_STATS:")
+            if (message.startsWith("SWIFT_PAGE_STATS:")) {
+                val jsonStr = message.removePrefix("SWIFT_PAGE_STATS:")
                 try {
                     val obj = org.json.JSONObject(jsonStr)
                     val activeTab = tabs.find { it.id == activeTabId }
@@ -600,7 +600,7 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
                 }
             }
 
-            if (matches.isNotEmpty() && isOmniPasswordManagerEnabled) {
+            if (matches.isNotEmpty() && isSwiftPasswordManagerEnabled) {
                 viewModelScope.launch(Dispatchers.Main) {
                     autofillMatches = matches
                     showAutofillBottomSheet = true
@@ -626,8 +626,8 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
             } catch (e: Exception) {
                 try { java.net.URI(tab.url).host?.removePrefix("www.")?.lowercase() ?: "" } catch (ex: Exception) { "" }
             }
-            if (!isOmniPasswordManagerEnabled) {
-                Log.d(TAG, "Omni password manager is disabled — ignoring onLoginSave")
+            if (!isSwiftPasswordManagerEnabled) {
+                Log.d(TAG, "Swift password manager is disabled — ignoring onLoginSave")
                 return GeckoResult.fromValue(prompt.dismiss())
             }
             if (neverSavePasswordDomains.contains(host)) {
@@ -666,9 +666,9 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
             val maxScrollMetric = 100_000_000f
             title?.let {
                 // Intercept scroll metrics sent from injected JS
-                if (it.startsWith("__omni__:")) {
+                if (it.startsWith("__swift__:")) {
                     try {
-                        val parts = it.removePrefix("__omni__:").split(":")
+                        val parts = it.removePrefix("__swift__:").split(":")
                         if (parts.size >= 2) {
                             val scrollHeight = parts[0].toFloatOrNull()
                             val viewportHeight = parts[1].toFloatOrNull()
@@ -978,7 +978,7 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
                 return GeckoResult.fromValue(AllowOrDeny.DENY)
             }
 
-            // ── Native App Delegation: ordinary HTTP/HTTPS stays in Omni ─────────
+            // ── Native App Delegation: ordinary HTTP/HTTPS stays in Swift ─────────
             // An installed Android app must never take over merely because it can
             // handle the same HTTP/HTTPS URL (YouTube, Instagram, Maps, …). The
             // presence of a native handler must not pull the user out of the
@@ -1389,8 +1389,8 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
                         injectTranslateBadgeSuppressor()
                     }
                     if (showScrollButtons) {
-                        tab.session.loadUri("javascript:(function(){try{var s=document.createElement('style');s.id='omni-hide-scrollbars';s.innerHTML='*::-webkit-scrollbar { display: none !important; } html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; }';document.head.appendChild(s);}catch(e){}})();")
-                        tab.session.loadUri("javascript:(function(){try{var se=document.scrollingElement||document.documentElement||document.body;var sh=Math.max(document.documentElement?document.documentElement.scrollHeight:0,document.body?document.body.scrollHeight:0,se?se.scrollHeight:0);var vh=window.innerHeight||(document.documentElement?document.documentElement.clientHeight:0);if(sh&&vh){var ot=document.title;document.title='__omni__:'+sh+':'+vh;setTimeout(function(){if(document.title.indexOf('__omni__:')===0)document.title=ot;},10);}}catch(e){}})();")
+                        tab.session.loadUri("javascript:(function(){try{var s=document.createElement('style');s.id='swift-hide-scrollbars';s.innerHTML='*::-webkit-scrollbar { display: none !important; } html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; }';document.head.appendChild(s);}catch(e){}})();")
+                        tab.session.loadUri("javascript:(function(){try{var se=document.scrollingElement||document.documentElement||document.body;var sh=Math.max(document.documentElement?document.documentElement.scrollHeight:0,document.body?document.body.scrollHeight:0,se?se.scrollHeight:0);var vh=window.innerHeight||(document.documentElement?document.documentElement.clientHeight:0);if(sh&&vh){var ot=document.title;document.title='__swift__:'+sh+':'+vh;setTimeout(function(){if(document.title.indexOf('__swift__:')===0)document.title=ot;},10);}}catch(e){}})();")
                     }
                     applyVisualBlockRulesToTab(tab)
                 }
@@ -1463,7 +1463,7 @@ internal fun BrowserViewModel.injectStealthDefuserScriptlet(tab: TabState) {
 
 /**
  * Queries Android PackageManager to resolve non-browser native app handlers for deep links.
- * Filters out Omni Browser itself as well as generic web browsers.
+ * Filters out Swift Browser itself as well as generic web browsers.
  */
 internal fun getNativeAppHandlers(context: Context, uri: String): List<android.content.pm.ResolveInfo> {
     return try {
@@ -1542,12 +1542,12 @@ fun BrowserViewModel.injectExtensionOverlayMobileFix(tab: TabState) {
     val js = """
         (function() {
             try {
-                if (window.__omni_ext_compat_installed) return;
-                window.__omni_ext_compat_installed = true;
+                if (window.__swift_ext_compat_installed) return;
+                window.__swift_ext_compat_installed = true;
 
                 // ── 1. Static CSS: constrain ALL extension iframes universally ──
                 var style = document.createElement('style');
-                style.id = 'omni-ext-compat-css';
+                style.id = 'swift-ext-compat-css';
                 style.innerHTML = [
                     /* Any iframe served from a browser extension URL */
                     'iframe[src*="moz-extension://"],',
@@ -1707,10 +1707,10 @@ fun BrowserViewModel.injectExtensionPopupResponsiveFix(tab: TabState) {
                     existing.content = 'width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes';
                 }
 
-                if (document.getElementById('omni-ext-popup-responsive')) return;
+                if (document.getElementById('swift-ext-popup-responsive')) return;
 
                 var style = document.createElement('style');
-                style.id = 'omni-ext-popup-responsive';
+                style.id = 'swift-ext-popup-responsive';
                 style.innerHTML = [
                     /* Root layout — prevent horizontal overflow */
                     'html, body {',

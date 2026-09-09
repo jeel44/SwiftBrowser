@@ -175,9 +175,9 @@ fun BrowserViewModel.exportBookmarksToFile(
     viewModelScope.launch(Dispatchers.IO) {
         try {
             val collection = loadBookmarks(context)
-            val html = exportNetscapeBookmarkHtml(collection, title = "Omni Bookmarks")
+            val html = exportNetscapeBookmarkHtml(collection, title = "Swift Bookmarks")
 
-            val file = File(context.cacheDir, "omni_bookmarks_export.html")
+            val file = File(context.cacheDir, "swift_bookmarks_export.html")
             file.writeText(html, Charsets.UTF_8)
 
             val uri = androidx.core.content.FileProvider.getUriForFile(

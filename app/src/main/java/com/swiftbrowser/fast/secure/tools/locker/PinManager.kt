@@ -21,7 +21,7 @@ package com.swiftbrowser.fast.secure.tools.locker
 import android.content.Context
 
 class PinManager(context: Context) {
-    private val prefs = context.getSharedPreferences("omni_locker_prefs", Context.MODE_PRIVATE)
+    private val prefs = context.getSharedPreferences("swift_locker_prefs", Context.MODE_PRIVATE)
 
     fun isPinSet(): Boolean {
         return prefs.getString("in_app_pin", null) != null

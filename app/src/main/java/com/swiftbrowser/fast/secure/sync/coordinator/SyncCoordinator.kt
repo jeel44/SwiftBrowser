@@ -24,7 +24,7 @@ enum class SyncStatus {
 }
 
 enum class SyncBackend {
-    OMNI_LAN,
+    SWIFT_LAN,
     FIREFOX,
     BOTH
 }
@@ -39,7 +39,7 @@ data class SyncUiState(
     val lastSyncTimestamp: Long = 0L,
     val pendingOutboxCount: Int = 0,
     val statusMessage: String = "Ready",
-    val syncBackend: SyncBackend = SyncBackend.OMNI_LAN,
+    val syncBackend: SyncBackend = SyncBackend.SWIFT_LAN,
     val fxSyncEnabled: Boolean = false,
     val fxAccountEmail: String? = null
 )

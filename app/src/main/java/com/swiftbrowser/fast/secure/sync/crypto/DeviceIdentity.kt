@@ -38,7 +38,7 @@ class DeviceKeyManager(
         if (file.exists()) {
             val json = JSONObject(file.readText(Charsets.UTF_8))
             deviceId = json.optString("deviceId", UUID.randomUUID().toString())
-            deviceName = json.optString("deviceName", "Omni Device")
+            deviceName = json.optString("deviceName", "Swift Device")
             if (json.has("privateKey") && json.has("publicKey")) {
                 val privBytes = Base64.getDecoder().decode(json.getString("privateKey"))
                 val pubBytes = Base64.getDecoder().decode(json.getString("publicKey"))
@@ -52,7 +52,7 @@ class DeviceKeyManager(
             }
         } else {
             deviceId = UUID.randomUUID().toString()
-            deviceName = "Omni Device"
+            deviceName = "Swift Device"
             keyPair = CryptoEngine.generateKeyPair()
             saveIdentity(file)
         }

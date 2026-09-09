@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 /**
- * Centralized adaptive UI metrics for Omni Browser. Every dimension a screen needs
+ * Centralized adaptive UI metrics for Swift Browser. Every dimension a screen needs
  * to lay itself out on large screens comes from here — screens must not scatter
  * new tablet-specific constants. All values are derived from the current
  * [WindowAdaptiveLayout]; the optional user scale only affects glyph/chrome
@@ -97,7 +97,7 @@ data class AdaptiveUiMetrics(
 }
 
 /**
- * Builds the adaptive metric set for the current window. `userScale` is Omni's
+ * Builds the adaptive metric set for the current window. `userScale` is Swift's
  * user chrome scale (0.75–1.15); it scales interactive chrome heights/sizes only,
  * never breakpoint structure, so layouts stay stable across scale changes.
  */

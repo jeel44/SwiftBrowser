@@ -215,7 +215,7 @@ fun FxAuthDialog(
                                                 capturedEmail = email.trim()
                                             }
                                         }
-                                    }, "OmniAuthBridge")
+                                    }, "SwiftAuthBridge")
 
                                     webViewClient = object : WebViewClient() {
                                         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -238,25 +238,25 @@ fun FxAuthDialog(
                                                     function scanEmails() {
                                                         var inputs = document.querySelectorAll('input[type="email"], input[name="email"]');
                                                         inputs.forEach(function(inp) {
-                                                            if (inp.value && inp.value.indexOf('@') !== -1 && window.OmniAuthBridge) {
-                                                                window.OmniAuthBridge.onEmailDetected(inp.value);
+                                                            if (inp.value && inp.value.indexOf('@') !== -1 && window.SwiftAuthBridge) {
+                                                                window.SwiftAuthBridge.onEmailDetected(inp.value);
                                                             }
                                                             inp.addEventListener('input', function() {
-                                                                if (this.value && this.value.indexOf('@') !== -1 && window.OmniAuthBridge) {
-                                                                    window.OmniAuthBridge.onEmailDetected(this.value);
+                                                                if (this.value && this.value.indexOf('@') !== -1 && window.SwiftAuthBridge) {
+                                                                    window.SwiftAuthBridge.onEmailDetected(this.value);
                                                                 }
                                                             });
                                                             inp.addEventListener('change', function() {
-                                                                if (this.value && this.value.indexOf('@') !== -1 && window.OmniAuthBridge) {
-                                                                    window.OmniAuthBridge.onEmailDetected(this.value);
+                                                                if (this.value && this.value.indexOf('@') !== -1 && window.SwiftAuthBridge) {
+                                                                    window.SwiftAuthBridge.onEmailDetected(this.value);
                                                                 }
                                                             });
                                                         });
                                                         var labels = document.querySelectorAll('.email, [data-testid="user-email"], .user-email, .account-email');
                                                         labels.forEach(function(lbl) {
                                                             var txt = lbl.innerText || lbl.textContent;
-                                                            if (txt && txt.indexOf('@') !== -1 && window.OmniAuthBridge) {
-                                                                window.OmniAuthBridge.onEmailDetected(txt.trim());
+                                                            if (txt && txt.indexOf('@') !== -1 && window.SwiftAuthBridge) {
+                                                                window.SwiftAuthBridge.onEmailDetected(txt.trim());
                                                             }
                                                         });
                                                     }

@@ -101,7 +101,7 @@ fun SwiftConfigContent(
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                                 Text(
-                                    text = "omni:config",
+                                    text = "swift:config",
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.Bold,
                                     fontFamily = FontFamily.Monospace,
@@ -176,7 +176,7 @@ fun SwiftConfigContent(
                             checked = viewModel.doNotTrack,
                             onCheckedChange = {
                                 viewModel.saveDoNotTrack(context, it)
-                                Toast.makeText(context, "omni:config: DNT ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: DNT ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     ),
@@ -188,19 +188,19 @@ fun SwiftConfigContent(
                             checked = viewModel.isFingerprintProtection,
                             onCheckedChange = {
                                 viewModel.saveFingerprintProtection(context, it)
-                                Toast.makeText(context, "omni:config: Fingerprint shield ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: Fingerprint shield ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     ),
                     ConfigItemData(
                         key = "privacy.clearOnShutdown.cookies",
                         title = "Clear Cookies & Cache on Shutdown",
-                        description = "Automatically purges session state & cookies whenever Omni Browser exits.",
+                        description = "Automatically purges session state & cookies whenever Swift Browser exits.",
                         control = ConfigControl.SwitchControl(
                             checked = viewModel.isClearCookiesOnShutdown,
                             onCheckedChange = {
                                 viewModel.saveClearCookiesOnShutdown(context, it)
-                                Toast.makeText(context, "omni:config: Clear on shutdown ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: Clear on shutdown ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     )
@@ -220,7 +220,7 @@ fun SwiftConfigContent(
                             checked = viewModel.httpsOnlyMode,
                             onCheckedChange = {
                                 viewModel.saveHttpsOnlyMode(context, it)
-                                Toast.makeText(context, "omni:config: HTTPS-Only ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: HTTPS-Only ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     ),
@@ -232,7 +232,7 @@ fun SwiftConfigContent(
                             checked = viewModel.isDisableWebrtc,
                             onCheckedChange = {
                                 viewModel.saveDisableWebrtc(context, it)
-                                Toast.makeText(context, "omni:config: WebRTC Block ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: WebRTC Block ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     ),
@@ -244,7 +244,7 @@ fun SwiftConfigContent(
                             checked = viewModel.isBlockQuic,
                             onCheckedChange = {
                                 viewModel.saveBlockQuic(context, it)
-                                Toast.makeText(context, "omni:config: QUIC Shield ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: QUIC Shield ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     ),
@@ -266,7 +266,7 @@ fun SwiftConfigContent(
                                     else -> 1
                                 }
                                 viewModel.saveSafeBrowsingLevel(context, level)
-                                Toast.makeText(context, "omni:config: Safe browsing set to $option", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: Safe browsing set to $option", Toast.LENGTH_SHORT).show()
                             }
                         )
                     )
@@ -286,7 +286,7 @@ fun SwiftConfigContent(
                             checked = viewModel.isWebRenderEnabled,
                             onCheckedChange = {
                                 viewModel.saveWebRenderEnabled(context, it)
-                                Toast.makeText(context, "omni:config: WebRender ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: WebRender ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     ),
@@ -298,7 +298,7 @@ fun SwiftConfigContent(
                             checked = viewModel.isGpuAccelerationEnabled,
                             onCheckedChange = {
                                 viewModel.saveGpuAccelerationEnabled(context, it)
-                                Toast.makeText(context, "omni:config: GPU Compositor ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: GPU Compositor ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     ),
@@ -310,7 +310,7 @@ fun SwiftConfigContent(
                             checked = viewModel.isForceHighRefreshRate,
                             onCheckedChange = {
                                 viewModel.saveForceHighRefreshRate(context, it)
-                                Toast.makeText(context, "omni:config: 120Hz Force ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: 120Hz Force ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     )
@@ -330,7 +330,7 @@ fun SwiftConfigContent(
                             checked = viewModel.preloadPages > 0,
                             onCheckedChange = {
                                 viewModel.savePreloadPages(context, if (it) 1 else 0)
-                                Toast.makeText(context, "omni:config: Preload ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: Preload ${if (it) "Enabled" else "Disabled"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     ),
@@ -342,7 +342,7 @@ fun SwiftConfigContent(
                             checked = viewModel.accessibilityForceZoom,
                             onCheckedChange = {
                                 viewModel.saveAccessibilityForceZoom(context, it)
-                                Toast.makeText(context, "omni:config: Force zoom ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: Force zoom ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     )
@@ -362,7 +362,7 @@ fun SwiftConfigContent(
                             checked = viewModel.isDohEnabled,
                             onCheckedChange = {
                                 viewModel.saveDohEnabled(context, it)
-                                Toast.makeText(context, "omni:config: DoH ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: DoH ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     ),
@@ -389,7 +389,7 @@ fun SwiftConfigContent(
                                     else -> "https://cloudflare-dns.com/dns-query"
                                 }
                                 viewModel.saveDohUri(context, uri)
-                                Toast.makeText(context, "omni:config: DoH provider set to $option", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: DoH provider set to $option", Toast.LENGTH_SHORT).show()
                             }
                         )
                     )
@@ -409,7 +409,7 @@ fun SwiftConfigContent(
                             checked = viewModel.isRandomizeUa,
                             onCheckedChange = {
                                 viewModel.saveRandomizeUa(context, it)
-                                Toast.makeText(context, "omni:config: UA Randomization ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: UA Randomization ${if (it) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     ),
@@ -421,7 +421,7 @@ fun SwiftConfigContent(
                             checked = viewModel.isDesktopMode,
                             onCheckedChange = {
                                 viewModel.toggleDesktopMode(context)
-                                Toast.makeText(context, "omni:config: Desktop Viewport ${if (viewModel.isDesktopMode) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "swift:config: Desktop Viewport ${if (viewModel.isDesktopMode) "ON" else "OFF"}", Toast.LENGTH_SHORT).show()
                             }
                         )
                     )

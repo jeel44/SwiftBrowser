@@ -29,8 +29,8 @@ data class SyncEvent(
 )
 
 object SyncNotificationManager {
-    const val CHANNEL_ID = "omni_sync_notifications"
-    const val CHANNEL_NAME = "Omni Sync & Firefox Sync"
+    const val CHANNEL_ID = "swift_sync_notifications"
+    const val CHANNEL_NAME = "Swift Sync & Firefox Sync"
     private const val NOTIFICATION_ID_BASE = 87650
 
     private val _syncEvents = MutableSharedFlow<SyncEvent>(extraBufferCapacity = 32)
@@ -53,7 +53,7 @@ object SyncNotificationManager {
     }
 
     fun notifySyncSuccess(context: Context, peerName: String, bookmarkCount: Int, tabCount: Int) {
-        val title = "Omni Sync: Synchronized"
+        val title = "Swift Sync: Synchronized"
         val message = buildString {
             append("Synced with $peerName (")
             val parts = mutableListOf<String>()
@@ -69,7 +69,7 @@ object SyncNotificationManager {
     }
 
     fun notifyDevicePaired(context: Context, peerName: String) {
-        val title = "Omni Sync: Device Linked"
+        val title = "Swift Sync: Device Linked"
         val message = "Successfully paired with $peerName via encrypted LAN."
 
         _syncEvents.tryEmit(SyncEvent(SyncNotificationType.DEVICE_PAIRED, title, message))
@@ -85,7 +85,7 @@ object SyncNotificationManager {
     }
 
     fun notifySyncError(context: Context, error: String) {
-        val title = "Omni Sync Notice"
+        val title = "Swift Sync Notice"
         val message = error
 
         _syncEvents.tryEmit(SyncEvent(SyncNotificationType.SYNC_ERROR, title, message))
@@ -97,7 +97,7 @@ object SyncNotificationManager {
 
             val intent = Intent(context, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                putExtra("NAVIGATE_TO", "omni_sync")
+                putExtra("NAVIGATE_TO", "swift_sync")
             }
             val pendingIntent = PendingIntent.getActivity(
                 context,

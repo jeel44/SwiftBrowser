@@ -80,7 +80,7 @@ data class MangaTypographyStyle(
  * Allows applying typography and language options globally across all translations.
  */
 object MangaPreferences {
-    private const val PREFS_NAME = "omni_manga_preferences"
+    private const val PREFS_NAME = "swift_manga_preferences"
     private const val KEY_APPLY_TO_ALL = "apply_to_all_manga"
     private const val KEY_FONT_SIZE_SCALE = "font_size_scale"
     private const val KEY_FONT_FAMILY = "font_family"

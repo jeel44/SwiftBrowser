@@ -109,7 +109,7 @@ class MainActivity : FragmentActivity() {
 
     override fun attachBaseContext(newBase: android.content.Context) {
         val lang = try {
-            val sp = newBase.getSharedPreferences("omni_prefs", android.content.Context.MODE_PRIVATE)
+            val sp = newBase.getSharedPreferences("swift_prefs", android.content.Context.MODE_PRIVATE)
             sp.getString("selected_language", "en") ?: "en"
         } catch (e: Exception) {
             "en"
@@ -160,9 +160,9 @@ class MainActivity : FragmentActivity() {
 
         // --- Global Robust Uncaught Exception Handler (with crash-loop protection) ---
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
-            android.util.Log.e("OMNI_CRASH", "🚨 Uncaught Exception in thread ${thread.name}!", throwable)
-            android.util.Log.e("GeckoConsole", "🚨 OMNI_CRASH in thread ${thread.name}: ${throwable.stackTraceToString()}")
-            val crashPrefs = getSharedPreferences("omni_crash_prefs", android.content.Context.MODE_PRIVATE)
+            android.util.Log.e("SWIFT_CRASH", "🚨 Uncaught Exception in thread ${thread.name}!", throwable)
+            android.util.Log.e("GeckoConsole", "🚨 SWIFT_CRASH in thread ${thread.name}: ${throwable.stackTraceToString()}")
+            val crashPrefs = getSharedPreferences("swift_crash_prefs", android.content.Context.MODE_PRIVATE)
             val crashMsg = throwable.localizedMessage ?: throwable.toString()
             crashPrefs.edit().putString("last_crash_msg", crashMsg).apply()
 
@@ -182,7 +182,7 @@ class MainActivity : FragmentActivity() {
 
             if (crashCount >= 3) {
                 // Crash loop detected — stop auto-restarting, exit cleanly
-                android.util.Log.e("OMNI_CRASH", "Crash loop detected ($crashCount crashes). Not restarting.")
+                android.util.Log.e("SWIFT_CRASH", "Crash loop detected ($crashCount crashes). Not restarting.")
                 crashPrefs.edit().putInt("crash_loop_count", 0).apply()
                 android.os.Process.killProcess(android.os.Process.myPid())
                 java.lang.System.exit(1)
@@ -203,7 +203,7 @@ class MainActivity : FragmentActivity() {
 
         // App started successfully — reset the crash-loop counter so that
         // an isolated crash later doesn't count toward the rapid-restart threshold.
-        getSharedPreferences("omni_crash_prefs", android.content.Context.MODE_PRIVATE)
+        getSharedPreferences("swift_crash_prefs", android.content.Context.MODE_PRIVATE)
             .edit().putInt("crash_loop_count", 0).apply()
 
         // Pre-apply persisted theme values to ViewModel so Compose renders
@@ -552,7 +552,7 @@ class MainActivity : FragmentActivity() {
                                     navController.navigate("offline_ai")
                                 },
                                 onOpenSync = {
-                                    navController.navigate("omni_sync_showcase")
+                                    navController.navigate("swift_sync_showcase")
                                 },
                                 onSettingsImported = {
                                     this@MainActivity.recreate()
@@ -580,8 +580,8 @@ class MainActivity : FragmentActivity() {
                             )
                         }
 
-                        // Omni Sync Showcase & Feature Screen
-                        composable("omni_sync_showcase") {
+                        // Swift Sync Showcase & Feature Screen
+                        composable("swift_sync_showcase") {
                             com.swiftbrowser.fast.secure.settings.SwiftSyncShowcaseScreen(
                                 viewModel = browserViewModel,
                                 onNavigateBack = { navController.popBackStack() }
@@ -892,7 +892,7 @@ class MainActivity : FragmentActivity() {
     // Session recovery lifecycle hooks
     //
     // These guard against blank-page / session-loss bugs when Android backgrounds,
-    // recreates, or kills the Omni process, or when the user returns from an external
+    // recreates, or kills the Swift process, or when the user returns from an external
     // application (UPI/PayPal/banking/OAuth/camera/file picker).
     // ─────────────────────────────────────────────────────────────────────────────
 
@@ -974,16 +974,16 @@ class MainActivity : FragmentActivity() {
         // Persist lightweight, non-sensitive recovery metadata. This is NOT the primary
         // persistence mechanism (that is the durable SessionState file); it supplements it
         // for fast Activity recreation (config change) without a full process restart.
-        outState.putString("omni_active_tab_id", browserViewModel.activeTabId)
-        outState.putBoolean("omni_external_handoff", browserViewModel.isInExternalAppHandoff)
-        outState.putBoolean("omni_process_recreated", browserViewModel.isProcessRecreated)
+        outState.putString("swift_active_tab_id", browserViewModel.activeTabId)
+        outState.putBoolean("swift_external_handoff", browserViewModel.isInExternalAppHandoff)
+        outState.putBoolean("swift_process_recreated", browserViewModel.isProcessRecreated)
         SessionRecoveryDiagnostics.logActivitySaveInstanceState(browserViewModel.activeTabId)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        val activeTabId = savedInstanceState.getString("omni_active_tab_id")
-        val processRecreated = savedInstanceState.getBoolean("omni_process_recreated", false)
+        val activeTabId = savedInstanceState.getString("swift_active_tab_id")
+        val processRecreated = savedInstanceState.getBoolean("swift_process_recreated", false)
         if (processRecreated) {
             browserViewModel.isProcessRecreated = true
             browserViewModel.recoveryCoordinator?.onProcessRecreated()

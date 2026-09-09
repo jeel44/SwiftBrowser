@@ -19,7 +19,7 @@ import javax.crypto.spec.SecretKeySpec
 class MasterPasswordManager(context: Context) {
 
     companion object {
-        private const val PREF_FILE          = "omni_password_vault_prefs"
+        private const val PREF_FILE          = "swift_password_vault_prefs"
         private const val SALT_KEY           = "pw_salt"
         private const val HASH_KEY           = "pw_hash"
         private const val ITERATIONS_KEY     = "pw_iterations"
@@ -28,7 +28,7 @@ class MasterPasswordManager(context: Context) {
         private const val BIO_WRAPPED_KEY    = "pw_bio_wrapped_key"
         private const val BIO_IV_KEY         = "pw_bio_iv"
 
-        private const val KEYSTORE_ALIAS     = "omni_vault_bio_key"
+        private const val KEYSTORE_ALIAS     = "swift_vault_bio_key"
         private const val ANDROID_KEYSTORE   = "AndroidKeyStore"
         private const val AES_GCM_NO_PAD     = "AES/GCM/NoPadding"
         private const val GCM_TAG_LEN        = 128

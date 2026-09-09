@@ -32,7 +32,7 @@ class VpnManager(private val context: Context) {
 
     companion object {
         private const val TAG = "VpnManager"
-        private const val TUNNEL_NAME = "omni_wg_tunnel"
+        private const val TUNNEL_NAME = "swift_wg_tunnel"
     }
 
     sealed class VpnState {

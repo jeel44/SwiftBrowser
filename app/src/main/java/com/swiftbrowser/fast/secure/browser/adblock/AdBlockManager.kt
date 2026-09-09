@@ -386,8 +386,8 @@ class AdBlockManager(private val context: Context) {
         if (!isMasterEnabled) return ""
         return """
             (function() {
-                if (window.__omniStealthDefuserActive) return;
-                window.__omniStealthDefuserActive = true;
+                if (window.__swiftStealthDefuserActive) return;
+                window.__swiftStealthDefuserActive = true;
 
                 /* 1. Stub common ad network globals expected by site scripts */
                 window.google_ad_client = true;

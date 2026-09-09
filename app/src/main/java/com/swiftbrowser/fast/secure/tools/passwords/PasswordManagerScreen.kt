@@ -274,7 +274,7 @@ private fun VaultScreen(
                             DropdownMenuItem(
                                 text = {
                                     Text(
-                                        if (browserViewModel.isOmniPasswordManagerEnabled)
+                                        if (browserViewModel.isSwiftPasswordManagerEnabled)
                                             "Turn off password manager"
                                         else
                                             "Turn on password manager"
@@ -282,7 +282,7 @@ private fun VaultScreen(
                                 },
                                 onClick = {
                                     overflowExpanded = false
-                                    browserViewModel.setOmniPasswordManagerEnabled(!browserViewModel.isOmniPasswordManagerEnabled, context)
+                                    browserViewModel.setSwiftPasswordManagerEnabled(!browserViewModel.isSwiftPasswordManagerEnabled, context)
                                 }
                             )
                             DropdownMenuItem(
@@ -319,13 +319,13 @@ private fun VaultScreen(
                 .fillMaxHeight()
                 .padding(paddingValues)
         ) {
-            // Omni Password Manager Active Toggle Card
+            // Swift Password Manager Active Toggle Card
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp, vertical = 6.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = if (browserViewModel.isOmniPasswordManagerEnabled)
+                    containerColor = if (browserViewModel.isSwiftPasswordManagerEnabled)
                         MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.35f)
                     else
                         MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
@@ -346,7 +346,7 @@ private fun VaultScreen(
                     ) {
                         Surface(
                             shape = CircleShape,
-                            color = if (browserViewModel.isOmniPasswordManagerEnabled)
+                            color = if (browserViewModel.isSwiftPasswordManagerEnabled)
                                 MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)
                             else
                                 MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f),
@@ -357,7 +357,7 @@ private fun VaultScreen(
                                     imageVector = Icons.Filled.Lock,
                                     contentDescription = null,
                                     modifier = Modifier.size(18.dp),
-                                    tint = if (browserViewModel.isOmniPasswordManagerEnabled)
+                                    tint = if (browserViewModel.isSwiftPasswordManagerEnabled)
                                         MaterialTheme.colorScheme.primary
                                     else
                                         MaterialTheme.colorScheme.onSurfaceVariant
@@ -366,13 +366,13 @@ private fun VaultScreen(
                         }
                         Column(modifier = Modifier.padding(end = 8.dp)) {
                             Text(
-                                text = "Omni Password Manager",
+                                text = "Swift Password Manager",
                                 style = MaterialTheme.typography.titleSmall,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = if (browserViewModel.isOmniPasswordManagerEnabled)
+                                text = if (browserViewModel.isSwiftPasswordManagerEnabled)
                                     "Active • Saves logins and offers autofill"
                                 else
                                     "Turned off • No saving or autofill suggestions",
@@ -382,9 +382,9 @@ private fun VaultScreen(
                         }
                     }
                     Switch(
-                        checked = browserViewModel.isOmniPasswordManagerEnabled,
+                        checked = browserViewModel.isSwiftPasswordManagerEnabled,
                         onCheckedChange = { enabled ->
-                            browserViewModel.setOmniPasswordManagerEnabled(enabled, context)
+                            browserViewModel.setSwiftPasswordManagerEnabled(enabled, context)
                         }
                     )
                 }

@@ -742,7 +742,7 @@ fun VideoPlayerScreen(
             android.util.Log.e("VideoPlayer", "Failed to initialize ExoPlayer: ${e.message}", e)
             viewModel?.cancelNativeHandoffAndResumeWeb()
             coroutineScope.launch {
-                Toast.makeText(context, "Unable to play in Omni Player: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Unable to play in Swift Player: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
                 kotlinx.coroutines.delay(300)
                 onNavigateBack()
             }

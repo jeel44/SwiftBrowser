@@ -259,13 +259,13 @@ fun PrivacySecurityScreen(
                     )
                     HorizontalDivider(color = dividerColor, modifier = Modifier.padding(horizontal = 16.dp))
 
-                    // Item 9: Omni Password Manager Master Switch
+                    // Item 9: Swift Password Manager Master Switch
                     SettingsSwitchRow(
                         icon = Icons.Rounded.Key,
-                        title = "Omni Password Manager",
-                        subtitle = if (viewModel.isOmniPasswordManagerEnabled) "Save and autofill passwords with Omni Vault" else "Disabled",
-                        checked = viewModel.isOmniPasswordManagerEnabled,
-                        onCheckedChange = { viewModel.setOmniPasswordManagerEnabled(it, context) },
+                        title = "Swift Password Manager",
+                        subtitle = if (viewModel.isSwiftPasswordManagerEnabled) "Save and autofill passwords with Swift Vault" else "Disabled",
+                        checked = viewModel.isSwiftPasswordManagerEnabled,
+                        onCheckedChange = { viewModel.setSwiftPasswordManagerEnabled(it, context) },
                         textPrimaryColor = textPrimaryColor,
                         textSecondaryColor = textSecondaryColor,
                         accentColor = accentColor
@@ -278,7 +278,7 @@ fun PrivacySecurityScreen(
                         title = stringResource(id = R.string.autofill_provider_title),
                         subtitle = when (viewModel.autofillProviderMode) {
                             BrowserViewModel.AutofillProviderMode.THIRD_PARTY -> stringResource(R.string.autofill_provider_system)
-                            BrowserViewModel.AutofillProviderMode.OMNI_VAULT -> stringResource(R.string.autofill_provider_swift)
+                            BrowserViewModel.AutofillProviderMode.SWIFT_VAULT -> stringResource(R.string.autofill_provider_swift)
                             BrowserViewModel.AutofillProviderMode.BOTH -> stringResource(R.string.autofill_provider_both)
                         },
                         onClick = { showAutofillProviderDialog = true },
@@ -450,7 +450,7 @@ fun PrivacySecurityScreen(
         val steps = listOf(
             Triple(
                 "Search and suggestions",
-                "As you type in the address bar, Omni Browser queries suggestions from your selected search engine. Using privacy-centric engines like DuckDuckGo or Startpage helps block search profiling.",
+                "As you type in the address bar, Swift Browser queries suggestions from your selected search engine. Using privacy-centric engines like DuckDuckGo or Startpage helps block search profiling.",
                 Icons.Rounded.Search
             ),
             Triple(
@@ -566,7 +566,7 @@ fun PrivacySecurityScreen(
             title = { Text("Ad privacy settings", fontWeight = FontWeight.Bold) },
             text = {
                 Text(
-                    "Omni Browser blocks known third-party ad networks, telemetry trackers, and fingerprinters natively inside GeckoView. We do not support targeted site-based advertising protocols.",
+                    "Swift Browser blocks known third-party ad networks, telemetry trackers, and fingerprinters natively inside GeckoView. We do not support targeted site-based advertising protocols.",
                     lineHeight = 22.sp
                 )
             },
@@ -659,7 +659,7 @@ fun PrivacySecurityScreen(
     if (showAutofillProviderDialog) {
         val autofillOptions = listOf(
             BrowserViewModel.AutofillProviderMode.THIRD_PARTY to stringResource(R.string.autofill_provider_system),
-            BrowserViewModel.AutofillProviderMode.OMNI_VAULT to stringResource(R.string.autofill_provider_swift),
+            BrowserViewModel.AutofillProviderMode.SWIFT_VAULT to stringResource(R.string.autofill_provider_swift),
             BrowserViewModel.AutofillProviderMode.BOTH to stringResource(R.string.autofill_provider_both)
         )
         AlertDialog(

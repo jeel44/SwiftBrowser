@@ -118,7 +118,7 @@ class ModelDownloader(
         connection.requestMethod = "GET"
         connection.connectTimeout = connectTimeoutMs
         connection.readTimeout = readTimeoutMs
-        connection.setRequestProperty("User-Agent", "OmniBrowserOfflineAI/1.0")
+        connection.setRequestProperty("User-Agent", "SwiftBrowserOfflineAI/1.0")
         connection.setRequestProperty("Accept-Encoding", "identity")
         if (existing > 0 && existing < total) {
             connection.setRequestProperty("Range", "bytes=$existing-")

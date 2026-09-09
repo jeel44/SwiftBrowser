@@ -180,11 +180,11 @@ class VisualBlockManager(private val context: Context) {
     fun getInspectorJsScript(bottomOffsetPx: Int = 96): String {
         return """
             javascript:(function() {
-                if (window.__omniVisualBlockActive) {
-                    if (window.__omniVisualBlockCleanup) window.__omniVisualBlockCleanup();
+                if (window.__swiftVisualBlockActive) {
+                    if (window.__swiftVisualBlockCleanup) window.__swiftVisualBlockCleanup();
                     return;
                 }
-                window.__omniVisualBlockActive = true;
+                window.__swiftVisualBlockActive = true;
 
                 let selectedEl = null;
                 let hoverOverlay = null;
@@ -192,14 +192,14 @@ class VisualBlockManager(private val context: Context) {
 
                 function createOverlay() {
                     hoverOverlay = document.createElement('div');
-                    hoverOverlay.id = 'omni-visual-block-overlay';
+                    hoverOverlay.id = 'swift-visual-block-overlay';
                     hoverOverlay.style.cssText = 'position: absolute !important; z-index: 2147483646 !important; background: rgba(255, 59, 48, 0.25) !important; border: 2px solid #FF3B30 !important; pointer-events: none !important; transition: all 0.1s ease !important; box-sizing: border-box !important; border-radius: 4px !important; display: none !important;';
                     document.body.appendChild(hoverOverlay);
                 }
 
                 function createToolbar() {
                     actionToolbar = document.createElement('div');
-                    actionToolbar.id = 'omni-visual-block-toolbar';
+                    actionToolbar.id = 'swift-visual-block-toolbar';
                     actionToolbar.style.cssText = 'position: fixed !important; bottom: ${bottomOffsetPx}px !important; left: 50% !important; transform: translateX(-50%) !important; z-index: 2147483647 !important; background: #1C1C1E !important; color: #FFFFFF !important; font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important; font-size: 12px !important; font-weight: 600 !important; padding: 8px 12px !important; border-radius: 30px !important; display: flex !important; align-items: center !important; gap: 8px !important; box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important; border: 1px solid rgba(255,255,255,0.18) !important; backdrop-filter: blur(16px) !important; width: auto !important; max-width: 92% !important; box-sizing: border-box !important;';
                     
                     actionToolbar.innerHTML = '<span id="swift-vb-text" style="max-width: 70px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; opacity: 0.85 !important; flex-shrink: 1 !important;">Tap element</span>' +
@@ -214,7 +214,7 @@ class VisualBlockManager(private val context: Context) {
                         e.stopPropagation();
                         e.preventDefault();
                         cleanup();
-                        alert('OMNI_VISUAL_BLOCK_SETTINGS:true');
+                        alert('SWIFT_VISUAL_BLOCK_SETTINGS:true');
                     });
 
                     document.getElementById('swift-vb-parent').addEventListener('click', function(e) {
@@ -234,19 +234,19 @@ class VisualBlockManager(private val context: Context) {
                         const previewText = (selectedEl.innerText || selectedEl.alt || selectedEl.title || selectedEl.tagName).trim().substring(0, 60);
                         
                         selectedEl.style.display = 'none';
-                        selectedEl.setAttribute('data-omni-blocked', 'true');
+                        selectedEl.setAttribute('data-swift-blocked', 'true');
                         
                         const domain = (window.location.hostname || '*').replace(/^www\./, '');
                         const payload = JSON.stringify({ selector: selector, preview: previewText, domain: domain });
                         cleanup();
-                        alert('OMNI_VISUAL_BLOCK_ADD:' + payload);
+                        alert('SWIFT_VISUAL_BLOCK_ADD:' + payload);
                     });
 
                     document.getElementById('swift-vb-cancel').addEventListener('click', function(e) {
                         e.stopPropagation();
                         e.preventDefault();
                         cleanup();
-                        alert('OMNI_VISUAL_BLOCK_CANCEL:true');
+                        alert('SWIFT_VISUAL_BLOCK_CANCEL:true');
                     });
                 }
 
@@ -301,14 +301,14 @@ class VisualBlockManager(private val context: Context) {
                 }
 
                 function cleanup() {
-                    window.__omniVisualBlockActive = false;
+                    window.__swiftVisualBlockActive = false;
                     document.removeEventListener('click', handlePointer, true);
                     document.removeEventListener('touchstart', handlePointer, true);
                     if (hoverOverlay) hoverOverlay.remove();
                     if (actionToolbar) actionToolbar.remove();
                 }
 
-                window.__omniVisualBlockCleanup = cleanup;
+                window.__swiftVisualBlockCleanup = cleanup;
                 createOverlay();
                 createToolbar();
                 document.addEventListener('click', handlePointer, true);

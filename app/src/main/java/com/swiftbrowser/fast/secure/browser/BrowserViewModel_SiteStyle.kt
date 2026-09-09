@@ -106,7 +106,7 @@ fun BrowserViewModel.applySiteStyleToTab(targetTab: TabState? = null) {
                 g-card, g-inner-card, g-header, g-flat-button, g-expandable-card, c-wiz,
                 .g, .kp-blk, .xpd, .cUnBl, .MjjYud, .vdLWh, .wDYH0e, .K5qjJc, .g-blk, .sfbg, .e222eb, .minidiv, .appbar, #aria-main, #cnt, #rcnt, [data-async-context],
                 .A8SBwf, #searchform, .tsf, .mJ2Mod, .PZPZlf, .QCzoEc, .Lj9dx, .ULSxyf {
-                    &:not(.omni-video-player-active):not(.omni-video-player-active *):not([class*="player" i]):not([class*="player" i] *):not([class*="video" i]):not([class*="video" i] *) {
+                    &:not(.swift-video-player-active):not(.swift-video-player-active *):not([class*="player" i]):not([class*="player" i] *):not([class*="video" i]):not([class*="video" i] *) {
                         background-color: #000000 !important;
                         background: #000000 !important;
                         color: #f1f5f9 !important;
@@ -194,7 +194,7 @@ fun BrowserViewModel.applySiteStyleToTab(targetTab: TabState? = null) {
                 section, article, header, nav, footer, aside, dialog,
                 .container, .wrapper, .content, .main-content, .layout, .page,
                 [class*="container" i], [class*="wrapper" i], [class*="layout" i], [class*="content" i], [class*="page" i] {
-                    &:not(.omni-video-player-active):not(.omni-video-player-active *):not([class*="player" i]):not([class*="player" i] *):not([class*="video" i]):not([class*="video" i] *) {
+                    &:not(.swift-video-player-active):not(.swift-video-player-active *):not([class*="player" i]):not([class*="player" i] *):not([class*="video" i]):not([class*="video" i] *) {
                         background-color: #121214 !important;
                         background: #121214 !important;
                         color: #f1f5f9 !important;
@@ -203,7 +203,7 @@ fun BrowserViewModel.applySiteStyleToTab(targetTab: TabState? = null) {
                 .card, .panel, .box, .sidebar, .modal, .dropdown, .menu,
                 [class*="card" i], [class*="panel" i], [class*="box" i], [class*="sidebar" i], [class*="modal" i], [class*="menu" i], [class*="list" i],
                 table, tr, td, th, ul, ol, li, dl, dt, dd {
-                    &:not(.omni-video-player-active):not(.omni-video-player-active *):not([class*="player" i]):not([class*="player" i] *):not([class*="video" i]):not([class*="video" i] *) {
+                    &:not(.swift-video-player-active):not(.swift-video-player-active *):not([class*="player" i]):not([class*="player" i] *):not([class*="video" i]):not([class*="video" i] *) {
                         background-color: #18191c !important;
                         background: #18191c !important;
                         border-color: #2e3035 !important;
@@ -332,7 +332,7 @@ fun BrowserViewModel.applySiteStyleToTab(targetTab: TabState? = null) {
 
     val js = """
         javascript:(function() {
-            const id = 'omni-custom-site-style';
+            const id = 'swift-custom-site-style';
             const metaId = id + '-meta';
             const target = document.head || document.documentElement;
             if (!target) return;
@@ -377,8 +377,8 @@ fun BrowserViewModel.applySiteStyleToTab(targetTab: TabState? = null) {
                             let depth = 0;
                             while (parent && depth < 5) {
                                 if (parent.tagName === 'BODY' || parent.tagName === 'HTML') break;
-                                if (!parent.classList.contains('omni-video-player-active')) {
-                                    parent.classList.add('omni-video-player-active');
+                                if (!parent.classList.contains('swift-video-player-active')) {
+                                    parent.classList.add('swift-video-player-active');
                                 }
                                 parent = parent.parentElement;
                                 depth++;
@@ -393,12 +393,12 @@ fun BrowserViewModel.applySiteStyleToTab(targetTab: TabState? = null) {
                         const nonMediaEls = document.querySelectorAll('div, section, article, nav, header, footer, main, form, table, g-card, c-wiz');
                         for (let i = 0; i < nonMediaEls.length; i++) {
                             const el = nonMediaEls[i];
-                            if (el.__omniOled) continue;
+                            if (el.__swiftOled) continue;
                             
                             let isVideoPlayer = false;
                             let temp = el;
                             while (temp) {
-                                if (temp.classList && temp.classList.contains('omni-video-player-active')) {
+                                if (temp.classList && temp.classList.contains('swift-video-player-active')) {
                                     isVideoPlayer = true;
                                     break;
                                 }
@@ -410,7 +410,7 @@ fun BrowserViewModel.applySiteStyleToTab(targetTab: TabState? = null) {
                             if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'rgb(0, 0, 0)') {
                                 el.style.setProperty('background-color', '#000000', 'important');
                                 el.style.setProperty('background', '#000000', 'important');
-                                el.__omniOled = true;
+                                el.__swiftOled = true;
                             }
                         }
                     } catch(e) {}
@@ -427,15 +427,15 @@ fun BrowserViewModel.applySiteStyleToTab(targetTab: TabState? = null) {
                 setTimeout(runObserverLogic, 250);
                 setTimeout(runObserverLogic, 800);
 
-                if (window.__omniAmoledObserver) {
-                    window.__omniAmoledObserver.disconnect();
-                    window.__omniAmoledObserver = null;
+                if (window.__swiftAmoledObserver) {
+                    window.__swiftAmoledObserver.disconnect();
+                    window.__swiftAmoledObserver = null;
                 }
-                var _omniOledTimer = null;
-                window.__omniAmoledObserver = new MutationObserver(function() {
-                    if (_omniOledTimer) return;
-                    _omniOledTimer = setTimeout(function() {
-                        _omniOledTimer = null;
+                var _swiftOledTimer = null;
+                window.__swiftAmoledObserver = new MutationObserver(function() {
+                    if (_swiftOledTimer) return;
+                    _swiftOledTimer = setTimeout(function() {
+                        _swiftOledTimer = null;
                         let s = document.getElementById(id);
                         if (!s && document.head) {
                             try {
@@ -449,7 +449,7 @@ fun BrowserViewModel.applySiteStyleToTab(targetTab: TabState? = null) {
                     }, 200);
                 });
                 try {
-                    window.__omniAmoledObserver.observe(document.documentElement || document.body, { childList: true, subtree: true });
+                    window.__swiftAmoledObserver.observe(document.documentElement || document.body, { childList: true, subtree: true });
                 } catch(e) {}
             }
         })();
@@ -470,18 +470,18 @@ fun BrowserViewModel.clearSiteStyleFromTab(targetTab: TabState? = null) {
     val clearJs = """
         javascript:(function() {
             try {
-                const s = document.getElementById('omni-custom-site-style');
+                const s = document.getElementById('swift-custom-site-style');
                 if (s) s.remove();
-                const m = document.getElementById('omni-custom-site-style-meta');
+                const m = document.getElementById('swift-custom-site-style-meta');
                 if (m) m.remove();
-                if (window.__omniAmoledObserver) {
-                    window.__omniAmoledObserver.disconnect();
-                    window.__omniAmoledObserver = null;
+                if (window.__swiftAmoledObserver) {
+                    window.__swiftAmoledObserver.disconnect();
+                    window.__swiftAmoledObserver = null;
                 }
-                var oledEls = document.querySelectorAll('[__omniOled]');
+                var oledEls = document.querySelectorAll('[__swiftOled]');
                 for (var i = 0; i < oledEls.length; i++) {
                     var el = oledEls[i];
-                    el.removeAttribute('__omniOled');
+                    el.removeAttribute('__swiftOled');
                     el.style.backgroundColor = '';
                     el.style.background = '';
                     el.style.color = '';
@@ -514,7 +514,7 @@ fun BrowserViewModel.updateSiteStyle(
     siteStyleWarmFilter = warmFilter
 
     val context = appContext ?: return
-    val sp = context.getSharedPreferences("omni_prefs", Context.MODE_PRIVATE)
+    val sp = context.getSharedPreferences("swift_prefs", Context.MODE_PRIVATE)
     sp.edit().apply {
         putInt("site_style_font_size", fontSize)
         putString("site_style_theme", theme)

@@ -159,7 +159,7 @@ class MozillaSyncManager(
                     onMain {
                         _syncState.value = MozSyncState.Syncing(SyncEngine.TABS, "Syncing open tabs...")
                     }
-                    val localDeviceId = accountManager.getUserId() ?: "omni_device"
+                    val localDeviceId = accountManager.getUserId() ?: "swift_device"
                     val deviceName = accountManager.getDeviceName()
 
                     // Download remote tabs from other devices

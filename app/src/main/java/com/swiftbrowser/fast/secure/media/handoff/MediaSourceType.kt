@@ -1,5 +1,5 @@
 /*
- * Omni Browser — Media Source Type Classification
+ * Swift Browser — Media Source Type Classification
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Classification of media sources for the handoff system.
@@ -13,7 +13,7 @@ package com.swiftbrowser.fast.secure.media.handoff
  * Classification of a media source URI for handoff purposes.
  *
  * The handoff system uses this to decide whether a source can be transferred
- * from the website's HTML5 player to Omni's native ExoPlayer.
+ * from the website's HTML5 player to Swift's native ExoPlayer.
  */
 enum class MediaSourceType {
     /** Direct MP4 file — fully transferable. */

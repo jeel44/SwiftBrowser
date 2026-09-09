@@ -24,7 +24,7 @@ import org.mozilla.geckoview.WebExtension
 import org.mozilla.geckoview.WebExtensionController
 
 /**
- * Generic manager for Omni's built-in GeckoView WebExtensions.
+ * Generic manager for Swift's built-in GeckoView WebExtensions.
  *
  * Each built-in extension lives under `assets/web_extensions/<assetPath>/` and is
  * loaded via `resource://android/assets/...` — GeckoView's mechanism for bundling
@@ -70,7 +70,7 @@ open class BuiltInExtensionManager(
      * already installed simply resolves with the existing instance, so it's safe to
      * call on every app startup without duplicating the extension.
      *
-     * Private-browsing access is always granted here. Omni extensions are privacy
+     * Private-browsing access is always granted here. Swift extensions are privacy
      * tools — they should work in incognito tabs too. If a future extension should
      * NOT run in private tabs, override this after construction.
      */

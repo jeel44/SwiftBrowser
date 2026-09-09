@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 /**
- * Listener interface for sync adapters (e.g. Mozilla Sync Adapter, Omni Mesh Extension Adapter)
+ * Listener interface for sync adapters (e.g. Mozilla Sync Adapter, Swift Mesh Extension Adapter)
  * to receive local mutations and dispatch remote changes.
  */
 interface SyncDataObserver {
@@ -29,10 +29,10 @@ interface SyncDataObserver {
 
 /**
  * Central SyncBridge that anchors all local browser mutations and dispatches them
- * to active synchronization backends (Mozilla Firefox Sync and/or Omni Mesh LAN Extension).
+ * to active synchronization backends (Mozilla Firefox Sync and/or Swift Mesh LAN Extension).
  */
 class SyncBridge private constructor(
-    val deviceId: String = "omni_" + java.util.UUID.randomUUID().toString().take(8)
+    val deviceId: String = "swift_" + java.util.UUID.randomUUID().toString().take(8)
 ) {
     val clock = HlcClock(deviceId)
 

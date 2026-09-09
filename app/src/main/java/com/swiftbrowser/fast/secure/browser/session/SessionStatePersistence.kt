@@ -166,10 +166,10 @@ class SessionStatePersistence(private val baseDir: File) {
             statesObj.keys().forEach { tabId ->
                 try {
                     val stateJson = statesObj.getJSONObject(tabId)
-                    val omniState = SwiftSessionState.fromJson(stateJson)
-                    val geckoState = GeckoSession.SessionState.fromString(String(omniState.sessionStateBytes, Charsets.UTF_8))
+                    val swiftState = SwiftSessionState.fromJson(stateJson)
+                    val geckoState = GeckoSession.SessionState.fromString(String(swiftState.sessionStateBytes, Charsets.UTF_8))
                         ?: return@forEach
-                    durableStateCache[tabId] = omniState
+                    durableStateCache[tabId] = swiftState
                     result[tabId] = geckoState
                 } catch (e: Exception) {
                     Log.w(TAG, "Skipping corrupt SessionState for $tabId", e)
@@ -303,9 +303,9 @@ class SessionStatePersistence(private val baseDir: File) {
             val statesObj = json.optJSONObject("states") ?: return null
             if (!statesObj.has(tabId)) return null
             val stateJson = statesObj.getJSONObject(tabId)
-            val omniState = SwiftSessionState.fromJson(stateJson)
-            durableStateCache[tabId] = omniState
-            GeckoSession.SessionState.fromString(String(omniState.sessionStateBytes, Charsets.UTF_8))
+            val swiftState = SwiftSessionState.fromJson(stateJson)
+            durableStateCache[tabId] = swiftState
+            GeckoSession.SessionState.fromString(String(swiftState.sessionStateBytes, Charsets.UTF_8))
         } catch (e: Exception) {
             Log.w(TAG, "Failed to read durable SessionState for $tabId", e)
             null

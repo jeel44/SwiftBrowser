@@ -86,7 +86,7 @@ class LanWebSocketServer(
             }
         }
 
-        thread(isDaemon = true, name = "Omni-LanWebSocket-Acceptor") {
+        thread(isDaemon = true, name = "Swift-LanWebSocket-Acceptor") {
             while (isRunning && serverSocket?.isClosed == false) {
                 try {
                     val socket = serverSocket?.accept() ?: break

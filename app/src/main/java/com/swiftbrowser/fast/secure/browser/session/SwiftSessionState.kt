@@ -19,7 +19,7 @@ data class SwiftSessionState(
     val schemaVersion: Int = CURRENT_SCHEMA_VERSION,
     /** Tab identifier (matches [TabState.id]). */
     val tabId: String,
-    /** Serialized [GeckoSession.SessionState] bytes (opaque to Omni). */
+    /** Serialized [GeckoSession.SessionState] bytes (opaque to Swift). */
     val sessionStateBytes: ByteArray,
     /** Browser-level metadata that does NOT depend on Gecko internals. */
     val metadata: TabMetadata,

@@ -27,17 +27,17 @@ data class BookmarkItem(
 class MozillaBookmarkBridge {
 
     /**
-     * Converts Omni [BookmarkCollection] into a flat list of [BookmarkItem] records
+     * Converts Swift [BookmarkCollection] into a flat list of [BookmarkItem] records
      * using Mozilla Sync 1.5 GUID standards and well-known root mappings.
      */
     fun exportCollectionToMozilla(collection: BookmarkCollection): List<BookmarkItem> {
         val items = mutableListOf<BookmarkItem>()
 
         collection.allFolders().forEach { folder ->
-            val parentGuid = mapOmniParentToMozillaGuid(folder.parentId)
+            val parentGuid = mapSwiftParentToMozillaGuid(folder.parentId)
             items.add(
                 BookmarkItem(
-                    guid = mapOmniIdToGuid(folder.id),
+                    guid = mapSwiftIdToGuid(folder.id),
                     parentGuid = parentGuid,
                     position = folder.position,
                     title = folder.title,
@@ -50,10 +50,10 @@ class MozillaBookmarkBridge {
         }
 
         collection.allBookmarks().forEach { bookmark ->
-            val parentGuid = mapOmniParentToMozillaGuid(bookmark.parentId)
+            val parentGuid = mapSwiftParentToMozillaGuid(bookmark.parentId)
             items.add(
                 BookmarkItem(
-                    guid = mapOmniIdToGuid(bookmark.id),
+                    guid = mapSwiftIdToGuid(bookmark.id),
                     parentGuid = parentGuid,
                     position = bookmark.position,
                     title = bookmark.title,
@@ -147,7 +147,7 @@ class MozillaBookmarkBridge {
     }
 
     /**
-     * Imports remote Mozilla [BookmarkItem] records into Omni's [BookmarkCollection].
+     * Imports remote Mozilla [BookmarkItem] records into Swift's [BookmarkCollection].
      * Handles tombstones (deletions), folder hierarchy safety, and prevents loops.
      */
     fun importMozillaToCollection(items: List<BookmarkItem>, collection: BookmarkCollection) {
@@ -212,27 +212,27 @@ class MozillaBookmarkBridge {
     }
 
     private fun resolveSafeParentId(parentGuid: String, collection: BookmarkCollection): String {
-        val mapped = mapMozillaGuidToOmniParent(parentGuid)
+        val mapped = mapMozillaGuidToSwiftParent(parentGuid)
         if (mapped.isEmpty() || mapped == com.swiftbrowser.fast.secure.bookmarks.model.ROOT_FOLDER_ID) return com.swiftbrowser.fast.secure.bookmarks.model.ROOT_FOLDER_ID
         // Verify parent actually exists to prevent orphan nodes
         return if (collection.folder(mapped) != null) mapped else com.swiftbrowser.fast.secure.bookmarks.model.ROOT_FOLDER_ID
     }
 
-    private fun mapOmniParentToMozillaGuid(parentId: String): String {
+    private fun mapSwiftParentToMozillaGuid(parentId: String): String {
         return when (parentId) {
             "", "root", "ROOT", com.swiftbrowser.fast.secure.bookmarks.model.ROOT_FOLDER_ID -> MOBILE_GUID
-            else -> mapOmniIdToGuid(parentId)
+            else -> mapSwiftIdToGuid(parentId)
         }
     }
 
-    private fun mapMozillaGuidToOmniParent(guid: String): String {
+    private fun mapMozillaGuidToSwiftParent(guid: String): String {
         return when (guid) {
             MOBILE_GUID, UNFILED_GUID, MENU_GUID, TOOLBAR_GUID, ROOT_GUID -> com.swiftbrowser.fast.secure.bookmarks.model.ROOT_FOLDER_ID
             else -> guid
         }
     }
 
-    private fun mapOmniIdToGuid(id: String): String {
+    private fun mapSwiftIdToGuid(id: String): String {
         return if (id.length <= 12) id else id.take(12)
     }
 

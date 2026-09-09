@@ -42,7 +42,7 @@ class ChatRepository private constructor(
             val json = JSONObject(jsonString)
             val msg = ChatMessage.fromJson(json, localDeviceId)
 
-            // If it's a file payload with base64 data, save it to OmniDrop folder
+            // If it's a file payload with base64 data, save it to SwiftDrop folder
             val processedMsg = if (msg.fileUriOrBase64 != null && msg.fileName != null && msg.type != MessageType.TEXT && msg.type != MessageType.TAB_LINK) {
                 val savedFile = saveIncomingBase64File(context, msg.fileName, msg.fileUriOrBase64)
                 if (savedFile != null) {
@@ -174,7 +174,7 @@ class ChatRepository private constructor(
     private fun saveIncomingBase64File(context: Context?, fileName: String, base64Data: String): File? {
         return try {
             val bytes = Base64.decode(base64Data, Base64.DEFAULT)
-            val dropDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "OmniDrop").apply {
+            val dropDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "SwiftDrop").apply {
                 if (!exists()) mkdirs()
             }
             val targetFile = File(dropDir, fileName)
@@ -191,7 +191,7 @@ class ChatRepository private constructor(
         @Volatile
         private var instance: ChatRepository? = null
 
-        fun getInstance(deviceId: String = "omni_phone", deviceName: String = "Omni Android"): ChatRepository {
+        fun getInstance(deviceId: String = "swift_phone", deviceName: String = "Swift Android"): ChatRepository {
             return instance ?: synchronized(this) {
                 instance ?: ChatRepository(deviceId, deviceName).also { instance = it }
             }

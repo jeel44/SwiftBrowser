@@ -57,7 +57,7 @@ internal class LockerDbKeyManager(context: Context) {
 
         // Legacy credential used ONLY to migrate databases created before the
         // secure-key rollout. Must never be used for normal runtime operation.
-        private val LEGACY_DB_PASSPHRASE = "omni_secure_database_passphrase_bytes".toByteArray()
+        private val LEGACY_DB_PASSPHRASE = "swift_secure_database_passphrase_bytes".toByteArray()
 
         // Serialises key provisioning across every PrivateLockerManager
         // instance in the process (BrowserViewModel, BrowserSheets, screen),

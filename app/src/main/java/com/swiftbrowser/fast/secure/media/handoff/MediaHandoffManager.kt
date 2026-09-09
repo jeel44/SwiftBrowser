@@ -1,5 +1,5 @@
 /*
- * Omni Browser — Media Handoff Manager
+ * Swift Browser — Media Handoff Manager
  * Copyright (C) 2026 RebelRoot Ltd
  *
  * Manages the lifecycle of a media handoff: creation, validation,

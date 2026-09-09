@@ -204,7 +204,7 @@ class SwiftBrowserApplication : Application(), coil.ImageLoaderFactory {
                 // Defaults already applied above; nothing else to do.
             }
 
-            // Start global Omni Sync LAN server so desktop extensions can connect & sync anytime
+            // Start global Swift Sync LAN server so desktop extensions can connect & sync anytime
             try {
                 val baseDir = filesDir
                 val collection = com.swiftbrowser.fast.secure.bookmarks.storage.loadBookmarks(this@SwiftBrowserApplication)

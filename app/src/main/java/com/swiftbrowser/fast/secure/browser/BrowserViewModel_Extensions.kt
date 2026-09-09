@@ -34,10 +34,10 @@ val WebExtension?.safeId: String?
 val WebExtension?.safeMetaData: WebExtension.MetaData?
     get() = if (this == null) null else try { metaData } catch (_: Throwable) { null }
 
-internal val extensionTabIdToOmniTabId = java.util.concurrent.ConcurrentHashMap<String, String>()
-internal val omniTabIdToExtensionTabId = java.util.concurrent.ConcurrentHashMap<String, String>()
+internal val extensionTabIdToSwiftTabId = java.util.concurrent.ConcurrentHashMap<String, String>()
+internal val swiftTabIdToExtensionTabId = java.util.concurrent.ConcurrentHashMap<String, String>()
 
-internal fun BrowserViewModel.resolveOmniTabId(
+internal fun BrowserViewModel.resolveSwiftTabId(
     extensionTabId: String?,
     pageUrl: String?,
     senderSession: GeckoSession? = null
@@ -46,15 +46,15 @@ internal fun BrowserViewModel.resolveOmniTabId(
         val tab = tabs.find { it.session === senderSession }
         if (tab != null) {
             if (!extensionTabId.isNullOrEmpty()) {
-                extensionTabIdToOmniTabId[extensionTabId] = tab.id
-                omniTabIdToExtensionTabId[tab.id] = extensionTabId
+                extensionTabIdToSwiftTabId[extensionTabId] = tab.id
+                swiftTabIdToExtensionTabId[tab.id] = extensionTabId
             }
             return tab.id
         }
     }
 
     if (!extensionTabId.isNullOrEmpty()) {
-        val mapped = extensionTabIdToOmniTabId[extensionTabId]
+        val mapped = extensionTabIdToSwiftTabId[extensionTabId]
         if (mapped != null && tabs.any { it.id == mapped }) {
             return mapped
         }
@@ -65,8 +65,8 @@ internal fun BrowserViewModel.resolveOmniTabId(
         val tab = tabs.find { it.url.substringBefore("#") == cleanPageUrl }
         if (tab != null) {
             if (!extensionTabId.isNullOrEmpty()) {
-                extensionTabIdToOmniTabId[extensionTabId] = tab.id
-                omniTabIdToExtensionTabId[tab.id] = extensionTabId
+                extensionTabIdToSwiftTabId[extensionTabId] = tab.id
+                swiftTabIdToExtensionTabId[tab.id] = extensionTabId
             }
             return tab.id
         }
@@ -74,8 +74,8 @@ internal fun BrowserViewModel.resolveOmniTabId(
 
     val active = activeTabId
     if (active != null && !extensionTabId.isNullOrEmpty()) {
-        extensionTabIdToOmniTabId[extensionTabId] = active
-        omniTabIdToExtensionTabId[active] = extensionTabId
+        extensionTabIdToSwiftTabId[extensionTabId] = active
+        swiftTabIdToExtensionTabId[active] = extensionTabId
     }
     return active
 }
@@ -199,9 +199,9 @@ fun BrowserViewModel.handleExtensionOpenPopup(extension: WebExtension, action: W
                             } else if (!existing.content || existing.content.indexOf('width=device-width') === -1) {
                                 existing.content = 'width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes';
                             }
-                            if (document.getElementById('omni-ext-popup-responsive')) return;
+                            if (document.getElementById('swift-ext-popup-responsive')) return;
                             var style = document.createElement('style');
-                            style.id = 'omni-ext-popup-responsive';
+                            style.id = 'swift-ext-popup-responsive';
                             style.innerHTML = [
                                 'html, body { max-width: 100vw !important; width: 100% !important; min-width: unset !important; overflow-x: hidden !important; box-sizing: border-box !important; }',
                                 '*, *::before, *::after { box-sizing: border-box !important; }',
@@ -685,7 +685,7 @@ private fun BrowserViewModel.handleRequestHandoff(message: Any, sender: WebExten
         (message as? Map<*, *>)?.get("tabId") as? String
     }) ?: ""
 
-    val omniTabId = resolveOmniTabId(rawTabId, pageUrl, sender?.session) ?: activeTabId ?: ""
+    val swiftTabId = resolveSwiftTabId(rawTabId, pageUrl, sender?.session) ?: activeTabId ?: ""
 
     val handoffJson = if (message is org.json.JSONObject) {
         if (message.has("handoff")) message.getJSONObject("handoff") else null
@@ -708,12 +708,12 @@ private fun BrowserViewModel.handleRequestHandoff(message: Any, sender: WebExten
         }
     }
 
-    Log.i(TAG, "🎬 REQUEST_HANDOFF received: videoUrl=$videoUrl, pageUrl=$pageUrl, omniTabId=$omniTabId (extTab=$rawTabId), streams=${associatedStreams.size}")
+    Log.i(TAG, "🎬 REQUEST_HANDOFF received: videoUrl=$videoUrl, pageUrl=$pageUrl, swiftTabId=$swiftTabId (extTab=$rawTabId), streams=${associatedStreams.size}")
 
     // Parse authoritative WebVideoSession from JSON if present
     val rawSession = if (handoffJson != null) {
         try {
-            WebVideoSession.fromJson(handoffJson).copy(tabId = omniTabId)
+            WebVideoSession.fromJson(handoffJson).copy(tabId = swiftTabId)
         } catch (e: Exception) {
             Log.e(TAG, "🎬 Failed to parse WebVideoSession from JSON", e)
             null
@@ -722,8 +722,8 @@ private fun BrowserViewModel.handleRequestHandoff(message: Any, sender: WebExten
 
     val baseSession = rawSession ?: WebVideoSession(
         sessionId = "h_" + System.currentTimeMillis(),
-        tabId = omniTabId,
-        videoElementId = "omni_vid_handoff",
+        tabId = swiftTabId,
+        videoElementId = "swift_vid_handoff",
         sourceUri = videoUrl,
         pageUrl = pageUrl,
         mimeType = null,
@@ -733,7 +733,7 @@ private fun BrowserViewModel.handleRequestHandoff(message: Any, sender: WebExten
 
     // Filter detected media strictly scoped to this tab / page
     val tabMedia = mediaInterceptor.detectedMedia.value.filter { item ->
-        item.pageId == omniTabId || item.pageId == rawTabId ||
+        item.pageId == swiftTabId || item.pageId == rawTabId ||
         (item.referrer != null && item.referrer.substringBefore("#") == pageUrl.substringBefore("#")) ||
         (item.url.isNotEmpty() && !item.url.startsWith("blob:"))
     }
@@ -768,13 +768,13 @@ private fun BrowserViewModel.handleRequestHandoff(message: Any, sender: WebExten
             // Send explicit structured HANDOFF_ACCEPTED and PAUSE_AND_LAUNCH
             sendJsMessage(
                 "HANDOFF_ACCEPTED",
-                "{\"sessionId\":\"${finalSession.sessionId}\",\"videoId\":\"${finalSession.videoElementId}\",\"tabId\":\"$omniTabId\",\"url\":\"${finalSession.sourceUri}\"}",
-                omniTabId
+                "{\"sessionId\":\"${finalSession.sessionId}\",\"videoId\":\"${finalSession.videoElementId}\",\"tabId\":\"$swiftTabId\",\"url\":\"${finalSession.sourceUri}\"}",
+                swiftTabId
             )
             sendJsMessage(
                 "PAUSE_AND_LAUNCH",
                 "{\"handoffId\":\"${finalSession.sessionId}\",\"sessionId\":\"${finalSession.sessionId}\",\"videoId\":\"${finalSession.videoElementId}\"}",
-                omniTabId
+                swiftTabId
             )
 
             viewModelScope.launch(Dispatchers.Main) {
@@ -790,12 +790,12 @@ private fun BrowserViewModel.handleRequestHandoff(message: Any, sender: WebExten
             sendJsMessage(
                 "HANDOFF_REJECTED",
                 "{\"sessionId\":\"${baseSession.sessionId}\",\"videoId\":\"${baseSession.videoElementId}\",\"reason\":\"${resolution.reason}\"}",
-                omniTabId
+                swiftTabId
             )
             sendJsMessage(
                 "RESUME_WEBSITE",
                 "{\"sessionId\":\"${baseSession.sessionId}\",\"videoId\":\"${baseSession.videoElementId}\"}",
-                omniTabId
+                swiftTabId
             )
             viewModelScope.launch(Dispatchers.Main) {
                 Toast.makeText(appContext, "Native playback is unavailable for this video format", Toast.LENGTH_SHORT).show()
@@ -808,12 +808,12 @@ private fun BrowserViewModel.handleRequestHandoff(message: Any, sender: WebExten
             sendJsMessage(
                 "HANDOFF_REJECTED",
                 "{\"sessionId\":\"${baseSession.sessionId}\",\"videoId\":\"${baseSession.videoElementId}\",\"reason\":\"$msg\"}",
-                omniTabId
+                swiftTabId
             )
             sendJsMessage(
                 "RESUME_WEBSITE",
                 "{\"sessionId\":\"${baseSession.sessionId}\",\"videoId\":\"${baseSession.videoElementId}\"}",
-                omniTabId
+                swiftTabId
             )
             viewModelScope.launch(Dispatchers.Main) {
                 Toast.makeText(appContext, "Native playback is unavailable for this video", Toast.LENGTH_SHORT).show()
@@ -844,7 +844,7 @@ private fun BrowserViewModel.handleRequestDownload(message: Any, sender: WebExte
         (message as? Map<*, *>)?.get("tabId") as? String
     }) ?: ""
 
-    val omniTabId = resolveOmniTabId(rawTabId, pageUrl, sender?.session) ?: activeTabId ?: ""
+    val swiftTabId = resolveSwiftTabId(rawTabId, pageUrl, sender?.session) ?: activeTabId ?: ""
 
     val videoId = (if (message is org.json.JSONObject) {
         if (message.has("videoId")) message.getString("videoId") else null
@@ -887,7 +887,7 @@ private fun BrowserViewModel.handleRequestDownload(message: Any, sender: WebExte
 
     val tempSession = WebVideoSession(
         sessionId = requestId,
-        tabId = omniTabId,
+        tabId = swiftTabId,
         videoElementId = videoId,
         sourceUri = rawUrl,
         pageUrl = pageUrl,
@@ -897,7 +897,7 @@ private fun BrowserViewModel.handleRequestDownload(message: Any, sender: WebExte
     )
 
     val tabMedia = mediaInterceptor.detectedMedia.value.filter { item ->
-        item.pageId == omniTabId || item.pageId == rawTabId ||
+        item.pageId == swiftTabId || item.pageId == rawTabId ||
         (item.referrer != null && item.referrer.substringBefore("#") == pageUrl.substringBefore("#")) ||
         (item.url.isNotEmpty() && !item.url.startsWith("blob:"))
     }
@@ -922,7 +922,7 @@ private fun BrowserViewModel.handleRequestDownload(message: Any, sender: WebExte
             sendJsMessage(
                 "DOWNLOAD_STARTED",
                 "{\"requestId\":\"$requestId\",\"videoId\":\"$videoId\",\"url\":\"$effectiveUrl\"}",
-                omniTabId
+                swiftTabId
             )
 
             viewModelScope.launch(Dispatchers.Main) {
@@ -962,7 +962,7 @@ private fun BrowserViewModel.handleRequestDownload(message: Any, sender: WebExte
             sendJsMessage(
                 "DOWNLOAD_REJECTED",
                 "{\"requestId\":\"$requestId\",\"videoId\":\"$videoId\",\"reason\":\"Media stream unavailable for download\"}",
-                omniTabId
+                swiftTabId
             )
             viewModelScope.launch(Dispatchers.Main) {
                 Toast.makeText(appContext, "Media stream is unavailable for download", Toast.LENGTH_SHORT).show()
@@ -1163,7 +1163,7 @@ private fun parseMediaHandoff(json: org.json.JSONObject): MediaHandoff {
 internal fun BrowserViewModel.sendJsMessage(type: String, payload: String, targetTabId: String? = null) {
     val tab = if (!targetTabId.isNullOrEmpty()) {
         tabs.find { it.id == targetTabId }
-            ?: extensionTabIdToOmniTabId[targetTabId]?.let { mappedId -> tabs.find { it.id == mappedId } }
+            ?: extensionTabIdToSwiftTabId[targetTabId]?.let { mappedId -> tabs.find { it.id == mappedId } }
             ?: tabs.find { it.id == activeTabId }
     } else {
         tabs.find { it.id == activeTabId }
@@ -1195,7 +1195,7 @@ internal fun BrowserViewModel.setupWebExtensionDelegates(extension: WebExtension
 
 /**
  * Registers GeckoView's DownloadDelegate on the WebExtension to bridge `browser.downloads.*`
- * into Omni's native StreamDownloadEngine.
+ * into Swift's native StreamDownloadEngine.
  */
 internal fun BrowserViewModel.setupWebExtensionDownloadDelegate(extension: WebExtension) {
     val extId = extension.safeId ?: return

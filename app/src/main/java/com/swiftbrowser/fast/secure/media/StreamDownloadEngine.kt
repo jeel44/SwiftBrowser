@@ -623,7 +623,7 @@ class StreamDownloadEngine(
         // jlibtorrent engine (com.swiftbrowser.fast.secure.torrent.TorrentEngine) is no
         // longer invoked from here. Original implementation preserved below,
         // commented out. Callers (BrowserViewModel.startTorrentDownload, from
-        // the "Download in Omni" button in TorrentDownloaderDialog) still work
+        // the "Download in Swift" button in TorrentDownloaderDialog) still work
         // but now just receive an immediate error state; the dialog's
         // "External App" hand-off button is unaffected and still routes to a
         // real installed torrent app via Intent.createChooser.
@@ -1729,9 +1729,9 @@ class StreamDownloadEngine(
                 else    -> MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
             }
             val relativeDir = when {
-                isVideo -> "${Environment.DIRECTORY_MOVIES}/OmniDownloads"
-                isAudio -> "${Environment.DIRECTORY_MUSIC}/OmniDownloads"
-                else    -> "${Environment.DIRECTORY_DOWNLOADS}/OmniDownloads"
+                isVideo -> "${Environment.DIRECTORY_MOVIES}/SwiftDownloads"
+                isAudio -> "${Environment.DIRECTORY_MUSIC}/SwiftDownloads"
+                else    -> "${Environment.DIRECTORY_DOWNLOADS}/SwiftDownloads"
             }
             val displayNameColumn = when {
                 isVideo -> MediaStore.Video.Media.DISPLAY_NAME
@@ -1778,7 +1778,7 @@ class StreamDownloadEngine(
                     return fallbackSaveToExternalFiles(sourceFile, filename)
                 }
                 // Return a placeholder File — callers should prefer the MediaStore URI
-                File(Environment.getExternalStoragePublicDirectory(relativeDir.substringBefore('/')), "OmniDownloads/$filename")
+                File(Environment.getExternalStoragePublicDirectory(relativeDir.substringBefore('/')), "SwiftDownloads/$filename")
             } else {
                 Log.w("DownloadEngine", "MediaStore insert returned null, falling back")
                 fallbackSaveToExternalFiles(sourceFile, filename)
@@ -1790,7 +1790,7 @@ class StreamDownloadEngine(
                 isAudio -> Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)
                 else    -> Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
             }
-            val destDir = File(publicDir, "OmniDownloads").apply { mkdirs() }
+            val destDir = File(publicDir, "SwiftDownloads").apply { mkdirs() }
             val safeFilename = SecurityPolicy.sanitizeFilename(filename)
             var destFile = File(destDir, safeFilename)
             var counter = 1
@@ -1822,7 +1822,7 @@ class StreamDownloadEngine(
     /** Fallback when MediaStore is unavailable or fails — saves to app-scoped external dir */
     private fun fallbackSaveToExternalFiles(sourceFile: File, filename: String): File {
         val category = getCategoryForFile(filename)
-        val downloadDir = File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) ?: context.filesDir, "OmniDownloads/$category").apply { mkdirs() }
+        val downloadDir = File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) ?: context.filesDir, "SwiftDownloads/$category").apply { mkdirs() }
         val destFile = File(downloadDir, filename)
         return try {
             sourceFile.copyTo(destFile, overwrite = true)
