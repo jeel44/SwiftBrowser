@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Signing key, Firebase config, and Claude Code local tool-permission file
+# (never commit — see git history cleanup on rename-swift-browser)
+keystore.jks
+.claude/settings.local.json
+app/google-services.json
