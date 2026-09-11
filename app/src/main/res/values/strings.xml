@@ -293,9 +293,12 @@
     <string name="tor_bridges_restart_hint">Takes effect after restart</string>
     <string name="custom_proxy_host_label">Host</string>
     <string name="custom_proxy_port_label">Port</string>
+    <string name="custom_proxy_username_label">Username (optional)</string>
+    <string name="custom_proxy_password_label">Password (optional)</string>
     <string name="custom_proxy_host_empty">Enter a proxy host</string>
     <string name="custom_proxy_port_invalid">Port must be 1–65535</string>
-    <string name="custom_proxy_saved_restart">Custom proxy saved — restart to apply</string>
+    <string name="custom_proxy_saved_restart">Custom proxy saved</string>
+    <string name="custom_proxy_auth_desc">Only fill these in if your proxy requires a username and password. The password is stored encrypted on this device.</string>
     <string name="wg_config_title">WireGuard Configuration</string>
     <string name="wg_config_hint">Paste your WireGuard (.conf) configuration below.</string>
     <string name="wg_config_saved">Config saved</string>
@@ -685,6 +688,9 @@
     <string name="tool_vpn_on">VPN: On</string>
     <string name="tool_vpn">VPN</string>
     <string name="tool_network">Network</string>
+    <string name="tool_custom_proxy_on">Proxy: On</string>
+    <string name="tool_custom_proxy_error">Proxy: Error</string>
+    <string name="tool_custom_proxy">Proxy</string>
     <string name="tool_qr_scanner">QR Scanner</string>
     <string name="tool_safe_locker">Safe Locker</string>
     <string name="tool_translator">Translator</string>
@@ -708,6 +714,8 @@
     <string name="toast_vpn_disconnected">VPN Disconnected</string>
     <string name="toast_vpn_connecting">Connecting to custom VPN...</string>
     <string name="toast_vpn_setup_required">Add VPN configuration in Settings first</string>
+    <string name="toast_custom_proxy_disconnected">Proxy Disconnected</string>
+    <string name="toast_custom_proxy_connecting">Connecting to proxy…</string>
     <string name="toast_direct_connection">Direct connection active — no proxy</string>
     <string name="toast_burn_all">🔥 All history and tabs burned</string>
     <string name="exit_sheet_title">Exit Swift Browser?</string>

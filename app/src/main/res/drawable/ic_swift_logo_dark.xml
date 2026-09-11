@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Shown full-color (no tint) — see ic_swift_logo_white.xml. Used as the
+     Android 12+ splash icon for the Light in-app theme. -->
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/ic_swift_logo"
-    android:tint="#1C1C1E" />
+    android:src="@drawable/ic_swift_logo" />

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Splash logo for light / day mode: dark tint so it is visible on the
-     light splash background. Resolved via the night-qualified copy in
-     drawable-night/ for dark mode. -->
+<!-- Splash logo: shown full-color (no tint) since ic_swift_logo is now a complete,
+     self-contained flat icon (colored plate + glyph), not a thin single-color mark.
+     A day/night tint would just flatten it into one solid-color block. Resolved
+     via the night-qualified copy in drawable-night/ for dark mode (same drawable,
+     kept separate for the day/night qualifier split). -->
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/ic_swift_logo"
-    android:tint="#1C1C1E" />
+    android:src="@drawable/ic_swift_logo" />

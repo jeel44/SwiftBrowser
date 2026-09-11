@@ -57,6 +57,7 @@ import com.swiftbrowser.fast.secure.media.MediaInterceptor
 import com.swiftbrowser.fast.secure.media.StreamDownloadEngine
 import com.swiftbrowser.fast.secure.privacy.VpnManager
 import com.swiftbrowser.fast.secure.privacy.TorManager
+import com.swiftbrowser.fast.secure.privacy.ProxyCredentialStore
 import com.swiftbrowser.fast.secure.privacy.EmbeddedTorManager
 import com.swiftbrowser.fast.secure.privacy.TorState
 import com.swiftbrowser.fast.secure.privacy.FireButton
@@ -360,6 +361,7 @@ class BrowserViewModel : ViewModel() {
     lateinit var vpnManager: VpnManager
     lateinit var torManager: TorManager
     lateinit var embeddedTorManager: EmbeddedTorManager
+    lateinit var proxyCredentialStore: ProxyCredentialStore
     lateinit var adBlockManager: com.swiftbrowser.fast.secure.browser.adblock.AdBlockManager
     lateinit var visualBlockManager: com.swiftbrowser.fast.secure.browser.adblock.VisualBlockManager
     lateinit var userAgentManager: com.swiftbrowser.fast.secure.browser.useragent.UserAgentManager
@@ -608,6 +610,10 @@ class BrowserViewModel : ViewModel() {
     var isTorAutoConnect by mutableStateOf(false)
     var customSocksHost by mutableStateOf("")
     var customSocksPort by mutableStateOf(9050)
+    // Credentials live in memory + ProxyCredentialStore (encrypted at rest), NOT
+    // in the plain DataStore prefs used for host/port — see ProxyCredentialStore.
+    var customSocksUsername by mutableStateOf("")
+    var customSocksPassword by mutableStateOf("")
     var customDns by mutableStateOf("")
     var isDohEnabled by mutableStateOf(false)
     var dohUri by mutableStateOf("https://dns.google/dns-query")
@@ -2987,7 +2993,12 @@ class BrowserViewModel : ViewModel() {
 
             val builder = GeckoRuntimeSettings.Builder()
                 .aboutConfigEnabled(isDebug)
-                .consoleOutput(false)
+                // Piped to logcat under tag "GeckoConsole" when true — gated on
+                // isDebug the same way aboutConfigEnabled/remoteDebuggingEnabled
+                // already are, so web-content/extension console.log() (including
+                // proxy_router/background.js's [ProxyRouter] logs) is visible for
+                // diagnosis in debug builds only, never in release.
+                .consoleOutput(isDebug)
                 .debugLogging(false)
                 .remoteDebuggingEnabled(isDebug)
                 .preferredColorScheme(GeckoRuntimeSettings.COLOR_SCHEME_SYSTEM)
@@ -3010,7 +3021,7 @@ class BrowserViewModel : ViewModel() {
                     
                     val fallbackSettings = GeckoRuntimeSettings.Builder()
                         .aboutConfigEnabled(isDebug)
-                        .consoleOutput(false)
+                        .consoleOutput(isDebug)
                         .debugLogging(false)
                         .preferredColorScheme(GeckoRuntimeSettings.COLOR_SCHEME_SYSTEM)
                         .locales(targetLocales)
@@ -3151,6 +3162,7 @@ class BrowserViewModel : ViewModel() {
             vpnManager = VpnManager(appCtx)
             torManager = TorManager(appCtx)
             embeddedTorManager = EmbeddedTorManager(appCtx)
+            proxyCredentialStore = ProxyCredentialStore(appCtx)
             adBlockManager = com.swiftbrowser.fast.secure.browser.adblock.AdBlockManager(appCtx)
             visualBlockManager = com.swiftbrowser.fast.secure.browser.adblock.VisualBlockManager(appCtx)
             userAgentManager = com.swiftbrowser.fast.secure.browser.useragent.UserAgentManager(appCtx)
@@ -3222,6 +3234,14 @@ class BrowserViewModel : ViewModel() {
                 isTorAutoConnect = getTorAutoConnectPreference(appCtx).first()
                 customSocksHost = getCustomSocksHost(appCtx).first()
                 customSocksPort = getCustomSocksPort(appCtx).first()
+                customSocksUsername = proxyCredentialStore.getUsername()
+                customSocksPassword = proxyCredentialStore.getPassword()
+                if (customSocksHost.isNotBlank()) {
+                    torManager.setCustomProxy(
+                        customSocksHost, customSocksPort,
+                        customSocksUsername.ifBlank { null }, customSocksPassword
+                    )
+                }
                 customDns = getCustomDns(appCtx).first()
                 isDohEnabled = getDohEnabled(appCtx).first()
                 dohUri = getDohUri(appCtx).first()
@@ -3234,6 +3254,17 @@ class BrowserViewModel : ViewModel() {
                 isClearCookiesOnShutdown = getClearCookiesOnShutdown(appCtx).first()
                 isAutoRotateIdentity = getAutoRotateIdentity(appCtx).first()
                 if ((proxyProvider == "tor" || proxyProvider == "tor_over_vpn" || proxyProvider == "tor_builtin") && isTorAutoConnect) {
+                    connectTor()
+                } else if (proxyProvider == "custom_proxy" && customSocksHost.isNotBlank()) {
+                    // Custom SOCKS5 proxies have no separate "auto-connect" toggle in
+                    // the UI — selecting "custom_proxy" as the active provider (with a
+                    // saved host) IS the enabled state, so reconnect on every cold
+                    // start the same way Tor does when its own auto-connect is on.
+                    // connectTor() runs the existing SOCKS handshake in the background
+                    // (TorManager's coroutine scope) and, on failure, simply leaves
+                    // torManager.state as Error — currentProxyEndpoint() already keeps
+                    // routing on "direct" until a handshake actually succeeds, so
+                    // browsing continues normally with no visible failure signal.
                     connectTor()
                 }
                 if (isAutoRotateIdentity) {
@@ -3597,10 +3628,15 @@ class BrowserViewModel : ViewModel() {
                     }
                     if (type == "GET_PROXY_ENDPOINT") {
                         val ep = currentProxyEndpoint()
+                        val creds = currentProxyCredentials()
                         val response = org.json.JSONObject().apply {
                             if (ep != null) {
                                 put("host", ep.first)
                                 put("port", ep.second)
+                                if (creds != null) {
+                                    put("username", creds.first)
+                                    put("password", creds.second)
+                                }
                             } else {
                                 put("host", org.json.JSONObject.NULL)
                             }
@@ -5428,7 +5464,7 @@ class BrowserViewModel : ViewModel() {
             }
             customSocksHost = host
             if (host.isNotBlank()) {
-                torManager.setCustomProxy(host, customSocksPort)
+                torManager.setCustomProxy(host, customSocksPort, customSocksUsername.ifBlank { null }, customSocksPassword)
             } else {
                 torManager.clearCustomProxy()
             }
@@ -5450,9 +5486,58 @@ class BrowserViewModel : ViewModel() {
             }
             customSocksPort = port
             if (customSocksHost.isNotBlank()) {
-                torManager.setCustomProxy(customSocksHost, port)
+                torManager.setCustomProxy(customSocksHost, port, customSocksUsername.ifBlank { null }, customSocksPassword)
             }
             regenerateGeckoConfig()
+            applyProxyPrefsLive()
+        }
+    }
+
+    /**
+     * Saves the manual SOCKS5 proxy's host/port/credentials, switches the active
+     * provider to it, and immediately tests it via the same SOCKS handshake
+     * [connectTor] already uses for Tor. Routing only goes live once that
+     * handshake succeeds — [currentProxyEndpoint] is gated on
+     * `torManager.state is TorState.Connected` — so a broken save fails open
+     * to direct traffic instead of black-holing every request.
+     *
+     * Runs the writes as one ordered coroutine (rather than the individual
+     * host/port/provider setters called separately) so connectTor() never
+     * reads stale in-memory host/port/credential values.
+     */
+    fun saveAndConnectCustomProxy(context: Context, host: String, port: Int, username: String, password: String) {
+        viewModelScope.launch {
+            context.dataStore.edit { preferences ->
+                preferences[CUSTOM_SOCKS_HOST_KEY] = host
+                preferences[CUSTOM_SOCKS_PORT_KEY] = port
+                preferences[PROXY_PROVIDER_KEY] = "custom_proxy"
+            }
+            customSocksHost = host
+            customSocksPort = port
+            proxyProvider = "custom_proxy"
+            withContext(Dispatchers.IO) {
+                proxyCredentialStore.setCredentials(username, password)
+            }
+            customSocksUsername = username
+            customSocksPassword = password
+            regenerateGeckoConfig()
+            connectTor()
+        }
+    }
+
+    /**
+     * Saves the manual SOCKS5 proxy's optional username/password. Persisted only
+     * to [ProxyCredentialStore] (encrypted at rest) — never to the plain DataStore
+     * prefs and never logged. Pass blank strings to clear stored credentials.
+     */
+    fun saveCustomSocksCredentials(username: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            proxyCredentialStore.setCredentials(username, password)
+            customSocksUsername = username
+            customSocksPassword = password
+            if (customSocksHost.isNotBlank()) {
+                torManager.setCustomProxy(customSocksHost, customSocksPort, username.ifBlank { null }, password)
+            }
             applyProxyPrefsLive()
         }
     }
@@ -5778,17 +5863,30 @@ class BrowserViewModel : ViewModel() {
      */
     private fun currentProxyEndpoint(): Pair<String, Int>? {
         if (proxyProvider !in proxyProviders) return null
+
+        // Only route through SOCKS once the backend is actually CONNECTED — a
+        // verified-reachable handshake, not just "the user picked this provider".
+        // If it's OFF, disconnected, or still bootstrapping/handshaking, fall back
+        // to null (direct connection) so browsing never hangs or errors against a
+        // dead/closed port. This applies to custom SOCKS5 proxies exactly like Tor:
+        // an unreachable or misauthenticated saved proxy fails open to direct
+        // traffic instead of black-holing every request.
+        val state = activeTorState().value
+        Log.d(TorManager.PROXY_DEBUG_TAG, "currentProxyEndpoint(): provider=$proxyProvider activeTorState=$state customSocksHost='$customSocksHost' customSocksPort=$customSocksPort")
+        if (state !is TorState.Connected) {
+            Log.d(TorManager.PROXY_DEBUG_TAG, "currentProxyEndpoint(): state is not Connected ($state) -> null (direct)")
+            return null
+        }
+
         // A custom proxy with no host configured cannot route anywhere.
         if (proxyProvider == "custom_proxy") {
-            if (customSocksHost.isBlank()) return null
+            if (customSocksHost.isBlank()) {
+                Log.d(TorManager.PROXY_DEBUG_TAG, "currentProxyEndpoint(): custom_proxy but host is blank -> null (direct)")
+                return null
+            }
+            Log.i(TorManager.PROXY_DEBUG_TAG, "currentProxyEndpoint(): -> custom_proxy endpoint $customSocksHost:$customSocksPort")
             return customSocksHost to customSocksPort
         }
-        // For Tor providers ("tor", "tor_builtin", "tor_over_vpn"), only route
-        // through SOCKS when the Tor daemon is actually CONNECTED. If Tor is OFF,
-        // disconnected, or still bootstrapping, fall back to null (direct connection)
-        // so browsing never hangs or errors against a closed local port.
-        val state = activeTorState().value
-        if (state !is TorState.Connected) return null
 
         val torPort = when {
             proxyProvider == "tor_builtin" -> EmbeddedTorManager.EMBEDDED_SOCKS_PORT
@@ -5797,7 +5895,25 @@ class BrowserViewModel : ViewModel() {
         }
         val host = customSocksHost.ifBlank { "127.0.0.1" }
         val port = if (customSocksHost.isNotBlank()) customSocksPort else torPort
+        Log.i(TorManager.PROXY_DEBUG_TAG, "currentProxyEndpoint(): -> $proxyProvider endpoint $host:$port")
         return host to port
+    }
+
+    /**
+     * SOCKS5 username/password for the current custom proxy, or `null` when the
+     * active provider isn't a manual proxy or no credentials were configured.
+     * Tor/Orbot connections never carry credentials. Only consulted by the
+     * proxy_router extension delegate — never written into geckoview-config.yaml
+     * or any `network.proxy.*` pref, since Gecko's proxy prefs have no SOCKS5
+     * auth fields; only the WebExtension proxy API (ProxyInfo.username/password)
+     * supports it.
+     */
+    private fun currentProxyCredentials(): Pair<String, String>? {
+        if (proxyProvider == "custom_proxy") {
+            if (customSocksUsername.isBlank()) return null
+            return customSocksUsername to customSocksPassword
+        }
+        return null
     }
 
     /**
@@ -5824,9 +5940,11 @@ class BrowserViewModel : ViewModel() {
         // Controller API is static, but prefs cannot be applied before the runtime exists.
         if (geckoRuntime == null) {
             Log.d(TAG, "applyProxyPrefsLive: geckoRuntime not yet created, skipping (provider=$proxyProvider)")
+            Log.d(TorManager.PROXY_DEBUG_TAG, "applyProxyPrefsLive(): SKIPPED — geckoRuntime is null (provider=$proxyProvider)")
             return
         }
         val ep = currentProxyEndpoint()
+        Log.i(TorManager.PROXY_DEBUG_TAG, "applyProxyPrefsLive(): currentProxyEndpoint()=$ep — pushing to GeckoView as ${if (ep != null) "PROXY (network.proxy.type=1)" else "DIRECT (network.proxy.type=0)"}")
         val branch = GeckoPreferenceController.PREF_BRANCH_USER
         if (ep != null) {
             val (host, port) = ep
@@ -5941,7 +6059,7 @@ class BrowserViewModel : ViewModel() {
             embeddedTorManager.startTor()
         } else {
             if (customSocksHost.isNotBlank()) {
-                torManager.setCustomProxy(customSocksHost, customSocksPort)
+                torManager.setCustomProxy(customSocksHost, customSocksPort, customSocksUsername.ifBlank { null }, customSocksPassword)
                 torManager.startTor(customSocksPort)
             } else {
                 val port = if (isTorUseBridges) TorManager.BRIDGE_SOCKS_PORT else TorManager.DEFAULT_SOCKS_PORT

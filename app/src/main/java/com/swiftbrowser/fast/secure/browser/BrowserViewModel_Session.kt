@@ -16,6 +16,59 @@ import org.mozilla.geckoview.GeckoResult
 import org.mozilla.geckoview.GeckoSession
 
 /**
+ * Diagnostic-only: resolves a raw [org.mozilla.geckoview.WebRequestError.code] back
+ * to its named `WebRequestError.ERROR_*` constant, since the numbers themselves are
+ * meaningless without GeckoView's source (confirmed via `javap` against the actual
+ * geckoview-154.0 dependency jar bundled with this project — these are NOT guessed).
+ */
+private fun webRequestErrorName(code: Int): String = when (code) {
+    org.mozilla.geckoview.WebRequestError.ERROR_UNKNOWN -> "ERROR_UNKNOWN"
+    org.mozilla.geckoview.WebRequestError.ERROR_SECURITY_SSL -> "ERROR_SECURITY_SSL"
+    org.mozilla.geckoview.WebRequestError.ERROR_SECURITY_BAD_CERT -> "ERROR_SECURITY_BAD_CERT"
+    org.mozilla.geckoview.WebRequestError.ERROR_NET_INTERRUPT -> "ERROR_NET_INTERRUPT"
+    org.mozilla.geckoview.WebRequestError.ERROR_NET_TIMEOUT -> "ERROR_NET_TIMEOUT"
+    org.mozilla.geckoview.WebRequestError.ERROR_CONNECTION_REFUSED -> "ERROR_CONNECTION_REFUSED"
+    org.mozilla.geckoview.WebRequestError.ERROR_UNKNOWN_SOCKET_TYPE -> "ERROR_UNKNOWN_SOCKET_TYPE"
+    org.mozilla.geckoview.WebRequestError.ERROR_REDIRECT_LOOP -> "ERROR_REDIRECT_LOOP"
+    org.mozilla.geckoview.WebRequestError.ERROR_OFFLINE -> "ERROR_OFFLINE"
+    org.mozilla.geckoview.WebRequestError.ERROR_PORT_BLOCKED -> "ERROR_PORT_BLOCKED"
+    org.mozilla.geckoview.WebRequestError.ERROR_NET_RESET -> "ERROR_NET_RESET"
+    org.mozilla.geckoview.WebRequestError.ERROR_LOCAL_NETWORK_ACCESS_DENIED -> "ERROR_LOCAL_NETWORK_ACCESS_DENIED"
+    org.mozilla.geckoview.WebRequestError.ERROR_HTTPS_ONLY -> "ERROR_HTTPS_ONLY"
+    org.mozilla.geckoview.WebRequestError.ERROR_BAD_HSTS_CERT -> "ERROR_BAD_HSTS_CERT"
+    org.mozilla.geckoview.WebRequestError.ERROR_UNSAFE_CONTENT_TYPE -> "ERROR_UNSAFE_CONTENT_TYPE"
+    org.mozilla.geckoview.WebRequestError.ERROR_CORRUPTED_CONTENT -> "ERROR_CORRUPTED_CONTENT"
+    org.mozilla.geckoview.WebRequestError.ERROR_CONTENT_CRASHED -> "ERROR_CONTENT_CRASHED"
+    org.mozilla.geckoview.WebRequestError.ERROR_INVALID_CONTENT_ENCODING -> "ERROR_INVALID_CONTENT_ENCODING"
+    org.mozilla.geckoview.WebRequestError.ERROR_UNKNOWN_HOST -> "ERROR_UNKNOWN_HOST"
+    org.mozilla.geckoview.WebRequestError.ERROR_MALFORMED_URI -> "ERROR_MALFORMED_URI"
+    org.mozilla.geckoview.WebRequestError.ERROR_UNKNOWN_PROTOCOL -> "ERROR_UNKNOWN_PROTOCOL"
+    org.mozilla.geckoview.WebRequestError.ERROR_FILE_NOT_FOUND -> "ERROR_FILE_NOT_FOUND"
+    org.mozilla.geckoview.WebRequestError.ERROR_FILE_ACCESS_DENIED -> "ERROR_FILE_ACCESS_DENIED"
+    org.mozilla.geckoview.WebRequestError.ERROR_DATA_URI_TOO_LONG -> "ERROR_DATA_URI_TOO_LONG"
+    org.mozilla.geckoview.WebRequestError.ERROR_PROXY_CONNECTION_REFUSED -> "ERROR_PROXY_CONNECTION_REFUSED"
+    org.mozilla.geckoview.WebRequestError.ERROR_UNKNOWN_PROXY_HOST -> "ERROR_UNKNOWN_PROXY_HOST"
+    org.mozilla.geckoview.WebRequestError.ERROR_SAFEBROWSING_MALWARE_URI -> "ERROR_SAFEBROWSING_MALWARE_URI"
+    org.mozilla.geckoview.WebRequestError.ERROR_SAFEBROWSING_UNWANTED_URI -> "ERROR_SAFEBROWSING_UNWANTED_URI"
+    org.mozilla.geckoview.WebRequestError.ERROR_SAFEBROWSING_HARMFUL_URI -> "ERROR_SAFEBROWSING_HARMFUL_URI"
+    org.mozilla.geckoview.WebRequestError.ERROR_SAFEBROWSING_PHISHING_URI -> "ERROR_SAFEBROWSING_PHISHING_URI"
+    org.mozilla.geckoview.WebRequestError.ERROR_HARMFULADDON_URI -> "ERROR_HARMFULADDON_URI"
+    else -> "UNKNOWN_CONSTANT"
+}
+
+/** Diagnostic-only: resolves [org.mozilla.geckoview.WebRequestError.category] to its name. */
+private fun webRequestErrorCategoryName(category: Int): String = when (category) {
+    org.mozilla.geckoview.WebRequestError.ERROR_CATEGORY_UNKNOWN -> "ERROR_CATEGORY_UNKNOWN"
+    org.mozilla.geckoview.WebRequestError.ERROR_CATEGORY_SECURITY -> "ERROR_CATEGORY_SECURITY"
+    org.mozilla.geckoview.WebRequestError.ERROR_CATEGORY_NETWORK -> "ERROR_CATEGORY_NETWORK"
+    org.mozilla.geckoview.WebRequestError.ERROR_CATEGORY_CONTENT -> "ERROR_CATEGORY_CONTENT"
+    org.mozilla.geckoview.WebRequestError.ERROR_CATEGORY_URI -> "ERROR_CATEGORY_URI"
+    org.mozilla.geckoview.WebRequestError.ERROR_CATEGORY_PROXY -> "ERROR_CATEGORY_PROXY"
+    org.mozilla.geckoview.WebRequestError.ERROR_CATEGORY_SAFEBROWSING -> "ERROR_CATEGORY_SAFEBROWSING"
+    else -> "UNKNOWN_CATEGORY"
+}
+
+/**
  * Detects whether a URL is related to authentication, OAuth, SSO, or login flows.
  * Used to bypass ad-blocking for legitimate auth popups (Google, Facebook, Deezer, etc.).
  */
@@ -1195,7 +1248,19 @@ internal fun BrowserViewModel.setupTabSessionListeners(tab: TabState, context: C
             error: org.mozilla.geckoview.WebRequestError
         ): GeckoResult<String>? {
             Log.e(TAG, "GeckoView Load Error: code=${error.code}, category=${error.category}, uri=$uri")
-            
+            // Diagnostic: resolve the raw numeric code/category to their named
+            // WebRequestError.* constants and dump the proxy state active at the
+            // moment of failure, so a load error can be cross-referenced against
+            // the SwiftProxyDebug handshake/routing timeline for the same request.
+            Log.e(
+                com.swiftbrowser.fast.secure.privacy.TorManager.PROXY_DEBUG_TAG,
+                "onLoadError: uri=$uri code=${error.code} (${webRequestErrorName(error.code)}) " +
+                    "category=${error.category} (${webRequestErrorCategoryName(error.category)}) " +
+                    "certificate=${if (error.certificate != null) "present" else "null"} — " +
+                    "proxyProvider=${proxyProvider} customSocksHost='${customSocksHost}:${customSocksPort}' " +
+                    "activeTorState=${activeTorState().value}"
+            )
+
             val lowerUri = uri?.lowercase() ?: ""
             val isGoogleAuthHost = OriginVerifier.isExactOriginMatch(uri, "accounts.google.com")
 

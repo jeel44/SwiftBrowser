@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Shown full-color (no tint): ic_swift_logo is a complete flat icon (colored
+     plate + glyph), not a single-color mark, so tinting it white would flatten
+     it into a solid white block. Used as the Android 12+ splash icon for the
+     Dark/Amoled in-app themes (see values-v31/themes.xml). -->
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/ic_swift_logo"
-    android:tint="#FFFFFF" />
+    android:src="@drawable/ic_swift_logo" />

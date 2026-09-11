@@ -7553,6 +7553,13 @@ fun BrowserScreen(
                                     val state = viewModel.vpnManager.state.value
                                     if (state is com.swiftbrowser.fast.secure.privacy.VpnManager.VpnState.Connected) context.getString(R.string.tool_vpn_on) else context.getString(R.string.tool_vpn)
                                 }
+                                "custom_proxy" -> {
+                                    when (val state = viewModel.activeTorState().value) {
+                                        is com.swiftbrowser.fast.secure.privacy.TorState.Connected -> context.getString(R.string.tool_custom_proxy_on)
+                                        is com.swiftbrowser.fast.secure.privacy.TorState.Error -> context.getString(R.string.tool_custom_proxy_error)
+                                        else -> context.getString(R.string.tool_custom_proxy)
+                                    }
+                                }
                                 else -> context.getString(R.string.tool_network)
                             }
                             "qr_scanner"     -> context.getString(R.string.tool_qr_scanner)
@@ -7581,6 +7588,7 @@ fun BrowserScreen(
                             "vpn"                 -> when (viewModel.proxyProvider) {
                                 "tor" -> Icons.Rounded.Security
                                 "wireguard" -> Icons.Rounded.VpnKey
+                                "custom_proxy" -> if (viewModel.activeTorState().value is com.swiftbrowser.fast.secure.privacy.TorState.Error) Icons.Rounded.ErrorOutline else Icons.Rounded.SettingsEthernet
                                 else -> Icons.Rounded.Public
                             }
                             "qr_scanner"     -> Icons.Rounded.QrCodeScanner
@@ -7667,6 +7675,21 @@ fun BrowserScreen(
                                             } else {
                                                 onOpenSettings()
                                                 Toast.makeText(context, context.getString(R.string.toast_vpn_setup_required), Toast.LENGTH_LONG).show()
+                                            }
+                                        }
+                                    }
+                                    "custom_proxy" -> {
+                                        if (viewModel.customSocksHost.isBlank()) {
+                                            onOpenSettings()
+                                            Toast.makeText(context, context.getString(R.string.toast_vpn_setup_required), Toast.LENGTH_LONG).show()
+                                        } else {
+                                            val state = viewModel.activeTorState().value
+                                            if (state is com.swiftbrowser.fast.secure.privacy.TorState.Connected) {
+                                                viewModel.disconnectTor()
+                                                Toast.makeText(context, "🔌 " + context.getString(R.string.toast_custom_proxy_disconnected), Toast.LENGTH_SHORT).show()
+                                            } else {
+                                                viewModel.connectTor()
+                                                Toast.makeText(context, "🔌 " + context.getString(R.string.toast_custom_proxy_connecting), Toast.LENGTH_SHORT).show()
                                             }
                                         }
                                     }

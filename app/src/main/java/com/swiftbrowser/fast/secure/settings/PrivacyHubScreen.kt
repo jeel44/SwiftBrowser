@@ -389,6 +389,9 @@ private fun ConnectionSection(
         // and retype without the value snapping back to 9050.
         var hostText by remember { mutableStateOf(viewModel.customSocksHost) }
         var portText by remember { mutableStateOf(viewModel.customSocksPort.toString()) }
+        var usernameText by remember { mutableStateOf(viewModel.customSocksUsername) }
+        var passwordText by remember { mutableStateOf(viewModel.customSocksPassword) }
+        var passwordVisible by remember { mutableStateOf(false) }
         var portError by remember { mutableStateOf(false) }
 
         AlertDialog(
@@ -421,6 +424,34 @@ private fun ConnectionSection(
                     if (portError) {
                         Text(stringResource(id = R.string.custom_proxy_port_invalid), color = Color(0xFFFF453A), fontSize = 11.sp)
                     }
+                    HorizontalDivider(color = dividerColor)
+                    OutlinedTextField(
+                        value = usernameText,
+                        onValueChange = { usernameText = it },
+                        label = { Text(stringResource(id = R.string.custom_proxy_username_label)) },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = accentColor, unfocusedBorderColor = cardBorderColor)
+                    )
+                    OutlinedTextField(
+                        value = passwordText,
+                        onValueChange = { passwordText = it },
+                        label = { Text(stringResource(id = R.string.custom_proxy_password_label)) },
+                        singleLine = true,
+                        visualTransformation = if (passwordVisible) androidx.compose.ui.text.input.VisualTransformation.None else androidx.compose.ui.text.input.PasswordVisualTransformation(),
+                        trailingIcon = {
+                            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                                Icon(
+                                    if (passwordVisible) Icons.Rounded.VisibilityOff else Icons.Rounded.Visibility,
+                                    contentDescription = null,
+                                    tint = textSecondaryColor
+                                )
+                            }
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = accentColor, unfocusedBorderColor = cardBorderColor)
+                    )
+                    Text(text = stringResource(id = R.string.custom_proxy_auth_desc), color = textSecondaryColor, fontSize = 11.sp)
                     Text(text = stringResource(id = R.string.custom_proxy_desc), color = textSecondaryColor, fontSize = 12.sp)
                 }
             },
@@ -436,9 +467,7 @@ private fun ConnectionSection(
                         portError = true
                         return@TextButton
                     }
-                    viewModel.saveCustomSocksHost(context, host)
-                    viewModel.saveCustomSocksPort(context, port)
-                    viewModel.saveProxyProvider(context, "custom_proxy")
+                    viewModel.saveAndConnectCustomProxy(context, host, port, usernameText.trim(), passwordText)
                     showCustomProxyDialog = false
                     Toast.makeText(context, context.getString(R.string.custom_proxy_saved_restart), Toast.LENGTH_SHORT).show()
                 }) { Text(stringResource(id = R.string.save_text), color = accentColor, fontWeight = FontWeight.Bold) }
@@ -689,13 +718,27 @@ private fun CustomProxyDetailCard(
 ) {
     val host = viewModel.customSocksHost
     val port = viewModel.customSocksPort
+    val hasAuth = viewModel.customSocksUsername.isNotBlank()
+    val torState = viewModel.activeTorState().value
+    val statusText = when {
+        host.isBlank() -> stringResource(R.string.wg_not_configured)
+        torState is com.swiftbrowser.fast.secure.privacy.TorState.Connected -> "$host:$port" + if (hasAuth) " 🔒" else ""
+        torState is com.swiftbrowser.fast.secure.privacy.TorState.Error -> torState.message
+        else -> "$host:$port"
+    }
+    val statusColor = when {
+        host.isBlank() -> textSecondaryColor
+        torState is com.swiftbrowser.fast.secure.privacy.TorState.Error -> Color(0xFFFF453A)
+        torState is com.swiftbrowser.fast.secure.privacy.TorState.Connected -> Color(0xFF30D158)
+        else -> textSecondaryColor
+    }
     HubCard(cardColor, cardBorderColor) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(1f)) {
                 Icon(Icons.Rounded.SettingsEthernet, contentDescription = null, tint = accentColor, modifier = Modifier.size(24.dp))
                 Column {
                     Text(stringResource(R.string.wg_socks5_proxy), color = textPrimaryColor, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
-                    Text(if (host.isNotBlank()) "$host:$port" else stringResource(R.string.wg_not_configured), color = if (host.isNotBlank()) Color(0xFF30D158) else textSecondaryColor, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                    Text(statusText, color = statusColor, fontSize = 11.sp, fontWeight = FontWeight.Bold, maxLines = 2)
                 }
             }
             TextButton(onClick = onEdit) { Text(stringResource(R.string.wg_edit), color = accentColor, fontWeight = FontWeight.Bold) }

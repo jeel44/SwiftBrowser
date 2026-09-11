@@ -53,15 +53,25 @@ function parseReply(raw) {
   const host = obj.host;
   const port = obj.port;
   if (!host || typeof host !== "string" || !port) return null; // explicit direct
-  return { host: host, port: Number(port) };
+  const result = { host: host, port: Number(port) };
+  // Optional SOCKS5 username/password (manual custom proxy only — Tor/Orbot
+  // never sends these). Only attach when both are present so proxyFor() can
+  // omit the fields entirely for anonymous proxies.
+  if (typeof obj.username === "string" && obj.username.length > 0) {
+    result.username = obj.username;
+    result.password = typeof obj.password === "string" ? obj.password : "";
+  }
+  return result;
 }
 
 function refresh() {
   if (pending) return pending;
+  console.log(TAG, "[SwiftProxyDebug] refresh(): sending GET_PROXY_ENDPOINT native message to", NATIVE_APP);
   pending = new Promise((resolve) => {
     try {
       api.runtime.sendNativeMessage(NATIVE_APP, { type: "GET_PROXY_ENDPOINT" })
         .then((raw) => {
+          console.log(TAG, "[SwiftProxyDebug] refresh(): native message reply received, raw =", raw);
           const parsed = parseReply(raw);
           // parsed === undefined  -> malformed reply, keep last endpoint
           // parsed === null       -> app says "direct"
@@ -89,14 +99,22 @@ function proxyFor() {
   if (!endpoint) return [];
   // type "socks" == SOCKS5 in the proxy API. proxyDNS routes DNS through the
   // proxy (remote DNS, like Tor's socks_remote_dns). failoverTimeout 0 disables
-  // any silent fallback to a direct connection.
-  return [{
+  // any silent fallback to a direct connection. username/password are only
+  // honored by Gecko for type "socks" and are omitted entirely for anonymous
+  // proxies (Tor/Orbot, or a custom proxy with no credentials configured).
+  const info = {
     type: "socks",
     host: endpoint.host,
     port: endpoint.port,
     proxyDNS: true,
     failoverTimeout: 0
-  }];
+  };
+  if (endpoint.username) {
+    info.username = endpoint.username;
+    info.password = endpoint.password || "";
+  }
+  console.log(TAG, "[SwiftProxyDebug] proxyFor(): returning ProxyInfo type=" + info.type + " host=" + info.host + " port=" + info.port + " hasAuth=" + !!endpoint.username);
+  return [info];
 }
 
 function registerProxyApi() {
